@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title> SLIDER | E-COMMERCE WEBSITE </title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="https://yt3.ggpht.com/a/AGF-l78km1YyNXmF0r3-0CycCA0HLA_i6zYn_8NZEg=s900-c-k-c0xffffffff-no-rj-mo" type="image/gif" sizes="16x16">
+
+    <!-- External Libraries -->
+    <script src="http://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css">
+
+    <!-- Remix Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.5.0/remixicon.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+
+   <body>
+      <!--==================== HEADER ====================-->
+      <header class="header" id="header">
+         <nav class="nav container">
+            <a href="#" class="nav__logo">Logo</a>
+
+            <div class="nav__menu" id="nav-menu">
+               <ul class="nav__list">
+                  <li class="nav__item">
+                     <a href="#" class="nav__link">Trang chủ</a>
+                  </li>
+
+                  <li class="nav__item">
+                     <a href="#" class="nav__link">Về chúng tôi</a>
+                  </li>
+
+                  <li class="nav__item">
+                     <a href="#" class="nav__link">Services</a>
+                  </li>
+
+                  <li class="nav__item">
+                     <a href="#" class="nav__link">Featured</a>
+                  </li>
+
+                  <li class="nav__item">
+                     <a href="#" class="nav__link">Liên hệ chúng tôi</a>
+                  </li>
+               </ul>
+
+               <!-- Close button -->
+               <div class="nav__close" id="nav-close">
+                  <i class="ri-close-line"></i>
+               </div>
+            </div>
+
+            <div class="nav__actions">
+               <!-- Search button -->
+               <i class="ri-search-line nav__search" id="search-btn"></i>
+
+               <!-- Login button -->
+               <i class="ri-user-line nav__login" id="login-btn"></i>
+
+               <!-- Toggle button -->
+               <div class="nav__toggle" id="nav-toggle">
+                  <i class="ri-menu-line"></i>
+               </div>
+            </div>
+         </nav>
+      </header>
+
+      <!--==================== SEARCH ====================-->
+      <div class="search" id="search">
+         <form action="" class="search__form">
+            <i class="ri-search-line search__icon"></i>
+            <input type="search" placeholder="What are you looking for?" class="search__input">
+         </form>
+
+         <i class="ri-close-line search__close" id="search-close"></i>
+      </div>
+
+      <!--==================== LOGIN ====================-->
+      <div class="login" id="login">
+         <form action="" class="login__form">
+            <h2 class="login__title">Log In</h2>
+            
+            <div class="login__group">
+               <div>
+                  <label for="email" class="login__label">Email</label>
+                  <input type="email" placeholder="Write your email" id="email" class="login__input">
+               </div>
+               
+               <div>
+                  <label for="password" class="login__label">Password</label>
+                  <input type="password" placeholder="Enter your password" id="password" class="login__input">
+               </div>
+            </div>
+
+            <div>
+               <p class="login__signup">
+                  You do not have an account? <a href="#">Sign up</a>
+               </p>
+   
+               <a href="#" class="login__forgot">
+                  You forgot your password
+               </a>
+   
+               <button type="submit" class="login__button">Log In</button>
+            </div>
+         </form>
+
+         <i class="ri-close-line login__close" id="login-close"></i>
+      </div>
+
+     
+      
+      <!--=============== MAIN JS ===============-->
+
+      <style>
+         body
+         {
+             margin: 0;
+         }
+         #containerSlider
+         {
+             margin: auto;
+             width: 90%;
+             text-align: center;
+             padding-top: 100px;
+             box-sizing: border-box;
+         }
+         #containerSlider img
+         {
+             width: 100%;
+             height: 140%;
+             text-align: center;
+             align-content: center;
+         }
+         @media(max-width: 732px)
+         {
+             #containerSlider img
+             {
+                 height: 12em;
+             }
+         }
+         @media(max-width: 500px)
+         {
+             #containerSlider img
+             {
+                 height: 10em;
+             }
+         }
+     </style>
+ 
+ </head>
+ <body>
+     <section>
+             <div id="containerSlider">
+                 <div id="slidingImage"> <img src="img/img1.png" alt="image1"> </div>
+                 <div id="slidingImage"> <img src="img/img2.png" alt="image2"> </div>
+                 <div id="slidingImage"> <img src="img/img3.png" alt="image3"> </div>
+                 <div id="slidingImage"> <img src="img/img4.png" alt="image4"> </div>
+             </div>
+     </section>
+ </body>
+     <!-- <script src=“https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js”></script> -->
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
+     <script>
+         $(document).ready(function()
+         {
+         $('#containerSlider').slick({
+             dots: true,
+             infinite: true,
+             slidesToShow: 1,
+             slidesToScroll: 1,
+             autoplay: true,
+             autoplaySpeed: 2000,
+             });
+         });
+     </script>
+     
+      
+
+      <script src="assets/js/main.js"></script>
+   </body>
+</html>
