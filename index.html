@@ -2,190 +2,86 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title> SLIDER | E-COMMERCE WEBSITE </title>
-
-    <!-- Favicon -->
-    <link rel="icon" href="https://yt3.ggpht.com/a/AGF-l78km1YyNXmF0r3-0CycCA0HLA_i6zYn_8NZEg=s900-c-k-c0xffffffff-no-rj-mo" type="image/gif" sizes="16x16">
-
-    <!-- External Libraries -->
-    <script src="http://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css">
-
-    <!-- Remix Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.5.0/remixicon.css">
-
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="style.css">
+    <title>Trang chủ</title>
+    <script src="script.js"></script>
 </head>
-
-   <body>
-      <!--==================== HEADER ====================-->
-      <header class="header" id="header">
-         <nav class="nav container">
-            <a href="index.html" class="nav__logo">
-               <img src="img/logo.png" alt="Logo" class="logo-image">
-             </a>
-             
-
-            <div class="nav__menu" id="nav-menu">
-               <ul class="nav__list">
-                  <li class="nav__item">
-                     <a href="#" class="nav__link">Trang chủ</a>
-                  </li>
-
-                  <li class="nav__item">
-                     <a href="#" class="nav__link">Về chúng tôi</a>
-                  </li>
-
-                  <li class="nav__item">
-                     <a href="#" class="nav__link">Services</a>
-                  </li>
-
-                  <li class="nav__item">
-                     <a href="#" class="nav__link">Cái này để đại đại nhé</a>
-                  </li>
-
-                  <li class="nav__item">
-                     <a href="#" class="nav__link">Liên hệ chúng tôi</a>
-                  </li>
-               </ul>
-
-               <!-- Close button -->
-               <div class="nav__close" id="nav-close">
-                  <i class="ri-close-line"></i>
-               </div>
-            </div>
-
-            <div class="nav__actions">
-               <!-- Search button -->
-               <i class="ri-search-line nav__search" id="search-btn"></i>
-
-               <!-- Login button -->
-               <i class="ri-user-line nav__login" id="login-btn"></i>
-
-               <!-- Toggle button -->
-               <div class="nav__toggle" id="nav-toggle">
-                  <i class="ri-menu-line"></i>
-               </div>
-            </div>
+<body>
+     <div class="main">
+         <nav>
+             <img src="logo.png" alt="logo" class="logo">
+             <form class="nav__search">
+                <input type="text" placeholder="Nhập để tìm kiếm" class="search-input">
+                <button type="submit" class="search-button">🔍</button>
+              </form>
+             <ul>
+                 <li><a href="index.html">Trang chủ</a></li>
+                 <li>
+                    <a href="#">Sản phẩm</a>
+                    <ul class="submenu">
+                        <li><a href="#">Kính râm</a></li>
+                        <li><a href="#">Kính cận</a></li>
+                        <li><a href="#">Phụ kiện</a></li>
+                    </ul>
+                </li>
+                 <li><a href="">Giỏ hàng</a></li>
+                 <li><a href="">Về chúng tôi</a></li>
+             </ul>
          </nav>
-      </header>
-
-      <!--==================== SEARCH ====================-->
-      <div class="search" id="search">
-         <form action="" class="search__form">
-            <i class="ri-search-line search__icon"></i>
-            <input type="search" placeholder="What are you looking for?" class="search__input">
-         </form>
-
-         <i class="ri-close-line search__close" id="search-close"></i>
-      </div>
-
-      <!--==================== LOGIN ====================-->
-      <div class="login" id="login">
-         <form action="" class="login__form">
-            <h2 class="login__title">Log In</h2>
-            
-            <div class="login__group">
-               <div>
-                  <label for="email" class="login__label">Email</label>
-                  <input type="email" placeholder="Write your email" id="email" class="login__input">
-               </div>
-               
-               <div>
-                  <label for="password" class="login__label">Password</label>
-                  <input type="password" placeholder="Enter your password" id="password" class="login__input">
-               </div>
-            </div>
-
-            <div>
-               <p class="login__signup">
-                  You do not have an account? <a href="#">Sign up</a>
-               </p>
-   
-               <a href="#" class="login__forgot">
-                  You forgot your password
-               </a>
-   
-               <button type="submit" class="login__button">Log In</button>
-            </div>
-         </form>
-
-         <i class="ri-close-line login__close" id="login-close"></i>
-      </div>
-
-     
-      
-      <!--=============== MAIN JS ===============-->
-
-      <style>
-         body
-         {
-             margin: 0;
-         }
-         #containerSlider
-         {
-             margin: auto;
-             width: 90%;
-             text-align: center;
-             padding-top: 100px;
-             box-sizing: border-box;
-         }
-         #containerSlider img
-         {
-             width: 100%;
-             height: 140%;
-             text-align: center;
-             align-content: center;
-         }
-         @media(max-width: 732px)
-         {
-             #containerSlider img
-             {
-                 height: 12em;
-             }
-         }
-         @media(max-width: 500px)
-         {
-             #containerSlider img
-             {
-                 height: 10em;
-             }
-         }
-     </style>
- 
- </head>
- <body>
-     <section>
-             <div id="containerSlider">
-                 <div id="slidingImage"> <img src="img/img1.png" alt="image1"> </div>
-                 <div id="slidingImage"> <img src="img/img2.png" alt="image2"> </div>
-                 <div id="slidingImage"> <img src="img/img3.png" alt="image3"> </div>
-                 <div id="slidingImage"> <img src="img/img4.png" alt="image4"> </div>
+         <div class="content">
+             <h1 class="anim">Kính mắt SpringGlasses</h1>
+             <p class="anim">Những hình ảnh đẹp, miễn phí về kính mắt SpringGlasses mà bạn có thể tải xuống và sử dụng cho bất kỳ dự án nào. <br> Tự do hơn bất kỳ ảnh bản quyền hay ảnh stock nào.</p>
+             <div class="links anim">
+                <button><span></span>Bộ sưu tập kính dâm</button>
+                <button><span></span>Bộ sưu tập kính cận</button>
              </div>
-     </section>
- </body>
-     <!-- <script src=“https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js”></script> -->
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
-     <script>
-         $(document).ready(function()
-         {
-         $('#containerSlider').slick({
-             dots: true,
-             infinite: true,
-             slidesToShow: 1,
-             slidesToScroll: 1,
-             autoplay: true,
-             autoplaySpeed: 2000,
-             });
-         });
-     </script>
-     
-      
-
-      <script src="assets/js/main.js"></script>
-   </body>
+         </div>
+     </div>
+     <footer>
+        <div class="row">
+            <div class="col">
+                <img src="logo.png" class="footer_logo">
+                <p class="footer_about">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Inventore harum molestias nesciunt, 
+                    doloremque magni aspernatur iste blanditiis, fugiat quaerat accusamus ut, vero tempore. 
+                    Fugiat, illum!
+                </p>
+            </div>
+            <div class="col">
+                <h3>Liên hệ chúng tôi <div class="bottom_line"><span></span></div></h3>
+                <p>Ngõ 12 Chùa Bộc, Quang Trung, Đống Đa, Hà Nội</p>
+                <p>Plano</p>
+                <p>Texas, ZIP 75074, United States</p>
+                <p class="footer_email">alexastockphotos@gamil.com</p>
+                <h4>+1 - 2145958195</h4>
+            </div>
+            <div class="col">
+                <h3>Links <div class="bottom_line"><span></span></div></h3>
+                <ul>
+                    <li><a href="">HOME</a></li>
+                    <li><a href="">ABOUT</a></li>
+                    <li><a href="">SERVICE</a></li>
+                    <li><a href="">CONTACT US</a></li>
+                </ul>
+            </div>
+            <div class="col">
+                <h3>Newsletter <div class="bottom_line"><span></span></div></h3>
+                <form>
+                    <ion-icon class="icon" name="mail"></ion-icon>
+                    <input type="email" placeholder="Điền email để được nhận tin mới nhất" required>
+                    <button type="submit"><ion-icon class="icon_right" name="arrow-round-forward"></ion-icon></button>
+                </form>
+                <div class="social_icons">
+                    <ion-icon class="social_icon" name="logo-facebook"></ion-icon>
+                    <ion-icon class="social_icon" name="logo-instagram"></ion-icon>
+                    <ion-icon class="social_icon" name="logo-tiktok"></ion-icon>
+                    <ion-icon class="social_icon" name="logo-youtube"></ion-icon>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <p class="copyright">Cosas Learning Ⓒ 2022 - All Rights Reserved</p>
+     </footer> 
+</body>   
 </html>
