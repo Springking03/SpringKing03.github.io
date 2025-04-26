@@ -115,7 +115,7 @@ img.logo
 ul li ul.submenu {
     display: none;
     position: absolute;
-    background-color rgba(255, 255, 255, 0.2);
+    background-color: rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(10px);
     padding: 10px 0;
     border-radius: 8px;
