@@ -214,12 +214,12 @@ nav ul li a:hover::after{
     line-height: 140px;
     font-weight: 600;
     opacity: 0;
-    color: #fff;
+    color: #ffffff;
 }
 .content p{
     line-height: 28px;
     opacity: 0;
-    color: #fff;
+    color: #ffffff;
 }
 .links{
     margin-top: 30px;
