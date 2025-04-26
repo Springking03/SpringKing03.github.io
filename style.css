@@ -115,7 +115,7 @@ img.logo
 ul li ul.submenu {
     display: none;
     position: absolute;
-    background-color rgba(255, 255, 255, 0.2);
+    background-color: rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(10px);
     padding: 10px 0;
     border-radius: 8px;
@@ -214,10 +214,12 @@ nav ul li a:hover::after{
     line-height: 140px;
     font-weight: 600;
     opacity: 0;
+    color: #ffffff;
 }
 .content p{
     line-height: 28px;
     opacity: 0;
+    color: #ffffff;
 }
 .links{
     margin-top: 30px;
