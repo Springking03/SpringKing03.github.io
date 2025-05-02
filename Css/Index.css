@@ -89,7 +89,7 @@
 
 .product-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(4, 1fr); /* Mỗi hàng 3 ô */
   gap: 24px;
   margin-top: 20px;
 }
@@ -140,4 +140,32 @@
 
 .add-to-cart:hover {
   background-color: #005fa3;
+}
+
+/*Cái số sioos*//
+.pagination {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.page-link {
+  display: inline-block;
+  padding: 8px 16px;
+  background-color: #eee;
+  color: #333;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
+
+.page-link:hover {
+  background-color: #ddd;
+}
+
+.page-link.active {
+  background-color: #0077cc;
+  color: #fff;
 }
