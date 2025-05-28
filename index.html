@@ -1,201 +1,120 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
+
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="Css/Header.css" />
-    <link rel="stylesheet" href="Css/Index.css" />
-    <link rel="stylesheet" href="Css/Footer.css" />
-    <title>SpringGlass</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+	<title>Thế giới điện thoại</title>
+	<link rel="shortcut icon" href="img/favicon.ico" />
+
+	<!-- Load font awesome icons -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+	 crossorigin="anonymous">
+
+	<!-- owl carousel libraries -->
+	<link rel="stylesheet" href="js/owlcarousel/owl.carousel.min.css">
+	<link rel="stylesheet" href="js/owlcarousel/owl.theme.default.min.css">
+	<script src="js/Jquery/Jquery.min.js"></script>
+	<script src="js/owlcarousel/owl.carousel.min.js"></script>
+
+	<!-- tidio - live chat -->
+	<!-- <script src="//code.tidio.co/bfiiplaaohclhqwes5xivoizqkq56guu.js"></script> -->
+
+	<!-- our files -->
+	<!-- css -->
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/topnav.css">
+	<link rel="stylesheet" href="css/header.css">
+	<link rel="stylesheet" href="css/banner.css">
+	<link rel="stylesheet" href="css/taikhoan.css">
+	<link rel="stylesheet" href="css/trangchu.css">
+	<link rel="stylesheet" href="css/home_products.css">
+	<link rel="stylesheet" href="css/pagination_phantrang.css">
+	<link rel="stylesheet" href="css/footer.css">
+	<!-- js -->
+	<script src="data/products.js"></script>
+	<script src="js/classes.js"></script>
+	<script src="js/dungchung.js"></script>
+	<script src="js/trangchu.js"></script>
+
 </head>
 
-<!--Header-->
-<div class="hover-zone"></div>
-<header>
-  <nav class="navbar">
-    <div class="logo">
-      <img src="Pic/logo.png" alt="Logo" height="40">
-    </div>
-
-    <div class="search-bar">
-      <input type="text" placeholder="Tìm kiếm sản phẩm..." />
-      <button type="submit">🔍</button>
-    </div>
-
-    <ul class="nav-links">
-      <li><a href="index.html">Trang chủ</a></li>
-      
-      <li class="dropdown">
-        <a href="Sản phẩm.html">Sản phẩm ▾</a>
-        <ul class="dropdown-menu">
-          <li><a href="#">Kính cận</a></li>
-          <li><a href="#">Kính râm</a></li>
-          <li><a href="#">Phụ kiện</a></li>
-        </ul>
-      </li>
-
-      <li><a href="#">Tin tức</a></li>
-      <li><a href="#">Về chúng tôi</a></li>
-      <li><a href="#">Tài khoản</a></li>
-      
-      <li>
-        <div class="cart-container">
-          <a href="giohang.html" class="cart-link">
-            <img src="Pic/giỏ hàng" alt="Cart" class="cart-icon">
-            <span class="cart-count">0</span>
-            <span class="cart-total">0₫</span>
-          </a>
-        </div>
-      </li>
-    </ul>
-  </nav>
-  <script src="Script/index.js"></script>
-</header>
-
 <body>
-  <!--Banner-->
-  
-  <section class="banner-container">
-    <div class="slider-wrapper">
-      <div class="slider">
-        <a href="#"><img src="Pic/banner1.jpg" alt="Slide 1" /></a>
-        <a href="#"><img src="Pic/banner2.webp" alt="Slide 2" /></a>
-        <a href="#"><img src="./images/banner3.jpg" alt="Slide 3" /></a>
-      </div>
-  
-      <!-- Nút điều hướng trái/phải -->
-      <button class="nav prev">&#10094;</button>
-      <button class="nav next">&#10095;</button>
-  
-      <!-- Nút xem sản phẩm -->
-      <div class="banner-button-container">
-        <button id="nextSlideBtn" class="banner-button">Xem sản phẩm</button>
-      </div>
-    </div>
-  </section>
-  
-  <!-- Sản phẩm -->
-<section class="product-section">
-  <h2>Sản phẩm nổi bật</h2>
-  <div class="product-grid">
+	<script> addTopNav(); </script>
 
-    <div class="product-card">
-      <a href="chitiet.html?code=SP001">
-        <img src="Pic/a01.jpeg" alt="Kính Cận Nam" class="product-img">
-      </a>
-      <h3 class="product-name">Kính Cận Nam</h3>
-      <p class="product-code">Mã: SP001</p>
-      <p class="product-price">450,000₫</p>
-      <button class="add-to-cart"
-        data-name="Kính Cận Nam"
-        data-code="SP001"
-        data-price="450000"
-        data-image="Pic/a01.jpeg">Thêm vào giỏ hàng</button>
-    </div>
+	<section>
+		<script> addHeader(); </script>
 
-    <div class="product-card">
-      <a href="chitiet.html?code=SP002">
-        <img src="Pic/a02.webp" alt="Kính Râm Unisex" class="product-img">
-      </a>
-      <h3 class="product-name">Kính Râm Unisex</h3>
-      <p class="product-code">Mã: SP002</p>
-      <p class="product-price">380,000₫</p>
-      <button class="add-to-cart"
-        data-name="Kính Râm Unisex"
-        data-code="SP002"
-        data-price="380000"
-        data-image="Pic/a02.webp">Thêm vào giỏ hàng</button>
-    </div>
+		<div class="banner">
+			<div class="owl-carousel owl-theme"></div>
+		</div> <!-- End Banner -->
 
-    <div class="product-card">
-      <a href="chitiet.html?code=SP003">
-        <img src="Pic/" alt="Kính Gọng Tròn" class="product-img">
-      </a>
-      <h3 class="product-name">Kính Gọng Tròn</h3>
-      <p class="product-code">Mã: SP003</p>
-      <p class="product-price">420,000₫</p>
-      <button class="add-to-cart"
-        data-name="Kính Gọng Tròn"
-        data-code="SP003"
-        data-price="420000"
-        data-image="images/kinh3.jpg">Thêm vào giỏ hàng</button>
-    </div>
+		<img src="img/banners/blackFriday.gif" alt="" style="width: 100%;">
 
-    <div class="product-card">
-      <a href="chitiet.html?code=SP004">
-        <img src="images/kinh4.jpg" alt="Kính Thời Trang" class="product-img">
-      </a>
-      <h3 class="product-name">Kính Thời Trang</h3>
-      <p class="product-code">Mã: SP004</p>
-      <p class="product-price">510,000₫</p>
-      <button class="add-to-cart"
-        data-name="Kính Thời Trang"
-        data-code="SP004"
-        data-price="510000"
-        data-image="images/kinh4.jpg">Thêm vào giỏ hàng</button>
-    </div>
+		<br>
+		<div class="companyMenu group flexContain"></div>
 
-  </div>
-</section>
+		<div class="flexContain">
 
-  <script src="Script/index.js"></script>
-  </body>
+			<div class="pricesRangeFilter dropdown">
+				<button class="dropbtn">Giá tiền</button>
+				<div class="dropdown-content"></div>
+			</div>
 
+			<div class="promosFilter dropdown">
+				<button class="dropbtn">Khuyến mãi</button>
+				<div class="dropdown-content"></div>
+			</div>
 
- <!-- Footer -->
-<footer class="footer">
-  <div class="footer-container">
-    <!-- Logo và Chữ giới thiệu -->
-    <div class="footer-column logo-section">
-      <img src="Pic/logo.png" alt="Logo" class="footer-logo">
-      <p class="footer-text">SpringGlass - Cung cấp kính mắt thời trang và chất lượng. Chúng tôi cam kết mang đến những sản phẩm tốt nhất cho đôi mắt của bạn.</p>
-    </div>
+			<div class="starFilter dropdown">
+				<button class="dropbtn">Số lượng sao</button>
+				<div class="dropdown-content"></div>
+			</div>
 
-    <!-- Liên hệ -->
-    <div class="footer-column">
-      <h3>Liên hệ</h3>
-      <p>📍 123 Nguyễn Văn Cừ, Hà Nội</p>
-      <p>📞 <a href="tel:0123456789">0123 456 789</a></p>
-      <p>📧 <a href="mailto:info@springglass.vn">info@springglass.vn</a></p>
-      <div class="social-icons">
-        <a href="https://lienquan.garena.vn/" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-        <a href="https://tiktok.com" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
-        <a href="https://instagram.com" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
-        <a href="https://youtube.com" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
-      </div>
-    </div>
+			<div class="sortFilter dropdown">
+				<button class="dropbtn">Sắp xếp</button>
+				<div class="dropdown-content"></div>
+			</div>
 
-    <!-- Các trang -->
-    <div class="footer-column">
-      <h3>Các trang</h3>
-      <ul class="footer-links">
-        <li><a href="index.html">Trang chủ</a></li>
-        <li><a href="#">Sản phẩm</a></li>
-        <li><a href="#">Tin tức</a></li>
-        <li><a href="#">Về chúng tôi</a></li>
-        <li><a href="#">Tài khoản</a></li>
-      </ul>
-    </div>
+		</div> <!-- End khung chọn bộ lọc -->
 
-    <!-- Đăng ký nhận tin -->
-    <div class="footer-column">
-      <h3>Đăng ký nhận tin</h3>
-      <form class="newsletter-form">
-        <input type="email" placeholder="Nhập email của bạn" required />
-        <button type="submit">Gửi</button>
-      </form>
-    </div>
+		<div class="choosedFilter flexContain">
+			<a id="deleteAllFilter" style="display: none;">
+				<h3>Xóa bộ lọc</h3>
+			</a>
+		</div> <!-- Những bộ lọc đã chọn -->
+		<hr>
 
-    <!-- Bản đồ -->
-    <div class="footer-column">
-      <h3>Bản đồ</h3>
-      <iframe 
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3724.137456313709!2d105.84117607503887!3d21.02882468796045!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135abc123456789%3A0xabcdef!2zMTIzIE5ndXnhu4VuIFbEg24gQ-G7p2ksIEjDoCBO4buZaQ!5e0!3m2!1sen!2s!4v1611234567890!5m2!1sen!2s" 
-        width="100%" height="120" style="border:0;" allowfullscreen loading="lazy"></iframe>
-    </div>
-  </div>
+		<!-- Mặc định mới vào trang sẽ ẩn đi, nế có filter thì mới hiện lên -->
+		<div class="contain-products" style="display:none"> 
+			<div class="filterName">
+				<input type="text" placeholder="Lọc trong trang theo tên..." onkeyup="filterProductsName(this)">
+			</div> <!-- End FilterName -->
 
-  <div class="footer-bottom">
-    <p>&copy; 2025 SpringGlass. Đã đăng ký bản quyền.</p>
-  </div>
-</footer>
+			<ul id="products" class="homeproduct group flexContain">
+				<div id="khongCoSanPham">
+					<i class="fa fa-times-circle"></i>
+					Không có sản phẩm nào
+				</div> <!-- End Khong co san pham -->
+			</ul><!-- End products -->
+
+			<div class="pagination"></div>
+		</div>
+
+		<!-- Div hiển thị khung sp hot, khuyến mãi, mới ra mắt ... -->
+		<div class="contain-khungSanPham" ></div>
+
+	</section> <!-- End Section -->
+
+	<script>
+		addContainTaiKhoan(); addPlc();
+	</script>
+
+	<div class="footer"><script>addFooter();</script></div>
+
+	<i class="fa fa-arrow-up" id="goto-top-page" onclick="gotoTop()"></i>
+</body>
+
+</html>
