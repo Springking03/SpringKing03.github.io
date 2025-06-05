@@ -6,7 +6,8 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-		<title>SpringElectronic</title>
+		 
+		<title>Tin Tức - SpringElectronic</title>
 
 		<!-- Google font -->
 		<link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
@@ -27,8 +28,139 @@
 		<!-- Custom stlylesheet -->
 		<link type="text/css" rel="stylesheet" href="css/style.css"/>
 
+		<style>
+			.news-section {
+				padding: 30px 0;
+				background-color: #f8f9fa;
+			}
+			
+			.news-item {
+				background: white;
+				border-radius: 8px;
+				box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+				margin-bottom: 30px;
+				overflow: hidden;
+				transition: transform 0.3s ease, box-shadow 0.3s ease;
+			}
+			
+			.news-item:hover {
+				transform: translateY(-5px);
+				box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+			}
+			
+			.news-content {
+				display: flex;
+				align-items: center;
+				padding: 20px;
+			}
+			
+			.news-image {
+				width: 200px;
+				height: 150px;
+				border-radius: 8px;
+				overflow: hidden;
+				margin-right: 20px;
+				flex-shrink: 0;
+			}
+			
+			.news-image img {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+				transition: transform 0.3s ease;
+			}
+			
+			.news-item:hover .news-image img {
+				transform: scale(1.05);
+			}
+			
+			.news-info {
+				flex: 1;
+			}
+			
+			.news-info h3 {
+				color: #333;
+				font-size: 20px;
+				font-weight: 600;
+				margin-bottom: 10px;
+				line-height: 1.4;
+			}
+			
+			.news-info h3:hover {
+				color: #D10024;
+				cursor: pointer;
+			}
+			
+			.news-meta {
+				color: #666;
+				font-size: 12px;
+				margin-bottom: 10px;
+			}
+			
+			.news-meta i {
+				margin-right: 5px;
+				color: #D10024;
+			}
+			
+			.news-excerpt {
+				color: #666;
+				line-height: 1.6;
+				margin-bottom: 15px;
+			}
+			
+			.read-more {
+				background: #D10024;
+				color: white;
+				padding: 8px 20px;
+				border-radius: 20px;
+				text-decoration: none;
+				font-size: 14px;
+				font-weight: 500;
+				transition: background 0.3s ease;
+			}
+			
+			.read-more:hover {
+				background: #B50020;
+				color: white;
+				text-decoration: none;
+			}
+			
+			.section-title {
+				text-align: center;
+				margin-bottom: 40px;
+			}
+			
+			.section-title h2 {
+				color: #333;
+				font-size: 32px;
+				font-weight: 700;
+				margin-bottom: 10px;
+			}
+			
+			.section-title .underline {
+				width: 60px;
+				height: 3px;
+				background: #D10024;
+				margin: 0 auto;
+			}
+			
+			@media (max-width: 768px) {
+				.news-content {
+					flex-direction: column;
+					text-align: center;
+				}
+				
+				.news-image {
+					width: 100%;
+					margin-right: 0;
+					margin-bottom: 15px;
+				}
+			}
+		</style>
+
     </head>
 	<body>
+		
 		<!-- HEADER -->
 		<header>
 			<!-- TOP HEADER -->
@@ -56,10 +188,11 @@
 						<!-- LOGO -->
 						<div class="col-md-3">
 							<div class="header-logo">
-								<a href="#" class="logo">
+								<a href="index.html" class="logo">
 									<img src="./img/logo.png" alt="">
 								</a>
 							</div>
+							
 						</div>
 						<!-- /LOGO -->
 
@@ -142,13 +275,13 @@
 				<div id="responsive-nav">
 					<!-- NAV -->
 					<ul class="main-nav nav navbar-nav">
-						<li class="active"><a href="#">Trang chủ</a></li>
+						<li><a href="index.html">Trang chủ</a></li>
 						<li><a href="#">Liên hệ</a></li>
 						<li><a href="tatcasanpham.html">Tất cả sản phẩm</a></li>
 						<li><a href="kinhcan.html">Kính cận</a></li>
 						<li><a href="kinhram.html">Kính râm</a></li>
 						<li><a href="phukien.html">Phụ kiện</a></li>
-						<li><a href="tintuc.html">Tin tức</a></li>
+						<li class="active"><a href="tintuc.html">Tin tức</a></li>
 					</ul>
 					<!-- /NAV -->
 				</div>
@@ -157,3 +290,201 @@
 			<!-- /container -->
 		</nav>
 		<!-- /NAVIGATION -->
+
+		<!-- NEWS SECTION -->
+		<div class="news-section">
+			<div class="container">
+				<div class="section-title">
+					<h2>Tin Tức Mới Nhất</h2>
+					<div class="underline"></div>
+				</div>
+
+				<!-- Tin tức 1 -->
+				<div class="news-item">
+					<div class="news-content">
+						<div class="news-image">
+							<img src="https://images.unsplash.com/photo-1574258495973-f010dfbb5371?w=400&h=300&fit=crop" alt="Xu hướng kính mắt 2024">
+						</div>
+						<div class="news-info">
+							<h3>Xu Hướng Kính Mắt Thời Trang 2024: Phong Cách Retro Trở Lại</h3>
+							<div class="news-meta">
+								<i class="fa fa-calendar"></i>15 Tháng 5, 2024
+								<i class="fa fa-user" style="margin-left: 15px;"></i>Admin SpringElectronic
+							</div>
+							<p class="news-excerpt">
+								Năm 2024 chứng kiến sự trở lại mạnh mẽ của phong cách retro trong thế giới kính mắt. Từ gọng tròn vintage đến thiết kế oversized của thập niên 80, các xu hướng cũ đang được tái sinh với chất liệu và công nghệ hiện đại...
+							</p>
+							<a href="https://matviet.vn/blogs/news/tim-hieu-xu-huong-mat-kinh-thoi-trang-nam-2024?srsltid=AfmBOoo3x1vypQhWuedqI3aYdDGTLynra7W0SjtEiiElYPr0xfTPkZkP" class="read-more">Đọc thêm</a>
+						</div>
+					</div>
+				</div>
+
+				<!-- Tin tức 2 -->
+				<div class="news-item">
+					<div class="news-content">
+						<div class="news-image">
+							<img src="https://images.unsplash.com/photo-1556306535-38febf6782e7?w=400&h=300&fit=crop" alt="Bảo vệ mắt khỏi ánh sáng xanh">
+						</div>
+						<div class="news-info">
+							<h3>Tầm Quan Trọng Của Việc Bảo Vệ Mắt Khỏi Ánh Sáng Xanh</h3>
+							<div class="news-meta">
+								<i class="fa fa-calendar"></i>12 Tháng 5, 2024
+								<i class="fa fa-user" style="margin-left: 15px;"></i>Bác sĩ Nguyễn Văn A
+							</div>
+							<p class="news-excerpt">
+								Trong thời đại công nghệ số, việc tiếp xúc với ánh sáng xanh từ màn hình điện tử ngày càng tăng. Tìm hiểu về tác hại của ánh sáng xanh và cách bảo vệ đôi mắt hiệu quả với kính chống ánh sáng xanh chất lượng...
+							</p>
+							<a href="https://matviet.vn/blogs/news/anh-sang-xanh-la-gi-cach-bao-ve-mat-tranh-khoi-anh-sang-xanh?srsltid=AfmBOopjQf95ScQhWY-IdYC5pjVw3fZWZvxD3k5_xznQhnSYr9ZkQPPJ" class="read-more">Đọc thêm</a>
+						</div>
+					</div>
+				</div>
+
+				<!-- Tin tức 3 -->
+				<div class="news-item">
+					<div class="news-content">
+						<div class="news-image">
+							<img src="https://images.unsplash.com/photo-1508296695146-257a814070b4?w=400&h=300&fit=crop" alt="Cách chọn kính râm">
+						</div>
+						<div class="news-info">
+							<h3>Hướng Dẫn Chọn Kính Râm Phù Hợp Với Khuôn Mặt</h3>
+							<div class="news-meta">
+								<i class="fa fa-calendar"></i>8 Tháng 5, 2024
+								<i class="fa fa-user" style="margin-left: 15px;"></i>Chuyên gia thời trang
+							</div>
+							<p class="news-excerpt">
+								Mỗi khuôn mặt có những đặc điểm riêng và cần được phối hợp với kiểu dáng kính râm phù hợp. Bài viết này sẽ hướng dẫn bạn cách chọn kính râm hoàn hảo dựa trên hình dáng khuôn mặt để tôn lên vẻ đẹp tự nhiên...
+							</p>
+							<a href="https://matviet.vn/blogs/huong-dan-mua-sam/cach-chon-kinh-ram-phu-hop-voi-tung-dang-khuon-mat?srsltid=AfmBOoovu3khPWFmiIZ0Vvbvn0V77cEZ4dlSRZKLJZW7JqUCG5yVAtdg" class="read-more">Đọc thêm</a>
+						</div>
+					</div>
+				</div>
+
+				<!-- Tin tức 4 -->
+				<div class="news-item">
+					<div class="news-content">
+						<div class="news-image">
+							<img src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=400&h=300&fit=crop" alt="Chăm sóc kính mắt">
+						</div>
+						<div class="news-info">
+							<h3>Bí Quyết Bảo Quản Và Vệ Sinh Kính Mắt Đúng Cách</h3>
+							<div class="news-meta">
+								<i class="fa fa-calendar"></i>5 Tháng 5, 2024
+								<i class="fa fa-user" style="margin-left: 15px;"></i>Kỹ thuật viên SpringElectronic
+							</div>
+							<p class="news-excerpt">
+								Việc bảo quản và vệ sinh kính mắt đúng cách không chỉ giúp kính bền đẹp hơn mà còn đảm bảo tầm nhìn rõ ràng và sức khỏe đôi mắt. Khám phá những mẹo hay từ chuyên gia để chăm sóc kính mắt của bạn...
+							</p>
+							<a href="https://www.matsaigon.com/a-z/su-dung-va-bao-quan-mat-kinh-hop-ly/" class="read-more">Đọc thêm</a>
+						</div>
+					</div>
+				</div>
+
+				<!-- Tin tức 5 -->
+				<div class="news-item">
+					<div class="news-content">
+						<div class="news-image">
+							<img src="https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=300&fit=crop" alt="Kính mắt thông minh">
+						</div>
+						<div class="news-info">
+							<h3>Công Nghệ Kính Mắt Thông Minh: Tương Lai Của Ngành Quang Học</h3>
+							<div class="news-meta">
+								<i class="fa fa-calendar"></i>1 Tháng 5, 2024
+								<i class="fa fa-user" style="margin-left: 15px;"></i>Chuyên gia công nghệ
+							</div>
+							<p class="news-excerpt">
+								Kính mắt thông minh đang dần trở thành hiện thực với những tính năng đột phá như hiển thị AR, theo dõi sức khỏe và kết nối internet. Tìm hiểu về những phát triển mới nhất trong công nghệ kính mắt và triển vọng tương lai...
+							</p>
+							<a href="https://mafo-optics.com/adaptive-smart-glasses-for-future/" class="read-more">Đọc thêm</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- /NEWS SECTION -->
+
+		<!-- FOOTER -->
+		<footer id="footer">
+			<div class="section">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-3 col-xs-6">
+							<div class="footer">
+								<h3 class="footer-title">Về SpringElectronic</h3>
+								<p>Chuyên cung cấp kính mắt chất lượng cao với thiết kế thời trang và công nghệ hiện đại.</p>
+								<ul class="footer-links">
+									<li><a href="#"><i class="fa fa-map-marker"></i>74 Thái Hà, Hà Nội</a></li>
+									<li><a href="#"><i class="fa fa-phone"></i>+84345 0444 07</a></li>
+									<li><a href="#"><i class="fa fa-envelope-o"></i>SpringElectronic@gmail.com</a></li>
+								</ul>
+							</div>
+						</div>
+
+						<div class="col-md-3 col-xs-6">
+							<div class="footer">
+								<h3 class="footer-title">Danh mục</h3>
+								<ul class="footer-links">
+									<li><a href="#">Kính cận</a></li>
+									<li><a href="#">Kính râm</a></li>
+									<li><a href="#">Phụ kiện</a></li>
+									<li><a href="#">Tất cả sản phẩm</a></li>
+								</ul>
+							</div>
+						</div>
+
+						<div class="col-md-3 col-xs-6">
+							<div class="footer">
+								<h3 class="footer-title">Thông tin</h3>
+								<ul class="footer-links">
+									<li><a href="#">Về chúng tôi</a></li>
+									<li><a href="#">Liên hệ</a></li>
+									<li><a href="#">Chính sách bảo hành</a></li>
+									<li><a href="#">Hướng dẫn mua hàng</a></li>
+								</ul>
+							</div>
+						</div>
+
+						<div class="col-md-3 col-xs-6">
+							<div class="footer">
+								<h3 class="footer-title">Dịch vụ</h3>
+								<ul class="footer-links">
+									<li><a href="#">Tài khoản</a></li>
+									<li><a href="#">Giỏ hàng</a></li>
+									<li><a href="#">Yêu thích</a></li>
+									<li><a href="#">Theo dõi đơn hàng</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div id="bottom-footer" class="section">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12 text-center">
+							<ul class="footer-payments">
+								<li><a href="#"><i class="fa fa-cc-visa"></i></a></li>
+								<li><a href="#"><i class="fa fa-credit-card"></i></a></li>
+								<li><a href="#"><i class="fa fa-cc-paypal"></i></a></li>
+								<li><a href="#"><i class="fa fa-cc-mastercard"></i></a></li>
+							</ul>
+							<span class="copyright">
+								Copyright &copy; 2024 All rights reserved | SpringElectronic
+							</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</footer>
+		<!-- /FOOTER -->
+
+		<!-- jQuery Plugins -->
+		<script src="js/jquery.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/slick.min.js"></script>
+		<script src="js/nouislider.min.js"></script>
+		<script src="js/jquery.zoom.min.js"></script>
+		<script src="js/main.js"></script>
+
+	</body>
+</html>
