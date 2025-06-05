@@ -595,26 +595,7 @@
 		<script src="js/jquery.zoom.min.js"></script>
 		<script src="js/main.js"></script>
         <script>
-            document.querySelectorAll('.quick-view').forEach(btn => {
-            btn.addEventListener('click', () => {
-            const product = btn.closest('.product');
-
-            // Lấy dữ liệu từ các thuộc tính và thẻ con của sản phẩm
-            const name = product.getAttribute('data-name');
-            const price = parseFloat(product.getAttribute('data-price'));
-            const img = product.getAttribute('data-img');
-            const category = product.querySelector('.product-category')?.innerText || '';
-            const oldPrice = product.querySelector('.product-old-price')?.innerText || '';
-            const discount = product.querySelector('.product-label .sale')?.innerText || '';
-
-            const productDetail = { name, price, img, category, oldPrice, discount };
-            localStorage.setItem('product-detail', JSON.stringify(productDetail));
-
-            // Chuyển trang chi tiết sản phẩm
-            window.location.href = 'chitietsanpham.html';
-            });
-            });
-
+           
         </script>
 	</body>
 </html>
