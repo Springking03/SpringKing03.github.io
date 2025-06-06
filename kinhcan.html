@@ -4,39 +4,33 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
         <title>SpringElectronic</title>
-
 
         <!-- Google font -->
         <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
 
-
         <!-- Bootstrap -->
         <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css"/>
-
 
         <!-- Slick -->
         <link type="text/css" rel="stylesheet" href="css/slick.css"/>
         <link type="text/css" rel="stylesheet" href="css/slick-theme.css"/>
 
-
         <!-- nouislider -->
         <link type="text/css" rel="stylesheet" href="css/nouislider.min.css"/>
-
 
         <!-- Font Awesome Icon -->
         <link rel="stylesheet" href="css/font-awesome.min.css">
 
-
         <!-- Custom stlylesheet -->
         <link type="text/css" rel="stylesheet" href="css/style.css"/>
-
-
     </head>
+    
     <body>
+        <script src="js/search.js"></script>
+        
         <!-- HEADER -->
         <header>
             <!-- TOP HEADER -->
@@ -49,12 +43,11 @@
                     </ul>
                     <ul class="header-links pull-right">
                         <li><a href="#"><i class="fa fa-dollar"></i> VND</a></li>
-                        <li><a href="taikhoan.html"><i class="fa fa-user-o"></i> Tài khoản</a></li>
+                        <li id="userStatus"></li>
                     </ul>
                 </div>
             </div>
             <!-- /TOP HEADER -->
-
 
             <!-- MAIN HEADER -->
             <div id="header">
@@ -72,22 +65,17 @@
                         </div>
                         <!-- /LOGO -->
 
-
                         <!-- SEARCH BAR -->
                         <div class="col-md-6">
                             <div class="header-search">
                                 <form>
-                                    <select class="input-select">
-                                        <option value="0">Tất cả</option>
-                                        <option value="1">Ko co gi</option>
-                                    </select>
+                                    
                                     <input class="input" placeholder="Search here">
                                     <button class="search-btn">Tìm kiếm</button>
                                 </form>
                             </div>
                         </div>
                         <!-- /SEARCH BAR -->
-
 
                         <!-- ACCOUNT -->
                         <div class="col-md-3 clearfix">
@@ -102,33 +90,30 @@
                                 </div>
                                 <!-- /Wishlist -->
 
-
                                 <!-- Giỏ hàng -->
-<div class="dropdown">
-  <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
-    <i class="fa fa-shopping-cart"></i>
-    <span>Your Cart</span>
-    <div class="qty">0</div>
-  </a>
+                                <div class="dropdown">
+                                    <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+                                        <i class="fa fa-shopping-cart"></i>
+                                        <span>Your Cart</span>
+                                        <div class="qty">0</div>
+                                    </a>
 
+                                    <div class="cart-dropdown">
+                                        <div class="cart-list"><!-- sản phẩm sẽ thêm ở đây bằng JS --></div>
 
-  <div class="cart-dropdown">
-    <div class="cart-list"><!-- sản phẩm sẽ thêm ở đây bằng JS --></div>
+                                        <div class="cart-summary">
+                                            <small>0 Item(s) selected</small>
+                                            <h5>Tổng tiền: 0 VND</h5>
+                                        </div>
 
-
-    <div class="cart-summary">
-      <small>0 Item(s) selected</small>
-      <h5>Tổng tiền: 0 VND</h5>
-    </div>
-
-
-    <div class="cart-btns">
-      <a href="#">Xem giỏ hàng</a>
-      <a href="#">Đặt hàng <i class="fa fa-arrow-circle-right"></i></a>
-    </div>
-  </div>
-</div>
-<!-- /Giỏ hàng -->
+                                        <div class="cart-btns">
+                                            <a href="#">Xem giỏ hàng</a>
+                                            <a href="#">Đặt hàng <i class="fa fa-arrow-circle-right"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /Giỏ hàng -->
+                                
                                 <!-- Menu Toogle -->
                                 <div class="menu-toggle">
                                     <a href="#">
@@ -149,7 +134,6 @@
         </header>
         <!-- /HEADER -->
 
-
         <!-- NAVIGATION -->
         <nav id="navigation">
             <!-- container -->
@@ -158,10 +142,10 @@
                 <div id="responsive-nav">
                     <!-- NAV -->
                     <ul class="main-nav nav navbar-nav">
-                        <li class="active"><a href="#">Trang chủ</a></li>
-                        <li><a href="#">Liên hệ</a></li>
+                        <li><a href="index.html">Trang chủ</a></li>
+                        <li><a href="liehe.html">Liên hệ</a></li>
                         <li><a href="tatcasanpham.html">Tất cả sản phẩm</a></li>
-                        <li><a href="kinhcan.html">Kính cận</a></li>
+                        <li class="active"><a href="kinhcan.html">Kính cận</a></li>
                         <li><a href="kinhram.html">Kính râm</a></li>
                         <li><a href="phukien.html">Phụ kiện</a></li>
                         <li><a href="tintuc.html">Tin tức</a></li>
@@ -174,449 +158,283 @@
         </nav>
         <!-- /NAVIGATION -->
 
-
-
-
-<!-- Products Section -->
-<div class="section">
-    <!-- container -->
-    <div class="container">
-        <!-- Section Title -->
-        <div class="row">
-            <div class="col-md-12">
-                <h2 class="section-title text-center">KÍNH CẬN</h2>
-            </div>
-        </div>
-        <!-- /Section Title -->
-
-
-
-
-        <!-- Products Row -->
-        <div class="row">
-            <!-- product -->
-            <div class="col-md-3 col-xs-6">
-                <div class="product" data-name="Kính cận 1" data-price="150" data-img="img/CAN1.jpg">
-                                            <div class="product-img">
-                                                <img src="img/CAN1.jpg" alt="">
-                                                <div class="product-label">
-                                                    <span class="sale">-30%</span>
-                                                    <span class="new">NEW</span>
-                                                </div>
-                                            </div>
-                                            <div class="product-body">
-                                                <p class="product-category">KÍNH CẬN</p>
-                                                <h3 class="product-name"><a href="#">Kính cận 1</a></h3>
-                                                <h4 class="product-price">$150.00 <del class="product-old-price">$180.00</del></h4>
-                        <div class="product-rating">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                        </div>
-                        <div class="product-btns">
-                            <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-                            
-                            <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
-                        </div>
-                    </div>
-                    <div class="add-to-cart">
-                        <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> THÊM GIỎ HÀNG</button>
-                    </div>
-                </div>
-            </div>
-            <!-- /product -->
-             <!-- product -->
-            <div class="col-md-3 col-xs-6">
-               <div class="product" data-name="Kính cận 2" data-price="100" data-img="img/CAN2.jpg">
-                                            <div class="product-img">
-                                                <img src="img/CAN2.jpg" alt="">
-                                                <div class="product-label">
-                                                    <span class="new">NEW</span>
-                                                </div>
-                                            </div>
-                                            <div class="product-body">
-                                                <p class="product-category">KÍNH CẬN</p>
-                                                <h3 class="product-name"><a href="#">KÍNH CẬN 2</a></h3>
-                                                <h4 class="product-price">$100.00 <del class="product-old-price">$120.00</del></h4>
-                                                <div class="product-rating">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                        </div>
-                        <div class="product-btns">
-                            <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-                            
-                            <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
-                        </div>
-                    </div>
-                    <div class="add-to-cart">
-                        <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> THÊM GIỎ HÀNG</button>
-                    </div>
-                </div>
-            </div>
-            <!-- /product -->
-             <!-- product -->
-            <div class="col-md-3 col-xs-6">
-                <div class="product" data-name="Kính cận 3" data-price="200" data-img="img/CAN3.jpg">
-                                            <div class="product-img">
-                                                <img src="img/CAN3.jpg" alt="">
-                                                <div class="product-label">
-                                                    <span class="sale">-30%</span>
-                                                </div>
-                                            </div>
-                                            <div class="product-body">
-                                                <p class="product-category">KÍNH CẬN</p>
-                                                <h3 class="product-name"><a href="#">KÍNH CẬN 3</a></h3>
-                                                <h4 class="product-price">$90.00 <del class="product-old-price">$100.00</del></h4>
-                        <div class="product-rating">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                        </div>
-                        <div class="product-btns">
-                            <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-                            
-                            <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
-                        </div>
-                    </div>
-                    <div class="add-to-cart">
-                        <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> THÊM GIỎ HÀNG</button>
-                    </div>
-                </div>
-            </div>
-            <!-- /product -->
-             <!-- product -->
-            <div class="col-md-3 col-xs-6">
-                <div class="product" data-name="Kính cận 4" data-price="200" data-img="img/CAN4.jpg">
-                                            <div class="product-img">
-                                                <img src="img/CAN4.jpg" alt="">
-                                            </div>
-                                            <div class="product-body">
-                                                <p class="product-category">KÍNH CẬN</p>
-                                                <h3 class="product-name"><a href="#">KÍNH CẬN 4</a></h3>
-                                                <h4 class="product-price">$200.00 <del class="product-old-price">$210.00</del></h4>
-                        <div class="product-rating">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                        </div>
-                        <div class="product-btns">
-                            <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-                            
-                            <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
-                        </div>
-                    </div>
-                    <div class="add-to-cart">
-                        <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> THÊM GIỎ HÀNG</button>
-                    </div>
-                </div>
-            </div>
-            <!-- /product -->
-             <!-- product -->
-            <div class="col-md-3 col-xs-6">
-                <div class="product" data-name="Kính cận 4" data-price="200" data-img="img/CAN5.jpg">
-                                            <div class="product-img">
-                                                <img src="img/CAN5.jpg" alt="">
-                                            </div>
-                                            <div class="product-body">
-                                                <p class="product-category">KÍNH CẬN</p>
-                                                <h3 class="product-name"><a href="#">KÍNH CẬN 5</a></h3>
-                                                <h4 class="product-price">$200.00 <del class="product-old-price">$210.00</del></h4>
-                        <div class="product-rating">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                        </div>
-                        <div class="product-btns">
-                            <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-                            
-                            <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
-                        </div>
-                    </div>
-                    <div class="add-to-cart">
-                        <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> THÊM GIỎ HÀNG</button>
-                    </div>
-                </div>
-            </div>
-            <!-- /product -->
-             <!-- product -->
-            <div class="col-md-3 col-xs-6">
-                <div class="product" data-name="Kính cận 6" data-price="300" data-img="img/CAN6.jpg">
-                                            <div class="product-img">
-                                                <img src="img/CAN6.jpg" alt="">
-                                            </div>
-                                            <div class="product-body">
-                                                <p class="product-category">KÍNH CẬN</p>
-                                                <h3 class="product-name"><a href="#">KÍNH CẬN 6</a></h3>
-                                                <h4 class="product-price">$300.00 <del class="product-old-price">$310.00</del></h4>
-                        <div class="product-rating">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                        </div>
-                        <div class="product-btns">
-                            <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-                            
-                            <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
-                        </div>
-                    </div>
-                    <div class="add-to-cart">
-                        <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> THÊM GIỎ HÀNG</button>
-                    </div>
-                </div>
-            </div>
-            <!-- /product -->
-             <!-- product -->
-            <div class="col-md-3 col-xs-6">
-                <div class="product" data-name="Kính cận 7" data-price="400" data-img="img/CAN9.png">
-                                            <div class="product-img">
-                                                <img src="img/CAN9.png" alt="">
-                                            </div>
-                                            <div class="product-body">
-                                                <p class="product-category">KÍNH CẬN</p>
-                                                <h3 class="product-name"><a href="#">KÍNH CẬN 7</a></h3>
-                                                <h4 class="product-price">$400.00 <del class="product-old-price">$410.00</del></h4>
-                        <div class="product-rating">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                        </div>
-                        <div class="product-btns">
-                            <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-                            
-                            <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
-                        </div>
-                    </div>
-                    <div class="add-to-cart">
-                        <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> THÊM GIỎ HÀNG</button>
-                    </div>
-                </div>
-            </div>
-            <!-- /product -->
-             <!-- product -->
-            <div class="col-md-3 col-xs-6">
-                <div class="product" data-name="Kính cận 8" data-price="200" data-img="img/CAN8.jpg">
-                                            <div class="product-img">
-                                                <img src="img/CAN8.jpg" alt="">
-                                            </div>
-                                            <div class="product-body">
-                                                <p class="product-category">KÍNH CẬN</p>
-                                                <h3 class="product-name"><a href="#">KÍNH CẬN 8</a></h3>
-                                                <h4 class="product-price">$200.00 <del class="product-old-price">$210.00</del></h4>
-                        <div class="product-rating">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                        </div>
-                        <div class="product-btns">
-                            <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-                            
-                            <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
-                        </div>
-                    </div>
-                    <div class="add-to-cart">
-                        <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> THÊM GIỎ HÀNG</button>
-                    </div>
-                </div>
-            </div>
-            <!-- /product -->
-
-
-
-
-
-
-
-
-        </div>
-        <!-- /Products Row -->
-
-
-
-
-       
-    </div>
-    <!-- /container -->
-</div>
-<!-- /Products Section -->
-
-
-
-
-<!-- Additional CSS -->
-<style>
-    .section-title {
-        font-size: 24px;
-        font-weight: bold;
-        margin-bottom: 30px;
-    }
-
-
-
-
-    .pagination {
-        display: inline-block;
-        padding: 10px 0;
-    }
-
-
-
-
-    .pagination li {
-        display: inline;
-        margin: 0 5px;
-    }
-
-
-
-
-    .pagination li a {
-        color: #333;
-        text-decoration: none;
-        padding: 8px 12px;
-        border: 1px solid #ddd;
-        border-radius: 4px;
-    }
-
-
-
-
-    .pagination li a:hover,
-    .pagination li.active a {
-        background-color: #333;
-        color: #fff;
-        border-color: #333;
-    }
-</style>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        </div>
-        <!-- /Products Row -->
-
-
-
-
-        <!-- Pagination -->
-        <div class="row">
-            <div class="col-md-12 text-center">
-                <ul class="pagination">
-                    <li><a href="#">«</a></li>
-                    <li class="active"><a href="">1</a></li>
-                    <li><a href="kinhcan2.html">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                    <li><a href="#">»</a></li>
-                </ul>
-            </div>
-        </div>
-        <!-- /Pagination -->
-    </div>
-    <!-- /container -->
-</div>
-<!-- /Products Section -->
-
-
-
-
-<!-- Additional CSS -->
-<style>
-    .section-title {
-        font-size: 24px;
-        font-weight: bold;
-        margin-bottom: 30px;
-    }
-
-
-
-
-    .pagination {
-        display: inline-block;
-        padding: 10px 0;
-    }
-
-
-
-
-    .pagination li {
-        display: inline;
-        margin: 0 5px;
-    }
-
-
-
-
-    .pagination li a {
-        color: #333;
-        text-decoration: none;
-        padding: 8px 12px;
-        border: 1px solid #ddd;
-        border-radius: 4px;
-    }
-
-
-
-
-    .pagination li a:hover,
-    .pagination li.active a {
-        background-color: #333;
-        color: #fff;
-        border-color: #333;
-    }
-</style>
-
-
-
-
-
-
-
-
-        <!-- SECTION -->
+        <!-- Products Section -->
         <div class="section">
             <!-- container -->
             <div class="container">
-                <!-- row -->
+                <!-- Section Title -->
                 <div class="row">
+                    <div class="col-md-12">
+                        <h2 class="section-title text-center">KÍNH CẬN</h2>
+                    </div>
+                </div>
+                <!-- /Section Title -->
 
+                <!-- Products Row -->
+                <div class="row">
+                    <!-- product -->
+                    <div class="col-md-3 col-xs-6">
+                        <div class="product" data-name="Kính cận 1" data-price="150" data-img="img/CAN1.jpg">
+                            <div class="product-img">
+                                <img src="img/CAN1.jpg" alt="">
+                                <div class="product-label">
+                                    <span class="sale">-30%</span>
+                                    <span class="new">NEW</span>
+                                </div>
+                            </div>
+                            <div class="product-body">
+                                <p class="product-category">KÍNH CẬN</p>
+                                <h3 class="product-name"><a href="#">Kính cận 1</a></h3>
+                                <h4 class="product-price">$150.00 <del class="product-old-price">$180.00</del></h4>
+                                <div class="product-rating">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                </div>
+                                <div class="product-btns">
+                                    <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
+                                    <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
+                                </div>
+                            </div>
+                            <div class="add-to-cart">
+                                <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> THÊM GIỎ HÀNG</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /product -->
+                    
+                    <!-- product -->
+                    <div class="col-md-3 col-xs-6">
+                        <div class="product" data-name="Kính cận 2" data-price="100" data-img="img/CAN2.jpg">
+                            <div class="product-img">
+                                <img src="img/CAN2.jpg" alt="">
+                                <div class="product-label">
+                                    <span class="new">NEW</span>
+                                </div>
+                            </div>
+                            <div class="product-body">
+                                <p class="product-category">KÍNH CẬN</p>
+                                <h3 class="product-name"><a href="#">KÍNH CẬN 2</a></h3>
+                                <h4 class="product-price">$100.00 <del class="product-old-price">$120.00</del></h4>
+                                <div class="product-rating">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                </div>
+                                <div class="product-btns">
+                                    <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
+                                    <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
+                                </div>
+                            </div>
+                            <div class="add-to-cart">
+                                <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> THÊM GIỎ HÀNG</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /product -->
+                    
+                    <!-- product -->
+                    <div class="col-md-3 col-xs-6">
+                        <div class="product" data-name="Kính cận 3" data-price="200" data-img="img/CAN3.jpg">
+                            <div class="product-img">
+                                <img src="img/CAN3.jpg" alt="">
+                                <div class="product-label">
+                                    <span class="sale">-30%</span>
+                                </div>
+                            </div>
+                            <div class="product-body">
+                                <p class="product-category">KÍNH CẬN</p>
+                                <h3 class="product-name"><a href="#">KÍNH CẬN 3</a></h3>
+                                <h4 class="product-price">$90.00 <del class="product-old-price">$100.00</del></h4>
+                                <div class="product-rating">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                </div>
+                                <div class="product-btns">
+                                    <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
+                                    <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
+                                </div>
+                            </div>
+                            <div class="add-to-cart">
+                                <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> THÊM GIỎ HÀNG</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /product -->
+                    
+                    <!-- product -->
+                    <div class="col-md-3 col-xs-6">
+                        <div class="product" data-name="Kính cận 4" data-price="200" data-img="img/CAN4.jpg">
+                            <div class="product-img">
+                                <img src="img/CAN4.jpg" alt="">
+                            </div>
+                            <div class="product-body">
+                                <p class="product-category">KÍNH CẬN</p>
+                                <h3 class="product-name"><a href="#">KÍNH CẬN 4</a></h3>
+                                <h4 class="product-price">$200.00 <del class="product-old-price">$210.00</del></h4>
+                                <div class="product-rating">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                </div>
+                                <div class="product-btns">
+                                    <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
+                                    <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
+                                </div>
+                            </div>
+                            <div class="add-to-cart">
+                                <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> THÊM GIỎ HÀNG</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /product -->
+                    
+                    <!-- product -->
+                    <div class="col-md-3 col-xs-6">
+                        <div class="product" data-name="Kính cận 5" data-price="200" data-img="img/CAN5.jpg">
+                            <div class="product-img">
+                                <img src="img/CAN5.jpg" alt="">
+                            </div>
+                            <div class="product-body">
+                                <p class="product-category">KÍNH CẬN</p>
+                                <h3 class="product-name"><a href="#">KÍNH CẬN 5</a></h3>
+                                <h4 class="product-price">$200.00 <del class="product-old-price">$210.00</del></h4>
+                                <div class="product-rating">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                </div>
+                                <div class="product-btns">
+                                    <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
+                                    <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
+                                </div>
+                            </div>
+                            <div class="add-to-cart">
+                                <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> THÊM GIỎ HÀNG</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /product -->
+                    
+                    <!-- product -->
+                    <div class="col-md-3 col-xs-6">
+                        <div class="product" data-name="Kính cận 6" data-price="300" data-img="img/CAN6.jpg">
+                            <div class="product-img">
+                                <img src="img/CAN6.jpg" alt="">
+                            </div>
+                            <div class="product-body">
+                                <p class="product-category">KÍNH CẬN</p>
+                                <h3 class="product-name"><a href="#">KÍNH CẬN 6</a></h3>
+                                <h4 class="product-price">$300.00 <del class="product-old-price">$310.00</del></h4>
+                                <div class="product-rating">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                </div>
+                                <div class="product-btns">
+                                    <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
+                                    <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
+                                </div>
+                            </div>
+                            <div class="add-to-cart">
+                                <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> THÊM GIỎ HÀNG</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /product -->
+                    
+                    <!-- product -->
+                    <div class="col-md-3 col-xs-6">
+                        <div class="product" data-name="Kính cận 7" data-price="400" data-img="img/CAN9.png">
+                            <div class="product-img">
+                                <img src="img/CAN9.png" alt="">
+                            </div>
+                            <div class="product-body">
+                                <p class="product-category">KÍNH CẬN</p>
+                                <h3 class="product-name"><a href="#">KÍNH CẬN 7</a></h3>
+                                <h4 class="product-price">$400.00 <del class="product-old-price">$410.00</del></h4>
+                                <div class="product-rating">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                </div>
+                                <div class="product-btns">
+                                    <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
+                                    <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
+                                </div>
+                            </div>
+                            <div class="add-to-cart">
+                                <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> THÊM GIỎ HÀNG</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /product -->
+                    
+                    <!-- product -->
+                    <div class="col-md-3 col-xs-6">
+                        <div class="product" data-name="Kính cận 8" data-price="200" data-img="img/CAN8.jpg">
+                            <div class="product-img">
+                                <img src="img/CAN8.jpg" alt="">
+                            </div>
+                            <div class="product-body">
+                                <p class="product-category">KÍNH CẬN</p>
+                                <h3 class="product-name"><a href="#">KÍNH CẬN 8</a></h3>
+                                <h4 class="product-price">$200.00 <del class="product-old-price">$210.00</del></h4>
+                                <div class="product-rating">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                </div>
+                                <div class="product-btns">
+                                    <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
+                                    <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
+                                </div>
+                            </div>
+                            <div class="add-to-cart">
+                                <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> THÊM GIỎ HÀNG</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /product -->
+                </div>
+                <!-- /Products Row -->
 
-                   
-                <!-- /row -->
+                <!-- Pagination -->
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <ul class="pagination">
+                            <li><a href="#">«</a></li>
+                            <li class="active"><a href="">1</a></li>
+                            <li><a href="kinhcan2.html">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li><a href="#">4</a></li>
+                            <li><a href="#">5</a></li>
+                            <li><a href="#">»</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- /Pagination -->
             </div>
             <!-- /container -->
         </div>
-        <!-- /Section -->
-
+        <!-- /Products Section -->
 
         <!-- FOOTER -->
         <footer id="footer">
@@ -628,58 +446,53 @@
                     <div class="row">
                         <div class="col-md-3 col-xs-6">
                             <div class="footer">
-                                <h3 class="footer-title">About Us</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut.</p>
+                                <h3 class="footer-title">VỀ CHÚNG TÔI</h3>
+                                <p>SpringGlasses chuyên cung cấp các thể loại kính mắt, kính cận, kính râm, phụ kiện, thời trang để giúp trở nên sàng điệu và đẹp hơn. Liên hệ với chúng tôi dưới đây:</p>
                                 <ul class="footer-links">
-                                    <li><a href="#"><i class="fa fa-map-marker"></i>1734 Stonecoal Road</a></li>
-                                    <li><a href="#"><i class="fa fa-phone"></i>+021-95-51-84</a></li>
-                                    <li><a href="#"><i class="fa fa-envelope-o"></i>email@email.com</a></li>
+                                    <li><a href="tel:+84345044407"><i class="fa fa-phone"></i> +84345 0444 07</a></li>
+                                    <li><a href="mailto:SpringElectronic@gmail.com"><i class="fa fa-envelope-o"></i> SpringElectronic@gmail.com</a></li>
+                                    <li><a href="https://www.google.com/maps/place/12+P.+Ch%C3%B9a+B%E1%BB%99c,+Quang+Trung,+%C4%90%E1%BB%91ng+%C4%90a,+H%C3%A0+N%E1%BB%99i+100000/data=!4m2!3m1!1s0x3135ac806deb4639:0x37ddac66200846?sa=X&ved=1t:242&ictx=111"><i class="fa fa-map-marker"></i> 74 Thái Hà</a></li>
                                 </ul>
                             </div>
                         </div>
 
-
                         <div class="col-md-3 col-xs-6">
                             <div class="footer">
-                                <h3 class="footer-title">Categories</h3>
+                                <h3 class="footer-title">DANH MỤC SẢN PHẨM</h3>
                                 <ul class="footer-links">
-                                    <li><a href="#">Hot deals</a></li>
-                                    <li><a href="#">Laptops</a></li>
-                                    <li><a href="#">Smartphones</a></li>
-                                    <li><a href="#">Cameras</a></li>
-                                    <li><a href="#">Accessories</a></li>
+                                    <li><a href="kinhcan.html">Kính cận</a></li>
+                                    <li><a href="kinhram.html">Kính râm</a></li>
+                                    <li><a href="phukien.html">Phụ kiện</a></li>
                                 </ul>
                             </div>
                         </div>
 
-
-                        <div class="clearfix visible-xs"></div>
-
-
                         <div class="col-md-3 col-xs-6">
                             <div class="footer">
-                                <h3 class="footer-title">Information</h3>
+                                <h3 class="footer-title">DỊCH VỤ & TÀI KHOẢN</h3>
                                 <ul class="footer-links">
-                                    <li><a href="#">About Us</a></li>
-                                    <li><a href="#">Contact Us</a></li>
-                                    <li><a href="#">Privacy Policy</a></li>
-                                    <li><a href="#">Orders and Returns</a></li>
-                                    <li><a href="#">Terms & Conditions</a></li>
+                                    <li><a href="#">Tài khoản</a></li>
+                                    <li><a href="#">Xem giỏ hàng</a></li>
+                                    <li><a href="#">Yêu thích</a></li>
+                                    <li><a href="#">Hỗ trợ</a></li>
                                 </ul>
                             </div>
                         </div>
-
-
-                        <div class="col-md-3 col-xs-6">
+                        
+                        <div class="col-md-3">
                             <div class="footer">
-                                <h3 class="footer-title">Service</h3>
-                                <ul class="footer-links">
-                                    <li><a href="#">My Account</a></li>
-                                    <li><a href="#">View Cart</a></li>
-                                    <li><a href="#">Wishlist</a></li>
-                                    <li><a href="#">Track My Order</a></li>
-                                    <li><a href="#">Help</a></li>
-                                </ul>
+                                <h3 class="footer-title">Bản đồ</h3>
+                                <div class="footer-map">
+                                    <iframe 
+                                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3724.2524483714774!2d105.8462339!3d21.022582599999996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ab917ea813ad%3A0xcfd1bafa8c28f19!2zVHLhu6UgU-G7byBDw7RuZyBBbiBUUCBIw6AgTuG7mWk!5e0!3m2!1svi!2s!4v1749109338459!5m2!1svi!2s"
+                                        width="100%" 
+                                        height="165" 
+                                        style="border:0;" 
+                                        allowfullscreen="" 
+                                        loading="lazy" 
+                                        referrerpolicy="no-referrer-when-downgrade">
+                                    </iframe>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -688,35 +501,71 @@
                 <!-- /container -->
             </div>
             <!-- /top footer -->
-
-
-            <!-- bottom footer -->
-            <div id="bottom-footer" class="section">
-                <div class="container">
-                    <!-- row -->
-                    <div class="row">
-                        <div class="col-md-12 text-center">
-                            <ul class="footer-payments">
-                                <li><a href="#"><i class="fa fa-cc-visa"></i></a></li>
-                                <li><a href="#"><i class="fa fa-credit-card"></i></a></li>
-                                <li><a href="#"><i class="fa fa-cc-paypal"></i></a></li>
-                                <li><a href="#"><i class="fa fa-cc-mastercard"></i></a></li>
-                                <li><a href="#"><i class="fa fa-cc-discover"></i></a></li>
-                                <li><a href="#"><i class="fa fa-cc-amex"></i></a></li>
-                            </ul>
-                            <span class="copyright">
-                                 <a target="_blank" href="https://github.com/amdadislam01">Amdad Islam</a>
-                            </span>
-                        </div>
-                    </div>
-                        <!-- /row -->
-                </div>
-                <!-- /container -->
-            </div>
-            <!-- /bottom footer -->
         </footer>
         <!-- /FOOTER -->
 
+        <!-- CSS cho chức năng tìm kiếm và styling -->
+        <style>
+            .section-title {
+                font-size: 24px;
+                font-weight: bold;
+                margin-bottom: 30px;
+            }
+
+            .pagination {
+                display: inline-block;
+                padding: 10px 0;
+            }
+
+            .pagination li {
+                display: inline;
+                margin: 0 5px;
+            }
+
+            .pagination li a {
+                color: #333;
+                text-decoration: none;
+                padding: 8px 12px;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+            }
+
+            .pagination li a:hover,
+            .pagination li.active a {
+                background-color: #333;
+                color: #fff;
+                border-color: #333;
+            }
+
+            .header-search {
+                position: relative;
+            }
+            
+            .header-search .input:focus {
+                outline: none;
+                border-color: #f39c12;
+                box-shadow: 0 0 5px rgba(243, 156, 18, 0.3);
+            }
+            
+            .search-btn:hover, .clear-btn:hover {
+                background-color: #e67e22 !important;
+                transform: translateY(-1px);
+                transition: all 0.2s ease;
+            }
+            
+            .product-fade-in {
+                animation: fadeIn 0.3s ease-in;
+            }
+            
+            @keyframes fadeIn {
+                from { opacity: 0; transform: translateY(10px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+            
+            #no-results-message {
+                animation: fadeIn 0.5s ease-in;
+            }
+        </style>
 
         <!-- jQuery Plugins -->
         <script src="js/jquery.min.js"></script>
@@ -725,14 +574,6 @@
         <script src="js/nouislider.min.js"></script>
         <script src="js/jquery.zoom.min.js"></script>
         <script src="js/main.js"></script>
-
-
+        <script src="auth.js"></script>
     </body>
 </html>
-
-
-
-
-
-
-
