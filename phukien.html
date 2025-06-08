@@ -6,7 +6,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-		<title>SpringElectronic</title>
+		<title>Trang chủ</title>
 
 		<!-- Google font -->
 		<link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
@@ -67,10 +67,7 @@
 						<div class="col-md-6">
 							<div class="header-search">
 								<form>
-									<select class="input-select">
-										<option value="0">Tất cả</option>
-										<option value="1">Ko co gi</option>
-									</select>
+									
 									<input class="input" placeholder="Search here">
 									<button class="search-btn">Tìm kiếm</button>
 								</form>
@@ -81,21 +78,13 @@
 						<!-- ACCOUNT -->
 						<div class="col-md-3 clearfix">
 							<div class="header-ctn">
-								<!-- Wishlist -->
-								<div>
-									<a href="#">
-										<i class="fa fa-heart-o"></i>
-										<span>Yêu thích</span>
-										<div class="qty">2</div>
-									</a>
-								</div>
-								<!-- /Wishlist -->
+								
 
 								<!-- Giỏ hàng -->
 <div class="dropdown">
   <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
     <i class="fa fa-shopping-cart"></i>
-    <span>Your Cart</span>
+    <span>Giỏ hàng</span>
     <div class="qty">0</div>
   </a>
 
@@ -142,12 +131,12 @@
 				<div id="responsive-nav">
 					<!-- NAV -->
 					<ul class="main-nav nav navbar-nav">
-						<li class="active"><a href="#">Trang chủ</a></li>
-						<li><a href="#">Liên hệ</a></li>
+						<li><a href="index.html">Trang chủ</a></li>
+						<li><a href="liehe.html">Liên hệ</a></li>
 						<li><a href="tatcasanpham.html">Tất cả sản phẩm</a></li>
 						<li><a href="kinhcan.html">Kính cận</a></li>
 						<li><a href="kinhram.html">Kính râm</a></li>
-						<li><a href="phukien.html">Phụ kiện</a></li>
+						<li class="active"><a href="phukien.html">Phụ kiện</a></li>
 						<li><a href="tintuc.html">Tin tức</a></li>
 					</ul>
 					<!-- /NAV -->
@@ -157,6 +146,8 @@
 			<!-- /container -->
 		</nav>
 		<!-- /NAVIGATION -->
+
+
 
 
 
@@ -583,6 +574,7 @@
 		<script src="js/nouislider.min.js"></script>
 		<script src="js/jquery.zoom.min.js"></script>
 		<script src="js/main.js"></script>
+        <script crc="js/search.js"></script>
         <script>
             document.querySelectorAll('.quick-view').forEach(btn => {
             btn.addEventListener('click', () => {

@@ -1,1 +1,324 @@
-ssfsf
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+		<title>Đặt hàng</title>
+
+		<!-- Google font -->
+		<link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
+
+		<!-- Bootstrap -->
+		<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css"/>
+
+		<!-- Slick -->
+		<link type="text/css" rel="stylesheet" href="css/slick.css"/>
+		<link type="text/css" rel="stylesheet" href="css/slick-theme.css"/>
+
+		<!-- nouislider -->
+		<link type="text/css" rel="stylesheet" href="css/nouislider.min.css"/>
+
+		<!-- Font Awesome Icon -->
+		<link rel="stylesheet" href="css/font-awesome.min.css">
+
+		<!-- Custom stlylesheet -->
+		<link type="text/css" rel="stylesheet" href="css/style.css"/>
+
+    </head>
+	<body>
+		<!-- HEADER -->
+		<header>
+			<!-- TOP HEADER -->
+			<div id="top-header">
+				<div class="container">
+					<ul class="header-links pull-left">
+						<li><a href="tel:+84345044407"><i class="fa fa-phone"></i> +84345 0444 07</a></li>
+						<li><a href="mailto:SpringElectronic@gmail.com"><i class="fa fa-envelope-o"></i> SpringElectronic@gmail.com</a></li>
+						<li><a href="https://www.google.com/maps/place/12+P.+Ch%C3%B9a+B%E1%BB%99c,+Quang+Trung,+%C4%90%E1%BB%91ng+%C4%90a,+H%C3%A0+N%E1%BB%99i+100000/data=!4m2!3m1!1s0x3135ac806deb4639:0x37ddac66200846?sa=X&ved=1t:242&ictx=111"><i class="fa fa-map-marker"></i> 74 Thái Hà</a></li>
+					</ul>
+					<ul class="header-links pull-right">
+						<li><a href="#"><i class="fa fa-dollar"></i> VND</a></li>
+						<li><a href="taikhoan.html"><i class="fa fa-user-o"></i> Tài khoản</a></li>
+					</ul>
+				</div>
+			</div>
+			<!-- /TOP HEADER -->
+
+			<!-- MAIN HEADER -->
+			<div id="header">
+				<!-- container -->
+				<div class="container">
+					<!-- row -->
+					<div class="row">
+						<!-- LOGO -->
+						<div class="col-md-3">
+							<div class="header-logo">
+								<a href="#" class="logo">
+									<img src="./img/logo.png" alt="">
+								</a>
+							</div>
+						</div>
+						<!-- /LOGO -->
+
+						<!-- SEARCH BAR -->
+						<div class="col-md-6">
+							<div class="header-search">
+								<form>
+									
+									<input class="input" placeholder="Search here">
+									<button class="search-btn">Tìm kiếm</button>
+								</form>
+							</div>
+						</div>
+						<!-- /SEARCH BAR -->
+
+						<!-- ACCOUNT -->
+						<div class="col-md-3 clearfix">
+							<div class="header-ctn">
+								
+
+								<!-- Giỏ hàng -->
+<div class="dropdown">
+  <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+    <i class="fa fa-shopping-cart"></i>
+    <span>Your Cart</span>
+    <div class="qty">0</div>
+  </a>
+
+  <div class="cart-dropdown">
+    <div class="cart-list"><!-- sản phẩm sẽ thêm ở đây bằng JS --></div>
+
+    <div class="cart-summary">
+      <small>0 Item(s) selected</small>
+      <h5>Tổng tiền: 0 VND</h5>
+    </div>
+
+    <div class="cart-btns">
+      <a href="giohang.html">Xem giỏ hàng</a>
+      <a href="#">Đặt hàng <i class="fa fa-arrow-circle-right"></i></a>
+    </div>
+  </div>
+</div>
+<!-- /Giỏ hàng -->
+								<!-- Menu Toogle -->
+								<div class="menu-toggle">
+									<a href="#">
+										<i class="fa fa-bars"></i>
+										<span>Menu</span>
+									</a>
+								</div>
+								<!-- /Menu Toogle -->
+							</div>
+						</div>
+						<!-- /ACCOUNT -->
+					</div>
+					<!-- row -->
+				</div>
+				<!-- container -->
+			</div>
+			<!-- /MAIN HEADER -->
+		</header>
+		<!-- /HEADER -->
+
+		<!-- NAVIGATION -->
+		<nav id="navigation">
+			<!-- container -->
+			<div class="container">
+				<!-- responsive-nav -->
+				<div id="responsive-nav">
+					<!-- NAV -->
+					<ul class="main-nav nav navbar-nav">
+						<li><a href="#">Trang chủ</a></li>
+						<li><a href="#">Liên hệ</a></li>
+						<li><a href="tatcasanpham.html">Tất cả sản phẩm</a></li>
+						<li><a href="kinhcan.html">Kính cận</a></li>
+						<li><a href="kinhram.html">Kính râm</a></li>
+						<li><a href="phukien.html">Phụ kiện</a></li>
+						<li><a href="tintuc.html">Tin tức</a></li>
+					</ul>
+					<!-- /NAV -->
+				</div>
+				<!-- /responsive-nav -->
+			</div>
+			<!-- /container -->
+		</nav>
+		<!-- /NAVIGATION -->
+
+
+
+
+
+        <body>
+  <div class="container mt-5">
+    <br>
+    <h2 class="mb-4">Thông tin đặt hàng</h2>
+    <form id="orderForm">
+      <div class="form-group">
+        <label for="name">Họ và tên</label>
+        <input type="text" class="form-control" id="name" required>
+      </div>
+      <div class="form-group">
+        <label for="phone">Số điện thoại</label>
+        <input type="tel" class="form-control" id="phone" pattern="[0-9]{10}" required>
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" class="form-control" id="email" required>
+      </div>
+      <div class="form-group">
+        <label for="address">Địa chỉ</label>
+        <textarea class="form-control" id="address" required></textarea>
+      </div>
+      <div class="form-group">
+        <label for="city">Tỉnh/Thành phố</label>
+        <select class="form-control" id="city" required>
+          <option value="">-- Chọn tỉnh/thành --</option>
+          <option>Hà Nội</option>
+          <option>TP. Hồ Chí Minh</option>
+          <option>Đà Nẵng</option>
+          <option>Huế</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Phương thức thanh toán</label><br>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="payment" id="cod" value="COD" checked>
+          <label class="form-check-label" for="cod">COD</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="payment" id="bank" value="Chuyển khoản">
+          <label class="form-check-label" for="bank">Chuyển khoản</label>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="note">Ghi chú</label>
+        <textarea class="form-control" id="note" rows="2"></textarea>
+      </div>
+      <button type="submit" class="btn btn-success">Đặt hàng</button>
+    </form>
+  </div>
+<br>
+<!-- FOOTER -->
+		<footer id="footer">
+			<!-- top footer -->
+			<div class="section">
+				<!-- container -->
+				<div class="container">
+					<!-- row -->
+					<div class="row">
+						<div class="col-md-3 col-xs-6">
+							<div class="footer">
+								<h3 class="footer-title">VỀ CHÚNG TÔI</h3>
+								<p>SpringGlasses chuyên cung cấp các thể loại kính mắt, kính cận, kính râm, phụ kiện, thời trang để giúp trở nên sàng điệu và đẹp zoai hơn. Liên hệ với chúng tôi dưới đây:</p>
+								<ul class="footer-links">
+									<li><a href="tel:+84345044407"><i class="fa fa-phone"></i> +84345 0444 07</a></li>
+						<li><a href="mailto:SpringElectronic@gmail.com"><i class="fa fa-envelope-o"></i> SpringElectronic@gmail.com</a></li>
+						<li><a href="https://www.google.com/maps/place/12+P.+Ch%C3%B9a+B%E1%BB%99c,+Quang+Trung,+%C4%90%E1%BB%91ng+%C4%90a,+H%C3%A0+N%E1%BB%99i+100000/data=!4m2!3m1!1s0x3135ac806deb4639:0x37ddac66200846?sa=X&ved=1t:242&ictx=111"><i class="fa fa-map-marker"></i> 74 Thái Hà</a></li>
+            <li>
+              <a href="https://facebook.com/annaeyeglasses" target="_blank"><i class="fa fa-facebook"></i></a>
+              <a href="https://www.instagram.com/_hoang_0_2_1_1/" target="_blank"><i class="fa fa-instagram"></i></a>  
+            </li>
+
+								</ul>
+							</div>
+						</div>
+
+						<div class="col-md-3 col-xs-6">
+							<div class="footer">
+								<h3 class="footer-title">DANH MỤC SẢN PHẨM</h3>
+								<ul class="footer-links">
+									<li><a href="kinhcan.html">Kính cận</a></li>
+									<li><a href="kinhram.html">Kính râm</a></li>
+									<li><a href="phukien.html">Phụ kiện</a></li>
+                  <li><a href="tatcasanpham.html">Tất cả sản phẩm</a></li>
+								</ul>
+							</div>
+						</div>
+
+						<div class="clearfix visible-xs"></div>
+
+						
+
+						<div class="col-md-3 col-xs-6">
+							<div class="footer">
+								<h3 class="footer-title">DỊCH VỤ & TÀI KHOẢN</h3>
+								<ul class="footer-links">
+									<li><a href="taikhoan.html">Tài khoản</a></li>
+									<li><a href="giohang.html">Xem giỏ hàng</a></li>
+									<li><a href="Hỗ trợ.html">Hỗ trợ</a></li>
+								</ul>
+							</div>
+						</div>
+						 <div class="col-md-3">
+          <div class="footer">
+            <h3 class="footer-title">Bản đồ</h3>
+            <div class="footer-map">
+              <iframe 
+  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3724.2524483714774!2d105.8462339!3d21.022582599999996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ab917ea813ad%3A0xcfd1bafa8c28f19!2zVHLhu6UgU-G7nyBDw7RuZyBBbiBUUCBIw6AgTuG7mWk!5e0!3m2!1svi!2s!4v1749109338459!5m2!1svi!2s"
+  width="100%" 
+  height="165" 
+  style="border:0;" 
+  allowfullscreen="" 
+  loading="lazy" 
+  referrerpolicy="no-referrer-when-downgrade">
+</iframe>
+
+            </div>
+          </div>
+        </div>
+					</div>
+					
+					<!-- /row -->
+				</div>
+				<!-- /container -->
+			</div>
+			<!-- /top footer -->
+
+			<!-- bottom footer -->
+			<div id="bottom-footer" class="section">
+				<div class="container">
+					<!-- row -->
+					<div class="row">
+						<div class="col-md-12 text-center">
+							<ul class="footer-payments">
+								<li><a href="#"><i class="fa fa-cc-visa"></i></a></li>
+								<li><a href="#"><i class="fa fa-credit-card"></i></a></li>
+								<li><a href="#"><i class="fa fa-cc-paypal"></i></a></li>
+								<li><a href="#"><i class="fa fa-cc-mastercard"></i></a></li>
+								<li><a href="#"><i class="fa fa-cc-discover"></i></a></li>
+								<li><a href="#"><i class="fa fa-cc-amex"></i></a></li>
+							</ul>
+					</div>
+						<!-- /row -->
+				</div>
+				<!-- /container -->
+			</div>
+			<!-- /bottom footer -->
+		</footer>
+		<!-- /FOOTER -->
+
+  <script>
+    document.getElementById('orderForm').addEventListener('submit', function(e) {
+      e.preventDefault(); // Ngăn form reload
+
+      // Lấy thông tin người dùng nhập
+      const name = document.getElementById('name').value;
+      const phone = document.getElementById('phone').value;
+      const email = document.getElementById('email').value;
+      const address = document.getElementById('address').value;
+      const city = document.getElementById('city').value;
+      const payment = document.querySelector('input[name="payment"]:checked').value;
+      const note = document.getElementById('note').value;
+
+      // Tạo nội dung thông báo
+      const message = `Bạn đã đặt hàng thành công!\n\nThông tin đơn hàng:\n- Họ tên: ${name}\n- SĐT: ${phone}\n- Email: ${email}\n- Địa chỉ: ${address}, ${city}\n- Thanh toán: ${payment}\n- Ghi chú: ${note || "(Không có)"}`;
+
+      // Hiện alert và chuyển về index.html
+      alert(message);
+      window.location.href = "index.html";
+    });
+  </script>
+</body>
