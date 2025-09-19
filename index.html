@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Pizza House</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Open+Sans&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-top">
+            <div class="logo-container">
+                <img src="image_index/logo.jpg" alt="The Pizza House Logo">
+                <h1>The Pizza House</h1>
+            </div>
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="Tìm kiếm món ăn..." onkeypress="handleSearch(event)">
+            </div>
+            <nav>
+                <a href="index.html">Trang chủ</a>
+                <a href="Menu/all.html">Thực đơn</a>
+                <a href="Booking/booking.html">Đặt bàn</a>
+                <div class="dropdown">
+                    <a href="Us/introduce.html">Chúng tôi</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="Us/introduce.html">Giới thiệu</a></li>
+                        <li><a href="Us/news.html">Tin tức</a></li>
+                        <li><a href="Us/policy.html">Điều khoản</a></li>
+                        <li><a href="Us/contact.html">Liên hệ</a></li>
+                    </ul>
+                </div>
+            </nav>
+            <div class="icons">
+                <div class="account-dropdown">
+                    <a href="#" title="Tài khoản"><i class="fas fa-user"></i></a>
+                    <ul class="account-menu" id="accountMenu">
+                        <li><a href="Account/login.html">Đăng nhập</a></li>
+                        <li><a href="Account/register.html">Đăng ký</a></li>
+                    </ul>
+                </div>
+                <a href="cart/cart.html" title="Giỏ hàng" class="cart-icon"><i class="fas fa-shopping-cart"></i>
+                    <span id="cartQuantity" class="cart-quantity">0</span>
+                </a>
+                <span id="userName" style="display: none;"></span> <!-- Thêm tên đăng nhập -->
+            </div>
+        </div>
+    </header>
+
+    <!-- Banner Section -->
+    <section class="banner-container">
+        <div class="banner-slide" style="background-image: url('image_index/Presentation1.png');">
+            <div class="banner-content">
+                <h1>The Pizza House</h1>
+                <p>"Mỗi chiếc bánh tại The Pizza House được làm nên bằng cả tâm huyết và tình yêu thương. Chúng tôi tin rằng một bữa ăn ngon là khởi đầu cho những khoảnh khắc gắn kết. Hãy đến và thưởng thức hương vị truyền thống trong không gian ấm cúng như chính ngôi nhà của bạn. The Pizza House – nơi mỗi lát bánh là một câu chuyện yêu thương."</p>
+
+                <button onclick="window.location.href='Booking/booking.html'">Đặt bàn</button>
+            </div>
+        </div>
+        <div class="banner-slide" style="background-image: url('image_index/banner1.jpg');">
+            <div class="banner-content">
+                <h1>The Pizza House</h1>
+                <p>"Hãy bắt đầu hành trình hương vị đầy cảm xúc tại The Pizza House. Từ lớp đế giòn tan đến phô mai béo ngậy, từng nguyên liệu đều được lựa chọn kỹ lưỡng. Chúng tôi không chỉ phục vụ món ăn, mà còn mang đến trải nghiệm ẩm thực đáng nhớ. Cùng nhau tạo nên những khoảnh khắc trọn vẹn bên người thân và bạn bè."</p>
+                <button onclick="window.location.href='Booking/booking.html'">Đặt bàn</button>
+            </div>
+        </div>
+        <div class="banner-slide" style="background-image: url('image_index/banner3.jpg');">
+            <div class="banner-content">
+                <h1>The Pizza House</h1>
+                <p>"Tại The Pizza House, mỗi món ăn là một bản hòa tấu của hương vị và cảm xúc. Chúng tôi mang đến cho bạn không chỉ một bữa ăn ngon, mà là sự sẻ chia trong từng khoảnh khắc. Giữa cuộc sống bận rộn, hãy để từng lát bánh đưa bạn trở về với những phút giây bình yên. Cảm ơn bạn đã chọn chúng tôi để đồng hành trong hành trình ẩm thực của mình."</p>
+                <button onclick="window.location.href='Booking/booking.html'">Đặt bàn</button>
+            </div>
+        </div>
+        <div class="banner-dots">
+            <span class="dot active" onclick="currentSlide(0)"></span>
+            <span class="dot" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+        </div>
+    </section>
+
+    <section class="menu" id="menu">
+        <h2>Món mới</h2>
+        <div class="menu-slider-container">
+            <button class="menu-btn prev" onclick="currentMenuSlide(menuSlideIndex - 2)">❮</button>
+            <div class="menu-slides" id="menuSlides">
+                <!-- Slide 1 -->
+                <div class="menu-slide">
+                    <div class="menu-grid">
+                        <div class="menu-item" onclick="showProductDetail('Salad Gà Giòn Không Xương', 'https://vuongquocruou.vn/wp-content/uploads/2024/12/ga-ran-kieu-han-quoc-2.png', 'Salad Gà giòn với trứng cút, thịt xông khói, phô mai parmesan và sốt Thousand Island', '79,000 VND', 79000, 'salad-ga')">
+                            <div class="new-tag">Món mới</div> <!-- Thêm tag Món mới -->
+                            <div class="image-wrapper">
+                                <img src="https://vuongquocruou.vn/wp-content/uploads/2024/12/ga-ran-kieu-han-quoc-2.png" alt="Da Gà Rộp Rộp Xốt Hàn - Cay">
+                            </div>
+                            <h3>Da Gà Rộp Rộp Xốt Hàn - Cay</h3>
+                            <p>Da Gà Rộp Rộp Xốt Hàn: Lớp da gà giòn rụm thấm đẫm nước xốt mặn mà. Hãy sẵn sàng...</p>
+                            <div class="price">
+                                <span class="current-price">79,000 VND</span>
+                                <span class="old-price">89,000 VND</span>
+                            </div>
+                            <button onclick="addToCart({'id': 'khaivi-001', 'name': 'Da Gà Rộp Rộp Xốt Hàn - Cay', 'price': 79000, 'image': 'https://vuongquocruou.vn/wp-content/uploads/2024/12/ga-ran-kieu-han-quoc-2.png', 'quantity': 1})">Thêm vào giỏ</button>
+                        </div>
+                        <div class="menu-item" onclick="showProductDetail('Salad Gà Giòn Không Xương', 'https://cdn-i.vtcnews.vn/resize/th/upload/2024/11/27/cach-lam-salad-uc-ga-13193321.png', 'Salad Gà giòn với trứng cút, thịt xông khói, phô mai parmesan và sốt Thousand Island', '79,000 VND', 79000, 'salad-ga')">
+                            <div class="new-tag">Món mới</div>
+                            <img src="https://cdn-i.vtcnews.vn/resize/th/upload/2024/11/27/cach-lam-salad-uc-ga-13193321.png" alt="Salad Gà Giòn Không Xương">
+                            <h3>Salad Gà Giòn Không Xương</h3>
+                            <p>Salad Gà giòn với trứng cút, thịt xông khói, phô mai parmesan và sốt Thousand Island</p>
+                            <div class="price">
+                                <span class="current-price">79,000 VND</span>
+                                <span class="old-price">89,000 VND</span>
+                            </div>
+                            <button onclick="addToCart({'id': 'khaivi-007', 'name': 'Salad Gà Giòn Không Xương', 'price': 79000, 'image': 'https://pizza4ps.com/wp-content/uploads/2023/07/10000021_2.jpg', 'quantity': 1})">Thêm vào giỏ</button>
+                        </div>
+                        <div class="menu-item" onclick="showProductDetail('Pizza Bò Dầu Tỏi', 'https://pizza4ps.com/wp-content/uploads/2023/07/10000021_2.jpg', 'Thịt bò mềm thơm, phủ dầu tỏi đậm đà, kết hợp cùng phô mai kéo sợi và chút tiêu đen,...', '145,000 VND', 145000, 'pizza-bo-dau-toi')">
+                            <div class="new-tag">Món mới</div>
+                            <img src="https://pizza4ps.com/wp-content/uploads/2023/07/10000021_2.jpg" alt="Pizza Bò Dầu Tỏi">
+                            <h3>Pizza Bò Dầu Tỏi</h3>
+                            <p>Thịt bò mềm thơm, phủ dầu tỏi đậm đà, kết hợp cùng phô mai kéo sợi và chút tiêu đen,...</p>
+                            <div class="price">
+                                <span class="current-price">145,000 VND</span>
+                                <span class="old-price">168,000 VND</span>
+                            </div>
+                            <button onclick="addToCart({'id': 'pizza-008', 'name': 'Pizza Bò Dầu Tỏi', 'price': 145000, 'image': 'https://pizza4ps.com/wp-content/uploads/2023/07/10000021_2.jpg', 'quantity': 1})">Thêm vào giỏ</button>
+                        </div>
+                        <div class="menu-item" onclick="showProductDetail('Spaghetti Bolognese', 'https://pizza4ps.com/wp-content/uploads/2023/07/20200005_2.jpg', 'Spaghetti với sốt bolognese đậm đà từ thịt bò và cà chua, thêm chút phô mai...', '148,000 VND', 148000, 'spaghetti-bolognese')">
+                            <div class="new-tag">Món mới</div>
+                            <img src="https://pizza4ps.com/wp-content/uploads/2023/07/20200005_2.jpg" alt="Spaghetti Bolognese">
+                            <h3>Spaghetti Bolognese</h3>
+                            <p>Spaghetti với sốt bolognese đậm đà từ thịt bò và cà chua, thêm chút phô mai...</p>
+                            <div class="price">
+                                <span class="current-price">148,000 VND</span>
+                                <span class="old-price">170,000 VND</span>
+                            </div>
+                            <button onclick="addToCart({'id': 'spaghetti-002', 'name': 'Spaghetti Bolognese', 'price': 148000, 'image': 'https://pizza4ps.com/wp-content/uploads/2023/07/20200005_2.jpg', 'quantity': 1})">Thêm vào giỏ</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Slide 2 -->
+                <div class="menu-slide">
+                    <div class="menu-grid">
+                        <div class="menu-item" onclick="showProductDetail('Gà Giòn Không Xương', 'https://webreview.vn/images/items/21979.jpg', 'Gà giòn tan với sốt Cocktail thơm ngậy', '89,000 VND', 89000, 'ga-gion-khong-xuong')">
+                            <div class="new-tag">Món mới</div>
+                            <img src="https://webreview.vn/images/items/21979.jpg" alt="Gà Giòn Không Xương">
+                            <h3>Gà Giòn Không Xương</h3>
+                            <p>Gà giòn tan với sốt Cocktail thơm ngậy</p>
+                            <div class="price">
+                                <span class="current-price">89,000 VND</span>
+                                <span class="old-price">99,000 VND</span>
+                            </div>
+                            <button onclick="addToCart({'id': 'khaivi-002', 'name': 'Gà Giòn Không Xương', 'price': 89000, 'image': 'https://webreview.vn/images/items/21979.jpg', 'quantity': 1})">Thêm vào giỏ</button>
+                        </div>
+                        <div class="menu-item" onclick="showProductDetail('Bánh Kẹp Nướng Mexico', 'https://khamphamexico.wordpress.com/wp-content/uploads/2018/08/banh-quesadilla.jpg', 'Phô mai, sốt cà chua, nhân gà nướng bơ tỏi, ớt sừng dùng kèm sốt cocktail', '109,000 VND', 109000, 'banh-kep-mexico')">
+                            <div class="new-tag">Món mới</div>
+                            <img src="https://khamphamexico.wordpress.com/wp-content/uploads/2018/08/banh-quesadilla.jpg" alt="Bánh Kẹp Nướng Mexico">
+                            <h3>Bánh Kẹp Nướng Mexico</h3>
+                            <p>Phô mai, sốt cà chua, nhân gà nướng bơ tỏi, ớt sừng dùng kèm sốt cocktail</p>
+                            <div class="price">
+                                <span class="current-price">109,000 VND</span>
+                                <span class="old-price">129,000 VND</span>
+                            </div>
+                            <button onclick="addToCart({'id': 'khaivi-006', 'name': 'Bánh Kẹp Nướng Mexico', 'price': 109000, 'image': 'https://pizza4ps.com/wp-content/uploads/2023/07/20200015_2.jpg', 'quantity': 1})">Thêm vào giỏ</button>
+                        </div>
+                        <div class="menu-item" onclick="showProductDetail('Lasagna Bò', 'https://pizza4ps.com/wp-content/uploads/2023/07/20200015_2.jpg', 'Lasagna nướng với sốt bolognese từ thịt bò, lớp phô mai mozzarella tan...', '168,000 VND', 168000, 'lasagna-bo')">
+                            <div class="new-tag">Món mới</div>
+                            <img src="https://pizza4ps.com/wp-content/uploads/2023/07/20200015_2.jpg" alt="Lasagna Bò">
+                            <h3>Lasagna Bò</h3>
+                            <p>Lasagna nướng với sốt bolognese từ thịt bò, lớp phô mai mozzarella tan...</p>
+                            <div class="price">
+                                <span class="current-price">168,000 VND</span>
+                                <span class="old-price">188,000 VND</span>
+                            </div>
+                            <button onclick="addToCart({'id': 'spaghetti-008', 'name': 'Lasagna Bò', 'price': 168000, 'image': 'https://pizza4ps.com/wp-content/uploads/2023/07/20200015_2.jpg', 'quantity': 1})">Thêm vào giỏ</button>
+                        </div>
+                        <div class="menu-item" onclick="showProductDetail('Original Session IPA', 'https://pizza4ps.com/wp-content/uploads/2023/08/88300001_2.jpg', 'Một phiên bản IPA nhẹ độ cồn (session IPA) nhưng vẫn đậm đà hương...', '95,000 VND', 95000, 'original-session-ipa')">
+                            <div class="new-tag">Món mới</div>
+                            <img src="https://pizza4ps.com/wp-content/uploads/2023/08/88300001_2.jpg" alt="Original Session IPA">
+                            <h3>Original Session IPA</h3>
+                            <p>Một phiên bản IPA nhẹ độ cồn (session IPA) nhưng vẫn đậm đà hương...</p>
+                            <div class="price">
+                                <span class="current-price">95,000 VND</span>
+                                <span class="old-price">105,000 VND</span>
+                            </div>
+                            <button onclick="addToCart({'id': 'drink-003', 'name': 'Original Session IPA', 'price': 95000, 'image': 'https://pizza4ps.com/wp-content/uploads/2023/08/88300001_2.jpg', 'quantity': 1})">Thêm vào giỏ</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="menu-btn next" onclick="currentMenuSlide(menuSlideIndex)">❯</button>
+        </div>
+        <div class="menu-dots" id="menuDots">
+            <span class="menu-dot active" onclick="currentMenuSlide(0)"></span>
+            <span class="menu-dot" onclick="currentMenuSlide(1)"></span>
+        </div>
+    </section>
+    <section class="hot-product-section">
+        <div class="hot-product-card" onclick="showProductDetail('Phô mai Burrata Margherita', 'https://pizza4ps.com/wp-content/uploads/2023/08/2-APPLY-2-Burrata-Parma-Ham-Margherita-2.jpg', 'Pizza với lớp đế mỏng giòn, phủ sốt cà chua tươi, phô mai Burrata tự làm tan chảy, thêm chút lá húng quế thơm lừng, mang đến hương vị Ý cổ điển đậm đà.', '198,000 VND', 198000, 'Phô mai Burrata Margherita')">
+            <img src="https://pizza4ps.com/wp-content/uploads/2023/08/2-APPLY-2-Burrata-Parma-Ham-Margherita-2.jpg" alt="Phô mai Burrata Margherita">
+            <div class="hot-product-content">
+                <h2>
+                    Sản phẩm hot
+                </h2>
+                <h3>Phô mai Burrata Margherita</h3>
+                <p class="description">Pizza với lớp đế mỏng giòn, phủ sốt cà chua tươi, phô mai Burrata tự làm tan chảy, thêm chút lá húng quế thơm lừng, mang đến hương vị Ý cổ điển đậm đà.</p>
+                <div class="price">198,000 VNĐ</div>
+                    <button onclick="addToCart({'id': 'pizza-001', 'name': 'Phô mai Burrata Margherita', 'price': 198000, 'image': 'https://pizza4ps.com/wp-content/uploads/2023/08/2-APPLY-2-Burrata-Parma-Ham-Margherita-2.jpg', 'quantity': 1})">Thêm vào giỏ <i class="fas fa-shopping-cart"></i></button>
+            </div>
+        </div>
+        </div>
+    </section>
+
+
+
+
+    <section class="menu" id="menu">
+        <h2>Must try</h2>
+
+        <div class="menu-grid">
+                <div class="menu-item" onclick="showProductDetail('Pizza Hải Sản Sốt Cà Chua Cay', 'https://pizza4ps.com/wp-content/uploads/2023/07/10000014_2.jpg', 'Một lựa chọn dành cho người yêu hải sản với tôm, mực tươi, phủ sốt cà chua cay nhẹ...', '185,000 VND', 185000, 'pizza-hai-san')">
+                <div class="must-try-tag">Must Try</div> <!-- Thêm tag Must Try -->
+                <img src="https://pizza4ps.com/wp-content/uploads/2023/07/10000014_2.jpg" alt="Pizza Hải Sản Sốt Cà Chua Cay">
+                <h3>Pizza Hải Sản Sốt Cà Chua Cay</h3>
+                <p>Một lựa chọn dành cho người yêu hải sản với tôm, mực tươi, phủ sốt cà chua cay nhẹ...</p>
+                <div class="price">185,000 VND</div>
+                <button onclick="addToCart({'id': 'pizza-003', 'name': 'Pizza Hải Sản Sốt Cà Chua Cay', 'price': 185000, 'image': 'https://pizza4ps.com/wp-content/uploads/2023/07/10000014_2.jpg', 'quantity': 1})">Thêm vào giỏ</button>
+            </div>
+
+            <div class="menu-item" onclick="showProductDetail('Pizza Thịt Lợn Ướp Gừng', 'https://pizza4ps.com/wp-content/uploads/2023/07/Extra-Parma-Ham-Margherita-4.jpg', 'Thịt lợn ướp gừng kiểu Nhật, phủ lên lớp đế pizza giòn, thêm chút hành lá và phô...', '158,000 VND', 158000, 'pizza-thit-lon-uop-gung')">
+                <div class="must-try-tag">Must Try</div>
+                <img src="https://pizza4ps.com/wp-content/uploads/2023/07/Extra-Parma-Ham-Margherita-4.jpg" alt="Pizza Thịt Lợn Ướp Gừng">
+                <h3>Pizza Thịt Lợn Ướp Gừng</h3>
+                <p>Thịt lợn ướp gừng kiểu Nhật, phủ lên lớp đế pizza giòn, thêm chút hành lá và phô...</p>
+                <div class="price">158,000 VND</div>
+                <button onclick="addToCart({'id': 'pizza-006', 'name': 'Pizza Thịt Lợn Ướp Gừng', 'price': 158000, 'image': 'https://pizza4ps.com/wp-content/uploads/2023/07/Extra-Parma-Ham-Margherita-4.jpg', 'quantity': 1})">Thêm vào giỏ</button>
+            </div>
+
+            <div class="menu-item" onclick="showProductDetail('Spaghetti Pesto Tôm', 'https://pizza4ps.com/wp-content/uploads/2023/07/20200016_2.jpg', 'Spaghetti với sốt pesto húng quế thơm lừng, kết hợp tôm tươi ngọt, thêm chút...', '178,000 VND', 178000, 'spaghetti-pesto-tom')">
+                <div class="must-try-tag">Must Try</div>
+                <img src="https://pizza4ps.com/wp-content/uploads/2023/07/20200016_2.jpg" alt="Spaghetti Pesto Tôm">
+                <h3>Spaghetti Pesto Tôm</h3>
+                <p>Spaghetti với sốt pesto húng quế thơm lừng, kết hợp tôm tươi ngọt, thêm chút...</p>
+                <div class="price">178,000 VND</div>
+                <button onclick="addToCart({'id': 'spaghetti-003', 'name': 'Spaghetti Pesto Tôm', 'price': 178000, 'image': 'https://pizza4ps.com/wp-content/uploads/2023/07/20200016_2.jpg', 'quantity': 1})">Thêm vào giỏ</button>
+            </div>
+
+            <div class="menu-item" onclick="showProductDetail('Yuzu Wheat', 'https://pizza4ps.com/wp-content/uploads/2023/07/Yuzu-Beer-1-1-scaled.jpg', 'Một loại bia lúa mì nhẹ nhàng, tươi mát với hương thơm đặc trưng từ quả yuzu (một loại...', '105,000 VND', 105000, 'yuzu-wheat')">
+                <div class="must-try-tag">Must Try</div>
+                <img src="https://pizza4ps.com/wp-content/uploads/2023/07/Yuzu-Beer-1-1-scaled.jpg" alt="Yuzu Wheat">
+                <h3>Yuzu Wheat</h3>
+                <p>Một loại bia lúa mì nhẹ nhàng, tươi mát với hương thơm đặc trưng từ quả yuzu (một loại...</p>
+                <div class="price">105,000 VND</div>
+                <button onclick="addToCart({'id': 'drink-001', 'name': 'Yuzu Wheat', 'price': 105000, 'image': 'https://pizza4ps.com/wp-content/uploads/2023/07/Yuzu-Beer-1-1-scaled.jpg', 'quantity': 1})">Thêm vào giỏ</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="image-link-section">
+        <a href="Menu/Menu_pizza.html" class="image-hover-container">
+            <img src="image_index/spc.png" alt="Pizza Menu" class="linked-image">
+            <div class="hover-text">Xem thực đơn để mua ngay</div>
+        </a>
+    </section>
+
+
+
+    <!-- Customer Reviews Section -->
+    <section class="reviews-section">
+        <h2>Khách hàng nói gì về chúng tôi</h2>
+
+        <div class="slider-wrapper">
+            <button class="slider-btn left" onclick="scrollReviews(-1)">&#10094;</button>
+
+            <div class="reviews-scroll-container" id="reviewsContainer">
+                <div class="review-card">
+                    <img src="https://scontent.fhan17-1.fna.fbcdn.net/v/t39.30808-6/468182812_10235485216459462_956004900439635132_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=833d8c&_nc_ohc=BT9EAsts9aQQ7kNvwFSca8w&_nc_oc=AdkFRC4_y0qBde0tLwy4vMdZR3L6G47u1XeWYHBkBkodnXsXg8nB15K7WItR-c8zDTI&_nc_zt=23&_nc_ht=scontent.fhan17-1.fna&_nc_gid=5wa1m6M5bpwDnDrnXRIS_w&oh=00_AfLyhyD60Fxdsp243OFu2JO_eFDv1xstwAq5NQlk0VvpyQ&oe=6845C45C" alt="Avatar">
+                    <div>
+                        <h3>Thầy Vũ Trọng Sinh</h3>
+                        <p>"Tôi đã cầu hôn vợ ở đây và quán đã giúp đỡ cho màn cầu hôn này rất nhiệt tình. Đề nghị nên cho quán ăn 10 sao."</p>
+                    </div>
+                </div>
+                <div class="review-card">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUlsSgNMZa7wg18UgH_y77AkYwXctdbqzwLw&s" alt="Avatar">
+                    <div>
+                        <h3>Cristiano Ronaldo</h3>
+                        <p>"Best restaurant ever. Siuuuuuuuuuuuuuuuu!!!"</p>
+                    </div>
+                </div>
+                <div class="review-card">
+                    <img src="https://image.plo.vn/w1000/Uploaded/2025/aptwohu/2025_01_18/tong-thong-my-donald-trump-5028-7123.jpg.webp" alt="Avatar">
+                    <div>
+                        <h3>Tổng thống Donald Trump</h3>
+                        <p>"Quán ăn ngon hơn tất cả quán ở bên Mỹ. Tôi sẽ đề xuất chính phủ Việt Nam cho cửa hàng mở chi nhánh bên Mỹ với thuế 0%."</p>
+                    </div>
+                </div>
+                <div class="review-card">
+                    <img src="https://static.tuoitre.vn/tto/i/s626/2011/09/02/cTH6kxdr.jpg" alt="Avatar">
+                    <div>
+                        <h3>Nhà sáng lập FB Mark Elliot Zuckerberg</h3>
+                        <p>"Quán quá ngon, tôi đã tổ chức sinh nhật cho vợ ở đây và rất hài lòng. Tôi sẽ đề xuất facebook của cửa hàng cho toàn thể cộng đồng."</p>
+                    </div>
+                </div>
+                <div class="review-card">
+                    <img src="https://futureoflife.org/wp-content/uploads/2020/08/elon_musk_royal_society.jpg" alt="Elonmusk">
+                    <div>
+                        <h3>Tỷ phú giàu nhất thế giới Elon Musk</h3>
+                        <p>"Quán ăn ngon nhất tôi từng ăn. Tôi sẽ đầu tư 100 tỷ đô để quán mở ở Mỹ."</p>
+                    </div>
+                </div>
+            </div>
+
+            <button class="slider-btn right" onclick="scrollReviews(1)">&#10095;</button>
+        </div>
+    </section>
+
+    <section class="video-section">
+        <div class="video-wrapper">
+            <video class="custom-video" autoplay muted loop playsinline>
+                <source src="Us/ImageVideo/Video.mp4" type="video/mp4">
+                Trình duyệt của bạn không hỗ trợ video.
+            </video>
+            <div class="video-overlay">
+                <h2 class="video-title">Pizza ngon tuyệt mỗi ngày</h2>
+                <h3 class="video-p"> Từng chiếc bánh tại The Pizza House là kết quả của đam mê, sự tỉ mỉ và tình yêu dành cho ẩm thực.</h3>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Modal for Product Detail -->
+    <div class="modal" id="productModal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeProductDetail()">×</span>
+            <div class="modal-image" id="modalImage"></div>
+            <div class="modal-info">
+                <div>
+                    <h2 id="modalTitle"></h2>
+                    <p id="modalDescription"></p>
+                    <p id="modalPrice" class="modal-price"></p>
+
+                    <div id="unitPrice" style="display:none;"></div>
+                    <div class="quantity-control">
+                        <button id="decrease-btn">-</button>
+                        <span id="quantity">1</span>
+                        <button id="increase-btn">+</button>
+                    </div>
+                    <p class="modal-price">Tổng cộng : <span id="totalPrice"></span></p>
+                </div>
+                <div class="modal-buttons">
+                    <button class="add-to-cart" id="addToCartButton">
+                        <i class="fas fa-shopping-cart"></i> Thêm vào giỏ
+                    </button>
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="footer-column">
+            <h3>VỀ CHÚNG TÔI</h3>
+            <p>The Pizza House - không chỉ là ăn thức, mà còn là cả một trải nghiệm vị giác.</p>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
+        <div class="footer-column">
+            <h3>LIÊN KẾT</h3>
+            <ul>
+                <li><a href="Us/introduce.html">Về chúng tôi</a></li>
+                <li><a href="Menu/all.html">Thực đơn</a></li>
+                <li><a href="Us/policy.html">Điều khoản</a></li>
+                <li><a href="Us/contact.html">Liên hệ</a></li>
+                <li><a href="Us/news.html">Tin tức</a></li>
+            </ul>
+        </div>
+        <div class="footer-column">
+            <h3>THỰC ĐƠN</h3>
+            <ul>
+                <li><a href="Menu/Menu_Khaivi.html">Khai vị</a></li>
+                <li><a href="Menu/Menu_pizza.html">Pizza</a></li>
+                <li><a href="Menu/Menu_Spaghetti.html">Spaghetti</a></li>
+                <li><a href="Menu/Menu_Drink.html">Đồ uống</a></li>
+            </ul>
+        </div>
+        <div class="footer-column">
+            <h3>LIÊN HỆ</h3>
+            <ul class="contact-info">
+                <li>
+                    <i class="fas fa-map-marker-alt"></i>
+                    12 Chùa Bộc, Quang Trung, Đống Đa, Hà Nội
+                </li>
+                <li>
+                    <i class="fas fa-phone-alt"></i>
+                    0705311048<br>
+                </li>
+                <li>
+                    <i class="fas fa-envelope"></i>
+                    thepizzahouse@gmail.com<br>
+                </li>
+            </ul>
+        </div>
+    </footer>
+    <!-- Nút quay lại đầu trang -->
+<button id="backToTop" title="Quay lại đầu trang" style="display: none;"><i class="fas fa-arrow-up"></i></button>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="index.js"></script>
+    <script src="header.js"></script>
+    <script>
+        // Search function
+        function handleSearch(event) {
+            if (event.key === 'Enter') {
+                const query = document.getElementById('searchInput').value.toLowerCase();
+                alert('Chuyển hướng đến trang thực đơn để tìm kiếm món ăn ');
+                window.location.href = 'Menu/all.html?search=' + query;
+            }
+        }
+        function showTestimonials() {
+            const cards = document.querySelectorAll('.testimonial-card');
+            cards.forEach((card, index) => {
+                card.style.display = (index === currentIndex || index === currentIndex + 1) ? 'block' : 'none';
+            });
+        }
+
+        function changeTestimonial(direction) {
+            const cards = document.querySelectorAll('.testimonial-card');
+            const total = cards.length;
+
+            currentIndex += direction * 2;
+
+            if (currentIndex < 0) currentIndex = total - 2;
+            if (currentIndex >= total) currentIndex = 0;
+
+            showTestimonials();
+        }
+
+    </script>
+
+
+
+
+
+</body>
+</html>
