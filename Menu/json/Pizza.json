@@ -1,0 +1,110 @@
+[   
+    {
+        "id": "pizza-001",
+        "name": "Phô mai Burrata Margherita",
+        "image": "https://pizza4ps.com/wp-content/uploads/2023/08/2-APPLY-2-Burrata-Parma-Ham-Margherita-2.jpg",
+        "description": "Pizza với lớp đế mỏng giòn, phủ sốt cà chua tươi, phô mai Burrata tự làm tan chảy, thêm chút lá húng quế thơm lừng, mang đến hương vị Ý cổ điển đậm đà.",
+        "currentPrice": "99,000 VND",
+        "oldPrice": "198,000 VND",
+        "isHidden": false,
+        "category": "Pizza",
+        "tag": "hot",
+        "rawPrice": 99000
+    },    
+    {
+        "id": "pizza-002",
+        "name": "Pizza Cá Hồi Xốt Kem Miso",
+        "image": "https://pizza4ps.com/wp-content/uploads/2023/07/10000012_2.jpg",
+        "description": "Sự kết hợp độc đáo giữa cá hồi tươi ngon và xốt kem miso đậm đà, điểm thêm chút phô mai kéo sợi, tạo nên hương vị Nhật Bản hiện đại trên nền pizza Ý.",
+        "currentPrice": "238,000 VND",
+        "oldPrice": null,
+        "isHidden": false,
+        "category": "Pizza",
+        "tag": "",
+        "rawPrice": 238000
+    },
+    {
+        "id": "pizza-003",
+        "name": "Pizza Hải Sản Sốt Cà Chua Cay",
+        "image": "https://pizza4ps.com/wp-content/uploads/2023/07/10000014_2.jpg",
+        "description": "Một lựa chọn dành cho người yêu hải sản với tôm, mực tươi, phủ sốt cà chua cay nhẹ, thêm phô mai hun khói, mang đến hương vị biển cả đậm đà.",
+        "currentPrice": "185,000 VND",
+        "oldPrice": null,
+        "isHidden": false,
+        "category": "Pizza",
+        "tag": "must-try",
+        "rawPrice": 185000
+    },
+    {
+        "id": "pizza-004",
+        "name": "Pizza Gà Xốt Teriyaki",
+        "image": "https://pizza4ps.com/wp-content/uploads/2023/07/10000017_2.jpg",
+        "description": "Gà ướp xốt teriyaki ngọt đậm, kết hợp cùng phô mai tan chảy và chút rong biển, mang đến hương vị Nhật Bản hòa quyện trên lớp đế pizza giòn rụm.",
+        "currentPrice": "159,000 VND",
+        "oldPrice": null,
+        "isHidden": false,
+        "category": "Pizza",
+        "tag": "",
+        "rawPrice": 159000
+    },
+    {
+        "id": "pizza-005",
+        "name": "Pizza Nấm Tự Nhiên",
+        "image": "https://pizza4ps.com/wp-content/uploads/2023/07/10000024_2.jpg",
+        "description": "Dành cho người ăn chay, pizza này kết hợp nhiều loại nấm tươi, sốt bí ngòi quế tây, thêm chút phô mai nhẹ, tạo nên hương vị thanh đạm mà hấp dẫn.",
+        "currentPrice": "129,000 VND",
+        "oldPrice": null,
+        "isHidden": false,
+        "category": "Pizza",
+        "tag": "",
+        "rawPrice": 129000
+    },
+    {
+        "id": "pizza-006",
+        "name": "Pizza Thịt Lợn Ướp Gừng",
+        "image": "https://pizza4ps.com/wp-content/uploads/2023/07/Extra-Parma-Ham-Margherita-4.jpg",
+        "description": "Thịt lợn ướp gừng kiểu Nhật, phủ lên lớp đế pizza giòn, thêm chút hành lá và phô mai, mang đến hương vị đậm đà, ấm áp, rất hợp cho ngày se lạnh.",
+        "currentPrice": "158,000 VND",
+        "oldPrice": null,
+        "isHidden": false,
+        "category": "Pizza",
+        "tag": "must-try",
+        "rawPrice": 158000
+    },
+    {
+        "id": "pizza-007",
+        "name": "Pizza Margherita Xúc Xích Ý",
+        "image": "https://pizza4ps.com/wp-content/uploads/2023/07/10000010_2.jpg",
+        "description": "Pizza Margherita cổ điển với sốt cà chua, phô mai mozzarella, thêm xúc xích Ý Milano thơm ngon, điểm xuyết lá húng quế tươi, chuẩn vị Ý.",
+        "currentPrice": "172,000 VND",
+        "oldPrice": null,
+        "isHidden": true,
+        "category": "Pizza",
+        "tag": "",
+        "rawPrice": 172000
+    },
+    {
+        "id": "pizza-008",
+        "name": "Pizza Bò Dầu Tỏi",
+        "image": "https://pizza4ps.com/wp-content/uploads/2023/07/10000021_2.jpg",
+        "description": "Thịt bò mềm thơm, phủ dầu tỏi đậm đà, kết hợp cùng phô mai kéo sợi và chút tiêu đen, tạo nên một món pizza đậm chất phương Tây, rất đáng thử.",
+        "currentPrice": "145,000 VND",
+        "oldPrice": "168,000 VND",
+        "isHidden": true,
+        "category": "Pizza",
+        "tag": "new",
+        "rawPrice": 145000
+    },
+    {
+        "id": "pizza-009",
+        "name": "Pizza Tôm Sốt Mayonnaise",
+        "image": "https://pizza4ps.com/wp-content/uploads/2023/07/10000015_2.jpg",
+        "description": "Tôm tươi ngọt tự nhiên, phủ sốt mayonnaise béo ngậy, thêm chút phô mai và hành lá, mang đến hương vị hài hòa, dễ chịu cho mọi thực khách.",
+        "currentPrice": "159,000 VND",
+        "oldPrice": null,
+        "isHidden": true,
+        "category": "Pizza",
+        "tag": "",
+        "rawPrice": 159000
+    }
+]

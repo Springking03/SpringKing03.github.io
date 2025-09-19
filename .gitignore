@@ -1,0 +1,47 @@
+# Ignore Visual Studio temporary files
+.vs/
+*.suo
+*.user
+*.sln.docstates
+*.vspscc
+*.vssscc
+*.vsix
+*.vsixdx
+*.vsixmanifest
+*.vsixlangpack
+FileContentIndex/
+obj/
+bin/
+packages/
+
+# Ignore node_modules (nếu bạn dùng Node.js)
+node_modules/
+npm-debug.log
+
+# Ignore build output (nếu bạn có build project)
+dist/
+build/
+out/
+
+# Ignore log files
+*.log
+
+# Ignore OS generated files
+.DS_Store
+Thumbs.db
+
+# Ignore IDE specific files
+.idea/
+*.vscode/
+
+# Ignore personal settings
+*.bak
+*.tmp
+
+# Ignore local configuration files
+config.local.json
+settings.local.json
+
+# Ignore image/video caches (nếu có)
+ImageCache/
+VideoCache/

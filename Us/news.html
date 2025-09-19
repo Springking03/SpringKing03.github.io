@@ -1,0 +1,185 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tin tức - The Pizza House</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Open+Sans&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="../header.css">
+    <link rel="stylesheet" href="../footer.css">
+</head>
+<body>
+    <!-- Header -->
+   <header>
+    <div class="header-top">
+        <div class="logo-container">
+            <img src="../Menu/image/logo.jpg" alt="The Pizza House Logo">
+            <h1>The Pizza House</h1>
+        </div>
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Tìm kiếm món ăn..." onkeypress="handleSearch(event)">
+        </div>
+        <nav>
+            <a href="../index.html">Trang chủ</a>
+            <a href="../Menu/all.html">Thực đơn</a>
+            <a href="../Booking/booking.html">Đặt bàn</a>
+            <div class="dropdown">
+                <a href="#">Chúng tôi</a>
+                <ul class="dropdown-menu">
+                    <li><a href="introduce.html">Giới thiệu</a></li>
+                    <li><a href="news.html">Tin tức</a></li>
+                    <li><a href="policy.html">Điều khoản</a></li>
+                    <li><a href="contact.html">Liên hệ</a></li>
+                </ul>
+            </div>
+        </nav>
+        <div class="icons">
+            <div class="account-dropdown">
+                <a href="#" title="Tài khoản"><i class="fas fa-user"></i></a>
+                <ul class="account-menu" id="accountMenu">
+                    <li><a href="../Account/login.html">Đăng nhập</a></li>
+                    <li><a href="../Account/register.html">Đăng ký</a></li>
+                </ul>
+            </div>
+            <a href="../cart/cart.html" title="Giỏ hàng" class="cart-icon"><i class="fas fa-shopping-cart"></i>
+                    <span id="cartQuantity" class="cart-quantity">0</span>
+                </a>
+            <span id="userName" style="display: none;"></span> <!-- Thêm tên đăng nhập -->
+        </div>
+    </div>
+</header>
+    <!-- Banner Top Section -->
+    <section class="banner-top">
+        <h1>Tin tức & Sự kiện</h1>
+    </section>
+
+    <!-- News Section -->
+    <section class="section">
+        <div class="news-grid">
+            <div class="news-item">
+                <a href="news/news1.html">
+                    <img src="https://pizza4ps.com/wp-content/uploads/2023/07/20200016_2.jpg" alt="Tin tức 1">
+                    <h3>Ra mắt món Spaghetti mới</h3>
+                    <p>Chúng tôi vừa ra mắt món Spaghetti Pesto Tôm mới, hứa hẹn mang đến hương vị Ý hiện đại.</p>
+                    <div class="date">03/05/2025</div>
+                    <span class="tooltip-text">Click để xem chi tiết về món Spaghetti mới</span>
+                    </a>
+            </div>
+            <div class="news-item">
+                <a href="news/news2.html">
+                    <img src="https://pizza4ps.com/wp-content/uploads/2023/07/20200005_2.jpg" alt="Tin tức 2">
+                    <h3>Khuyến mãi tháng 5</h3>
+                    <p>Giảm giá 20% cho tất cả các món pizza trong suốt tháng 5. Đừng bỏ lỡ!</p>
+                    <div class="date">01/05/2025</div>
+                    <span class="tooltip-text">Khuyến mãi đặc biệt tháng 5</span>
+                    </a>
+            </div>
+            <div class="news-item" title="Tham gia kỷ niệm 5 năm thành lập">
+                <a href="news/news3.html">
+                    <img src="https://pizza4ps.com/wp-content/uploads/2023/07/20200003_2.jpg" alt="Tin tức 3">
+                    <h3>Sự kiện kỷ niệm 5 năm thành lập</h3>
+                    <p>Sự kiện kỷ niệm 5 năm thành lập The Pizza House tại Hà Nội vào ngày 25/05/2025.</p>
+                    <div class="date">25/05/2025</div>
+                    <span class="tooltip-text">Click để tham gia sự kiện của chúng tôi</span>
+                    </a>
+            </div>
+            <div class="news-item">
+                <a href="news/news4.html">
+                    <img src="https://pizza4ps.com/wp-content/uploads/2023/07/10000021_2.jpg" alt="Tin tức 4">
+                    <h3>Pizza mới: Bò Dầu Tỏi</h3>
+                    <p>Thưởng thức món Pizza Bò Dầu Tỏi mới với hương vị đậm đà, thơm ngon khó cưỡng.</p>
+                    <div class="date">05/05/2025</div>
+                    <span class="tooltip-text">Thử ngay món Pizza Bò Dầu Tỏi</span>
+                    </a>
+            </div>
+            <div class="news-item">
+                <a href="news/news5.html">
+                    <img src="https://cdn-i.vtcnews.vn/resize/th/upload/2024/11/27/cach-lam-salad-uc-ga-13193321.png" alt="Tin tức 5">
+                    <h3>Thực đơn lành mạnh mới</h3>
+                    <p>Khám phá thực đơn lành mạnh với các món salad tươi ngon, bổ dưỡng cho sức khỏe.</p>
+                    <div class="date">06/05/2025</div>
+                    <span class="tooltip-text">Thực đơn salad mới cho lối sống lành mạnh</span>
+                    </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="footer-column">
+            <h3>VỀ CHÚNG TÔI</h3>
+            <p>The Pizza House - không chỉ là ăn thức, mà còn là cả một trải nghiệm vị giác.</p>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
+        <div class="footer-column">
+            <h3>LIÊN KẾT</h3>
+            <ul>
+                <li><a href="introduce.html">Về chúng tôi</a></li>
+                <li><a href="../Menu/all.html">Thực đơn</a></li>
+                <li><a href="policy.html">Điều khoản</a></li>
+                <li><a href="contact.html">Liên hệ</a></li>
+                <li><a href="news.html">Tin tức</a></li>
+            </ul>
+        </div>
+        <div class="footer-column">
+            <h3>THỰC ĐƠN</h3>
+            <ul>
+                <li><a href="Menu_Khaivi.html">Khai vị</a></li>
+                <li><a href="Menu_pizza.html">Pizza</a></li>
+                <li><a href="Menu_Spaghetti.html">Spaghetti</a></li>
+                <li><a href="Menu_Drink.html">Đồ uống</a></li>
+            </ul>
+        </div>
+        <div class="footer-column">
+            <h3>LIÊN HỆ</h3>
+            <ul class="contact-info">
+                <li><i class="fas fa-map-marker-alt"></i> 12 Chùa Bộc, Quang Trung, Đống Đa, Hà Nội</li>
+                <li><i class="fas fa-phone-alt"></i> 0705311048</li>
+                <li><i class="fas fa-envelope"></i> thepizzahouse@gmail.com</li>
+            </ul>
+        </div>
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <script src="/Menu/Menu.js"></script>
+    <script src="news.js"> </script>
+        <script src="../header.js"></script>
+           <script>
+    // Search function
+       function handleSearch(event) {
+        if (event.key === 'Enter') {
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            alert('Chuyển hướng đến trang thực đơn để tìm kiếm món ăn ');
+            window.location.href = '../Menu/all.html?search=' + query;
+        }
+    }
+    function showTestimonials() {
+        const cards = document.querySelectorAll('.testimonial-card');
+        cards.forEach((card, index) => {
+          card.style.display = (index === currentIndex || index === currentIndex + 1) ? 'block' : 'none';
+        });
+      }
+      
+      function changeTestimonial(direction) {
+        const cards = document.querySelectorAll('.testimonial-card');
+        const total = cards.length;
+      
+        currentIndex += direction * 2;
+      
+        if (currentIndex < 0) currentIndex = total - 2;
+        if (currentIndex >= total) currentIndex = 0;
+      
+        showTestimonials();
+      }
+      
+    </script>
+</body>
+</html>

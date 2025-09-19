@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giỏ hàng - The Pizza House</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Open+Sans&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css"> <link rel="stylesheet" href="../header.css">
+    <link rel="stylesheet" href="../footer.css">
+    <link rel="stylesheet" href="cart.css"> </head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="header-top">
+            <div class="logo-container">
+                <img src="../Menu/image/logo.jpg" alt="The Pizza House Logo">
+                <h1>The Pizza House</h1>
+            </div>
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="Tìm kiếm món ăn..." onkeypress="handleSearch(event)">
+            </div>
+            <nav>
+                <a href="../index.html">Trang chủ</a>
+                <a href="../Menu/all.html">Thực đơn</a>
+                <a href="../Booking/booking.html">Đặt bàn</a>
+                <div class="dropdown">
+                    <a href="/Us/introduce.html">Chúng tôi</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/Us/introduce.html">Giới thiệu</a></li>
+                        <li><a href="/Us/news.html">Tin tức</a></li>
+                        <li><a href="/Us/policy.html">Điều khoản</a></li>
+                        <li><a href="/Us/contact.html">Liên hệ</a></li>
+                    </ul>
+                </div>
+            </nav>
+            <div class="icons">
+                <div class="account-dropdown">
+                    <a href="#" title="Tài khoản"><i class="fas fa-user"></i></a>
+                      <ul class="account-menu" id="accountMenu">
+                        <li><a href="../Account/login.html">Đăng nhập</a></li>
+                        <li><a href="../Account/register.html">Đăng ký</a></li>
+                      </ul>
+                </div>
+                <a href="../cart/cart.html" title="Giỏ hàng" class="cart-icon"><i class="fas fa-shopping-cart"></i>
+                    <span id="cartQuantity" class="cart-quantity">0</span>
+                </a>
+                    <span id="userName" style="display: none;"></span> <!-- Thêm tên đăng nhập -->
+            </div>
+
+        </div>
+    </header>
+
+    <section class="banner-top cart-html-banner-top" style="background-image: url('../Menu/image/all.jpg');">
+        <h3></h3>
+        <h1>Giỏ hàng của bạn</h1>
+    </section>
+
+    <section class="cart-section">
+        <div class="cart-container">
+            <h2>Các món trong giỏ hàng</h2>
+            <div id="cartItems" class="cart-items">
+                <p id="emptyCartMessage" style="text-align: center; margin-top: 20px; font-size: 1.2em; display: none;">Giỏ hàng của bạn đang trống.</p>
+            </div>
+
+            
+
+            <div class="cart-summary">
+                <div class="shipping-info">
+                <h3>Thông tin giao hàng</h3>
+                <form id="shippingForm">
+                    <input type="text" id="customerName" placeholder="Họ và tên" required>
+                    <input type="tel" id="customerPhone" placeholder="Số điện thoại" required pattern="[0-9]{10}">
+                    <input type="text" id="customerAddress" placeholder="Địa chỉ giao hàng" required>
+                    <div class="delivery-options">
+                        <label><input type="radio" name="deliverySpeed" value="slow" checked> Giao hàng chậm </label>
+                        <label><input type="radio" name="deliverySpeed" value="fast"> Giao hàng nhanh </label>
+                    </div>
+                </form>
+            </div>
+                <div class="total-price">
+                    <strong>Tổng tiền:</strong> <span id="cartTotalPrice">0 VNĐ</span>
+                </div>
+                <button id="checkoutButton" class="checkout-btn">Thanh toán</button>
+                <button id="clearCartButton" class="clear-cart-btn">Xóa giỏ hàng</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+  <footer>
+    <div class="footer-column">
+      <h3>VỀ CHÚNG TÔI</h3>
+      <p>The Pizza House - không chỉ là ăn thức, mà còn là cả một trải nghiệm vị giác.</p>
+      <div class="social-icons">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#"><i class="fab fa-whatsapp"></i></a>
+      </div>
+    </div>
+    <div class="footer-column">
+      <h3>LIÊN KẾT</h3>
+      <ul>
+        <li><a href="/Us/introduce.html">Về chúng tôi</a></li>
+        <li><a href="../Menu/all.html">Thực đơn</a></li>
+        <li><a href="/Us/policy.html">Điều khoản</a></li>
+        <li><a href="/us/contact.html">Liên hệ</a></li>
+        <li><a href="/Us/news.html">Tin tức</a></li>
+      </ul>
+    </div>
+    <div class="footer-column">
+      <h3>THỰC ĐƠN</h3>
+      <ul>
+        <li><a href="../Menu/Menu_Khaivi.html">Khai vị</a></li>
+        <li><a href="../Menu/Menu_pizza.html">Pizza</a></li>
+        <li><a href="../Menu/Menu_Spaghetti.html">Spaghetti</a></li>
+        <li><a href="../Menu/Menu_Drink.html">Đồ uống</a></li>
+      </ul>
+    </div>
+    <div class="footer-column">
+      <h3>LIÊN HỆ</h3>
+      <ul class="contact-info">
+        <li><i class="fas fa-map-marker-alt"></i> 12 Chùa Bộc, Quang Trung, Đống Đa, Hà Nội</li>
+        <li><i class="fas fa-phone-alt"></i> 0705311048</li>
+        <li><i class="fas fa-envelope"></i> thepizzahouse@gmail.com</li>
+      </ul>
+    </div>
+  </footer>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="../Menu/Menu.js"></script> <script src="cart.js"></script> </body>
+</html>

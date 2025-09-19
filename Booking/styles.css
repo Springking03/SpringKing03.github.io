@@ -1,0 +1,877 @@
+
+/* Banner Top Section */
+.banner-top {
+    position: relative;
+    height: 150px;
+    background-color: #0a0a0a;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    margin-top: 80px;
+}
+
+    .banner-top::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+    }
+
+    .banner-top h3 {
+        font-size: 1.2rem;
+        text-transform: uppercase;
+        color: #fff;
+        margin-bottom: 0.5rem;
+        font-family: 'Open Sans', sans-serif;
+        position: relative;
+        z-index: 1;
+        margin-top: 20px;
+    }
+
+    .banner-top h1 {
+        top: 30%;
+        font-size: 4rem;
+        font-family: 'Dancing Script', cursive;
+        color: #fff;
+        margin-bottom: 7rem;
+        text-shadow: 2px 2px 4px rgba(255, 0, 0, 0.3);
+        position: relative;
+        z-index: 1;
+    }
+
+
+/* INTRODUCE Section */
+.intro-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 2rem;
+}
+
+.intro-item {
+    text-align: center;
+    background-color: #2a2a2a;
+    padding: 1.5rem;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+}
+
+    .intro-item:hover {
+        transform: translateY(-5px);
+    }
+
+    .intro-item h2 {
+        font-family: 'Dancing Script', cursive;
+        color: #ffea00;
+        margin-bottom: 1rem;
+    }
+
+    .intro-item p {
+        color: #ccc;
+        font-size: 0.9rem;
+    }
+
+
+/* CONTACT Section */
+.contact-form {
+    display: flex; /* Giữ thuộc tính này để căn giữa form con */
+    justify-content: center; /* Căn giữa form con theo chiều ngang */
+    align-items: flex-start; /* Căn chỉnh các item con ở đầu theo chiều dọc */
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    /* Bỏ flex-wrap và gap nếu bạn đã xóa contact-info và chỉ muốn form ở giữa */
+    /* Nếu bạn vẫn giữ contact-info nhưng muốn form ở giữa một cách độc lập, sẽ cần cách tiếp cận khác */
+}
+
+    .contact-form form {
+    width: 700px; /* Tăng chiều rộng của form để chứa 2 cột trên mỗi hàng */
+    max-width: 90%; /* Đảm bảo form vẫn responsive trên màn hình nhỏ */
+    background-color: #2a2a2a;
+    padding: 1.5rem;
+    border-radius: 10px;
+}
+.form-grid-container {
+    display: flex; /* Dùng flex để các hàng xếp chồng lên nhau */
+    flex-direction: column;
+    gap: 1.5rem; /* Khoảng cách giữa các hàng 2 cột */
+    margin-bottom: 1.5rem; /* Khoảng cách với nút submit */
+}
+
+.form-row-2-cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Chia mỗi hàng thành 2 cột bằng nhau */
+    gap: 1.5rem; /* Khoảng cách giữa các trường trong cùng một hàng */
+    align-items: flex-end; /* Căn chỉnh các trường theo đáy nếu chúng có chiều cao khác nhau */
+}
+
+/* Đảm bảo các form-group không có opacity và transform ban đầu */
+.contact-form .form-group {
+    opacity: 1; /* Đảm bảo các trường luôn hiển thị */
+    transform: translateY(0); /* Bỏ hiệu ứng translate ban đầu */
+    transition: none; /* Bỏ transition ban đầu */
+}
+
+    .contact-form .form-group {
+        margin-bottom: 1rem;
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+        .contact-form .form-group.fade-in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+    .contact-form label {
+        display: block;
+        margin-bottom: 0.5rem;
+        color: #fff;
+        font-weight: 500;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+        width: 100%;
+        padding: 0.5rem;
+        border: 2px solid #ffea00;
+        border-radius: 10px;
+        background-color: #1a1a1a;
+        color: #fff;
+        font-size: 1rem;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            border-color: #ffd900;
+            box-shadow: 0 0 10px rgba(255, 217, 0, 0.5);
+            outline: none;
+        }
+
+    .contact-form textarea {
+        height: 150px;
+        resize: none;
+    }
+
+.submit-btn {
+    background-color: #ffea00;
+    color: #1a1a1a;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 10px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+
+    /* Thêm các thuộc tính sau để căn giữa nút */
+    display: block; /* Biến nút thành một khối để margin auto có tác dụng */
+    margin: 0 auto; /* Căn giữa nút theo chiều ngang */
+}
+
+    .submit-btn:hover {
+        background-color: #ffd900;
+        transform: scale(1.05);
+    }
+
+.contact-form .contact-info {
+    flex: 1;
+    min-width: 300px;
+    background-color: #2a2a2a;
+    padding: 1.5rem;
+    border-radius: 10px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+    .contact-form .contact-info.fade-in {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .contact-form .contact-info h3 {
+        color: #fff;
+        margin-bottom: 1rem;
+        font-family: 'Dancing Script', cursive;
+    }
+
+    .contact-form .contact-info p {
+        margin-bottom: 1rem;
+        color: #ccc;
+    }
+
+    .contact-form .contact-info i:hover {
+        color: #ffd900;
+    }
+
+.error-message {
+    color: #ff4d4d;
+    font-size: 0.9rem;
+    display: block;
+    margin-top: 0.3rem;
+}
+
+.success-message {
+    color: #00ff00;
+    font-size: 1rem;
+    margin-top: 1rem;
+    text-align: center;
+}
+
+/* NEWS Section */
+.news-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.news-item {
+    background-color: #2a2a2a;
+    border-radius: 10px;
+    padding: 1.5rem;
+    text-align: center;
+    transition: transform 0.3s ease;
+    position: relative; /* Để tooltip định vị đúng */
+}
+
+    .news-item:hover {
+        transform: translateY(-5px);
+    }
+
+    .news-item img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 10px;
+        margin-bottom: 1rem;
+        transition: transform 0.3s ease, filter 0.3s ease;
+    }
+
+    /* Hiệu ứng khi hover vào news-item */
+    .news-item:hover img {
+        transform: scale(1.05);
+        filter: brightness(1.2);
+    }
+
+    .news-item h3 {
+        font-size: 1.3rem;
+        margin-bottom: 0.5rem;
+        color: #ffea00;
+        font-family: 'Dancing Script', cursive;
+        transition: color 0.3s ease;
+    }
+
+        .news-item h3:hover {
+            color: #ffd900;
+        }
+
+    .news-item p {
+        font-size: 0.9rem;
+        color: #ccc;
+        margin-bottom: 0.5rem;
+    }
+
+    .news-item .date {
+        font-size: 0.8rem;
+        color: #999;
+    }
+
+    /* Tooltip styles */
+    .news-item .tooltip-text {
+        visibility: hidden;
+        width: 200px;
+        background-color: #ffea00;
+        color: #2a2a2a;
+        text-align: center;
+        border-radius: 5px;
+        padding: 5px;
+        position: absolute;
+        z-index: 1;
+        bottom: 100%; /* Hiển thị phía trên card */
+        left: 50%;
+        transform: translateX(-50%);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        font-size: 0.9rem;
+    }
+
+    .news-item:hover .tooltip-text {
+        visibility: visible;
+        opacity: 1;
+    }
+
+    /* Mũi tên nhỏ cho tooltip */
+    .news-item .tooltip-text::after {
+        content: '';
+        position: absolute;
+        top: 100%; /* Mũi tên ở dưới tooltip */
+        left: 50%;
+        transform: translateX(-50%);
+        border-width: 5px;
+        border-style: solid;
+        border-color: #ffea00 transparent transparent transparent;
+    }
+
+    /* Quy tắc cho thẻ <a> bên trong .news-item */
+    .news-item a {
+        text-decoration: none; /* Loại bỏ gạch chân */
+        color: inherit; /* Kế thừa màu từ phần tử cha (ví dụ: h3 giữ #ffea00) */
+        display: block; /* Đảm bảo toàn bộ nội dung trong a được định dạng như một khối */
+    }
+
+        .news-item a:hover,
+        .news-item a:focus,
+        .news-item a:visited {
+            text-decoration: none; /* Loại bỏ gạch chân ở các trạng thái */
+            color: inherit; /* Giữ màu gốc */
+        }
+
+
+/* POLICY Section */
+.policy-section {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+    .policy-section h1 {
+        font-family: 'Dancing Script', cursive;
+        color: #ffd900;
+        margin-bottom: 2rem;
+        text-align: center;
+    }
+
+    .policy-section h2 {
+        font-family: 'Dancing Script', cursive;
+        color: #d4a017;
+        margin-bottom: 1.5rem;
+        text-align: center;
+        text-shadow: 3px 3px 6px rgba(255, 215, 0, 0.3);
+        font-size: 2.5rem;
+        font-weight: 800;
+        position: relative;
+        transition: color 0.3s ease, transform 0.3s ease;
+    }
+
+        .policy-section h2::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: -10px;
+            height: 3px;
+            background-color: #ffea00;
+        }
+
+        .policy-section h2:hover {
+            color: #ffee00;
+            transform: scale(1.05);
+        }
+
+    .policy-section p, .policy-section ul li {
+        color: #333;
+        font-size: 1rem;
+        opacity: 1;
+        transform: translateY(0);
+        transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+        .policy-section p.fade-in, .policy-section ul li.fade-in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .policy-section p:not(.fade-in), .policy-section ul li:not(.fade-in) {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+    .policy-section ul {
+        list-style: none;
+        padding-left: 0;
+    }
+
+        .policy-section ul li {
+            position: relative;
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+            .policy-section ul li:hover {
+                background-color: #f5f5f5;
+                color: #d4a017;
+            }
+
+            .policy-section ul li::before {
+                content: '\2192';
+                position: absolute;
+                left: 0;
+                color: #ffdd00;
+                font-size: 1rem;
+                transition: color 0.3s ease;
+            }
+
+            .policy-section ul li:hover::before {
+                color: #d4a017;
+            }
+
+    .policy-section p {
+        margin-bottom: 1rem;
+    }
+
+strong {
+    font-weight: bold;
+}
+
+
+/* About us */
+.about-us-section {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #0a0a0a;
+    overflow: hidden;
+    padding: 2rem;
+}
+
+.bg-text-group {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.bg-text {
+    font-size: 16rem;
+    font-weight: 900;
+    position: absolute;
+    white-space: nowrap;
+    color: #0a0a0a;
+    pointer-events: none;
+    transition: transform 0.2s ease-out;
+    z-index: 1;
+    /* Hiệu ứng phát sáng kiểu neumorphism trên nền đen */
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.1), 0 0 20px rgba(255, 255, 255, 0.05), 0 0 40px rgba(255, 255, 255, 0.07), 0 0 80px rgba(255, 255, 255, 0.04);
+}
+
+
+.about-text {
+    top: 30%; 
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.pizza-text {
+    bottom: 25%; 
+    left: 50%;
+    transform: translate(-50%, 50%);
+}
+
+.about-h1 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    font-size: 7rem;
+    text-align: center;
+    font-family: 'Dancing Script', cursive;
+    color: #fff;
+    margin: 0;
+    text-shadow: 4px 4px 10px rgb(174, 52, 52);
+}
+
+
+    /* History Section (Vertical Block Layout) */
+    .history {
+    padding: 3rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    border-bottom: 1px solid #ccc;
+}
+
+    .history h2 {
+        text-align: center;
+        font-family: 'Dancing Script', cursive;
+        color: black;
+        margin-bottom: 2rem;
+        text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+        font-size: 3rem;
+        font-weight: 800;
+        position: relative;
+        padding-top: 1rem;
+    }
+
+        .history h2::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: -10px;
+            width: 100%;
+            height: 3px;
+            background-color: black;
+        }
+
+.history-block {
+    margin-bottom: 3rem;
+    background-color: rgba(42, 42, 42, 0.85);
+    padding: 2rem;
+    border-radius: 12px;
+    color: #fff;
+    opacity: 0;
+    transform: translateY(60px) scale(0.95);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out, background-color 0.3s ease-in-out;
+    backdrop-filter: blur(6px);
+    position: relative;
+    z-index: 1;
+}
+
+    .history-block.fade-in {
+        opacity: 1;
+        transform: translateY(0px) scale(1);
+    }
+
+
+    .history-block:hover {
+        background-color: #3a3a3a;
+    }
+
+
+    .history-block img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 10px;
+        margin-bottom: 1rem;
+    }
+
+    .history-block h3 {
+        font-family: 'Dancing Script', cursive;
+        color: #ffea00;
+        margin-bottom: 0.5rem;
+    }
+
+    .history-block p {
+        font-size: 0.9rem;
+        color: #ccc;
+    }
+
+/* Mission and Team Section */
+.mission-team-v2 {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 3rem 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+.mission-row {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    opacity: 0;
+    transform: translateX(100px); /* mặc định là trượt từ phải */
+    transition: opacity 2s ease, transform 2s ease;
+}
+
+    .mission-row.reverse {
+        flex-direction: row-reverse;
+        transform: translateX(-100px); /* trượt từ trái */
+    }
+
+    /* Khi xuất hiện */
+    .mission-row.show {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    .mission-row .image {
+        flex: 1;
+        text-align: center;
+    }
+
+        .mission-row .image img {
+            width: 100%;
+            max-width: 350px;
+            border-radius: 10px;
+        }
+
+    .mission-row .content {
+        flex: 2;
+    }
+
+
+.policy-section h1 {
+    font-family: 'Dancing Script', cursive;
+    color: #ffd900;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+
+.mission-row h3 {
+    font-family: 'Dancing Script', cursive;
+    color: black;
+    margin-bottom: 1.5rem;
+    text-align: left;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+    font-size: 2.5rem;
+    font-weight: 800;
+    position: relative;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+.mission-row h3::after  {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -10px;
+    height: 3px;
+    background-color: black;
+}
+
+    .mission-row p {
+        color: black;
+        font-size: 1rem;
+        line-height: 1.6;
+    }
+/* Achievements Section */
+.achievements .owl-carousel .item {
+    background-color: #2a2a2a;
+    padding: 1.5rem;
+    border-radius: 10px;
+    color: #fff;
+    margin: 0 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+    .achievements .owl-carousel .item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 20px rgba(0,0,0,0.5);
+    }
+
+    .achievements .owl-carousel .item.center {
+        transform: scale(1.2); /* Zoom slide chính lên 1.2 lần */
+        z-index: 1;
+    }
+
+    .achievements .owl-carousel .item h4 {
+        color: #ffea00;
+        margin-bottom: 1rem;
+    }
+
+    .achievements .owl-carousel .item p {
+        margin-bottom: 1rem;
+    }
+
+    .achievements .owl-carousel .item .item-image {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 10px;
+        margin-top: auto; /* Đẩy ảnh xuống dưới cùng */
+    }
+
+.achievements h2 {
+    font-size: 2rem;
+    color: #ffea00;
+    margin-bottom: 2rem;
+    font-family: 'Dancing Script', cursive;
+}
+
+/* Style cho nút điều hướng */
+.achievements .owl-nav {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    transform: translateY(-50%);
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+}
+
+    .achievements .owl-nav button {
+        background: rgba(255, 255, 255, 0.3) !important;
+        color: #fff !important;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+        transition: background 0.3s ease;
+    }
+
+        .achievements .owl-nav button:hover {
+            background: rgba(255, 255, 255, 0.6) !important;
+        }
+.achievements h2 {
+    text-align: center;
+    font-family: 'Dancing Script', cursive;
+    color: black;
+    margin-bottom: 2rem;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+    font-size: 3rem;
+    font-weight: 800;
+    position: relative;
+    padding-top: 1rem;
+}
+
+    .achievements h2::after {
+        content: '';
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: -10px;
+        width: 100%;
+        height: 3px;
+        background-color: black;
+    }
+
+/* Style cho dots */
+.achievements .owl-dots {
+    text-align: center;
+    margin-top: 20px;
+}
+
+    .achievements .owl-dots .owl-dot {
+        width: 10px;
+        height: 10px;
+        background: #ccc;
+        border-radius: 50%;
+        display: inline-block;
+        margin: 0 5px;
+        transition: background 0.3s ease;
+    }
+
+        .achievements .owl-dots .owl-dot.active {
+            background: #ffea00;
+        }
+/* CTA Section */
+.cta-section {
+    padding: 3rem 2rem;
+    text-align: center;
+    background-color: #1a1a1a;
+    color: #fff;
+}
+
+    .cta-section h2 {
+        font-family: 'Dancing Script', cursive;
+        color: #ffea00;
+        margin-bottom: 1rem;
+    }
+    .cta-section p {
+        padding: 0.75rem 1.5rem;
+    }
+
+.cta-btn {
+    background-color: #ffea00;
+    color: #1a1a1a;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 10px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+    .cta-btn:hover {
+        background-color: #ffd900;
+        transform: scale(1.05);
+    }
+
+
+/* Responsive */
+@media (max-width: 768px) {
+    .header-top {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    nav a {
+        margin: 0 0.5rem;
+    }
+
+    .banner-top {
+        height: 150px;
+    }
+
+    .contact-form {
+        flex-direction: column;
+    }
+
+    .intro-content,
+    .news-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .policy-section {
+        padding: 1rem;
+    }
+
+        .policy-section h2 {
+            font-size: 1.8rem;
+        }
+
+    .hero-section {
+        height: 300px;
+    }
+
+    .hero-content h1 {
+        font-size: 2rem;
+    }
+
+    .history-block img {
+        height: 150px;
+    }
+
+    .mission-row,
+    .mission-row.reverse {
+        flex-direction: column;
+        text-align: center;
+    }
+
+        .mission-row .image,
+        .mission-row .content {
+            flex: unset;
+        }
+
+            .mission-row .image img {
+                max-width: 200px;
+            }
+    @media (max-width: 768px) {
+    .contact-form form {
+        width: 100%; /* Cho phép form chiếm toàn bộ chiều rộng có sẵn */
+        padding: 1rem; /* Giảm padding trên màn hình nhỏ */
+    }
+
+    .form-row-2-cols {
+        grid-template-columns: 1fr; /* Trở lại 1 cột trên màn hình nhỏ */
+        gap: 1rem; /* Giảm khoảng cách nếu cần */
+    }
+}
+}

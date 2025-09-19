@@ -1,790 +1,451 @@
 <!DOCTYPE html>
-<html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Pizza House</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Open+Sans&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
 
-		<title>Trang chủ</title>
-
-		<!-- Google font -->
-		<link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
-
-		<!-- Bootstrap -->
-		<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css"/>
-
-		<!-- Slick -->
-		<link type="text/css" rel="stylesheet" href="css/slick.css"/>
-		<link type="text/css" rel="stylesheet" href="css/slick-theme.css"/>
-
-		<!-- nouislider -->
-		<link type="text/css" rel="stylesheet" href="css/nouislider.min.css"/>
-
-		<!-- Font Awesome Icon -->
-		<link rel="stylesheet" href="css/font-awesome.min.css">
-
-		<!-- Custom stlylesheet -->
-		<link type="text/css" rel="stylesheet" href="css/style.css"/>
-
-    </head>
-	<body>
-		<!-- HEADER -->
-		<header>
-			<!-- TOP HEADER -->
-			<div id="top-header">
-				<div class="container">
-					<ul class="header-links pull-left">
-						<li><a href="tel:+84345044407"><i class="fa fa-phone"></i> +84345 0444 07</a></li>
-						<li><a href="mailto:SpringElectronic@gmail.com"><i class="fa fa-envelope-o"></i> SpringElectronic@gmail.com</a></li>
-						<li><a href="https://www.google.com/maps/place/12+P.+Ch%C3%B9a+B%E1%BB%99c,+Quang+Trung,+%C4%90%E1%BB%91ng+%C4%90a,+H%C3%A0+N%E1%BB%99i+100000/data=!4m2!3m1!1s0x3135ac806deb4639:0x37ddac66200846?sa=X&ved=1t:242&ictx=111"><i class="fa fa-map-marker"></i> 74 Thái Hà</a></li>
-					</ul>
-					<ul class="header-links pull-right">
-						<li><a href="#"><i class="fa fa-dollar"></i> VND</a></li>
-						<li id="userStatus"></li>
-					</ul>
-				</div>
-			</div>
-			<!-- /TOP HEADER -->
-
-			<!-- MAIN HEADER -->
-			<div id="header">
-				<!-- container -->
-				<div class="container">
-					<!-- row -->
-					<div class="row">
-						<!-- LOGO -->
-						<div class="col-md-3">
-							<div class="header-logo">
-								<a href="index.html" class="logo">
-									<img src="./img/logo.png" alt="">
-								</a>
-							</div>
-						</div>
-						<!-- /LOGO -->
-
-						<!-- SEARCH BAR -->
-						<div class="col-md-6">
-							<div class="header-search">
-								<form>
-									
-									<input class="input" placeholder="Search here">
-									<button class="search-btn">Tìm kiếm</button>
-								</form>
-							</div>
-						</div>
-						<!-- /SEARCH BAR -->
-
-						<!-- ACCOUNT -->
-						<div class="col-md-3 clearfix">
-							<div class="header-ctn">
-								
-
-								<!-- Giỏ hàng -->
-<div class="dropdown">
-  <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
-    <i class="fa fa-shopping-cart"></i>
-    <span>Giỏ hàng</span>
-    <div class="qty">0</div>
-  </a>
-
-  <div class="cart-dropdown">
-    <div class="cart-list"><!-- sản phẩm sẽ thêm ở đây bằng JS --></div>
-
-    <div class="cart-summary">
-      <small>0 Item(s) selected</small>
-      <h5>Tổng tiền: 0 VND</h5>
-    </div>
-
-    <div class="cart-btns">
-      <a href="giohang.html">Xem giỏ hàng</a>
-      <a href="#">Đặt hàng <i class="fa fa-arrow-circle-right"></i></a>
-    </div>
-  </div>
-</div>
-<!-- /Giỏ hàng -->
-								<!-- Menu Toogle -->
-								<div class="menu-toggle">
-									<a href="#">
-										<i class="fa fa-bars"></i>
-										<span>Menu</span>
-									</a>
-								</div>
-								<!-- /Menu Toogle -->
-							</div>
-						</div>
-						<!-- /ACCOUNT -->
-					</div>
-					<!-- row -->
-				</div>
-				<!-- container -->
-			</div>
-			<!-- /MAIN HEADER -->
-		</header>
-		<!-- /HEADER -->
-
-		<!-- NAVIGATION -->
-		<nav id="navigation">
-			<!-- container -->
-			<div class="container">
-				<!-- responsive-nav -->
-				<div id="responsive-nav">
-					<!-- NAV -->
-					<ul class="main-nav nav navbar-nav">
-						<li class="active"><a href="index.html">Trang chủ</a></li>
-						<li><a href="liehe.html">Liên hệ</a></li>
-						<li><a href="tatcasanpham.html">Tất cả sản phẩm</a></li>
-						<li><a href="kinhcan.html">Kính cận</a></li>
-						<li><a href="kinhram.html">Kính râm</a></li>
-						<li><a href="phukien.html">Phụ kiện</a></li>
-						<li><a href="tintuc.html">Tin tức</a></li>
-					</ul>
-					<!-- /NAV -->
-				</div>
-				<!-- /responsive-nav -->
-			</div>
-			<!-- /container -->
-		</nav>
-		<!-- /NAVIGATION -->
-
-
-
-
-
-		<!-- SECTION -->
-		<div class="section">
-			<!-- container -->
-			<div class="container">
-				<!-- row -->
-				<div class="row">
-					<!-- shop -->
-					<div class="col-md-4 col-xs-6">
-						<div class="shop">
-							<div class="shop-img">
-								<img src="img/can11.jpg" alt="">
-							</div>
-							<div class="shop-body">
-								<h3>Kính cận</h3>
-								<a href="kinhcan.html" class="cta-btn">Mua ngay <i class="fa fa-arrow-circle-right"></i></a>
-							</div>
-						</div>
-					</div>
-					<!-- /shop -->
-
-					<!-- shop -->
-					<div class="col-md-4 col-xs-6">
-						<div class="shop">
-							<div class="shop-img">
-								<img src="img/r10.png" alt="">
-							</div>
-							<div class="shop-body">
-								<h3>Kính râm</h3>
-								<a href="kinhram.html" class="cta-btn">Mua ngay <i class="fa fa-arrow-circle-right"></i></a>
-							</div>
-						</div>
-					</div>
-					<!-- /shop -->
-
-					<!-- shop -->
-					<div class="col-md-4 col-xs-6">
-						<div class="shop">
-							<div class="shop-img">
-								<img src="img/pk7.jpeg" alt="">
-							</div>
-							<div class="shop-body">
-								<h3>Phụ kiện</h3>
-								<a href="phukien.html" class="cta-btn">Mua ngay <i class="fa fa-arrow-circle-right"></i></a>
-							</div>
-						</div>
-					</div>
-					<!-- /shop -->
-				</div>
-				<!-- /row -->
-			</div>
-			<!-- /container -->
-		</div>
-		<!-- /SECTION -->
-
-		<!-- SECTION -->
-		<div class="section">
-			<!-- container -->
-			<div class="container">
-				<!-- row -->
-				<div class="row">
-
-					<!-- section title -->
-					<div class="col-md-12">
-						<div class="section-title">
-							<h3 class="title">Sản phẩm mới</h3>
-							<div class="section-nav">
-								<ul class="section-tab-nav tab-nav">
-									<li class="active"><a data-toggle="tab" href="#tab1">Kính cận</a></li>
-									<li><a data-toggle="tab" href="#tab1">Kính dâm</a></li>
-									<li><a data-toggle="tab" href="#tab1">Phụ kiện</a></li>
-									<li><a data-toggle="tab" href="#tab1">Tất cả sản phẩm</a></li>
-								</ul>
-							</div>
-						</div>
-					</div>
-					<!-- /section title -->
-
-					<!-- Products tab & slick -->
-					<div class="col-md-12">
-						<div class="row">
-							<div class="products-tabs">
-								<!-- tab -->
-								<div id="tab1" class="tab-pane active">
-									<div class="products-slick" data-nav="#slick-nav-1">
-										
-										<div class="col-md-3 col-xs-6">
-                <div class="product" data-name="Tròng kính Chemi U6 Chiết suất 1.60" data-price="59999999" data-img="img/pk8.jpeg">
-                    <div class="product-img">
-                        <img src="img/pk8.jpeg" alt="Product 1">
-                        <div class="product-label">
-                            <span class="sale">-30%</span>
-                        </div>
-                    </div>
-                    <div class="product-body">
-                        <p class="product-category">Tròng kính</p>
-                        <h3 class="product-name"><a href="#">Tròng kính Chemi U6 Chiết suất 1.60</a></h3>
-                        <h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-                        <div class="product-rating">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                        </div>
-                        <div class="product-btns">
-                            <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-                            <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
-                            <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
-                        </div>
-                    </div>
-                    <div class="add-to-cart">
-                        <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
-                    </div>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-top">
+            <div class="logo-container">
+                <img src="image_index/logo.jpg" alt="The Pizza House Logo">
+                <h1>The Pizza House</h1>
+            </div>
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="Tìm kiếm món ăn..." onkeypress="handleSearch(event)">
+            </div>
+            <nav>
+                <a href="index.html">Trang chủ</a>
+                <a href="Menu/all.html">Thực đơn</a>
+                <a href="Booking/booking.html">Đặt bàn</a>
+                <div class="dropdown">
+                    <a href="Us/introduce.html">Chúng tôi</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="Us/introduce.html">Giới thiệu</a></li>
+                        <li><a href="Us/news.html">Tin tức</a></li>
+                        <li><a href="Us/policy.html">Điều khoản</a></li>
+                        <li><a href="Us/contact.html">Liên hệ</a></li>
+                    </ul>
                 </div>
-            </div>
-             <!-- product -->
-                    <div class="col-md-3 col-xs-6">
-                        <div class="product" data-name="Kính cận 2" data-price="100" data-img="img/CAN2.jpg">
-                            <div class="product-img">
-                                <img src="img/CAN2.jpg" alt="">
-                                <div class="product-label">
-                                    <span class="new">NEW</span>
-                                </div>
-                            </div>
-                            <div class="product-body">
-                                <p class="product-category">KÍNH CẬN</p>
-                                <h3 class="product-name"><a href="#">KÍNH CẬN 2</a></h3>
-                                <h4 class="product-price">$100.00 <del class="product-old-price">$120.00</del></h4>
-                                <div class="product-rating">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                </div>
-                                <div class="product-btns">
-                                    <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
-                                </div>
-                            </div>
-                            <div class="add-to-cart">
-                                <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> THÊM GIỎ HÀNG</button>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- /product -->
-                    
-                    <!-- product -->
-                    <div class="col-md-3 col-xs-6">
-                        <div class="product" data-name="Kính cận 3" data-price="200" data-img="img/CAN3.jpg">
-                            <div class="product-img">
-                                <img src="img/CAN3.jpg" alt="">
-                                <div class="product-label">
-                                    <span class="sale">-30%</span>
-                                </div>
-                            </div>
-                            <div class="product-body">
-                                <p class="product-category">KÍNH CẬN</p>
-                                <h3 class="product-name"><a href="#">KÍNH CẬN 3</a></h3>
-                                <h4 class="product-price">$90.00 <del class="product-old-price">$100.00</del></h4>
-                                <div class="product-rating">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                </div>
-                                <div class="product-btns">
-                                    <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
-                                </div>
-                            </div>
-                            <div class="add-to-cart">
-                                <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> THÊM GIỎ HÀNG</button>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- /product -->
-										<div class="col-md-3 col-xs-6">
-                <div class="product" data-name="Tròng kính Chemi U6 Chiết suất 1.60" data-price="59999999" data-img="img/pk8.jpeg">
-                    <div class="product-img">
-                        <img src="img/pk8.jpeg" alt="Product 1">
-                        <div class="product-label">
-                            <span class="sale">-30%</span>
-                        </div>
-                    </div>
-                    <div class="product-body">
-                        <p class="product-category">Tròng kính</p>
-                        <h3 class="product-name"><a href="#">Tròng kính Chemi U6 Chiết suất 1.60</a></h3>
-                        <h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-                        <div class="product-rating">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                        </div>
-                        <div class="product-btns">
-                            <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">Xem sản phẩm</span></button>
-                        </div>
-                    </div>
-                    <div class="add-to-cart">
-                        <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
-                    </div>
+            </nav>
+            <div class="icons">
+                <div class="account-dropdown">
+                    <a href="#" title="Tài khoản"><i class="fas fa-user"></i></a>
+                    <ul class="account-menu" id="accountMenu">
+                        <li><a href="Account/login.html">Đăng nhập</a></li>
+                        <li><a href="Account/register.html">Đăng ký</a></li>
+                    </ul>
                 </div>
+                <a href="cart/cart.html" title="Giỏ hàng" class="cart-icon"><i class="fas fa-shopping-cart"></i>
+                    <span id="cartQuantity" class="cart-quantity">0</span>
+                </a>
+                <span id="userName" style="display: none;"></span> <!-- Thêm tên đăng nhập -->
             </div>
-            <!-- /product -->
-
-
-										<div class="col-md-3 col-xs-6">
-                <div class="product" data-name="Tròng kính Chemi U6 Chiết suất 1.60" data-price="59999999" data-img="img/pk8.jpeg">
-                    <div class="product-img">
-                        <img src="img/pk8.jpeg" alt="Product 1">
-                        <div class="product-label">
-                            <span class="sale">-30%</span>
-                        </div>
-                    </div>
-                    <div class="product-body">
-                        <p class="product-category">Tròng kính</p>
-                        <h3 class="product-name"><a href="#">Tròng kính Chemi U6 Chiết suất 1.60</a></h3>
-                        <h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-                        <div class="product-rating">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                        </div>
-                        <div class="product-btns">
-                            <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">Xem sản phẩm</span></button>
-                        </div>
-                    </div>
-                    <div class="add-to-cart">
-                        <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
-                    </div>
-                </div>
-            </div>
-            <!-- /product -->
-
-									</div>
-									<div id="slick-nav-1" class="products-slick-nav"></div>
-								</div>
-								<!-- /tab -->
-							</div>
-						</div>
-					</div>
-					<!-- Products tab & slick -->
-				</div>
-				<!-- /row -->
-			</div>
-			<!-- /container -->
-		</div>
-		<!-- /SECTION -->
-
-		<!-- HOT DEAL SECTION -->
-		<div id="hot-deal" class="section">
-			<!-- container -->
-			<div class="container">
-				<!-- row -->
-				<div class="row">
-					<div class="col-md-12">
-						<div class="hot-deal">
-							<ul class="hot-deal-countdown">
-								<li>
-									<div>
-										<h3>02</h3>
-										<span>Ngày</span>
-									</div>
-								</li>
-								<li>
-									<div>
-										<h3>10</h3>
-										<span>Giờ</span>
-									</div>
-								</li>
-								<li>
-									<div>
-										<h3>34</h3>
-										<span>Phút</span>
-									</div>
-								</li>
-								<li>
-									<div>
-										<h3>60</h3>
-										<span>Giây</span>
-									</div>
-								</li>
-							</ul>
-							<h2 class="text-uppercase">Khuyến mãi lớn tuần</h2>
-							<p>Giảm giá lên tới 30%</p>
-							<a class="primary-btn cta-btn" href="#">Mua ngay</a>
-						</div>
-					</div>
-				</div>
-				<!-- /row -->
-			</div>
-			<!-- /container -->
-		</div>
-		<!-- /HOT DEAL SECTION -->
-
-		<!-- SECTION -->
-		<div class="section">
-			<!-- container -->
-			<div class="container">
-				<!-- row -->
-				<div class="row">
-
-					<!-- section title -->
-					<div class="col-md-12">
-						<div class="section-title">
-							<h3 class="title">Top bán chạy</h3>
-						</div>
-					</div>
-					<!-- /section title -->
-
-					<!-- Products tab & slick -->
-					<div class="col-md-12">
-						<div class="row">
-							<div class="products-tabs">
-								<!-- tab -->
-								<div id="tab2" class="tab-pane fade in active">
-									<div class="products-slick" data-nav="#slick-nav-2">
-										<div class="col-md-3 col-xs-6">
-                <div class="product" data-name="Tròng kính Chemi U6 Chiết suất 1.60" data-price="59999999" data-img="img/pk8.jpeg">
-                    <div class="product-img">
-                        <img src="img/pk8.jpeg" alt="Product 1">
-                        <div class="product-label">
-                            <span class="sale">-30%</span>
-                        </div>
-                    </div>
-                    <div class="product-body">
-                        <p class="product-category">Tròng kính</p>
-                        <h3 class="product-name"><a href="#">Tròng kính Chemi U6 Chiết suất 1.60</a></h3>
-                        <h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-                        <div class="product-rating">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                        </div>
-                        <div class="product-btns">
-                           <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">Xem sản phẩm</span></button>
-                        </div>
-                    </div>
-                    <div class="add-to-cart">
-                        <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
-                    </div>
-                </div>
-            </div>
-            <!-- /product -->
-
-
-										<div class="col-md-3 col-xs-6">
-                <div class="product" data-name="Tròng kính Chemi U6 Chiết suất 1.60" data-price="59999999" data-img="img/pk8.jpeg">
-                    <div class="product-img">
-                        <img src="img/pk8.jpeg" alt="Product 1">
-                        <div class="product-label">
-                            <span class="sale">-30%</span>
-                        </div>
-                    </div>
-                    <div class="product-body">
-                        <p class="product-category">Tròng kính</p>
-                        <h3 class="product-name"><a href="#">Tròng kính Chemi U6 Chiết suất 1.60</a></h3>
-                        <h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-                        <div class="product-rating">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                        </div>
-                        <div class="product-btns">
-                            <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">Xem sản phẩm</span></button>
-                        </div>
-                    </div>
-                    <div class="add-to-cart">
-                        <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
-                    </div>
-                </div>
-            </div>
-            <!-- /product -->
-
-
-										<div class="col-md-3 col-xs-6">
-                <div class="product" data-name="Tròng kính Chemi U6 Chiết suất 1.60" data-price="59999999" data-img="img/pk8.jpeg">
-                    <div class="product-img">
-                        <img src="img/pk8.jpeg" alt="Product 1">
-                        <div class="product-label">
-                            <span class="sale">-30%</span>
-                        </div>
-                    </div>
-                    <div class="product-body">
-                        <p class="product-category">Tròng kính</p>
-                        <h3 class="product-name"><a href="#">Tròng kính Chemi U6 Chiết suất 1.60</a></h3>
-                        <h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-                        <div class="product-rating">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                        </div>
-                        <div class="product-btns">
-                            <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">Xem sản phẩm</span></button>
-                        </div>
-                    </div>
-                    <div class="add-to-cart">
-                        <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
-                    </div>
-                </div>
-            </div>
-            <!-- /product -->
-
-
-										<div class="col-md-3 col-xs-6">
-                <div class="product" data-name="Tròng kính Chemi U6 Chiết suất 1.60" data-price="59999999" data-img="img/pk8.jpeg">
-                    <div class="product-img">
-                        <img src="img/pk8.jpeg" alt="Product 1">
-                        <div class="product-label">
-                            <span class="sale">-30%</span>
-                        </div>
-                    </div>
-                    <div class="product-body">
-                        <p class="product-category">Tròng kính</p>
-                        <h3 class="product-name"><a href="#">Tròng kính Chemi U6 Chiết suất 1.60</a></h3>
-                        <h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-                        <div class="product-rating">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                        </div>
-                        <div class="product-btns">
-                            <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">Xem sản phẩm</span></button>>
-                        </div>
-                    </div>
-                    <div class="add-to-cart">
-                        <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
-                    </div>
-                </div>
-            </div>
-            <!-- /product -->
-
-
-										<div class="col-md-3 col-xs-6">
-                <div class="product" data-name="Tròng kính Chemi U6 Chiết suất 1.60" data-price="59999999" data-img="img/pk8.jpeg">
-                    <div class="product-img">
-                        <img src="img/pk8.jpeg" alt="Product 1">
-                        <div class="product-label">
-                            <span class="sale">-30%</span>
-                        </div>
-                    </div>
-                    <div class="product-body">
-                        <p class="product-category">Tròng kính</p>
-                        <h3 class="product-name"><a href="#">Tròng kính Chemi U6 Chiết suất 1.60</a></h3>
-                        <h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-                        <div class="product-rating">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                        </div>
-                        <div class="product-btns">
-                            <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">Xem sản phẩm</span></button>
-                        </div>
-                    </div>
-                    <div class="add-to-cart">
-                        <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
-                    </div>
-                </div>
-            </div>
-            <!-- /product -->
-
-									</div>
-									<div id="slick-nav-2" class="products-slick-nav"></div>
-								</div>
-								<!-- /tab -->
-							</div>
-						</div>
-					</div>
-					<!-- /Products tab & slick -->
-				</div>
-				<!-- /row -->
-			</div>
-			<!-- /container -->
-		</div>
-		<!-- /SECTION -->
-
-		
-
-		<!-- NEWSLETTER -->
-		<div id="newsletter" class="section">
-			<!-- container -->
-			<div class="container">
-				<!-- row -->
-				<div class="row">
-					<div class="col-md-12">
-						<div class="newsletter">
-							<p>Đăng nhập để <strong>Nhận thông tin mới nhất</strong></p>
-							<form>
-								<input class="input" type="email" placeholder="Nhập email">
-								<button class="newsletter-btn"><i class="fa fa-envelope"></i> Đăng ký</button>
-							</form>
-							<ul class="newsletter-follow">
-								<li>
-									<a href="#"><i class="fa fa-facebook"></i></a>
-								</li>
-								<li>
-									<a href="#"><i class="fa fa-twitter"></i></a>
-								</li>
-								<li>
-									<a href="#"><i class="fa fa-instagram"></i></a>
-								</li>
-								<li>
-									<a href="#"><i class="fa fa-pinterest"></i></a>
-								</li>
-							</ul>
-						</div>
-					</div>
-				</div>
-				<!-- /row -->
-			</div>
-			<!-- /container -->
-		</div>
-		<!-- /NEWSLETTER -->
-
-	<!-- FOOTER -->
-		<footer id="footer">
-			<!-- top footer -->
-			<div class="section">
-				<!-- container -->
-				<div class="container">
-					<!-- row -->
-					<div class="row">
-						<div class="col-md-3 col-xs-6">
-							<div class="footer">
-								<h3 class="footer-title">VỀ CHÚNG TÔI</h3>
-								<p>SpringGlasses chuyên cung cấp các thể loại kính mắt, kính cận, kính râm, phụ kiện, thời trang để giúp trở nên sàng điệu và đẹp zoai hơn. Liên hệ với chúng tôi dưới đây:</p>
-								<ul class="footer-links">
-									<li><a href="tel:+84345044407"><i class="fa fa-phone"></i> +84345 0444 07</a></li>
-						<li><a href="mailto:SpringElectronic@gmail.com"><i class="fa fa-envelope-o"></i> SpringElectronic@gmail.com</a></li>
-						<li><a href="https://www.google.com/maps/place/12+P.+Ch%C3%B9a+B%E1%BB%99c,+Quang+Trung,+%C4%90%E1%BB%91ng+%C4%90a,+H%C3%A0+N%E1%BB%99i+100000/data=!4m2!3m1!1s0x3135ac806deb4639:0x37ddac66200846?sa=X&ved=1t:242&ictx=111"><i class="fa fa-map-marker"></i> 74 Thái Hà</a></li>
-            <li>
-              <a href="https://facebook.com/annaeyeglasses" target="_blank"><i class="fa fa-facebook"></i></a>
-              <a href="https://www.instagram.com/_hoang_0_2_1_1/" target="_blank"><i class="fa fa-instagram"></i></a>  
-            </li>
-
-								</ul>
-							</div>
-						</div>
-
-						<div class="col-md-3 col-xs-6">
-							<div class="footer">
-								<h3 class="footer-title">DANH MỤC SẢN PHẨM</h3>
-								<ul class="footer-links">
-									<li><a href="kinhcan.html">Kính cận</a></li>
-									<li><a href="kinhram.html">Kính râm</a></li>
-									<li><a href="phukien.html">Phụ kiện</a></li>
-                  <li><a href="tatcasanpham.html">Tất cả sản phẩm</a></li>
-								</ul>
-							</div>
-						</div>
-
-						<div class="clearfix visible-xs"></div>
-
-						
-
-						<div class="col-md-3 col-xs-6">
-							<div class="footer">
-								<h3 class="footer-title">DỊCH VỤ & TÀI KHOẢN</h3>
-								<ul class="footer-links">
-									<li><a href="taikhoan.html">Tài khoản</a></li>
-									<li><a href="giohang.html">Xem giỏ hàng</a></li>
-									<li><a href="Hỗ trợ.html">Hỗ trợ</a></li>
-								</ul>
-							</div>
-						</div>
-						 <div class="col-md-3">
-          <div class="footer">
-            <h3 class="footer-title">Bản đồ</h3>
-            <div class="footer-map">
-              <iframe 
-  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3724.2524483714774!2d105.8462339!3d21.022582599999996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ab917ea813ad%3A0xcfd1bafa8c28f19!2zVHLhu6UgU-G7nyBDw7RuZyBBbiBUUCBIw6AgTuG7mWk!5e0!3m2!1svi!2s!4v1749109338459!5m2!1svi!2s"
-  width="100%" 
-  height="165" 
-  style="border:0;" 
-  allowfullscreen="" 
-  loading="lazy" 
-  referrerpolicy="no-referrer-when-downgrade">
-</iframe>
-
-            </div>
-          </div>
         </div>
-					</div>
-					
-					<!-- /row -->
-				</div>
-				<!-- /container -->
-			</div>
-			<!-- /top footer -->
+    </header>
 
-			<!-- bottom footer -->
-			<div id="bottom-footer" class="section">
-				<div class="container">
-					<!-- row -->
-					<div class="row">
-						<div class="col-md-12 text-center">
-							<ul class="footer-payments">
-								<li><a href="#"><i class="fa fa-cc-visa"></i></a></li>
-								<li><a href="#"><i class="fa fa-credit-card"></i></a></li>
-								<li><a href="#"><i class="fa fa-cc-paypal"></i></a></li>
-								<li><a href="#"><i class="fa fa-cc-mastercard"></i></a></li>
-								<li><a href="#"><i class="fa fa-cc-discover"></i></a></li>
-								<li><a href="#"><i class="fa fa-cc-amex"></i></a></li>
-							</ul>
-					</div>
-						<!-- /row -->
-				</div>
-				<!-- /container -->
-			</div>
-			<!-- /bottom footer -->
-		</footer>
-		<!-- /FOOTER -->
+    <!-- Banner Section -->
+    <section class="banner-container">
+        <div class="banner-slide" style="background-image: url('image_index/Presentation1.png');">
+            <div class="banner-content">
+                <h1>The Pizza House</h1>
+                <p>"Mỗi chiếc bánh tại The Pizza House được làm nên bằng cả tâm huyết và tình yêu thương. Chúng tôi tin rằng một bữa ăn ngon là khởi đầu cho những khoảnh khắc gắn kết. Hãy đến và thưởng thức hương vị truyền thống trong không gian ấm cúng như chính ngôi nhà của bạn. The Pizza House – nơi mỗi lát bánh là một câu chuyện yêu thương."</p>
 
-		<!-- jQuery Plugins -->
-		<script src="js/jquery.min.js"></script>
-		<script src="js/bootstrap.min.js"></script>
-		<script src="js/slick.min.js"></script>
-		<script src="js/nouislider.min.js"></script>
-		<script src="js/jquery.zoom.min.js"></script>
-		<script src="js/main.js"></script>
-		<script src="js/search.js"></script>
-		<script src="auth.js"></script>
-	</body>
+                <button onclick="window.location.href='Booking/booking.html'">Đặt bàn</button>
+            </div>
+        </div>
+        <div class="banner-slide" style="background-image: url('image_index/banner1.jpg');">
+            <div class="banner-content">
+                <h1>The Pizza House</h1>
+                <p>"Hãy bắt đầu hành trình hương vị đầy cảm xúc tại The Pizza House. Từ lớp đế giòn tan đến phô mai béo ngậy, từng nguyên liệu đều được lựa chọn kỹ lưỡng. Chúng tôi không chỉ phục vụ món ăn, mà còn mang đến trải nghiệm ẩm thực đáng nhớ. Cùng nhau tạo nên những khoảnh khắc trọn vẹn bên người thân và bạn bè."</p>
+                <button onclick="window.location.href='Booking/booking.html'">Đặt bàn</button>
+            </div>
+        </div>
+        <div class="banner-slide" style="background-image: url('image_index/banner3.jpg');">
+            <div class="banner-content">
+                <h1>The Pizza House</h1>
+                <p>"Tại The Pizza House, mỗi món ăn là một bản hòa tấu của hương vị và cảm xúc. Chúng tôi mang đến cho bạn không chỉ một bữa ăn ngon, mà là sự sẻ chia trong từng khoảnh khắc. Giữa cuộc sống bận rộn, hãy để từng lát bánh đưa bạn trở về với những phút giây bình yên. Cảm ơn bạn đã chọn chúng tôi để đồng hành trong hành trình ẩm thực của mình."</p>
+                <button onclick="window.location.href='Booking/booking.html'">Đặt bàn</button>
+            </div>
+        </div>
+        <div class="banner-dots">
+            <span class="dot active" onclick="currentSlide(0)"></span>
+            <span class="dot" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+        </div>
+    </section>
+
+    <section class="menu" id="menu">
+        <h2>Món mới</h2>
+        <div class="menu-slider-container">
+            <button class="menu-btn prev" onclick="currentMenuSlide(menuSlideIndex - 2)">❮</button>
+            <div class="menu-slides" id="menuSlides">
+                <!-- Slide 1 -->
+                <div class="menu-slide">
+                    <div class="menu-grid">
+                        <div class="menu-item" onclick="showProductDetail('Salad Gà Giòn Không Xương', 'https://vuongquocruou.vn/wp-content/uploads/2024/12/ga-ran-kieu-han-quoc-2.png', 'Salad Gà giòn với trứng cút, thịt xông khói, phô mai parmesan và sốt Thousand Island', '79,000 VND', 79000, 'salad-ga')">
+                            <div class="new-tag">Món mới</div> <!-- Thêm tag Món mới -->
+                            <div class="image-wrapper">
+                                <img src="https://vuongquocruou.vn/wp-content/uploads/2024/12/ga-ran-kieu-han-quoc-2.png" alt="Da Gà Rộp Rộp Xốt Hàn - Cay">
+                            </div>
+                            <h3>Da Gà Rộp Rộp Xốt Hàn - Cay</h3>
+                            <p>Da Gà Rộp Rộp Xốt Hàn: Lớp da gà giòn rụm thấm đẫm nước xốt mặn mà. Hãy sẵn sàng...</p>
+                            <div class="price">
+                                <span class="current-price">79,000 VND</span>
+                                <span class="old-price">89,000 VND</span>
+                            </div>
+                            <button onclick="addToCart({'id': 'khaivi-001', 'name': 'Da Gà Rộp Rộp Xốt Hàn - Cay', 'price': 79000, 'image': 'https://vuongquocruou.vn/wp-content/uploads/2024/12/ga-ran-kieu-han-quoc-2.png', 'quantity': 1})">Thêm vào giỏ</button>
+                        </div>
+                        <div class="menu-item" onclick="showProductDetail('Salad Gà Giòn Không Xương', 'https://cdn-i.vtcnews.vn/resize/th/upload/2024/11/27/cach-lam-salad-uc-ga-13193321.png', 'Salad Gà giòn với trứng cút, thịt xông khói, phô mai parmesan và sốt Thousand Island', '79,000 VND', 79000, 'salad-ga')">
+                            <div class="new-tag">Món mới</div>
+                            <img src="https://cdn-i.vtcnews.vn/resize/th/upload/2024/11/27/cach-lam-salad-uc-ga-13193321.png" alt="Salad Gà Giòn Không Xương">
+                            <h3>Salad Gà Giòn Không Xương</h3>
+                            <p>Salad Gà giòn với trứng cút, thịt xông khói, phô mai parmesan và sốt Thousand Island</p>
+                            <div class="price">
+                                <span class="current-price">79,000 VND</span>
+                                <span class="old-price">89,000 VND</span>
+                            </div>
+                            <button onclick="addToCart({'id': 'khaivi-007', 'name': 'Salad Gà Giòn Không Xương', 'price': 79000, 'image': 'https://pizza4ps.com/wp-content/uploads/2023/07/10000021_2.jpg', 'quantity': 1})">Thêm vào giỏ</button>
+                        </div>
+                        <div class="menu-item" onclick="showProductDetail('Pizza Bò Dầu Tỏi', 'https://pizza4ps.com/wp-content/uploads/2023/07/10000021_2.jpg', 'Thịt bò mềm thơm, phủ dầu tỏi đậm đà, kết hợp cùng phô mai kéo sợi và chút tiêu đen,...', '145,000 VND', 145000, 'pizza-bo-dau-toi')">
+                            <div class="new-tag">Món mới</div>
+                            <img src="https://pizza4ps.com/wp-content/uploads/2023/07/10000021_2.jpg" alt="Pizza Bò Dầu Tỏi">
+                            <h3>Pizza Bò Dầu Tỏi</h3>
+                            <p>Thịt bò mềm thơm, phủ dầu tỏi đậm đà, kết hợp cùng phô mai kéo sợi và chút tiêu đen,...</p>
+                            <div class="price">
+                                <span class="current-price">145,000 VND</span>
+                                <span class="old-price">168,000 VND</span>
+                            </div>
+                            <button onclick="addToCart({'id': 'pizza-008', 'name': 'Pizza Bò Dầu Tỏi', 'price': 145000, 'image': 'https://pizza4ps.com/wp-content/uploads/2023/07/10000021_2.jpg', 'quantity': 1})">Thêm vào giỏ</button>
+                        </div>
+                        <div class="menu-item" onclick="showProductDetail('Spaghetti Bolognese', 'https://pizza4ps.com/wp-content/uploads/2023/07/20200005_2.jpg', 'Spaghetti với sốt bolognese đậm đà từ thịt bò và cà chua, thêm chút phô mai...', '148,000 VND', 148000, 'spaghetti-bolognese')">
+                            <div class="new-tag">Món mới</div>
+                            <img src="https://pizza4ps.com/wp-content/uploads/2023/07/20200005_2.jpg" alt="Spaghetti Bolognese">
+                            <h3>Spaghetti Bolognese</h3>
+                            <p>Spaghetti với sốt bolognese đậm đà từ thịt bò và cà chua, thêm chút phô mai...</p>
+                            <div class="price">
+                                <span class="current-price">148,000 VND</span>
+                                <span class="old-price">170,000 VND</span>
+                            </div>
+                            <button onclick="addToCart({'id': 'spaghetti-002', 'name': 'Spaghetti Bolognese', 'price': 148000, 'image': 'https://pizza4ps.com/wp-content/uploads/2023/07/20200005_2.jpg', 'quantity': 1})">Thêm vào giỏ</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Slide 2 -->
+                <div class="menu-slide">
+                    <div class="menu-grid">
+                        <div class="menu-item" onclick="showProductDetail('Gà Giòn Không Xương', 'https://webreview.vn/images/items/21979.jpg', 'Gà giòn tan với sốt Cocktail thơm ngậy', '89,000 VND', 89000, 'ga-gion-khong-xuong')">
+                            <div class="new-tag">Món mới</div>
+                            <img src="https://webreview.vn/images/items/21979.jpg" alt="Gà Giòn Không Xương">
+                            <h3>Gà Giòn Không Xương</h3>
+                            <p>Gà giòn tan với sốt Cocktail thơm ngậy</p>
+                            <div class="price">
+                                <span class="current-price">89,000 VND</span>
+                                <span class="old-price">99,000 VND</span>
+                            </div>
+                            <button onclick="addToCart({'id': 'khaivi-002', 'name': 'Gà Giòn Không Xương', 'price': 89000, 'image': 'https://webreview.vn/images/items/21979.jpg', 'quantity': 1})">Thêm vào giỏ</button>
+                        </div>
+                        <div class="menu-item" onclick="showProductDetail('Bánh Kẹp Nướng Mexico', 'https://khamphamexico.wordpress.com/wp-content/uploads/2018/08/banh-quesadilla.jpg', 'Phô mai, sốt cà chua, nhân gà nướng bơ tỏi, ớt sừng dùng kèm sốt cocktail', '109,000 VND', 109000, 'banh-kep-mexico')">
+                            <div class="new-tag">Món mới</div>
+                            <img src="https://khamphamexico.wordpress.com/wp-content/uploads/2018/08/banh-quesadilla.jpg" alt="Bánh Kẹp Nướng Mexico">
+                            <h3>Bánh Kẹp Nướng Mexico</h3>
+                            <p>Phô mai, sốt cà chua, nhân gà nướng bơ tỏi, ớt sừng dùng kèm sốt cocktail</p>
+                            <div class="price">
+                                <span class="current-price">109,000 VND</span>
+                                <span class="old-price">129,000 VND</span>
+                            </div>
+                            <button onclick="addToCart({'id': 'khaivi-006', 'name': 'Bánh Kẹp Nướng Mexico', 'price': 109000, 'image': 'https://pizza4ps.com/wp-content/uploads/2023/07/20200015_2.jpg', 'quantity': 1})">Thêm vào giỏ</button>
+                        </div>
+                        <div class="menu-item" onclick="showProductDetail('Lasagna Bò', 'https://pizza4ps.com/wp-content/uploads/2023/07/20200015_2.jpg', 'Lasagna nướng với sốt bolognese từ thịt bò, lớp phô mai mozzarella tan...', '168,000 VND', 168000, 'lasagna-bo')">
+                            <div class="new-tag">Món mới</div>
+                            <img src="https://pizza4ps.com/wp-content/uploads/2023/07/20200015_2.jpg" alt="Lasagna Bò">
+                            <h3>Lasagna Bò</h3>
+                            <p>Lasagna nướng với sốt bolognese từ thịt bò, lớp phô mai mozzarella tan...</p>
+                            <div class="price">
+                                <span class="current-price">168,000 VND</span>
+                                <span class="old-price">188,000 VND</span>
+                            </div>
+                            <button onclick="addToCart({'id': 'spaghetti-008', 'name': 'Lasagna Bò', 'price': 168000, 'image': 'https://pizza4ps.com/wp-content/uploads/2023/07/20200015_2.jpg', 'quantity': 1})">Thêm vào giỏ</button>
+                        </div>
+                        <div class="menu-item" onclick="showProductDetail('Original Session IPA', 'https://pizza4ps.com/wp-content/uploads/2023/08/88300001_2.jpg', 'Một phiên bản IPA nhẹ độ cồn (session IPA) nhưng vẫn đậm đà hương...', '95,000 VND', 95000, 'original-session-ipa')">
+                            <div class="new-tag">Món mới</div>
+                            <img src="https://pizza4ps.com/wp-content/uploads/2023/08/88300001_2.jpg" alt="Original Session IPA">
+                            <h3>Original Session IPA</h3>
+                            <p>Một phiên bản IPA nhẹ độ cồn (session IPA) nhưng vẫn đậm đà hương...</p>
+                            <div class="price">
+                                <span class="current-price">95,000 VND</span>
+                                <span class="old-price">105,000 VND</span>
+                            </div>
+                            <button onclick="addToCart({'id': 'drink-003', 'name': 'Original Session IPA', 'price': 95000, 'image': 'https://pizza4ps.com/wp-content/uploads/2023/08/88300001_2.jpg', 'quantity': 1})">Thêm vào giỏ</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="menu-btn next" onclick="currentMenuSlide(menuSlideIndex)">❯</button>
+        </div>
+        <div class="menu-dots" id="menuDots">
+            <span class="menu-dot active" onclick="currentMenuSlide(0)"></span>
+            <span class="menu-dot" onclick="currentMenuSlide(1)"></span>
+        </div>
+    </section>
+    <section class="hot-product-section">
+        <div class="hot-product-card" onclick="showProductDetail('Phô mai Burrata Margherita', 'https://pizza4ps.com/wp-content/uploads/2023/08/2-APPLY-2-Burrata-Parma-Ham-Margherita-2.jpg', 'Pizza với lớp đế mỏng giòn, phủ sốt cà chua tươi, phô mai Burrata tự làm tan chảy, thêm chút lá húng quế thơm lừng, mang đến hương vị Ý cổ điển đậm đà.', '198,000 VND', 198000, 'Phô mai Burrata Margherita')">
+            <img src="https://pizza4ps.com/wp-content/uploads/2023/08/2-APPLY-2-Burrata-Parma-Ham-Margherita-2.jpg" alt="Phô mai Burrata Margherita">
+            <div class="hot-product-content">
+                <h2>
+                    Sản phẩm hot
+                </h2>
+                <h3>Phô mai Burrata Margherita</h3>
+                <p class="description">Pizza với lớp đế mỏng giòn, phủ sốt cà chua tươi, phô mai Burrata tự làm tan chảy, thêm chút lá húng quế thơm lừng, mang đến hương vị Ý cổ điển đậm đà.</p>
+                <div class="price">198,000 VNĐ</div>
+                    <button onclick="addToCart({'id': 'pizza-001', 'name': 'Phô mai Burrata Margherita', 'price': 198000, 'image': 'https://pizza4ps.com/wp-content/uploads/2023/08/2-APPLY-2-Burrata-Parma-Ham-Margherita-2.jpg', 'quantity': 1})">Thêm vào giỏ <i class="fas fa-shopping-cart"></i></button>
+            </div>
+        </div>
+        </div>
+    </section>
+
+
+
+
+    <section class="menu" id="menu">
+        <h2>Must try</h2>
+
+        <div class="menu-grid">
+                <div class="menu-item" onclick="showProductDetail('Pizza Hải Sản Sốt Cà Chua Cay', 'https://pizza4ps.com/wp-content/uploads/2023/07/10000014_2.jpg', 'Một lựa chọn dành cho người yêu hải sản với tôm, mực tươi, phủ sốt cà chua cay nhẹ...', '185,000 VND', 185000, 'pizza-hai-san')">
+                <div class="must-try-tag">Must Try</div> <!-- Thêm tag Must Try -->
+                <img src="https://pizza4ps.com/wp-content/uploads/2023/07/10000014_2.jpg" alt="Pizza Hải Sản Sốt Cà Chua Cay">
+                <h3>Pizza Hải Sản Sốt Cà Chua Cay</h3>
+                <p>Một lựa chọn dành cho người yêu hải sản với tôm, mực tươi, phủ sốt cà chua cay nhẹ...</p>
+                <div class="price">185,000 VND</div>
+                <button onclick="addToCart({'id': 'pizza-003', 'name': 'Pizza Hải Sản Sốt Cà Chua Cay', 'price': 185000, 'image': 'https://pizza4ps.com/wp-content/uploads/2023/07/10000014_2.jpg', 'quantity': 1})">Thêm vào giỏ</button>
+            </div>
+
+            <div class="menu-item" onclick="showProductDetail('Pizza Thịt Lợn Ướp Gừng', 'https://pizza4ps.com/wp-content/uploads/2023/07/Extra-Parma-Ham-Margherita-4.jpg', 'Thịt lợn ướp gừng kiểu Nhật, phủ lên lớp đế pizza giòn, thêm chút hành lá và phô...', '158,000 VND', 158000, 'pizza-thit-lon-uop-gung')">
+                <div class="must-try-tag">Must Try</div>
+                <img src="https://pizza4ps.com/wp-content/uploads/2023/07/Extra-Parma-Ham-Margherita-4.jpg" alt="Pizza Thịt Lợn Ướp Gừng">
+                <h3>Pizza Thịt Lợn Ướp Gừng</h3>
+                <p>Thịt lợn ướp gừng kiểu Nhật, phủ lên lớp đế pizza giòn, thêm chút hành lá và phô...</p>
+                <div class="price">158,000 VND</div>
+                <button onclick="addToCart({'id': 'pizza-006', 'name': 'Pizza Thịt Lợn Ướp Gừng', 'price': 158000, 'image': 'https://pizza4ps.com/wp-content/uploads/2023/07/Extra-Parma-Ham-Margherita-4.jpg', 'quantity': 1})">Thêm vào giỏ</button>
+            </div>
+
+            <div class="menu-item" onclick="showProductDetail('Spaghetti Pesto Tôm', 'https://pizza4ps.com/wp-content/uploads/2023/07/20200016_2.jpg', 'Spaghetti với sốt pesto húng quế thơm lừng, kết hợp tôm tươi ngọt, thêm chút...', '178,000 VND', 178000, 'spaghetti-pesto-tom')">
+                <div class="must-try-tag">Must Try</div>
+                <img src="https://pizza4ps.com/wp-content/uploads/2023/07/20200016_2.jpg" alt="Spaghetti Pesto Tôm">
+                <h3>Spaghetti Pesto Tôm</h3>
+                <p>Spaghetti với sốt pesto húng quế thơm lừng, kết hợp tôm tươi ngọt, thêm chút...</p>
+                <div class="price">178,000 VND</div>
+                <button onclick="addToCart({'id': 'spaghetti-003', 'name': 'Spaghetti Pesto Tôm', 'price': 178000, 'image': 'https://pizza4ps.com/wp-content/uploads/2023/07/20200016_2.jpg', 'quantity': 1})">Thêm vào giỏ</button>
+            </div>
+
+            <div class="menu-item" onclick="showProductDetail('Yuzu Wheat', 'https://pizza4ps.com/wp-content/uploads/2023/07/Yuzu-Beer-1-1-scaled.jpg', 'Một loại bia lúa mì nhẹ nhàng, tươi mát với hương thơm đặc trưng từ quả yuzu (một loại...', '105,000 VND', 105000, 'yuzu-wheat')">
+                <div class="must-try-tag">Must Try</div>
+                <img src="https://pizza4ps.com/wp-content/uploads/2023/07/Yuzu-Beer-1-1-scaled.jpg" alt="Yuzu Wheat">
+                <h3>Yuzu Wheat</h3>
+                <p>Một loại bia lúa mì nhẹ nhàng, tươi mát với hương thơm đặc trưng từ quả yuzu (một loại...</p>
+                <div class="price">105,000 VND</div>
+                <button onclick="addToCart({'id': 'drink-001', 'name': 'Yuzu Wheat', 'price': 105000, 'image': 'https://pizza4ps.com/wp-content/uploads/2023/07/Yuzu-Beer-1-1-scaled.jpg', 'quantity': 1})">Thêm vào giỏ</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="image-link-section">
+        <a href="Menu/Menu_pizza.html" class="image-hover-container">
+            <img src="image_index/spc.png" alt="Pizza Menu" class="linked-image">
+            <div class="hover-text">Xem thực đơn để mua ngay</div>
+        </a>
+    </section>
+
+
+
+    <!-- Customer Reviews Section -->
+    <section class="reviews-section">
+        <h2>Khách hàng nói gì về chúng tôi</h2>
+
+        <div class="slider-wrapper">
+            <button class="slider-btn left" onclick="scrollReviews(-1)">&#10094;</button>
+
+            <div class="reviews-scroll-container" id="reviewsContainer">
+                <div class="review-card">
+                    <img src="https://scontent.fhan17-1.fna.fbcdn.net/v/t39.30808-6/468182812_10235485216459462_956004900439635132_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=833d8c&_nc_ohc=BT9EAsts9aQQ7kNvwFSca8w&_nc_oc=AdkFRC4_y0qBde0tLwy4vMdZR3L6G47u1XeWYHBkBkodnXsXg8nB15K7WItR-c8zDTI&_nc_zt=23&_nc_ht=scontent.fhan17-1.fna&_nc_gid=5wa1m6M5bpwDnDrnXRIS_w&oh=00_AfLyhyD60Fxdsp243OFu2JO_eFDv1xstwAq5NQlk0VvpyQ&oe=6845C45C" alt="Avatar">
+                    <div>
+                        <h3>Thầy Vũ Trọng Sinh</h3>
+                        <p>"Tôi đã cầu hôn vợ ở đây và quán đã giúp đỡ cho màn cầu hôn này rất nhiệt tình. Đề nghị nên cho quán ăn 10 sao."</p>
+                    </div>
+                </div>
+                <div class="review-card">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUlsSgNMZa7wg18UgH_y77AkYwXctdbqzwLw&s" alt="Avatar">
+                    <div>
+                        <h3>Cristiano Ronaldo</h3>
+                        <p>"Best restaurant ever. Siuuuuuuuuuuuuuuuu!!!"</p>
+                    </div>
+                </div>
+                <div class="review-card">
+                    <img src="https://image.plo.vn/w1000/Uploaded/2025/aptwohu/2025_01_18/tong-thong-my-donald-trump-5028-7123.jpg.webp" alt="Avatar">
+                    <div>
+                        <h3>Tổng thống Donald Trump</h3>
+                        <p>"Quán ăn ngon hơn tất cả quán ở bên Mỹ. Tôi sẽ đề xuất chính phủ Việt Nam cho cửa hàng mở chi nhánh bên Mỹ với thuế 0%."</p>
+                    </div>
+                </div>
+                <div class="review-card">
+                    <img src="https://static.tuoitre.vn/tto/i/s626/2011/09/02/cTH6kxdr.jpg" alt="Avatar">
+                    <div>
+                        <h3>Nhà sáng lập FB Mark Elliot Zuckerberg</h3>
+                        <p>"Quán quá ngon, tôi đã tổ chức sinh nhật cho vợ ở đây và rất hài lòng. Tôi sẽ đề xuất facebook của cửa hàng cho toàn thể cộng đồng."</p>
+                    </div>
+                </div>
+                <div class="review-card">
+                    <img src="https://futureoflife.org/wp-content/uploads/2020/08/elon_musk_royal_society.jpg" alt="Elonmusk">
+                    <div>
+                        <h3>Tỷ phú giàu nhất thế giới Elon Musk</h3>
+                        <p>"Quán ăn ngon nhất tôi từng ăn. Tôi sẽ đầu tư 100 tỷ đô để quán mở ở Mỹ."</p>
+                    </div>
+                </div>
+            </div>
+
+            <button class="slider-btn right" onclick="scrollReviews(1)">&#10095;</button>
+        </div>
+    </section>
+
+    <section class="video-section">
+        <div class="video-wrapper">
+            <video class="custom-video" autoplay muted loop playsinline>
+                <source src="Us/ImageVideo/Video.mp4" type="video/mp4">
+                Trình duyệt của bạn không hỗ trợ video.
+            </video>
+            <div class="video-overlay">
+                <h2 class="video-title">Pizza ngon tuyệt mỗi ngày</h2>
+                <h3 class="video-p"> Từng chiếc bánh tại The Pizza House là kết quả của đam mê, sự tỉ mỉ và tình yêu dành cho ẩm thực.</h3>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Modal for Product Detail -->
+    <div class="modal" id="productModal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeProductDetail()">×</span>
+            <div class="modal-image" id="modalImage"></div>
+            <div class="modal-info">
+                <div>
+                    <h2 id="modalTitle"></h2>
+                    <p id="modalDescription"></p>
+                    <p id="modalPrice" class="modal-price"></p>
+
+                    <div id="unitPrice" style="display:none;"></div>
+                    <div class="quantity-control">
+                        <button id="decrease-btn">-</button>
+                        <span id="quantity">1</span>
+                        <button id="increase-btn">+</button>
+                    </div>
+                    <p class="modal-price">Tổng cộng : <span id="totalPrice"></span></p>
+                </div>
+                <div class="modal-buttons">
+                    <button class="add-to-cart" id="addToCartButton">
+                        <i class="fas fa-shopping-cart"></i> Thêm vào giỏ
+                    </button>
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="footer-column">
+            <h3>VỀ CHÚNG TÔI</h3>
+            <p>The Pizza House - không chỉ là ăn thức, mà còn là cả một trải nghiệm vị giác.</p>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
+        <div class="footer-column">
+            <h3>LIÊN KẾT</h3>
+            <ul>
+                <li><a href="Us/introduce.html">Về chúng tôi</a></li>
+                <li><a href="Menu/all.html">Thực đơn</a></li>
+                <li><a href="Us/policy.html">Điều khoản</a></li>
+                <li><a href="Us/contact.html">Liên hệ</a></li>
+                <li><a href="Us/news.html">Tin tức</a></li>
+            </ul>
+        </div>
+        <div class="footer-column">
+            <h3>THỰC ĐƠN</h3>
+            <ul>
+                <li><a href="Menu/Menu_Khaivi.html">Khai vị</a></li>
+                <li><a href="Menu/Menu_pizza.html">Pizza</a></li>
+                <li><a href="Menu/Menu_Spaghetti.html">Spaghetti</a></li>
+                <li><a href="Menu/Menu_Drink.html">Đồ uống</a></li>
+            </ul>
+        </div>
+        <div class="footer-column">
+            <h3>LIÊN HỆ</h3>
+            <ul class="contact-info">
+                <li>
+                    <i class="fas fa-map-marker-alt"></i>
+                    12 Chùa Bộc, Quang Trung, Đống Đa, Hà Nội
+                </li>
+                <li>
+                    <i class="fas fa-phone-alt"></i>
+                    0705311048<br>
+                </li>
+                <li>
+                    <i class="fas fa-envelope"></i>
+                    thepizzahouse@gmail.com<br>
+                </li>
+            </ul>
+        </div>
+    </footer>
+    <!-- Nút quay lại đầu trang -->
+<button id="backToTop" title="Quay lại đầu trang" style="display: none;"><i class="fas fa-arrow-up"></i></button>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="index.js"></script>
+    <script src="header.js"></script>
+    <script>
+        // Search function
+        function handleSearch(event) {
+            if (event.key === 'Enter') {
+                const query = document.getElementById('searchInput').value.toLowerCase();
+                alert('Chuyển hướng đến trang thực đơn để tìm kiếm món ăn ');
+                window.location.href = 'Menu/all.html?search=' + query;
+            }
+        }
+        function showTestimonials() {
+            const cards = document.querySelectorAll('.testimonial-card');
+            cards.forEach((card, index) => {
+                card.style.display = (index === currentIndex || index === currentIndex + 1) ? 'block' : 'none';
+            });
+        }
+
+        function changeTestimonial(direction) {
+            const cards = document.querySelectorAll('.testimonial-card');
+            const total = cards.length;
+
+            currentIndex += direction * 2;
+
+            if (currentIndex < 0) currentIndex = total - 2;
+            if (currentIndex >= total) currentIndex = 0;
+
+            showTestimonials();
+        }
+
+    </script>
+
+
+
+
+
+</body>
 </html>

@@ -1,0 +1,110 @@
+ [
+    {
+        "id": "spaghetti-001",
+        "name": "Spaghetti Pomodoro",
+        "image": "https://pizza4ps.com/wp-content/uploads/2023/07/20200013_2.jpg",
+        "description": "Spaghetti sốt cà chua tươi nhà làm, kết hợp với dầu ô liu và lá húng quế, mang đến hương vị Ý cổ điển, nhẹ nhàng và tinh tế.",
+        "currentPrice": "108,000 VND",
+        "oldPrice": null,
+        "isHidden": false,
+        "category": "Spaghetti",
+        "tag": "",
+        "rawPrice": 108000
+    },
+    {
+        "id": "spaghetti-002",
+        "name": "Spaghetti Bolognese",
+        "image": "https://pizza4ps.com/wp-content/uploads/2023/07/20200005_2.jpg",
+        "description": "Spaghetti với sốt bolognese đậm đà từ thịt bò và cà chua, thêm chút phô mai parmesan, mang đến hương vị Ý truyền thống, thơm ngon.",
+        "currentPrice": "148,000 VND",
+        "oldPrice": "170,000 VND",
+        "isHidden": false,
+        "category": "Spaghetti",
+         "tag": "new",
+        "rawPrice": 148000
+    },
+    {
+        "id": "spaghetti-003",
+        "name": "Spaghetti Pesto Tôm",
+        "image": "https://pizza4ps.com/wp-content/uploads/2023/07/20200016_2.jpg",
+        "description": "Spaghetti với sốt pesto húng quế thơm lừng, kết hợp tôm tươi ngọt, thêm chút phô mai ricotta, mang đến hương vị Ý hiện đại.",
+        "currentPrice": "178,000 VND",
+        "oldPrice": null,
+        "isHidden": false,
+        "category": "Spaghetti",
+        "tag": "must-try",
+        "rawPrice": 178000
+    },
+    {
+        "id": "spaghetti-004",
+        "name": "Fettuccine Cá Hồi Sốt Kem",
+        "image": "https://pizza4ps.com/wp-content/uploads/2023/07/20200009_2.jpg",
+        "description": "Fettuccine mềm mượt với cá hồi tươi, sốt kem béo ngậy, thêm chút rau mùi và phô mai, tạo nên món ăn sang trọng, đầy hấp dẫn.",
+        "currentPrice": "198,000 VND",
+        "oldPrice": null,
+        "isHidden": false,
+        "category": "Spaghetti",
+        "tag": "",
+        "rawPrice": 198000
+    },
+    {
+        "id": "spaghetti-005",
+        "name": "Spaghetti Carbonara",
+        "image": "https://pizza4ps.com/wp-content/uploads/2023/08/20200021_2.jpg",
+        "description": "Spaghetti với sốt carbonara béo ngậy từ trứng và phô mai camembert nhà làm, thêm chút tiêu đen, mang đến hương vị Ý đích thực.",
+        "currentPrice": "148,000 VND",
+        "oldPrice": null,
+        "isHidden": false,
+        "category": "Spaghetti",
+        "tag": "",
+        "rawPrice": 148000
+    },
+    {
+        "id": "spaghetti-006",
+        "name": "Spaghetti Vongole",
+        "image": "https://pizza4ps.com/wp-content/uploads/2023/07/20200003_2.jpg",
+        "description": "Spaghetti với nghêu tươi, sốt dầu ô liu và tỏi, điểm thêm chút ớt và húng quế, mang đến hương vị biển cả tươi mát, đậm đà.",
+        "currentPrice": "168,000 VND",
+        "oldPrice": null,
+        "isHidden": false,
+        "category": "Spaghetti",
+        "tag": "",
+        "rawPrice": 168000
+    },
+    {
+        "id": "spaghetti-007",
+        "name": "Spaghetti Cua Sốt Kem",
+        "image": "https://pizza4ps.com/wp-content/uploads/2023/07/20200001_2.jpg",
+        "description": "Spaghetti với thịt cua ngọt tự nhiên, sốt kem béo nhẹ, thêm chút phô mai và rau thơm, mang đến món ăn tinh tế, hấp dẫn.",
+        "currentPrice": "228,000 VND",
+        "oldPrice": null,
+        "isHidden": true,
+        "category": "Spaghetti",
+        "tag": "",
+        "rawPrice": 228000
+    },
+    {
+        "id": "spaghetti-008",
+        "name": "Lasagna Bò",
+        "image": "https://pizza4ps.com/wp-content/uploads/2023/07/20200015_2.jpg",
+        "description": "Lasagna nướng với sốt bolognese từ thịt bò, lớp phô mai mozzarella tan chảy, từng lớp mì mềm, mang đến hương vị Ý đậm đà.",
+        "currentPrice": "168,000 VND",
+        "oldPrice": "188,000 VND",
+        "isHidden": true,
+        "category": "Spaghetti",
+         "tag": "new",
+        "rawPrice": 188000
+    },
+    {
+        "id": "spaghetti-009",
+        "name": "Spaghetti Tôm Sốt Cà Chua",
+        "image": "https://pizza4ps.com/wp-content/uploads/2023/08/Smoked-Burrata-Bolo-5.jpg",
+        "description": "Spaghetti với tôm tươi, sốt cà chua đậm đà, thêm chút phô mai và lá húng quế, mang đến hương vị Ý tươi mới, hấp dẫn.",
+        "currentPrice": "188,000 VND",
+        "oldPrice": null,
+        "isHidden": true,
+        "category": "Spaghetti",
+        "tag": "",
+        "rawPrice": 188000
+    }
+]
