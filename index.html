@@ -3,99 +3,151 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cánh cửa mở ra</title>
+<title>Menu bảo mật</title>
 <style>
   body {
+    font-family: "Segoe UI", sans-serif;
     margin: 0;
-    overflow: hidden;
+    padding: 0;
+    background: linear-gradient(135deg, #ffafbd, #ffc3a0);
     height: 100vh;
-    background: #111;
     display: flex;
     justify-content: center;
     align-items: center;
-    perspective: 1000px;
   }
 
-  .door-container {
-    position: relative;
-    width: 100vw;
-    height: 100vh;
-    overflow: hidden;
+  /* Hộp đăng nhập */
+  #passwordBox {
+    background: white;
+    padding: 25px 30px;
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.3);
+    text-align: center;
   }
-
-  .door {
-    position: absolute;
-    width: 50%;
-    height: 100%;
-    top: 0;
-    background: linear-gradient(145deg, #663300, #331a00);
-    transition: transform 2s ease-in-out;
-    transform-origin: center right;
-    z-index: 2;
-  }
-
-  .door.right {
-    right: 0;
-    left: auto;
-    transform-origin: center left;
-  }
-
-  .text {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(0);
+  #passwordBox h2 {
     color: #ff4081;
-    font-family: "Segoe UI", cursive, sans-serif;
-    font-size: 2em;
-    font-weight: bold;
-    text-shadow: 0 0 20px #ff80ab;
-    opacity: 0;
-    transition: all 1.5s ease;
+  }
+  #passwordBox input {
+    padding: 10px;
+    width: 180px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin-top: 10px;
+  }
+  #passwordBox button {
+    margin-top: 10px;
+    background: #ff4081;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+
+  /* Ẩn nội dung chính ban đầu */
+  #mainContent {
+    display: none;
     text-align: center;
   }
 
-  /* Khi mở cửa */
-  .open .door.left {
-    transform: rotateY(100deg);
-  }
-  .open .door.right {
-    transform: rotateY(-100deg);
-  }
-
-  .open .text {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
+  /* Menu */
+  nav {
+    background: rgba(255,255,255,0.9);
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    padding: 10px;
+    width: 90%;
+    max-width: 400px;
+    margin: 0 auto;
   }
 
-  /* Mobile friendly */
+  ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  li {
+    position: relative;
+  }
+
+  li a {
+    display: block;
+    padding: 12px;
+    color: #ff4081;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 10px;
+    transition: 0.3s;
+  }
+
+  li a:hover {
+    background: #ffe6ee;
+  }
+
+  /* Mục con ẩn ban đầu */
+  li ul {
+    display: none;
+    position: relative;
+    margin-left: 20px;
+    margin-top: 5px;
+  }
+
+  /* Khi trỏ chuột vào mục mẹ thì hiện mục con */
+  li:hover > ul {
+    display: block;
+  }
+
+  /* Responsive cho điện thoại */
   @media (max-width: 600px) {
-    .text {
-      font-size: 1.6em;
-    }
+    nav { width: 95%; }
+    li a { font-size: 16px; padding: 10px; }
   }
 </style>
 </head>
 <body>
 
-<div class="door-container" id="doorBox">
-  <div class="door left"></div>
-  <div class="door right"></div>
-  <div class="text">💗 Yêu Trần Việt Anh 💗</div>
+<!-- Ô nhập mật khẩu -->
+<div id="passwordBox">
+  <h2>🔒 Nhập mật khẩu để tiếp tục</h2>
+  <input type="password" id="passwordInput" placeholder="Mật khẩu...">
+  <br>
+  <button onclick="checkPassword()">Vào trang</button>
+  <p id="errorMsg" style="color:red;"></p>
+</div>
+
+<!-- Nội dung chính sau khi đăng nhập -->
+<div id="mainContent">
+  <h2>🎉 Chào mừng bạn!</h2>
+  <nav>
+    <ul>
+      <li><a href="#">Chúc mừng</a>
+        <ul>
+          <li><a href="#">Việt Anh</a>
+            <ul>
+              <li><a href="Chucmung_VietAnh_SinhNhat.html" target="_blank">Sinh nhật</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
 </div>
 
 <script>
-  const doorBox = document.getElementById('doorBox');
-  
-  // Tự mở sau 1.5 giây
-  setTimeout(() => {
-    doorBox.classList.add('open');
-  }, 1500);
+function checkPassword() {
+  const input = document.getElementById("passwordInput").value;
+  const box = document.getElementById("passwordBox");
+  const main = document.getElementById("mainContent");
+  const error = document.getElementById("errorMsg");
 
-  // Hoặc chạm để mở
-  doorBox.addEventListener('click', () => {
-    doorBox.classList.add('open');
-  });
+  if (input === "20072003") {
+    box.style.display = "none";
+    main.style.display = "block";
+  } else {
+    error.textContent = "❌ Sai mật khẩu rồi!";
+  }
+}
 </script>
 
 </body>

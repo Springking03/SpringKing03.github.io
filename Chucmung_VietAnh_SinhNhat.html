@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Chúc mừng sinh nhật – Trần Việt Anh</title>
+
+<!-- Preload video để vào là chơi mượt -->
+<link rel="preload" as="video" href="video.mp4" type="video/mp4">
+
+<style>
+  :root{ --bg1:#0f0c29; --bg2:#302b63; --bg3:#24243e; --accent:#ff5fa2; --accent2:#ffd1dc; }
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+    background: radial-gradient(1200px 800px at 50% 20%, rgba(255,255,255,0.06), transparent 60%),
+                linear-gradient(135deg, var(--bg1), var(--bg2), var(--bg3));
+    color:#fff; overflow:hidden;
+  }
+
+  .stage{ position:fixed; inset:0; display:grid; place-items:center; padding:24px; }
+  .card{
+    max-width:min(900px, 92vw); text-align:center; padding:clamp(16px, 5vw, 40px);
+    border-radius:24px; background:rgba(255,255,255,0.06); backdrop-filter: blur(8px);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.35), inset 0 0 0 1px rgba(255,255,255,0.08);
+  }
+  .title{
+    margin:0 0 18px; font-weight:800; line-height:1.2; letter-spacing:.5px;
+    font-size: clamp(22px, 5vw, 42px);
+    background: linear-gradient(90deg, #fff, var(--accent), var(--accent2), #fff);
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+    filter: drop-shadow(0 2px 8px rgba(255,95,162,.25));
+  }
+  .btn{
+    display:inline-block; border:0; border-radius:14px; padding:14px 22px;
+    font-size: clamp(14px, 3.4vw, 18px); font-weight:700; color:#1a0820;
+    background: linear-gradient(90deg, #ffd1dc, #ff9ec4, #ffd1dc);
+    cursor:pointer; box-shadow: 0 10px 24px rgba(255,158,196,.35);
+  }
+  .fade-out{ animation: fadeOut .5s ease forwards } @keyframes fadeOut{ to{opacity:0; transform:scale(.98)} }
+
+  .video-wrap{ position:fixed; inset:0; display:none; background:#000; }
+  .video-wrap.show{ display:block }
+  video{ width:100vw; height:100vh; object-fit:cover; background:#000; }
+
+  .end-screen{
+    position:fixed; inset:0; display:none; place-items:center; background:#000; color:#fff;
+    text-align:center; padding:24px;
+  }
+  .end-screen.show{ display:grid }
+</style>
+</head>
+<body>
+
+<!-- Màn hình intro -->
+<div class="stage" id="intro">
+  <div class="card">
+    <h1 class="title">chúc mừng sinh nhật bạn của tôi Trần Việt Anh</h1>
+    <button class="btn" id="startBtn" aria-label="Xem ngay">🎬 Xem ngay</button>
+  </div>
+</div>
+
+<!-- Phát video toàn màn hình (không controls, không tua) -->
+<div class="video-wrap" id="videoWrap" role="region" aria-label="Video sinh nhật">
+  <!-- Lưu ý: KHÔNG để controls; khóa các tính năng khác bằng attributes -->
+  <video id="vid"
+         src="Chucmung_VietAnh_SinhNhat.mp4"
+         preload="auto"
+         playsinline
+         webkit-playsinline
+         controlslist="nodownload noplaybackrate noremoteplayback nofullscreen"
+         disablepictureinpicture
+         oncontextmenu="return false;">
+  </video>
+</div>
+
+<!-- Màn hình kết thúc (không cho replay) -->
+<div class="end-screen" id="endScreen">
+  <div>
+    <h2>💝 Chúc mừng sinh nhật!</h2>
+    <p>Hy vọng bạn đã có một khoảnh khắc thật đẹp.</p>
+  </div>
+</div>
+
+<script>
+  const intro   = document.getElementById('intro');
+  const startBtn= document.getElementById('startBtn');
+  const wrap    = document.getElementById('videoWrap');
+  const video   = document.getElementById('vid');
+  const endScr  = document.getElementById('endScreen');
+
+  // --- Ngăn tua / thao tác không mong muốn ---
+  let lastSafeTime = 0;
+  let ended = false;
+
+  // Không hiện controls
+  video.controls = false;
+
+  // Ngăn click/tap pause video
+  video.addEventListener('click', e => e.preventDefault());
+  video.addEventListener('touchstart', e => e.preventDefault());
+
+  // Chặn phím tua/space
+  document.addEventListener('keydown', e => {
+    const block = ['ArrowLeft','ArrowRight','ArrowUp','ArrowDown',' '];
+    if (block.includes(e.key)) e.preventDefault();
+  });
+
+  // Khóa seeking: nếu user (hoặc hệ thống) cố nhảy thời gian, đưa về lastSafeTime
+  video.addEventListener('seeking', () => {
+    const t = video.currentTime || 0;
+    if (Math.abs(t - lastSafeTime) > 0.3) {
+      video.currentTime = lastSafeTime;
+    }
+  });
+
+  video.addEventListener('timeupdate', () => {
+    // cập nhật mốc an toàn liên tục, chỉ tăng dần
+    if (video.currentTime > lastSafeTime) lastSafeTime = video.currentTime;
+  });
+
+  // Không cho pause (trừ khi đã kết thúc)
+  video.addEventListener('pause', () => {
+    if (!ended) {
+      // Trong 1 số trình duyệt tạm dừng khi gián đoạn mạng -> auto resume
+      video.play().catch(()=>{ /* ignore */ });
+    }
+  });
+
+  // Kết thúc: ẩn video, hiện màn hình lời chúc; không cho replay
+  video.addEventListener('ended', () => {
+    ended = true;
+    wrap.classList.remove('show');
+    endScr.classList.add('show');
+
+    // Ngắt nguồn để không thể play lại
+    try { video.srcObject = null; } catch(e){}
+    video.removeAttribute('src');
+    video.load();
+  });
+
+  // --- “Xem ngay”: phát tức thì, không thấy load ---
+  async function startPlayback(){
+    // Ẩn intro
+    intro.classList.add('fade-out');
+    await new Promise(r=>setTimeout(r, 480));
+    intro.style.display = 'none';
+
+    // Hiện video
+    wrap.classList.add('show');
+
+    // Phát với âm thanh sau thao tác người dùng
+    video.muted = false;
+
+    // Nếu đã preload xong, play sẽ gần như lập tức
+    try {
+      await video.play();
+    } catch (err) {
+      // fallback nếu trình duyệt còn chặn: thử bật muted rồi phát (ít khi cần vì đã có user gesture)
+      try { video.muted = true; await video.play(); } catch(e){}
+    }
+  }
+
+  startBtn.addEventListener('click', startPlayback);
+
+  // --- Prebuffer im lặng trước (tăng khả năng "bấm là chạy ngay") ---
+  // Nhiều trình duyệt cho phép autoplay nếu muted -> ta làm nóng buffer.
+  (async function warmUp(){
+    try {
+      video.muted = true;
+      await video.play();
+      // Dừng ngay để không lộ âm/khung
+      await new Promise(r=>setTimeout(r, 100));
+      video.pause();
+      video.currentTime = 0;
+      lastSafeTime = 0;
+      video.muted = false;
+    } catch(e){
+      // Nếu không cho autoplay muted, vẫn ổn: đã preload="auto"
+    }
+  })();
+
+  // Chặn menu chuột phải & giữ lâu để hạn chế tải xuống
+  window.addEventListener('contextmenu', e => e.preventDefault());
+</script>
+</body>
+</html>
