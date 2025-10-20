@@ -3,134 +3,1926 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ôn luyện FinTech - Trắc nghiệm tự động</title>
+<title>Ôn luyện FinTech – 200 câu (Đ/S + trích dẫn, có xáo trộn)</title>
 <style>
-  body {font-family: "Segoe UI", sans-serif; background: #f3f5fa; margin: 0; padding: 20px;}
-  h1 {text-align: center; color: #1a237e;}
-  .question {
-    background: #fff; border-radius: 12px; padding: 20px; margin: 15px auto;
-    box-shadow: 0 3px 8px rgba(0,0,0,0.1); width: 90%; max-width: 900px;
-  }
-  .question h3 {color: #0d47a1;}
-  label {display: block; margin: 8px 0; cursor: pointer; padding: 4px 8px; border-radius: 6px;}
-  .correct {background-color: #c8e6c9;}
-  .incorrect {background-color: #ffcdd2;}
-  .answer {margin-top: 6px; font-style: italic; color: #2e7d32; display: none;}
+  body {font-family: "Segoe UI", system-ui, sans-serif; background:#f3f5fa; margin:0; padding:22px}
+  h1 {text-align:center; color:#1a237e; margin:0 0 6px}
+  .sub {text-align:center; color:#455a64; margin:0 0 18px}
+  .question{background:#fff;border-radius:12px;padding:20px;margin:12px auto;box-shadow:0 3px 8px rgba(0,0,0,.08);width:92%;max-width:980px}
+  .question h3{color:#0d47a1;margin:0 0 10px;font-size:18px;line-height:1.35;white-space:pre-wrap}
+  label{display:block;margin:8px 0;cursor:pointer;padding:6px 10px;border-radius:6px;transition:background .15s}
+  input[type=radio]{margin-right:8px}
+  .correct{background:#c8e6c9}
+  .incorrect{background:#ffcdd2}
+  .answer{margin-top:8px;padding:10px 12px;border-left:4px solid #2e7d32;background:#e8f5e9;border-radius:6px;display:none;white-space:pre-wrap}
+  .answer .title{font-weight:600;color:#2e7d32}
+  .muted{opacity:.85}
+  .toolbar{position:sticky;top:0;background:#eef2ff;padding:10px 12px;border-bottom:1px solid #c5cae9;display:flex;gap:12px;align-items:center;z-index:9}
+  .score{font-weight:600;color:#1a237e}
+  button{border:none;background:#1e88e5;color:#fff;border-radius:6px;padding:8px 14px;cursor:pointer}
+  button:hover{background:#1565c0}
 </style>
 </head>
 <body>
-
-<h1>💡 Trắc nghiệm Công nghệ Dịch vụ Tài chính (FinTech)</h1>
+<div class="toolbar">
+  <span class="score">Điểm: <span id="score">0</span>/<span id="total">0</span></span>
+  <button id="reset">Làm lại (xáo trộn lại)</button>
+</div>
+<h1>💡 Ôn luyện FinTech – 200 câu (Đúng/Sai)</h1>
+<p class="sub">Mỗi lần tải trang hoặc bấm “Làm lại”, hệ thống sẽ <b>đảo ngẫu nhiên thứ tự câu</b> và <b>đảo thứ tự đáp án</b>.</p>
 <div id="quiz"></div>
 
 <script>
-const questions = [
-  // --- NHÓM 1 ---
-  {q:"Một trong các lợi ích chính của ngân hàng số là gì?",
-   o:["Giảm thiểu yêu cầu xác thực","Cung cấp dịch vụ 24/7 cho khách hàng","Giảm phí dịch vụ cho khách hàng","Hạn chế số lượng giao dịch tối đa"],a:1},
-  {q:"“Smart Contract” trong Blockchain là gì?",
-   o:["Một công cụ mã hóa dữ liệu","Một mã máy tính thực thi tự động các điều kiện đã đặt ra","Một hệ thống quản lý tài sản kỹ thuật số","Một loại hợp đồng giấy tờ"],a:1},
-  {q:"Công nghệ nhận dạng sinh trắc học thường được dùng trong công nghệ dịch vụ tài chính để:",
-   o:["Phân tích dữ liệu khách hàng","Phát triển sản phẩm mới","Tăng cường bảo mật và xác thực danh tính","Quản lý dữ liệu khách hàng"],a:2},
-  {q:"Machine Learning trong tài chính có thể được dùng để:",
-   o:["Quản lý mạng nội bộ","Tăng cường bảo mật nội bộ","Tạo tài khoản ngân hàng tự động","Tối ưu hóa giao dịch và dự đoán hành vi khách hàng"],a:3},
-  {q:"Đặc điểm nổi bật của “Open Banking” là gì?",
-   o:["Tăng cường bảo mật bằng mã OTP","Hỗ trợ quản lý tài khoản ngân hàng từ xa","Cho phép chia sẻ dữ liệu ngân hàng với bên thứ ba qua API","Cho phép khách hàng truy cập nhiều ngân hàng cùng lúc"],a:2},
-  {q:"Trong giao dịch tài chính, MFA (Multi-Factor Authentication) nhằm mục đích:",
-   o:["Tăng tốc độ xử lý giao dịch","Giảm rủi ro từ các cuộc tấn công giả mạo","Bảo mật dữ liệu thanh toán","Tăng khả năng xử lý dữ liệu"],a:1},
-  {q:"Công nghệ KYC được sử dụng để:",
-   o:["Bảo vệ khỏi các cuộc tấn công DDoS","Tạo hợp đồng tự động","Tính toán tín dụng khách hàng","Xác minh danh tính khách hàng"],a:3},
-  {q:"KYC (Know Your Customer) là quy định nhằm mục đích chính là:",
-   o:["Quản lý quy trình tín dụng","Đảm bảo bảo mật thông tin khách hàng","Bảo vệ thông tin tín dụng","Ngăn chặn rửa tiền và tài trợ khủng bố"],a:3},
-  {q:"AI trong FinTech có thể hỗ trợ trong trường hợp nào dưới đây?",
-   o:["Dự đoán biến động giá tài sản","Xử lý bảo mật giao dịch","Phát hiện gian lận và quản lý rủi ro","Tất cả các phương án trên"],a:3},
-  {q:"Công nghệ nào sau đây giúp tăng tính riêng tư của giao dịch tài chính?",
-   o:["Công nghệ mã hóa (Encryption)","RFID","Cloud Computing","Blockchain"],a:0},
-  {q:"Blockchain có ưu điểm nào sau đây?",
-   o:["Thời gian xử lý giao dịch nhanh nhất","Tính phi tập trung và an toàn cao","Chi phí giao dịch thấp nhất","Tập trung hóa dữ liệu"],a:1},
-  {q:"Loại hình công nghệ nào thường được dùng để phân tích hành vi gian lận trong các giao dịch?",
-   o:["Machine Learning","Cloud Computing","KYC","Blockchain"],a:0},
-  {q:"Trong công nghệ dịch vụ tài chính, “Tokenization” thường có mục đích gì?",
-   o:["Xác minh danh tính khách hàng","Bảo mật giao dịch bằng mã OTP","Tăng tốc độ giao dịch","Thay thế dữ liệu nhạy cảm bằng mã token"],a:3},
-  {q:"API trong công nghệ dịch vụ tài chính có lợi ích gì?",
-   o:["Tăng tốc độ xử lý dữ liệu lớn","Giúp tối ưu hóa quy trình chăm sóc khách hàng","Giúp cải thiện bảo mật giao dịch","Tạo điều kiện kết nối và chia sẻ dữ liệu giữa các hệ thống khác nhau"],a:3},
-  {q:"Một lợi ích chính của công nghệ đám mây trong công nghệ dịch vụ tài chính là:",
-   o:["Tăng cường tính linh hoạt và mở rộng hệ thống nhanh chóng","Giảm sự phụ thuộc vào nhà cung cấp dịch vụ","Tăng chi phí triển khai dịch vụ","Giảm rủi ro bảo mật"],a:0},
-  {q:"Blockchain sử dụng loại dữ liệu nào để lưu trữ thông tin về giao dịch?",
-   o:["Block","XML","JSON","Record"],a:0},
-  {q:"Đâu là chức năng chính của Robo-Advisor?",
-   o:["Thực hiện thanh toán tự động","Quản lý rủi ro hệ thống","Kiểm tra thông tin tín dụng khách hàng","Cung cấp tư vấn đầu tư dựa trên thuật toán"],a:3},
-  {q:"Thành phần “Channels” trong Business Model Canvas đề cập đến điều gì?",
-   o:["Cách doanh nghiệp giao tiếp và phân phối sản phẩm đến khách hàng","Các hoạt động doanh nghiệp thực hiện","Cách doanh nghiệp tạo ra lợi nhuận","Mạng lưới các đối tác"],a:0},
-  {q:"PCI DSS là tiêu chuẩn liên quan đến:",
-   o:["Bảo vệ dữ liệu nhân viên","Bảo vệ dữ liệu thẻ thanh toán","Bảo vệ thông tin khách hàng trên hệ thống ngân hàng","Bảo mật email trong tài chính"],a:1},
-  {q:"“Blockchain” bảo vệ dữ liệu giao dịch thông qua đâu?",
-   o:["Hệ thống máy chủ tập trung","Chuỗi mã hóa riêng tư","Hệ thống mã hóa tự động","Một sổ cái phân tán và không thể sửa đổi"],a:3},
-  {q:"Các ngân hàng sử dụng “Robotic Process Automation (RPA)” để làm gì?",
-   o:["Phân tích và dự báo hành vi khách hàng","Tự động hóa việc kiểm tra bảo mật","Cải thiện tốc độ và hiệu quả trong quy trình xử lý giao dịch","Phát hiện gian lận tài chính"],a:2},
-  {q:"Hệ thống Big Data hỗ trợ ngân hàng như thế nào?",
-   o:["Tăng cường bảo mật hệ thống","Phân tích dữ liệu để dự đoán hành vi khách hàng và quản lý rủi ro","Chỉ dùng để lưu trữ dữ liệu khách hàng","Giảm chi phí lưu trữ dữ liệu"],a:1},
-  {q:"Sandbox trong công nghệ dịch vụ tài chính là gì?",
-   o:["Phần mềm xác thực khách hàng","Công cụ bảo mật mạnh nhất","Môi trường thử nghiệm cho các sản phẩm và dịch vụ tài chính mới","Hệ thống kiểm soát nội bộ"],a:2},
-  {q:"Khi doanh nghiệp muốn mở rộng ra thị trường quốc tế, yếu tố nào trong BMC cần điều chỉnh đầu tiên?",
-   o:["Key Activities","Cost Structure","Customer Segments","Revenue Streams"],a:2},
-  {q:"“Tokenization” trong công nghệ dịch vụ tài chính có nghĩa là gì?",
-   o:["Xác thực giao dịch bằng mã OTP","Mã hóa toàn bộ dữ liệu khách hàng","Thực hiện chuyển tiền quốc tế nhanh chóng","Thay thế dữ liệu nhạy cảm bằng mã hóa để bảo mật"],a:3},
-  {q:"Dữ liệu “Structured” và “Unstructured” trong công nghệ dịch vụ tài chính được sử dụng để:",
-   o:["Lưu trữ thông tin thẻ tín dụng","Phân tích giao dịch và dự đoán hành vi khách hàng","Mã hóa tất cả thông tin khách hàng","Mã hóa tất cả thông tin giao dịch"],a:1},
-  {q:"RegTech là công nghệ hỗ trợ cho lĩnh vực nào?",
-   o:["Quản lý rủi ro ngân hàng","Quản lý và tuân thủ quy định trong tài chính","Phân tích thị trường tài chính","Marketing trong tài chính"],a:1},
-  {q:"Tại sao mô hình Business Model Canvas hữu ích?",
-   o:["Giúp doanh nghiệp mô phỏng, phân tích và tối ưu hóa mô hình kinh doanh","Tối ưu hóa quy trình sản xuất","Đảm bảo chất lượng sản phẩm","Giúp doanh nghiệp xây dựng quy trình sản xuất"],a:0},
-  {q:"Hình thức tấn công nào nhằm chiếm quyền kiểm soát hệ thống để đòi tiền chuộc?",
-   o:["Phishing","Ransomware","DDoS","Spoofing"],a:1},
-  {q:"Giao thức nào được sử dụng để bảo mật các giao dịch tài chính trực tuyến?",
-   o:["SMTP","FTP","HTTP","SSL/TLS"],a:3},
-  {q:"Yếu tố nào trong BMC có ảnh hưởng trực tiếp đến 'Customer Relationships' mà không thông qua yếu tố nào khác?",
-   o:["Value Proposition","Key Resources","Channels","Key Partners"],a:0},
-  {q:"Yếu tố nào trong Business Model Canvas đề cập đến việc xác định nhóm khách hàng mà doanh nghiệp hướng đến?",
-   o:["Channels (Kênh phân phối)","Value Proposition (Giá trị cốt lõi)","Revenue Streams (Dòng doanh thu)","Customer Segments (Phân khúc khách hàng)"],a:3}
+// Nguồn câu hỏi (giữ nguyên thứ tự gốc)
+const SOURCE = [
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“HỌC VIỆN NGÂN HÀNGKHOA CÔNG NGHỆ THÔNG TIN VÀ KINH TẾ SỐ Hà Nội - 2024 CHƯƠNG 4”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 4 - Phát triển mô hình kinh doanh liên quan đến Công nghệ dịch vụ tài chính (Buổi 2).pdf#p1): HỌC VIỆN NGÂN HÀNGKHOA CÔNG NGHỆ THÔNG TIN VÀ KINH TẾ SỐ Hà Nội - 2024 CHƯƠNG 4"
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Nội dungv4.1.GiớithiệumôhìnhkinhdoanhBusinessModelCanvasv4.2.ỨngdụngmôhìnhBusinessModelCanvastrongpháttriểnmôhìnhkinhdoanhliênquanđếnCôngnghệdịchvụtàichính Chương 4: Phát triển mô hình kinh doanh liên quan đếng ngành Công nghệ dịch vụ tài chính2”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 4 - Phát triển mô hình kinh doanh liên quan đến Công nghệ dịch vụ tài chính (Buổi 2).pdf#p2): Nội dungv4.1.GiớithiệumôhìnhkinhdoanhBusinessModelCanvasv4.2.ỨngdụngmôhìnhBusinessModelCanvastrongpháttriểnmôhìnhkinhdoanhliênquanđếnCôngnghệdịchvụtàichính Chương 4: Phát triển mô hình kinh doanh liên quan đếng ngành Công nghệ dịch vụ tài chính2"
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Ứng dụng mô hình Business Model Canvas trong phát triển mô hình kinh doanh liên quan đến Công nghệ dịch vụ tài chínhvĐểứngdụngBusinessModelCanvas(BMC)trongpháttriểnmôhìnhkinhdoanhliênquanđếnCôngnghệdịchvụtàichính(Fintech),cầntậptrungvàocáchmàcácyếutốtrongBMCtươngtácvớinhautrongbốicảnhcungcấpcácsảnphẩmvàdịchvụtàichínhdựatrêncôngnghệcao.”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 4 - Phát triển mô hình kinh doanh liên quan đến Công nghệ dịch vụ tài chính (Buổi 2).pdf#p3): Ứng dụng mô hình Business Model Canvas trong phát triển mô hình kinh doanh liên quan đến Công nghệ dịch vụ tài chínhvĐểứngdụngBusinessModelCanvas(BMC)trongpháttriểnmôhìnhkinhdoanhliênquanđếnCôngnghệdịchvụtàichính(Fintech),cầntậptrungvàocáchmàcácyếutốtrongBMCtươngtácvớinhautrongbốicảnhcungcấpcácsảnphẩmvàdịchvụtàichínhdựatrêncôngnghệcao."
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“§Ví dụ, ứng dụng ngân hàng số cho phép người dùng thực hiện giao dịch tài chính mọi lúc mọi nơi mà không cần đến ngân hàng truyền thống.1716/10/24Chương 4: Phát triển mô hình kinh doanh liên quan đếng ngành Công nghệ dịch vụ tài chính”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 4 - Phát triển mô hình kinh doanh liên quan đến Công nghệ dịch vụ tài chính (Buổi 2).pdf#p5): §Ví dụ, ứng dụng ngân hàng số cho phép người dùng thực hiện giao dịch tài chính mọi lúc mọi nơi mà không cần đến ngân hàng truyền thống.1716/10/24Chương 4: Phát triển mô hình kinh doanh liên quan đếng ngành Công nghệ dịch vụ tài chính"
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Quan hệ khách hàng (Customer Relationships)vCáchìnhthứctươngtác:§Tựđộnghóathôngquachatbot,trợlýảotrongcácứngdụng.§Hỗtrợkháchhàngtrựctuyến24/7.§Pháttriểncộngđồngngườidùngthôngquacácdiễnđàn,grouptưvấntàichính.vỨngdụngtrongFintech:§Fintechcầntốiưuhóatrảinghiệmkháchhàngvớicôngnghệtựđộng,cánhânhóacácdịchvụtàichính,đưaracáclờikhuyênhoặcthôngtinđầutưdựatrênphântíchdữliệu.”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 4 - Phát triển mô hình kinh doanh liên quan đến Công nghệ dịch vụ tài chính (Buổi 2).pdf#p7): Quan hệ khách hàng (Customer Relationships)vCáchìnhthứctươngtác:§Tựđộnghóathôngquachatbot,trợlýảotrongcácứngdụng.§Hỗtrợkháchhàngtrựctuyến24/7.§Pháttriểncộngđồngngườidùngthôngquacácdiễnđàn,grouptưvấntàichính.vỨngdụngtrongFintech:§Fintechcầntốiưuhóatrảinghiệmkháchhàngvớicôngnghệtựđộng,cánhânhóacácdịchvụtàichính,đưaracáclờikhuyênhoặcthôngtinđầutưdựatrênphântíchdữliệu."
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“1916/10/24Chương 4: Phát triển mô hình kinh doanh liên quan đếng ngành Công nghệ dịch vụ tài chính”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 4 - Phát triển mô hình kinh doanh liên quan đến Công nghệ dịch vụ tài chính (Buổi 2).pdf#p7): 1916/10/24Chương 4: Phát triển mô hình kinh doanh liên quan đếng ngành Công nghệ dịch vụ tài chính"
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“2016/10/24Chương 4: Phát triển mô hình kinh doanh liên quan đếng ngành Công nghệ dịch vụ tài chính”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 4 - Phát triển mô hình kinh doanh liên quan đến Công nghệ dịch vụ tài chính (Buổi 2).pdf#p8): 2016/10/24Chương 4: Phát triển mô hình kinh doanh liên quan đếng ngành Công nghệ dịch vụ tài chính"
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“2116/10/24Chương 4: Phát triển mô hình kinh doanh liên quan đếng ngành Công nghệ dịch vụ tài chính”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 4 - Phát triển mô hình kinh doanh liên quan đến Công nghệ dịch vụ tài chính (Buổi 2).pdf#p9): 2116/10/24Chương 4: Phát triển mô hình kinh doanh liên quan đếng ngành Công nghệ dịch vụ tài chính"
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Hoạt động chính (Key Activities)vHoạtđộngcầnthiết:§Pháttriểnvàbảotrìnềntảngcôngnghệ,tốiưuhệthốngbảomật.§Quảnlýrủirotàichính,đảmbảotuânthủquyđịnhphápluật.§Xâydựngquanhệvớikháchhàngvàcácđốitác.vỨngdụngtrongFintech:§ĐốivớiFintech,hoạtđộngchínhlàxâydựngvàbảotrìhệthốngcôngnghệtàichính,thườngxuyêncảitiếnsảnphẩmvàdịchvụđểphùhợpvớinhucầuthịtrường.”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 4 - Phát triển mô hình kinh doanh liên quan đến Công nghệ dịch vụ tài chính (Buổi 2).pdf#p10): Hoạt động chính (Key Activities)vHoạtđộngcầnthiết:§Pháttriểnvàbảotrìnềntảngcôngnghệ,tốiưuhệthốngbảomật.§Quảnlýrủirotàichính,đảmbảotuânthủquyđịnhphápluật.§Xâydựngquanhệvớikháchhàngvàcácđốitác.vỨngdụngtrongFintech:§ĐốivớiFintech,hoạtđộngchínhlàxâydựngvàbảotrìhệthốngcôngnghệtàichính,thườngxuyêncảitiếnsảnphẩmvàdịchvụđểphùhợpvớinhucầuthịtrường."
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“2216/10/24Chương 4: Phát triển mô hình kinh doanh liên quan đếng ngành Công nghệ dịch vụ tài chính”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 4 - Phát triển mô hình kinh doanh liên quan đến Công nghệ dịch vụ tài chính (Buổi 2).pdf#p10): 2216/10/24Chương 4: Phát triển mô hình kinh doanh liên quan đếng ngành Công nghệ dịch vụ tài chính"
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Đối tác chính (Key Partnerships)vĐốitácquantrọng:§Ngânhàng,côngtybảohiểm,tổchứctàichính.§Cácnhàcungcấpcôngnghệ(cloud,bảomật,hệthốngthanhtoán).§Cơquanquảnlýtàichính,đốitácpháplý.vỨngdụngtrongFintech:§Fintechcầnxâydựngquanhệđốitácmạnhmẽvớingânhàngvàcáccôngtytàichínhđểcungcấpsảnphẩmdịchvụkếthợp,đặcbiệttrongcáclĩnhvựcnhưvaytiêudùng,bảohiểm.”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 4 - Phát triển mô hình kinh doanh liên quan đến Công nghệ dịch vụ tài chính (Buổi 2).pdf#p11): Đối tác chính (Key Partnerships)vĐốitácquantrọng:§Ngânhàng,côngtybảohiểm,tổchứctàichính.§Cácnhàcungcấpcôngnghệ(cloud,bảomật,hệthốngthanhtoán).§Cơquanquảnlýtàichính,đốitácpháplý.vỨngdụngtrongFintech:§Fintechcầnxâydựngquanhệđốitácmạnhmẽvớingânhàngvàcáccôngtytàichínhđểcungcấpsảnphẩmdịchvụkếthợp,đặcbiệttrongcáclĩnhvựcnhưvaytiêudùng,bảohiểm."
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“2316/10/24Chương 4: Phát triển mô hình kinh doanh liên quan đếng ngành Công nghệ dịch vụ tài chính”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 4 - Phát triển mô hình kinh doanh liên quan đến Công nghệ dịch vụ tài chính (Buổi 2).pdf#p11): 2316/10/24Chương 4: Phát triển mô hình kinh doanh liên quan đếng ngành Công nghệ dịch vụ tài chính"
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Cấu trúc chi phí (Cost Structure)vCác chi phí chính:§Chi phí phát triển và duy trì công nghệ.§Chi phí bảo mật và tuân thủ pháp lý.§Chi phí marketing, chi phí vận hành (nhân viên, dịch vụ khách hàng).vỨng dụng trong Fintech:§Chi phí công nghệ và bảo mật chiếm phần lớn trong cấu trúc chi phí của Fintech.”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 4 - Phát triển mô hình kinh doanh liên quan đến Công nghệ dịch vụ tài chính (Buổi 2).pdf#p12): Cấu trúc chi phí (Cost Structure)vCác chi phí chính:§Chi phí phát triển và duy trì công nghệ.§Chi phí bảo mật và tuân thủ pháp lý.§Chi phí marketing, chi phí vận hành (nhân viên, dịch vụ khách hàng).vỨng dụng trong Fintech:§Chi phí công nghệ và bảo mật chiếm phần lớn trong cấu trúc chi phí của Fintech."
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“§Đồng thời, chi phí liên quan đến tuân thủ quy định pháp lý cũng rất quan trọng, đặc biệt trong bối cảnh các yêu cầu về bảo mật dữ liệu và chống rửa tiền.”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 4 - Phát triển mô hình kinh doanh liên quan đến Công nghệ dịch vụ tài chính (Buổi 2).pdf#p12): §Đồng thời, chi phí liên quan đến tuân thủ quy định pháp lý cũng rất quan trọng, đặc biệt trong bối cảnh các yêu cầu về bảo mật dữ liệu và chống rửa tiền."
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“2416/10/24Chương 4: Phát triển mô hình kinh doanh liên quan đếng ngành Công nghệ dịch vụ tài chính”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 4 - Phát triển mô hình kinh doanh liên quan đến Công nghệ dịch vụ tài chính (Buổi 2).pdf#p12): 2416/10/24Chương 4: Phát triển mô hình kinh doanh liên quan đếng ngành Công nghệ dịch vụ tài chính"
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“4.2.ỨngdụngmôhìnhBusinessModelCanvastrongpháttriểnmôhìnhkinhdoanhliênquanđếnCôngnghệdịchvụtàichínhvỨngdụngBusinessModelCanvasvàomôhìnhFintechgiúpdoanhnghiệptậptrungvàocáchpháttriểndịchvụtàichínhsốhiệuquả,xácđịnhrõràngcácnguồnthuvàquảnlýchiphí,tốiưuhóaviệctiếpcậnvàtạoragiátrịchokháchhàng.”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 4 - Phát triển mô hình kinh doanh liên quan đến Công nghệ dịch vụ tài chính (Buổi 2).pdf#p13): 4.2.ỨngdụngmôhìnhBusinessModelCanvastrongpháttriểnmôhìnhkinhdoanhliênquanđếnCôngnghệdịchvụtàichínhvỨngdụngBusinessModelCanvasvàomôhìnhFintechgiúpdoanhnghiệptậptrungvàocáchpháttriểndịchvụtàichínhsốhiệuquả,xácđịnhrõràngcácnguồnthuvàquảnlýchiphí,tốiưuhóaviệctiếpcậnvàtạoragiátrịchokháchhàng."
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“2516/10/24Chương 4: Phát triển mô hình kinh doanh liên quan đếng ngành Công nghệ dịch vụ tài chính”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 4 - Phát triển mô hình kinh doanh liên quan đến Công nghệ dịch vụ tài chính (Buổi 2).pdf#p13): 2516/10/24Chương 4: Phát triển mô hình kinh doanh liên quan đếng ngành Công nghệ dịch vụ tài chính"
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“HỎI/ĐÁP Chương 4: Phát triển mô hình kinh doanh liên quan đếng ngành Công nghệ dịch vụ tài chính26”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 4 - Phát triển mô hình kinh doanh liên quan đến Công nghệ dịch vụ tài chính (Buổi 2).pdf#p14): HỎI/ĐÁP Chương 4: Phát triển mô hình kinh doanh liên quan đếng ngành Công nghệ dịch vụ tài chính26"
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“HỌC VIỆN NGÂN HÀNG KHOA CÔNG NGHỆ THÔNG TIN VÀ KINH TẾ SỐ CHAPTER 1: OVERVIEW Hà Nội - 2024 CHƯƠNG 1”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 1 - Tổng quan về Công nghệ dịch vụ tài chính.pdf#p1): HỌC VIỆN NGÂN HÀNG KHOA CÔNG NGHỆ THÔNG TIN VÀ KINH TẾ SỐ CHAPTER 1: OVERVIEW Hà Nội - 2024 CHƯƠNG 1"
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Giới thiệu ❖CNTT giatăng giátrịbằng cách giải quyết nhu cầu của cácbên liên quan ❖Các giải pháp mới tậptrung vào khách hàng cóthể làm cho cáctổchức tàichính cạnh tranh hơn ❖Việc không cókhả năng cung cấp các giải pháp CNTT cóthểcản trởtăng trưởng ❖Xây dựng dịch vụtàichính –ngân hàng trên nền tảng CNTT làmột quá trình phức tạp Chương 1: Tổng quan về Công nghệ dịch vụ tài chính 2”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 1 - Tổng quan về Công nghệ dịch vụ tài chính.pdf#p2): Giới thiệu ❖CNTT giatăng giátrịbằng cách giải quyết nhu cầu của cácbên liên quan ❖Các giải pháp mới tậptrung vào khách hàng cóthể làm cho cáctổchức tàichính cạnh tranh hơn ❖Việc không cókhả năng cung cấp các giải pháp CNTT cóthểcản trởtăng trưởng ❖Xây dựng dịch vụtàichính –ngân hàng trên nền tảng CNTT làmột quá trình phức tạp Chương 1: Tổng quan về Công nghệ dịch vụ tài chính 2"
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Nghiên cứu tình huống ❖“Tái cấu trúc quy trình và tiết giảm chi phí bằng công nghệ tại ngân hàng HSBC” Chương 1: Tổng quan về Công nghệ dịch vụ tài chính 3”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 1 - Tổng quan về Công nghệ dịch vụ tài chính.pdf#p3): Nghiên cứu tình huống ❖“Tái cấu trúc quy trình và tiết giảm chi phí bằng công nghệ tại ngân hàng HSBC” Chương 1: Tổng quan về Công nghệ dịch vụ tài chính 3"
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Nghiên cứu tình huống ❖“Tái cấu trúc quy trình và tiết giảm chi phí bằng công nghệ tại ngân hàng HSBC” Chương 1: Tổng quan về Công nghệ dịch vụ tài chính 4”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 1 - Tổng quan về Công nghệ dịch vụ tài chính.pdf#p4): Nghiên cứu tình huống ❖“Tái cấu trúc quy trình và tiết giảm chi phí bằng công nghệ tại ngân hàng HSBC” Chương 1: Tổng quan về Công nghệ dịch vụ tài chính 4"
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Nghiên cứu tình huống ❖“Tái cấu trúc quy trình và tiết giảm chi phí bằng công nghệ tại ngân hàng HSBC” Chương 1: Tổng quan về Công nghệ dịch vụ tài chính 5”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 1 - Tổng quan về Công nghệ dịch vụ tài chính.pdf#p5): Nghiên cứu tình huống ❖“Tái cấu trúc quy trình và tiết giảm chi phí bằng công nghệ tại ngân hàng HSBC” Chương 1: Tổng quan về Công nghệ dịch vụ tài chính 5"
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Nghiên cứu tình huống ❖“Câu hỏi: ▪Những sáng kiến thay đổi cóthể ảnh hưởng như thế nào đến trải nghiệm của khách hàng với các dịch vụcủa ngân hàng?”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 1 - Tổng quan về Công nghệ dịch vụ tài chính.pdf#p6): Nghiên cứu tình huống ❖“Câu hỏi: ▪Những sáng kiến thay đổi cóthể ảnh hưởng như thế nào đến trải nghiệm của khách hàng với các dịch vụcủa ngân hàng?"
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“▪Làm thế nào đểBan lãnh đạo HSBC cóthể vượt qua sự kháng cựtrong tổchức đốivớiviệc hợp lýhóa cácquy trình nghiệp vụvàhợp nhất hệthống CNTT?”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 1 - Tổng quan về Công nghệ dịch vụ tài chính.pdf#p6): ▪Làm thế nào đểBan lãnh đạo HSBC cóthể vượt qua sự kháng cựtrong tổchức đốivớiviệc hợp lýhóa cácquy trình nghiệp vụvàhợp nhất hệthống CNTT?"
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“▪Tạisao sau khicác ngân hàng hợp nhất hoặc được mua lại vẫn tồntạisựdưthừa cácquy trình vàhệthống thông tin?”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 1 - Tổng quan về Công nghệ dịch vụ tài chính.pdf#p6): ▪Tạisao sau khicác ngân hàng hợp nhất hoặc được mua lại vẫn tồntạisựdưthừa cácquy trình vàhệthống thông tin?"
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“▪Nhược điểm của việc duy trìsựchồng chéo giữa các quy trình vàhệthống kinh doanh làgì?”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 1 - Tổng quan về Công nghệ dịch vụ tài chính.pdf#p6): ▪Nhược điểm của việc duy trìsựchồng chéo giữa các quy trình vàhệthống kinh doanh làgì?"
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Chương 1: Tổng quan về Công nghệ dịch vụ tài chính 6”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 1 - Tổng quan về Công nghệ dịch vụ tài chính.pdf#p6): Chương 1: Tổng quan về Công nghệ dịch vụ tài chính 6"
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Định hướng nghiệp vụ Chương 1: Tổng quan về Công nghệ dịch vụ tài chính 7 8/21/2024”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 1 - Tổng quan về Công nghệ dịch vụ tài chính.pdf#p7): Định hướng nghiệp vụ Chương 1: Tổng quan về Công nghệ dịch vụ tài chính 7 8/21/2024"
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Hợp nhất các ngân hàng tại Anh Chương 1: Tổng quan về Công nghệ dịch vụ tài chính 9 08/21/2024”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 1 - Tổng quan về Công nghệ dịch vụ tài chính.pdf#p9): Hợp nhất các ngân hàng tại Anh Chương 1: Tổng quan về Công nghệ dịch vụ tài chính 9 08/21/2024"
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Những thay đổi trong biên lãi ròng của các ngân hàng Hoa Kỳ theo thời gian ❖Thời gian lãisuất thấp kéo dài vàbiên lãiròng thu hẹp đãgây áplực lên lợi nhuận của các ngân hàng Chương 1: Tổng quan về Công nghệ dịch vụ tài chính 13 08/21/2024”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 1 - Tổng quan về Công nghệ dịch vụ tài chính.pdf#p13): Những thay đổi trong biên lãi ròng của các ngân hàng Hoa Kỳ theo thời gian ❖Thời gian lãisuất thấp kéo dài vàbiên lãiròng thu hẹp đãgây áplực lên lợi nhuận của các ngân hàng Chương 1: Tổng quan về Công nghệ dịch vụ tài chính 13 08/21/2024"
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Định hướng nghiệp vụ ❖Sựthay đổi mang tính dân chủ ▪Sựtrỗi dậy của thế hệMillennial đãtrở thành nhân tố thúc đẩy cácngân hàng .”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 1 - Tổng quan về Công nghệ dịch vụ tài chính.pdf#p16): Định hướng nghiệp vụ ❖Sựthay đổi mang tính dân chủ ▪Sựtrỗi dậy của thế hệMillennial đãtrở thành nhân tố thúc đẩy cácngân hàng ."
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“▪Millennials –những người sinh từ1980 đến 1994 , ▪TạiHoa Kỳ,nhóm tuổi lớnnhất trong dân số ▪Cởi mở hơn trong việc sửdụng các lựa chọn thay thế cho cácdịch vụngân hàng •Dịch vụthanh toán phitruyền thống •Thị trường cho vay •Thích giao tiếp qua cáckênh kỹthuật số Chương 1: Tổng quan về Công nghệ dịch vụ tài chính 16 08/21/2024”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 1 - Tổng quan về Công nghệ dịch vụ tài chính.pdf#p16): ▪Millennials –những người sinh từ1980 đến 1994 , ▪TạiHoa Kỳ,nhóm tuổi lớnnhất trong dân số ▪Cởi mở hơn trong việc sửdụng các lựa chọn thay thế cho cácdịch vụngân hàng •Dịch vụthanh toán phitruyền thống •Thị trường cho vay •Thích giao tiếp qua cáckênh kỹthuật số Chương 1: Tổng quan về Công nghệ dịch vụ tài chính 16 08/21/2024"
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Những thay đổi trong biên lãi ròng của các ngân hàng Hoa Kỳ theo thời gian ❖Sửdụng các dịch vụdiđộng trong 12tháng qua theo độtuổi Chương 1: Tổng quan về Công nghệ dịch vụ tài chính 17 08/21/2024”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 1 - Tổng quan về Công nghệ dịch vụ tài chính.pdf#p17): Những thay đổi trong biên lãi ròng của các ngân hàng Hoa Kỳ theo thời gian ❖Sửdụng các dịch vụdiđộng trong 12tháng qua theo độtuổi Chương 1: Tổng quan về Công nghệ dịch vụ tài chính 17 08/21/2024"
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Định hướng công nghệ ❖Giải pháp xây dựng dịch vụtheo các blocks Chương 1: Tổng quan về Công nghệ dịch vụ tài chính 21 08/21/2024”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 1 - Tổng quan về Công nghệ dịch vụ tài chính.pdf#p21): Định hướng công nghệ ❖Giải pháp xây dựng dịch vụtheo các blocks Chương 1: Tổng quan về Công nghệ dịch vụ tài chính 21 08/21/2024"
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Định hướng công nghệ ❖Định hướng quy trình nghiệp vụ ▪Xửlýtrực tiếp (Straight -through processing -STP) •Đối với các quy trình không yêu cầu sựtham giacủa con người •Nhiều quy trình dịch vụtàichính cóthể được thực hiện bằng cách sửdụng STP •Lợiích –Tăng hiệu quả –Giảm thời gian xửlýgiao dịch –Ítlỗihơn –Khả năng mởrộng tốthơn Chương 1: Tổng quan về Công nghệ dịch vụ tài chính 26 08/21/2024”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 1 - Tổng quan về Công nghệ dịch vụ tài chính.pdf#p26): Định hướng công nghệ ❖Định hướng quy trình nghiệp vụ ▪Xửlýtrực tiếp (Straight -through processing -STP) •Đối với các quy trình không yêu cầu sựtham giacủa con người •Nhiều quy trình dịch vụtàichính cóthể được thực hiện bằng cách sửdụng STP •Lợiích –Tăng hiệu quả –Giảm thời gian xửlýgiao dịch –Ítlỗihơn –Khả năng mởrộng tốthơn Chương 1: Tổng quan về Công nghệ dịch vụ tài chính 26 08/21/2024"
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Cơ hội kinh doanh ❖Dịch vụmới ▪Cóthểgiúp tạoradoanh thu phí ▪Cũng cóthểtạoralợiíchtàichính bằng cách •Tăng lòng trung thành của khách hàng •Nâng cao hiệu quả hoạt động ▪Cóthểlàphần mở rộng vàcảitiến trên cácdịch vụhiện có •Vídụ:sửdụng thông báo qua email vàSMS đểthông báo cho khách hàng vềcác sựkiện giao dịch vàtrạng thái tài khoản Chương 1: Tổng quan về Công nghệ dịch vụ tài chính 28 08/21/2024”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 1 - Tổng quan về Công nghệ dịch vụ tài chính.pdf#p28): Cơ hội kinh doanh ❖Dịch vụmới ▪Cóthểgiúp tạoradoanh thu phí ▪Cũng cóthểtạoralợiíchtàichính bằng cách •Tăng lòng trung thành của khách hàng •Nâng cao hiệu quả hoạt động ▪Cóthểlàphần mở rộng vàcảitiến trên cácdịch vụhiện có •Vídụ:sửdụng thông báo qua email vàSMS đểthông báo cho khách hàng vềcác sựkiện giao dịch vàtrạng thái tài khoản Chương 1: Tổng quan về Công nghệ dịch vụ tài chính 28 08/21/2024"
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Cơ hội kinh doanh ❖Cải thiện mức độdịch vụ(service levels) ▪Nhiều cơhộiđểcảithiện cácquy trình kinh doanh hiện cóvàcácgiải pháp CNTT ▪Tựđộng hóa cácgiao dịch dựa trên giấy tờvàgiọng nói •Giảm chiphí •Giảm thời gian xửlýgiao dịch ▪Hợp lýhóa cáchoạt động thủ công •Loại bỏtắcnghẽn •Giảm sựchậm trễ Chương 1: Tổng quan về Công nghệ dịch vụ tài chính 31 08/21/2024”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 1 - Tổng quan về Công nghệ dịch vụ tài chính.pdf#p31): Cơ hội kinh doanh ❖Cải thiện mức độdịch vụ(service levels) ▪Nhiều cơhộiđểcảithiện cácquy trình kinh doanh hiện cóvàcácgiải pháp CNTT ▪Tựđộng hóa cácgiao dịch dựa trên giấy tờvàgiọng nói •Giảm chiphí •Giảm thời gian xửlýgiao dịch ▪Hợp lýhóa cáchoạt động thủ công •Loại bỏtắcnghẽn •Giảm sựchậm trễ Chương 1: Tổng quan về Công nghệ dịch vụ tài chính 31 08/21/2024"
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Thách thức kinh doanh ❖Sựphức tạp ▪Sựphức tạpphát triển nhanh chóng Chương 1: Tổng quan về Công nghệ dịch vụ tài chính 33 08/21/2024”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 1 - Tổng quan về Công nghệ dịch vụ tài chính.pdf#p33): Thách thức kinh doanh ❖Sựphức tạp ▪Sựphức tạpphát triển nhanh chóng Chương 1: Tổng quan về Công nghệ dịch vụ tài chính 33 08/21/2024"
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Thách thức kinh doanh ❖Sựphức tạp ▪Mức độphức tạpđãtăng lêndo •Sáp nhập vàmua lại •Các thay đổiquy định đang diễn ra •Sửdụng công nghệ mới •Ápdụng cáckênh cung cấp dịch vụbổsung •Mở rộng toàn cầu •Bổsung cáctùychọn tìm nguồn cung ứng dịch vụmới ▪Cóthểdẫn đến •Tăng rủirohoạt động •Không hiệu quả •Kinh tếquy mô •Nợkỹthuật Chương 1: Tổng quan về Công nghệ dịch vụ tài chính 34 08/21/2024”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 1 - Tổng quan về Công nghệ dịch vụ tài chính.pdf#p34): Thách thức kinh doanh ❖Sựphức tạp ▪Mức độphức tạpđãtăng lêndo •Sáp nhập vàmua lại •Các thay đổiquy định đang diễn ra •Sửdụng công nghệ mới •Ápdụng cáckênh cung cấp dịch vụbổsung •Mở rộng toàn cầu •Bổsung cáctùychọn tìm nguồn cung ứng dịch vụmới ▪Cóthểdẫn đến •Tăng rủirohoạt động •Không hiệu quả •Kinh tếquy mô •Nợkỹthuật Chương 1: Tổng quan về Công nghệ dịch vụ tài chính 34 08/21/2024"
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Thách thức kinh doanh ❖Rủi ro ▪Thách thức làđạt được lợinhuận hiệu quả được điều chỉnh theo rủiro ▪Các rủirochính cần được quản lý •Thị trường •Tín dụng đốitác •Hoạt động ❖Rủi rohoạt động ▪Tổn thất màmột tổchức cóthể phải gánh chịu tổn thất dohoạt động không thành công ▪Sựquan tâm đến anninh mạng ngày càng phát triển Chương 1: Tổng quan về Công nghệ dịch vụ tài chính 35 8/21/2024”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 1 - Tổng quan về Công nghệ dịch vụ tài chính.pdf#p35): Thách thức kinh doanh ❖Rủi ro ▪Thách thức làđạt được lợinhuận hiệu quả được điều chỉnh theo rủiro ▪Các rủirochính cần được quản lý •Thị trường •Tín dụng đốitác •Hoạt động ❖Rủi rohoạt động ▪Tổn thất màmột tổchức cóthể phải gánh chịu tổn thất dohoạt động không thành công ▪Sựquan tâm đến anninh mạng ngày càng phát triển Chương 1: Tổng quan về Công nghệ dịch vụ tài chính 35 8/21/2024"
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Thách thức kinh doanh ❖Thay đổi quy định ▪Sốlượng cácthay đổiquy định mỗi năm tăng đều đặn •2008 :khoảng 8.000 •2011 :hơn 14.000 •Hơn 60mỗi ngày làm việc ❖Không phải làtùy chọn vàcóthời hạn khó tuân thủ ❖Giải quyết các thay đổi vềquy định thu hút nguồn lực khỏi sáng kiến tạo doanh thu vàtiết kiệm chiphí Chương 1: Tổng quan về Công nghệ dịch vụ tài chính 36 8/21/2024”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 1 - Tổng quan về Công nghệ dịch vụ tài chính.pdf#p36): Thách thức kinh doanh ❖Thay đổi quy định ▪Sốlượng cácthay đổiquy định mỗi năm tăng đều đặn •2008 :khoảng 8.000 •2011 :hơn 14.000 •Hơn 60mỗi ngày làm việc ❖Không phải làtùy chọn vàcóthời hạn khó tuân thủ ❖Giải quyết các thay đổi vềquy định thu hút nguồn lực khỏi sáng kiến tạo doanh thu vàtiết kiệm chiphí Chương 1: Tổng quan về Công nghệ dịch vụ tài chính 36 8/21/2024"
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Mối quan hệ giữa các bên liên quan ❖Các giải pháp thành công khi chúng phù hợp với nhu cầu của các bên liên quan Chương 1: Tổng quan về Công nghệ dịch vụ tài chính 37 8/21/2024”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 1 - Tổng quan về Công nghệ dịch vụ tài chính.pdf#p37): Mối quan hệ giữa các bên liên quan ❖Các giải pháp thành công khi chúng phù hợp với nhu cầu của các bên liên quan Chương 1: Tổng quan về Công nghệ dịch vụ tài chính 37 8/21/2024"
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Mối quan hệ giữa các bên liên quan ❖Mối quan tâm của khách hàng ▪Khách hàng nộibộ •Nhân viên ngân hàng sửdụng giải pháp ▪Khách hàng bên ngoài •Khách hàng bên ngoài sửdụng giải pháp ▪Mối quan tâm liên quan đến •Phítổn •Sựtiện lợi •Dễsửdụng •Chất lượng dịch vụ •Antoàn Chương 1: Tổng quan về Công nghệ dịch vụ tài chính 39 8/21/2024”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 1 - Tổng quan về Công nghệ dịch vụ tài chính.pdf#p39): Mối quan hệ giữa các bên liên quan ❖Mối quan tâm của khách hàng ▪Khách hàng nộibộ •Nhân viên ngân hàng sửdụng giải pháp ▪Khách hàng bên ngoài •Khách hàng bên ngoài sửdụng giải pháp ▪Mối quan tâm liên quan đến •Phítổn •Sựtiện lợi •Dễsửdụng •Chất lượng dịch vụ •Antoàn Chương 1: Tổng quan về Công nghệ dịch vụ tài chính 39 8/21/2024"
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Mối quan hệ giữa các bên liên quan ❖Mối quan tâm vềhoạt động ▪Giải pháp sẽgiúp hay cản trởviệc đáp ứng KPI vàSLA?”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 1 - Tổng quan về Công nghệ dịch vụ tài chính.pdf#p40): Mối quan hệ giữa các bên liên quan ❖Mối quan tâm vềhoạt động ▪Giải pháp sẽgiúp hay cản trởviệc đáp ứng KPI vàSLA?"
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“▪Các giải pháp cóthểmang lạilợiíchlâudài •Nhưng cóthểtácđộng tiêu cực đến hiệu suất ngắn hạn do chiphítích hợp ▪Mối quan tâm liên quan đến •Duy trìcáckiểm soát tàichính nộibộ •Hiệu quả •Uyển chuyển •Quản lýngoại lệ •Tính nhất quán vàliên tục Chương 1: Tổng quan về Công nghệ dịch vụ tài chính 40 8/21/2024”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 1 - Tổng quan về Công nghệ dịch vụ tài chính.pdf#p40): ▪Các giải pháp cóthểmang lạilợiíchlâudài •Nhưng cóthểtácđộng tiêu cực đến hiệu suất ngắn hạn do chiphítích hợp ▪Mối quan tâm liên quan đến •Duy trìcáckiểm soát tàichính nộibộ •Hiệu quả •Uyển chuyển •Quản lýngoại lệ •Tính nhất quán vàliên tục Chương 1: Tổng quan về Công nghệ dịch vụ tài chính 40 8/21/2024"
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Mối quan hệ giữa các bên liên quan ❖Mối quan tâm vềquy định vàtuân thủ ▪Cóthểlàyếu tốmang tính quyết định, dẫn dắtcuộc chơi ▪Các vấn đềtiềm ẩnphải được xác định vàđánh giá trước ▪Thách thức •Các kỹsưkhông quen thuộc vớicácquy định vàtuân thủ •Các cơquan quản lývàkiểm toán viên thường không hiểu rõvềcông nghệ •Điều quan trọng làmỗi bên tham giaphải tìm hiểu thêm vềcácđốitượng khác .”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 1 - Tổng quan về Công nghệ dịch vụ tài chính.pdf#p42): Mối quan hệ giữa các bên liên quan ❖Mối quan tâm vềquy định vàtuân thủ ▪Cóthểlàyếu tốmang tính quyết định, dẫn dắtcuộc chơi ▪Các vấn đềtiềm ẩnphải được xác định vàđánh giá trước ▪Thách thức •Các kỹsưkhông quen thuộc vớicácquy định vàtuân thủ •Các cơquan quản lývàkiểm toán viên thường không hiểu rõvềcông nghệ •Điều quan trọng làmỗi bên tham giaphải tìm hiểu thêm vềcácđốitượng khác ."
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Chương 1: Tổng quan về Công nghệ dịch vụ tài chính 42 8/21/2024”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 1 - Tổng quan về Công nghệ dịch vụ tài chính.pdf#p42): Chương 1: Tổng quan về Công nghệ dịch vụ tài chính 42 8/21/2024"
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“HỎI/ĐÁP Chương 1: Tổng quan về Công nghệ dịch vụ tài chính 43”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 1 - Tổng quan về Công nghệ dịch vụ tài chính.pdf#p43): HỎI/ĐÁP Chương 1: Tổng quan về Công nghệ dịch vụ tài chính 43"
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“HỌC VIỆN NGÂN HÀNG KHOA CÔNG NGHỆ THÔNG TIN VÀ KINH TẾ SỐ FINANCIAL SERVICES TECHNOLOGY Hà Nội - 2024 GIỚI THIỆU MÔN HỌC”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 0 - Giới thiệu học phần Công nghệ dịch vụ tài chính.pdf#p1): HỌC VIỆN NGÂN HÀNG KHOA CÔNG NGHỆ THÔNG TIN VÀ KINH TẾ SỐ FINANCIAL SERVICES TECHNOLOGY Hà Nội - 2024 GIỚI THIỆU MÔN HỌC"
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Giới thiệu môn học ❖Số tín chỉ: 3 ❖Thời gian: ▪Giảng lý thuyết trên lớp: 60% ▪Thực hành, thảo luận: 40% ▪Tự học: 200% ❖Giảng viên : ▪Email: huycv@hvnh.edu.vn ▪Mobile: 0904.396383 Giới thiệu môn học 2”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 0 - Giới thiệu học phần Công nghệ dịch vụ tài chính.pdf#p2): Giới thiệu môn học ❖Số tín chỉ: 3 ❖Thời gian: ▪Giảng lý thuyết trên lớp: 60% ▪Thực hành, thảo luận: 40% ▪Tự học: 200% ❖Giảng viên : ▪Email: huycv@hvnh.edu.vn ▪Mobile: 0904.396383 Giới thiệu môn học 2"
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“•Trải nghiệm phát triển các ứng dụng công nghệ dịch vụ tài chính đơn giản phục vụ mục tiêu khởi nghiệp, đổi mới sáng tạo trong bối cảnh hoạt động chuyển đổi số diễn ra mạnh mẽ hiện nay .”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 0 - Giới thiệu học phần Công nghệ dịch vụ tài chính.pdf#p3): •Trải nghiệm phát triển các ứng dụng công nghệ dịch vụ tài chính đơn giản phục vụ mục tiêu khởi nghiệp, đổi mới sáng tạo trong bối cảnh hoạt động chuyển đổi số diễn ra mạnh mẽ hiện nay ."
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Giới thiệu môn học ❖Mục tiêu của học phần Giới thiệu môn học 4”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 0 - Giới thiệu học phần Công nghệ dịch vụ tài chính.pdf#p4): Giới thiệu môn học ❖Mục tiêu của học phần Giới thiệu môn học 4"
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Tổng quan về Công nghệ dịch vụ tài chính ❖Chương 2.”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 0 - Giới thiệu học phần Công nghệ dịch vụ tài chính.pdf#p5): Tổng quan về Công nghệ dịch vụ tài chính ❖Chương 2."
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Một số lĩnh vực chính trong ngành Công nghệ dịch vụ tài chính ▪2.1.”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 0 - Giới thiệu học phần Công nghệ dịch vụ tài chính.pdf#p5): Một số lĩnh vực chính trong ngành Công nghệ dịch vụ tài chính ▪2.1."
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Công nghệ tài chính trong thanh toán (Fintechs in Payment) ▪2.2.”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 0 - Giới thiệu học phần Công nghệ dịch vụ tài chính.pdf#p5): Công nghệ tài chính trong thanh toán (Fintechs in Payment) ▪2.2."
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Công nghệ tài chính trong cho vay (Fintechs in Lending) ▪2.3.”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 0 - Giới thiệu học phần Công nghệ dịch vụ tài chính.pdf#p5): Công nghệ tài chính trong cho vay (Fintechs in Lending) ▪2.3."
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Công nghệ tài chính trong quản lý tài sản (Fintechs in a Wealth Management) ▪2.4.”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 0 - Giới thiệu học phần Công nghệ dịch vụ tài chính.pdf#p5): Công nghệ tài chính trong quản lý tài sản (Fintechs in a Wealth Management) ▪2.4."
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Công nghệ tài chính trong bảo hiểm (Fintechs in the Insurance) Giới thiệu môn học 5”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 0 - Giới thiệu học phần Công nghệ dịch vụ tài chính.pdf#p5): Công nghệ tài chính trong bảo hiểm (Fintechs in the Insurance) Giới thiệu môn học 5"
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Một số nền tảng công nghệ thúc đẩy đổi mới trong ngành Công nghệ dịch vụ tài chính ▪3.1.”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 0 - Giới thiệu học phần Công nghệ dịch vụ tài chính.pdf#p6): Một số nền tảng công nghệ thúc đẩy đổi mới trong ngành Công nghệ dịch vụ tài chính ▪3.1."
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Phát triển mô hình kinh doanh liên quan đến ngành Công nghệ dịch vụ tài chính Giới thiệu môn học 6”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 0 - Giới thiệu học phần Công nghệ dịch vụ tài chính.pdf#p6): Phát triển mô hình kinh doanh liên quan đến ngành Công nghệ dịch vụ tài chính Giới thiệu môn học 6"
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Đánh giá môn học - KT1 ❖Từng sinh viên thực hiện bài kiểm tra nhằm đánh giá kiến thức lĩnh hội được thông qua hình thức Trắc nghiệm + Tự luận.”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 0 - Giới thiệu học phần Công nghệ dịch vụ tài chính.pdf#p10): Đánh giá môn học - KT1 ❖Từng sinh viên thực hiện bài kiểm tra nhằm đánh giá kiến thức lĩnh hội được thông qua hình thức Trắc nghiệm + Tự luận."
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“❖Mục tiêu: ▪Xác định được một cách có hệ thống các mô hình, giải pháp, công nghệ liên quan tới Công nghệ dịch vụ tài chính trong các bối cảnh cụ thể.”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 0 - Giới thiệu học phần Công nghệ dịch vụ tài chính.pdf#p10): ❖Mục tiêu: ▪Xác định được một cách có hệ thống các mô hình, giải pháp, công nghệ liên quan tới Công nghệ dịch vụ tài chính trong các bối cảnh cụ thể."
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“▪Chỉ ra được các xu hướng, lợi thế và hạn chế khi ứng dụng Công nghệ dịch vụ tài chính trong các bối cảnh cụ thể ▪Trình bày lại hiểu biết của cá nhân về một chủ điểm liên quan đến kiến thức liên quan tới ngành Công nghệ dịch vụ tài chính ▪Tranh luận, đánh giá về một chủ điểm liên quan đến kiến thức trong ngành Công nghệ dịch vụ tài chính 10”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 0 - Giới thiệu học phần Công nghệ dịch vụ tài chính.pdf#p10): ▪Chỉ ra được các xu hướng, lợi thế và hạn chế khi ứng dụng Công nghệ dịch vụ tài chính trong các bối cảnh cụ thể ▪Trình bày lại hiểu biết của cá nhân về một chủ điểm liên quan đến kiến thức liên quan tới ngành Công nghệ dịch vụ tài chính ▪Tranh luận, đánh giá về một chủ điểm liên quan đến kiến thức trong ngành Công nghệ dịch vụ tài chính 10"
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Đánh giá môn học – KT2 ❖Tổ chức cho từng nhóm sinh viên lựa chọn, nhận diện, đề xuất và trình bày.”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 0 - Giới thiệu học phần Công nghệ dịch vụ tài chính.pdf#p11): Đánh giá môn học – KT2 ❖Tổ chức cho từng nhóm sinh viên lựa chọn, nhận diện, đề xuất và trình bày."
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Từ đó, đưa ra các ý tưởng mới, cải tiến mới nhằm giúp thúc đẩy đổi mới trong ngành Công nghệ dịch vụ tài chính trong thực tiễn.”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 0 - Giới thiệu học phần Công nghệ dịch vụ tài chính.pdf#p11): Từ đó, đưa ra các ý tưởng mới, cải tiến mới nhằm giúp thúc đẩy đổi mới trong ngành Công nghệ dịch vụ tài chính trong thực tiễn."
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“❖Tổ chức cho các nhóm sinh viên khác phản biện kết quả nhóm thuyết trình trao đổi.”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 0 - Giới thiệu học phần Công nghệ dịch vụ tài chính.pdf#p11): ❖Tổ chức cho các nhóm sinh viên khác phản biện kết quả nhóm thuyết trình trao đổi."
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“❖Giảng viên nhận xét những điểm được, chưa được đối với cả nhóm thuyết trình và các nhóm có ý kiến phản biện → chuẩn hoá kiến thức của người học.”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 0 - Giới thiệu học phần Công nghệ dịch vụ tài chính.pdf#p11): ❖Giảng viên nhận xét những điểm được, chưa được đối với cả nhóm thuyết trình và các nhóm có ý kiến phản biện → chuẩn hoá kiến thức của người học."
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Đánh giá môn học - Học kỳ ❖Tổ chức cho từng nhóm sinh viên lựa chọn, nhận diện, đề xuất và trình bày về “ý tưởng mới, cải tiến mới” gắn với thực nghiệm đơn giản (nếu có) nhằm giúp thúc đẩy đổi mới trong ngành Công nghệ dịch vụ tài chính trong thực tiễn.”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 0 - Giới thiệu học phần Công nghệ dịch vụ tài chính.pdf#p13): Đánh giá môn học - Học kỳ ❖Tổ chức cho từng nhóm sinh viên lựa chọn, nhận diện, đề xuất và trình bày về “ý tưởng mới, cải tiến mới” gắn với thực nghiệm đơn giản (nếu có) nhằm giúp thúc đẩy đổi mới trong ngành Công nghệ dịch vụ tài chính trong thực tiễn."
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“❖Giảng viên phản biện kết quả; nhận xét những điểm được, chưa được đối với cả nhóm thuyết trình → chuẩn hoá kiến thức của người học.”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 0 - Giới thiệu học phần Công nghệ dịch vụ tài chính.pdf#p13): ❖Giảng viên phản biện kết quả; nhận xét những điểm được, chưa được đối với cả nhóm thuyết trình → chuẩn hoá kiến thức của người học."
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Đánh giá môn học - Học kỳ ❖Mục tiêu: ▪Xác định được một cách có hệ thống các mô hình, giải pháp, công nghệ liên quan tới Công nghệ dịch vụ tài chính trong các bối cảnh cụ thể.”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 0 - Giới thiệu học phần Công nghệ dịch vụ tài chính.pdf#p14): Đánh giá môn học - Học kỳ ❖Mục tiêu: ▪Xác định được một cách có hệ thống các mô hình, giải pháp, công nghệ liên quan tới Công nghệ dịch vụ tài chính trong các bối cảnh cụ thể."
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Yêu cầu đối với học viên ❖Quá trình học tập và tham khảo mở rộng ▪Sinh viên phải có mặt trên lớp cũng như các buổi thực hành, thảo luận .”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 0 - Giới thiệu học phần Công nghệ dịch vụ tài chính.pdf#p15): Yêu cầu đối với học viên ❖Quá trình học tập và tham khảo mở rộng ▪Sinh viên phải có mặt trên lớp cũng như các buổi thực hành, thảo luận ."
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“▪Đọc và nghiên cứu giáo trình, tài liệu tham khảo .”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 0 - Giới thiệu học phần Công nghệ dịch vụ tài chính.pdf#p15): ▪Đọc và nghiên cứu giáo trình, tài liệu tham khảo ."
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“❖Tham gia các hoạt động : ▪Học lý thuyết, thực hành theo bài tập quy định ▪Làm bài kiểm tra định kỳ ❖Ý thức tổ chức, kỷ luật : ▪Có ý thức tổ chức, kỷ luật theo quy định của trường, lớp và của giảng viên phụ trách .”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 0 - Giới thiệu học phần Công nghệ dịch vụ tài chính.pdf#p15): ❖Tham gia các hoạt động : ▪Học lý thuyết, thực hành theo bài tập quy định ▪Làm bài kiểm tra định kỳ ❖Ý thức tổ chức, kỷ luật : ▪Có ý thức tổ chức, kỷ luật theo quy định của trường, lớp và của giảng viên phụ trách ."
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Tài liệu tham khảo ❖Slide bài giảng ❖Financial Services Technology : Processes, Architecture, and Solutions, Randall E Duran, Singapore : Cengage Learning, 2018 ❖FinTech - The Technology Driving Disruption in the Financial Services Industry ; Parag Y.”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 0 - Giới thiệu học phần Công nghệ dịch vụ tài chính.pdf#p16): Tài liệu tham khảo ❖Slide bài giảng ❖Financial Services Technology : Processes, Architecture, and Solutions, Randall E Duran, Singapore : Cengage Learning, 2018 ❖FinTech - The Technology Driving Disruption in the Financial Services Industry ; Parag Y."
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“❖Learning Practical FinTech from Successful Companies ; Yoshitaka Kitao ; Wiley ; 2018 ❖Fintech Business Models : Applied Canvas Method and Analysis of Venture Capital Rounds ; Matthias Fischer ; De Gruyter ; 2021 Giới thiệu môn học 16”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 0 - Giới thiệu học phần Công nghệ dịch vụ tài chính.pdf#p16): ❖Learning Practical FinTech from Successful Companies ; Yoshitaka Kitao ; Wiley ; 2018 ❖Fintech Business Models : Applied Canvas Method and Analysis of Venture Capital Rounds ; Matthias Fischer ; De Gruyter ; 2021 Giới thiệu môn học 16"
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Cuộc thi Statup BA 2024 Giới thiệu môn học 17 8/21/2024“Tiếtkiệm không khó -CóFinTrack lo!” •FinTrack, mộtdự ánkhởinghiệp nhằmhỗtrợngườiViệt trongviệc cá nhân hóalộtrình tài chính thông minh vàhiệuquả.Với giaodiệnđơn giản, FinTrack giúp xâydựnglộtrình tàichính cánhân vàhỗtrợđạtđược cácmục tiêu tàichínhđóthông qua việctựđộng ghi chép chitiêu, theo dõivàcậpnhậtlộtrìnhmột cách linh hoạt .”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 0 - Giới thiệu học phần Công nghệ dịch vụ tài chính.pdf#p17): Cuộc thi Statup BA 2024 Giới thiệu môn học 17 8/21/2024“Tiếtkiệm không khó -CóFinTrack lo!” •FinTrack, mộtdự ánkhởinghiệp nhằmhỗtrợngườiViệt trongviệc cá nhân hóalộtrình tài chính thông minh vàhiệuquả.Với giaodiệnđơn giản, FinTrack giúp xâydựnglộtrình tàichính cánhân vàhỗtrợđạtđược cácmục tiêu tàichínhđóthông qua việctựđộng ghi chép chitiêu, theo dõivàcậpnhậtlộtrìnhmột cách linh hoạt ."
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“•Nếu coikếhoạch tàichính cánhân là một hành trình, thìcần cóđiểmxuất phát,điểmđến vàconđường .Không chỉdừnglạiởkiểm soát chitiêu trong ngày,tầm nhìncủa chúng tôilàtạo ramộtgiải pháp tàichính toàndiện trongcảngắn vàdàihạn.Mỗibước tiếnnhỏđều làchìa khóa quantrọng, mởracánhcửacủasựthayđổitrong cách chúng taquản lýchitiêu.”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 0 - Giới thiệu học phần Công nghệ dịch vụ tài chính.pdf#p17): •Nếu coikếhoạch tàichính cánhân là một hành trình, thìcần cóđiểmxuất phát,điểmđến vàconđường .Không chỉdừnglạiởkiểm soát chitiêu trong ngày,tầm nhìncủa chúng tôilàtạo ramộtgiải pháp tàichính toàndiện trongcảngắn vàdàihạn.Mỗibước tiếnnhỏđều làchìa khóa quantrọng, mởracánhcửacủasựthayđổitrong cách chúng taquản lýchitiêu."
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Cuộc thi Statup BA 2024 Giới thiệu môn học 18 8/21/2024”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 0 - Giới thiệu học phần Công nghệ dịch vụ tài chính.pdf#p18): Cuộc thi Statup BA 2024 Giới thiệu môn học 18 8/21/2024"
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Cuộc thi Statup BA 2024 Giới thiệu môn học 19 8/21/2024”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 0 - Giới thiệu học phần Công nghệ dịch vụ tài chính.pdf#p19): Cuộc thi Statup BA 2024 Giới thiệu môn học 19 8/21/2024"
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Cuộc thi Statup BA 2024 Giới thiệu môn học 20 8/21/2024”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 0 - Giới thiệu học phần Công nghệ dịch vụ tài chính.pdf#p20): Cuộc thi Statup BA 2024 Giới thiệu môn học 20 8/21/2024"
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“HỌC VIỆN NGÂN HÀNGKHOA CÔNG NGHỆ THÔNG TIN VÀ KINH TẾ SỐ Hà Nội - 2024 CHƯƠNG 2”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 2 - Một số lĩnh vực chính trong ngành Công nghệ dịch vụ tài chính (Buổi 1).pdf#p1): HỌC VIỆN NGÂN HÀNGKHOA CÔNG NGHỆ THÔNG TIN VÀ KINH TẾ SỐ Hà Nội - 2024 CHƯƠNG 2"
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Nội dungv2.1.Côngnghệtàichínhtrongthanhtoánv2.2.Côngnghệtàichínhtrongchovayv2.3.Côngnghệtàichínhtrongquảnlýtàisảnv2.4.Côngnghệtàichínhtrongbảohiểm Chương 2: Một số lĩnh vực chính trong ngành Công nghệ dịch vụ tài chính2”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 2 - Một số lĩnh vực chính trong ngành Công nghệ dịch vụ tài chính (Buổi 1).pdf#p2): Nội dungv2.1.Côngnghệtàichínhtrongthanhtoánv2.2.Côngnghệtàichínhtrongchovayv2.3.Côngnghệtàichínhtrongquảnlýtàisảnv2.4.Côngnghệtàichínhtrongbảohiểm Chương 2: Một số lĩnh vực chính trong ngành Công nghệ dịch vụ tài chính2"
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Công nghệ tài chính trong thanh toánvCôngnghệtàichính(Fintech)đãcáchmạnghóalĩnhvựcthanhtoán,mangđếnnhữnggiảiphápmớivàtiệnlợichongườidùngvàdoanhnghiệp.vNhữngtiếnbộnàyđãthayđổicáchchúngtathựchiệncácgiaodịchhàngngày,manglạisựtiệnlợi,nhanhchóngvàantoànhơntrongviệcthanhtoán.Chương 2: Một số lĩnh vực chính trong ngành Công nghệ dịch vụ tài chính311/9/24”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 2 - Một số lĩnh vực chính trong ngành Công nghệ dịch vụ tài chính (Buổi 1).pdf#p3): Công nghệ tài chính trong thanh toánvCôngnghệtàichính(Fintech)đãcáchmạnghóalĩnhvựcthanhtoán,mangđếnnhữnggiảiphápmớivàtiệnlợichongườidùngvàdoanhnghiệp.vNhữngtiếnbộnàyđãthayđổicáchchúngtathựchiệncácgiaodịchhàngngày,manglạisựtiệnlợi,nhanhchóngvàantoànhơntrongviệcthanhtoán.Chương 2: Một số lĩnh vực chính trong ngành Công nghệ dịch vụ tài chính311/9/24"
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Công nghệ tài chính trong thanh toánv1.Thanhtoándiđộng:§CácứngdụngnhưMoMo,ZaloPay,ApplePay,GooglePaychophépngườidùngthanhtoánquađiệnthoạithôngminhmàkhôngcầndùngtiềnmặthaythẻtíndụng.§NgườidùngchỉcầnquétmãQRhoặcsửdụngcôngnghệNFCđểthanhtoán.”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 2 - Một số lĩnh vực chính trong ngành Công nghệ dịch vụ tài chính (Buổi 1).pdf#p4): Công nghệ tài chính trong thanh toánv1.Thanhtoándiđộng:§CácứngdụngnhưMoMo,ZaloPay,ApplePay,GooglePaychophépngườidùngthanhtoánquađiệnthoạithôngminhmàkhôngcầndùngtiềnmặthaythẻtíndụng.§NgườidùngchỉcầnquétmãQRhoặcsửdụngcôngnghệNFCđểthanhtoán."
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Chương 2: Một số lĩnh vực chính trong ngành Công nghệ dịch vụ tài chính411/9/24”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 2 - Một số lĩnh vực chính trong ngành Công nghệ dịch vụ tài chính (Buổi 1).pdf#p4): Chương 2: Một số lĩnh vực chính trong ngành Công nghệ dịch vụ tài chính411/9/24"
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Công nghệ tài chính trong thanh toánv2.Víđiệntử:§Víđiệntửchophépngườidùngnạptiềnvàotàikhoảntrựctuyếnvàthựchiệncácgiaodịchmuabán,chuyểntiềnmộtcáchnhanhchóng.§Đâylàmộtphươngtiệnthanhtoánphổbiếntạicáccửahàng,siêuthịvàtrựctuyến.”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 2 - Một số lĩnh vực chính trong ngành Công nghệ dịch vụ tài chính (Buổi 1).pdf#p5): Công nghệ tài chính trong thanh toánv2.Víđiệntử:§Víđiệntửchophépngườidùngnạptiềnvàotàikhoảntrựctuyếnvàthựchiệncácgiaodịchmuabán,chuyểntiềnmộtcáchnhanhchóng.§Đâylàmộtphươngtiệnthanhtoánphổbiếntạicáccửahàng,siêuthịvàtrựctuyến."
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Chương 2: Một số lĩnh vực chính trong ngành Công nghệ dịch vụ tài chính511/9/24”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 2 - Một số lĩnh vực chính trong ngành Công nghệ dịch vụ tài chính (Buổi 1).pdf#p5): Chương 2: Một số lĩnh vực chính trong ngành Công nghệ dịch vụ tài chính511/9/24"
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Công nghệ tài chính trong thanh toánv3.Chuyểntiềnquốctế:§CácdịchvụnhưTransferWise,PayPal,…đãgiảmthiểuchiphívàthờigianchuyểntiềnquốctế.§Nhờvàocôngnghệblockchainvàcáchệthốngthanhtoánnganghàng(P2P),việcchuyểntiềngiữacácquốcgiatrởnênnhanhchóngvàíttốnkémhơn.”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 2 - Một số lĩnh vực chính trong ngành Công nghệ dịch vụ tài chính (Buổi 1).pdf#p6): Công nghệ tài chính trong thanh toánv3.Chuyểntiềnquốctế:§CácdịchvụnhưTransferWise,PayPal,…đãgiảmthiểuchiphívàthờigianchuyểntiềnquốctế.§Nhờvàocôngnghệblockchainvàcáchệthốngthanhtoánnganghàng(P2P),việcchuyểntiềngiữacácquốcgiatrởnênnhanhchóngvàíttốnkémhơn."
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Chương 2: Một số lĩnh vực chính trong ngành Công nghệ dịch vụ tài chính611/9/24”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 2 - Một số lĩnh vực chính trong ngành Công nghệ dịch vụ tài chính (Buổi 1).pdf#p6): Chương 2: Một số lĩnh vực chính trong ngành Công nghệ dịch vụ tài chính611/9/24"
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Công nghệ tài chính trong thanh toánv4.Thanhtoánbằngtiềnđiệntử:§TiềnđiệntửnhưBitcoin,Ethereum,…đượcsửdụngđểthanhtoánhànghóavàdịchvụtrựctuyến.§Côngnghệblockchaingiúpbảođảmtínhminhbạchvàantoànchocácgiaodịch.”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 2 - Một số lĩnh vực chính trong ngành Công nghệ dịch vụ tài chính (Buổi 1).pdf#p7): Công nghệ tài chính trong thanh toánv4.Thanhtoánbằngtiềnđiệntử:§TiềnđiệntửnhưBitcoin,Ethereum,…đượcsửdụngđểthanhtoánhànghóavàdịchvụtrựctuyến.§Côngnghệblockchaingiúpbảođảmtínhminhbạchvàantoànchocácgiaodịch."
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Chương 2: Một số lĩnh vực chính trong ngành Công nghệ dịch vụ tài chính711/9/24 https://coinmarketcap.com/”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 2 - Một số lĩnh vực chính trong ngành Công nghệ dịch vụ tài chính (Buổi 1).pdf#p7): Chương 2: Một số lĩnh vực chính trong ngành Công nghệ dịch vụ tài chính711/9/24 https://coinmarketcap.com/"
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Công nghệ tài chính trong thanh toánv5.DịchvụBuyNow,PayLater(BNPL):§CácdịchvụnhưAfterpay,Klarna,…chophépngườitiêudùngmuasắmvàtrảtiềnsau,thườnglàtrongmộtloạtcáckhoảnthanhtoánkhônglãisuất.Điềunàymanglạisựlinhhoạttàichínhchongườitiêudùng.Chương 2: Một số lĩnh vực chính trong ngành Công nghệ dịch vụ tài chính811/9/24”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 2 - Một số lĩnh vực chính trong ngành Công nghệ dịch vụ tài chính (Buổi 1).pdf#p8): Công nghệ tài chính trong thanh toánv5.DịchvụBuyNow,PayLater(BNPL):§CácdịchvụnhưAfterpay,Klarna,…chophépngườitiêudùngmuasắmvàtrảtiềnsau,thườnglàtrongmộtloạtcáckhoảnthanhtoánkhônglãisuất.Điềunàymanglạisựlinhhoạttàichínhchongườitiêudùng.Chương 2: Một số lĩnh vực chính trong ngành Công nghệ dịch vụ tài chính811/9/24"
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Dịch vụ Buy Now, Pay Later (BNPL): Chương 2: Một số lĩnh vực chính trong ngành Công nghệ dịch vụ tài chính911/9/24”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 2 - Một số lĩnh vực chính trong ngành Công nghệ dịch vụ tài chính (Buổi 1).pdf#p9): Dịch vụ Buy Now, Pay Later (BNPL): Chương 2: Một số lĩnh vực chính trong ngành Công nghệ dịch vụ tài chính911/9/24"
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Công nghệ tài chính trong thanh toánv6.Phântíchdữliệuvàtrítuệnhântạo(AI):§FintechsửdụngAIvàphântíchdữliệuđểcungcấpcácgiảiphápthanhtoánthôngminh,cánhânhóatrảinghiệmkháchhàngvàngănchặngianlậntrongcácgiaodịch.”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 2 - Một số lĩnh vực chính trong ngành Công nghệ dịch vụ tài chính (Buổi 1).pdf#p10): Công nghệ tài chính trong thanh toánv6.Phântíchdữliệuvàtrítuệnhântạo(AI):§FintechsửdụngAIvàphântíchdữliệuđểcungcấpcácgiảiphápthanhtoánthôngminh,cánhânhóatrảinghiệmkháchhàngvàngănchặngianlậntrongcácgiaodịch."
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Chương 2: Một số lĩnh vực chính trong ngành Công nghệ dịch vụ tài chính1011/9/24”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 2 - Một số lĩnh vực chính trong ngành Công nghệ dịch vụ tài chính (Buổi 1).pdf#p10): Chương 2: Một số lĩnh vực chính trong ngành Công nghệ dịch vụ tài chính1011/9/24"
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Công nghệ tài chính trong thanh toánv7.Tíchhợpthanhtoántrongcácứngdụngkhác:§Nhiềunềntảng,từmạngxãhộiđếncácứngdụngthươngmạiđiệntử,đãtíchhợpcácgiảiphápthanhtoántrựctiếp,chophépngườidùngthựchiệngiaodịchmàkhôngcầnchuyểnđổiứngdụng.”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 2 - Một số lĩnh vực chính trong ngành Công nghệ dịch vụ tài chính (Buổi 1).pdf#p11): Công nghệ tài chính trong thanh toánv7.Tíchhợpthanhtoántrongcácứngdụngkhác:§Nhiềunềntảng,từmạngxãhộiđếncácứngdụngthươngmạiđiệntử,đãtíchhợpcácgiảiphápthanhtoántrựctiếp,chophépngườidùngthựchiệngiaodịchmàkhôngcầnchuyểnđổiứngdụng."
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Chương 2: Một số lĩnh vực chính trong ngành Công nghệ dịch vụ tài chính1111/9/24”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 2 - Một số lĩnh vực chính trong ngành Công nghệ dịch vụ tài chính (Buổi 1).pdf#p11): Chương 2: Một số lĩnh vực chính trong ngành Công nghệ dịch vụ tài chính1111/9/24"
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“HỎI/ĐÁP Chương 2: Một số lĩnh vực chính trong ngành Công nghệ dịch vụ tài chính43”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 2 - Một số lĩnh vực chính trong ngành Công nghệ dịch vụ tài chính (Buổi 1).pdf#p12): HỎI/ĐÁP Chương 2: Một số lĩnh vực chính trong ngành Công nghệ dịch vụ tài chính43"
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Giới thiệu mô hình kinh doanh Business Model CanvasvBusinessModelCanvas(BMC)làmộtcôngcụquảnlýchiếnlượcgiúpcácdoanhnghiệpmôtả,phântích,vàthiếtkếmôhìnhkinhdoanhmộtcáchtrựcquan.vĐượcpháttriểnbởiAlexanderOsterwalder,BMCgồm9yếutốchínhgiúpxâydựngmộtbứctranhtoàndiệnvềcáchmộtdoanhnghiệptạora,phânphốivànắmbắtgiátrị.”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 4 - Phát triển mô hình kinh doanh liên quan đến Công nghệ dịch vụ tài chính (Buổi 1).pdf#p3): Giới thiệu mô hình kinh doanh Business Model CanvasvBusinessModelCanvas(BMC)làmộtcôngcụquảnlýchiếnlượcgiúpcácdoanhnghiệpmôtả,phântích,vàthiếtkếmôhìnhkinhdoanhmộtcáchtrựcquan.vĐượcpháttriểnbởiAlexanderOsterwalder,BMCgồm9yếutốchínhgiúpxâydựngmộtbứctranhtoàndiệnvềcáchmộtdoanhnghiệptạora,phânphốivànắmbắtgiátrị."
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“316/10/24Chương 4: Phát triển mô hình kinh doanh liên quan đếng ngành Công nghệ dịch vụ tài chính”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 4 - Phát triển mô hình kinh doanh liên quan đến Công nghệ dịch vụ tài chính (Buổi 1).pdf#p3): 316/10/24Chương 4: Phát triển mô hình kinh doanh liên quan đếng ngành Công nghệ dịch vụ tài chính"
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Giới thiệu mô hình kinh doanh Business Model CanvasvCácthànhphầnchínhcủaBusinessModelCanvas(BMC):Ø1.”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 4 - Phát triển mô hình kinh doanh liên quan đến Công nghệ dịch vụ tài chính (Buổi 1).pdf#p4): Giới thiệu mô hình kinh doanh Business Model CanvasvCácthànhphầnchínhcủaBusinessModelCanvas(BMC):Ø1."
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Cost Structure (Cấu trúc chi phí)416/10/24Chương 4: Phát triển mô hình kinh doanh liên quan đếng ngành Công nghệ dịch vụ tài chính”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 4 - Phát triển mô hình kinh doanh liên quan đến Công nghệ dịch vụ tài chính (Buổi 1).pdf#p4): Cost Structure (Cấu trúc chi phí)416/10/24Chương 4: Phát triển mô hình kinh doanh liên quan đếng ngành Công nghệ dịch vụ tài chính"
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Đối tượng khách hàng của bạn là ai?vPhânkhúckháchhàng(Customer Segments)làlànhữngnhómngườimàdoanhnghiệpnhắmtới.vDoanhnghiệpcầnxácđịnhrõcácnhómkháchhàngchính,như:§Kháchhàngđạichúng,§Kháchhàngngách,§Hoặckháchhàngdoanhnghiệp,...”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 4 - Phát triển mô hình kinh doanh liên quan đến Công nghệ dịch vụ tài chính (Buổi 1).pdf#p5): Đối tượng khách hàng của bạn là ai?vPhânkhúckháchhàng(Customer Segments)làlànhữngnhómngườimàdoanhnghiệpnhắmtới.vDoanhnghiệpcầnxácđịnhrõcácnhómkháchhàngchính,như:§Kháchhàngđạichúng,§Kháchhàngngách,§Hoặckháchhàngdoanhnghiệp,..."
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“516/10/24Chương 4: Phát triển mô hình kinh doanh liên quan đếng ngành Công nghệ dịch vụ tài chính”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 4 - Phát triển mô hình kinh doanh liên quan đến Công nghệ dịch vụ tài chính (Buổi 1).pdf#p5): 516/10/24Chương 4: Phát triển mô hình kinh doanh liên quan đếng ngành Công nghệ dịch vụ tài chính"
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Giá trị mà bạn mang đến cho khách hàng?vGiátrịcungcấp(ValuePropositions)làyếutốtạonênsựkhácbiệtgiữadoanhnghiệpvớicácđốithủ.vĐócóthểlà:§Sảnphẩmđộcđáo,§Giácảhợplý,§Dịchvụkháchhàngvượttrội,...”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 4 - Phát triển mô hình kinh doanh liên quan đến Công nghệ dịch vụ tài chính (Buổi 1).pdf#p6): Giá trị mà bạn mang đến cho khách hàng?vGiátrịcungcấp(ValuePropositions)làyếutốtạonênsựkhácbiệtgiữadoanhnghiệpvớicácđốithủ.vĐócóthểlà:§Sảnphẩmđộcđáo,§Giácảhợplý,§Dịchvụkháchhàngvượttrội,..."
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“616/10/24Chương 4: Phát triển mô hình kinh doanh liên quan đếng ngành Công nghệ dịch vụ tài chính vMỗiphânkhúckháchhàngsẽyêucầugiátrịcốtlõikhácnhau.”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 4 - Phát triển mô hình kinh doanh liên quan đến Công nghệ dịch vụ tài chính (Buổi 1).pdf#p6): 616/10/24Chương 4: Phát triển mô hình kinh doanh liên quan đếng ngành Công nghệ dịch vụ tài chính vMỗiphânkhúckháchhàngsẽyêucầugiátrịcốtlõikhácnhau."
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Làm thế nào để tiếp cận khách hàng?vKênhphânphối(Channels)làlà cách doanh nghiệp tiếp cận khách hàng và cung cấp giá trị.”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 4 - Phát triển mô hình kinh doanh liên quan đến Công nghệ dịch vụ tài chính (Buổi 1).pdf#p7): Làm thế nào để tiếp cận khách hàng?vKênhphânphối(Channels)làlà cách doanh nghiệp tiếp cận khách hàng và cung cấp giá trị."
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“vCác kênh có thể bao gồm §Bán hàng trực tiếp, §Bán hàng online, §Phân phối qua đối tác, §Bán lẻ,...”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 4 - Phát triển mô hình kinh doanh liên quan đến Công nghệ dịch vụ tài chính (Buổi 1).pdf#p7): vCác kênh có thể bao gồm §Bán hàng trực tiếp, §Bán hàng online, §Phân phối qua đối tác, §Bán lẻ,..."
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“716/10/24Chương 4: Phát triển mô hình kinh doanh liên quan đếng ngành Công nghệ dịch vụ tài chính”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 4 - Phát triển mô hình kinh doanh liên quan đến Công nghệ dịch vụ tài chính (Buổi 1).pdf#p7): 716/10/24Chương 4: Phát triển mô hình kinh doanh liên quan đếng ngành Công nghệ dịch vụ tài chính"
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Doanh nghiệp tương tác với khách hàng như thế nào?vQuanhệkháchhàng(CustomerRelationships)làcách doanh nghiệp xây dựng và duy trì mối quan hệ với khách hàng.”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 4 - Phát triển mô hình kinh doanh liên quan đến Công nghệ dịch vụ tài chính (Buổi 1).pdf#p8): Doanh nghiệp tương tác với khách hàng như thế nào?vQuanhệkháchhàng(CustomerRelationships)làcách doanh nghiệp xây dựng và duy trì mối quan hệ với khách hàng."
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“vCó thể là: §Dịch vụ tự phục vụ, §Hỗ trợ cá nhân, §Cộng đồng trực tuyến,...”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 4 - Phát triển mô hình kinh doanh liên quan đến Công nghệ dịch vụ tài chính (Buổi 1).pdf#p8): vCó thể là: §Dịch vụ tự phục vụ, §Hỗ trợ cá nhân, §Cộng đồng trực tuyến,..."
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“816/10/24Chương 4: Phát triển mô hình kinh doanh liên quan đếng ngành Công nghệ dịch vụ tài chính vMục tiêu là giữ khách hàng quay lại sử dụng sản phẩm hoặc dịch vụ của doanh nghiệp.”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 4 - Phát triển mô hình kinh doanh liên quan đến Công nghệ dịch vụ tài chính (Buổi 1).pdf#p8): 816/10/24Chương 4: Phát triển mô hình kinh doanh liên quan đếng ngành Công nghệ dịch vụ tài chính vMục tiêu là giữ khách hàng quay lại sử dụng sản phẩm hoặc dịch vụ của doanh nghiệp."
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Doanh nghiệp kiếm tiền như thế nào?vDòng doanh thu (Revenue Streams) là cáchdoanhnghiệpthutiềntừkháchhàng,thôngqua:Bánhàng,Phídịchvụ,Môhìnhđăngký,Quảngcáo,...vHiểurõcácnguồndoanhthulàbướcquantrọngđểxâydựngmôhìnhkinhdoanhthànhcông.”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 4 - Phát triển mô hình kinh doanh liên quan đến Công nghệ dịch vụ tài chính (Buổi 1).pdf#p9): Doanh nghiệp kiếm tiền như thế nào?vDòng doanh thu (Revenue Streams) là cáchdoanhnghiệpthutiềntừkháchhàng,thôngqua:Bánhàng,Phídịchvụ,Môhìnhđăngký,Quảngcáo,...vHiểurõcácnguồndoanhthulàbướcquantrọngđểxâydựngmôhìnhkinhdoanhthànhcông."
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“916/10/24Chương 4: Phát triển mô hình kinh doanh liên quan đếng ngành Công nghệ dịch vụ tài chính”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 4 - Phát triển mô hình kinh doanh liên quan đến Công nghệ dịch vụ tài chính (Buổi 1).pdf#p9): 916/10/24Chương 4: Phát triển mô hình kinh doanh liên quan đếng ngành Công nghệ dịch vụ tài chính"
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Điều gì giúp doanh nghiệp hoạt động?vNguồnlựcchính(Key Resources)làcác tài sản mà doanh nghiệp cần có để hoạt động hiệu quả.”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 4 - Phát triển mô hình kinh doanh liên quan đến Công nghệ dịch vụ tài chính (Buổi 1).pdf#p10): Điều gì giúp doanh nghiệp hoạt động?vNguồnlựcchính(Key Resources)làcác tài sản mà doanh nghiệp cần có để hoạt động hiệu quả."
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“1016/10/24Chương 4: Phát triển mô hình kinh doanh liên quan đếng ngành Công nghệ dịch vụ tài chính vBao gồm: Tài sản vật chất, Nhân sự, Công nghệ, Tài chính,...vCác nguồn lực này hỗ trợ cho các hoạt động và giúp cung cấp giá trị cho khách hàng.”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 4 - Phát triển mô hình kinh doanh liên quan đến Công nghệ dịch vụ tài chính (Buổi 1).pdf#p10): 1016/10/24Chương 4: Phát triển mô hình kinh doanh liên quan đếng ngành Công nghệ dịch vụ tài chính vBao gồm: Tài sản vật chất, Nhân sự, Công nghệ, Tài chính,...vCác nguồn lực này hỗ trợ cho các hoạt động và giúp cung cấp giá trị cho khách hàng."
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Những hoạt động quan trọng doanh nghiệp cần thực hiệnvHoạt động chính (Key Activities) là nhữngviệcdoanhnghiệpcầnlàmđểtạoragiátrịvàgiữchomôhìnhkinhdoanhhoạtđộngtrơntru.vVídụnhư:Sảnxuất,Pháttriểnsảnphẩm,Marketing,Bánhàng,...”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 4 - Phát triển mô hình kinh doanh liên quan đến Công nghệ dịch vụ tài chính (Buổi 1).pdf#p11): Những hoạt động quan trọng doanh nghiệp cần thực hiệnvHoạt động chính (Key Activities) là nhữngviệcdoanhnghiệpcầnlàmđểtạoragiátrịvàgiữchomôhìnhkinhdoanhhoạtđộngtrơntru.vVídụnhư:Sảnxuất,Pháttriểnsảnphẩm,Marketing,Bánhàng,..."
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“1116/10/24Chương 4: Phát triển mô hình kinh doanh liên quan đếng ngành Công nghệ dịch vụ tài chính”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 4 - Phát triển mô hình kinh doanh liên quan đến Công nghệ dịch vụ tài chính (Buổi 1).pdf#p11): 1116/10/24Chương 4: Phát triển mô hình kinh doanh liên quan đếng ngành Công nghệ dịch vụ tài chính"
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Đối tác chính & Cấu trúc chi phí (1)vĐốitácchính(KeyPartnerships)lànhữngtổchứchoặccánhângiúpdoanhnghiệpthựchiệnhoạtđộngcủamình.vĐốitáccóthểlà§Nhàcungcấp§Đốitácphânphối§Nhàđầutư,...”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 4 - Phát triển mô hình kinh doanh liên quan đến Công nghệ dịch vụ tài chính (Buổi 1).pdf#p12): Đối tác chính & Cấu trúc chi phí (1)vĐốitácchính(KeyPartnerships)lànhữngtổchứchoặccánhângiúpdoanhnghiệpthựchiệnhoạtđộngcủamình.vĐốitáccóthểlà§Nhàcungcấp§Đốitácphânphối§Nhàđầutư,..."
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“1216/10/24Chương 4: Phát triển mô hình kinh doanh liên quan đếng ngành Công nghệ dịch vụ tài chính”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 4 - Phát triển mô hình kinh doanh liên quan đến Công nghệ dịch vụ tài chính (Buổi 1).pdf#p12): 1216/10/24Chương 4: Phát triển mô hình kinh doanh liên quan đếng ngành Công nghệ dịch vụ tài chính"
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Đối tác chính & Cấu trúc chi phí (2)vCấu trúc chi phí (Cost Structure)làtấtcảcácchiphíphátsinhđểvậnhànhmôhìnhkinhdoanh.vBaogồm:§Chiphícốđịnh(nhưchiphíthuêmặtbằng,…),§Chiphíbiếnđổi(nhưchiphínguyênliệu,chiphínhâncông,…),§Hoặcchiphíchonguồnlựcvàhoạtđộngchính,...”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 4 - Phát triển mô hình kinh doanh liên quan đến Công nghệ dịch vụ tài chính (Buổi 1).pdf#p13): Đối tác chính & Cấu trúc chi phí (2)vCấu trúc chi phí (Cost Structure)làtấtcảcácchiphíphátsinhđểvậnhànhmôhìnhkinhdoanh.vBaogồm:§Chiphícốđịnh(nhưchiphíthuêmặtbằng,…),§Chiphíbiếnđổi(nhưchiphínguyênliệu,chiphínhâncông,…),§Hoặcchiphíchonguồnlựcvàhoạtđộngchính,..."
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“1316/10/24Chương 4: Phát triển mô hình kinh doanh liên quan đếng ngành Công nghệ dịch vụ tài chính”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 4 - Phát triển mô hình kinh doanh liên quan đến Công nghệ dịch vụ tài chính (Buổi 1).pdf#p13): 1316/10/24Chương 4: Phát triển mô hình kinh doanh liên quan đếng ngành Công nghệ dịch vụ tài chính"
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Giới thiệu mô hình kinh doanh Business Model CanvasvBusinessModelCanvaslàmộtcôngcụtoàndiệngiúpdoanhnghiệptừstartupđếncácdoanhnghiệplớncóthểlậpkếhoạchvàquảnlýhiệuquảchiếnlượckinhdoanhcủamình.Mỗithànhphầntrongmôhìnhtươngtácvàhỗtrợlẫnnhau,giúpdoanhnghiệptạoragiátrịvàđạtđượcthànhcôngtrênthịtrường.”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 4 - Phát triển mô hình kinh doanh liên quan đến Công nghệ dịch vụ tài chính (Buổi 1).pdf#p14): Giới thiệu mô hình kinh doanh Business Model CanvasvBusinessModelCanvaslàmộtcôngcụtoàndiệngiúpdoanhnghiệptừstartupđếncácdoanhnghiệplớncóthểlậpkếhoạchvàquảnlýhiệuquảchiếnlượckinhdoanhcủamình.Mỗithànhphầntrongmôhìnhtươngtácvàhỗtrợlẫnnhau,giúpdoanhnghiệptạoragiátrịvàđạtđượcthànhcôngtrênthịtrường."
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“1416/10/24Chương 4: Phát triển mô hình kinh doanh liên quan đếng ngành Công nghệ dịch vụ tài chính”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 4 - Phát triển mô hình kinh doanh liên quan đến Công nghệ dịch vụ tài chính (Buổi 1).pdf#p14): 1416/10/24Chương 4: Phát triển mô hình kinh doanh liên quan đếng ngành Công nghệ dịch vụ tài chính"
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“HỌC VIỆN NGÂN HÀNGKHOA CÔNG NGHỆ THÔNG TIN VÀ KINH TẾ SỐ Hà Nội - 2024 CHƯƠNG 3”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 3 - Một số nền tảng công nghệ thúc đẩy đối mới trong ngành Công nghệ dịch vụ tài chính (Buổi 4).pdf#p1): HỌC VIỆN NGÂN HÀNGKHOA CÔNG NGHỆ THÔNG TIN VÀ KINH TẾ SỐ Hà Nội - 2024 CHƯƠNG 3"
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Ứng dụng công nghệ đột phá trong công nghệ dịch vụ tài chính Chương 3: Một số nền tảng công nghệ thúc đẩy đối mới trong ngành Công nghệ dịch vụ tài chính29/10/24”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 3 - Một số nền tảng công nghệ thúc đẩy đối mới trong ngành Công nghệ dịch vụ tài chính (Buổi 4).pdf#p2): Ứng dụng công nghệ đột phá trong công nghệ dịch vụ tài chính Chương 3: Một số nền tảng công nghệ thúc đẩy đối mới trong ngành Công nghệ dịch vụ tài chính29/10/24"
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Các nền tảng công nghệ đột phá trong công nghệ dịch vụ tài chính Chương 3: Một số nền tảng công nghệ thúc đẩy đối mới trong ngành Công nghệ dịch vụ tài chính209/10/24”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 3 - Một số nền tảng công nghệ thúc đẩy đối mới trong ngành Công nghệ dịch vụ tài chính (Buổi 4).pdf#p3): Các nền tảng công nghệ đột phá trong công nghệ dịch vụ tài chính Chương 3: Một số nền tảng công nghệ thúc đẩy đối mới trong ngành Công nghệ dịch vụ tài chính209/10/24"
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Blockchain -Công nghệ chuỗi khối và ứng dụng trong thực tiễn Chương 3: Một số nền tảng công nghệ thúc đẩy đối mới trong ngành Công nghệ dịch vụ tài chính399/10/24”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 3 - Một số nền tảng công nghệ thúc đẩy đối mới trong ngành Công nghệ dịch vụ tài chính (Buổi 4).pdf#p4): Blockchain -Công nghệ chuỗi khối và ứng dụng trong thực tiễn Chương 3: Một số nền tảng công nghệ thúc đẩy đối mới trong ngành Công nghệ dịch vụ tài chính399/10/24"
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Blockchain -Công nghệ chuỗi khối và ứng dụng trong thực tiễn Chương 3: Một số nền tảng công nghệ thúc đẩy đối mới trong ngành Công nghệ dịch vụ tài chính409/10/24”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 3 - Một số nền tảng công nghệ thúc đẩy đối mới trong ngành Công nghệ dịch vụ tài chính (Buổi 4).pdf#p5): Blockchain -Công nghệ chuỗi khối và ứng dụng trong thực tiễn Chương 3: Một số nền tảng công nghệ thúc đẩy đối mới trong ngành Công nghệ dịch vụ tài chính409/10/24"
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Blockchain -Công nghệ chuỗi khối và ứng dụng trong thực tiễn Chương 3: Một số nền tảng công nghệ thúc đẩy đối mới trong ngành Công nghệ dịch vụ tài chính419/10/24”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 3 - Một số nền tảng công nghệ thúc đẩy đối mới trong ngành Công nghệ dịch vụ tài chính (Buổi 4).pdf#p6): Blockchain -Công nghệ chuỗi khối và ứng dụng trong thực tiễn Chương 3: Một số nền tảng công nghệ thúc đẩy đối mới trong ngành Công nghệ dịch vụ tài chính419/10/24"
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Blockchain -Công nghệ chuỗi khối và ứng dụng trong thực tiễn Chương 3: Một số nền tảng công nghệ thúc đẩy đối mới trong ngành Công nghệ dịch vụ tài chính429/10/24”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 3 - Một số nền tảng công nghệ thúc đẩy đối mới trong ngành Công nghệ dịch vụ tài chính (Buổi 4).pdf#p7): Blockchain -Công nghệ chuỗi khối và ứng dụng trong thực tiễn Chương 3: Một số nền tảng công nghệ thúc đẩy đối mới trong ngành Công nghệ dịch vụ tài chính429/10/24"
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Blockchain -Công nghệ chuỗi khối và ứng dụng trong thực tiễn Chương 3: Một số nền tảng công nghệ thúc đẩy đối mới trong ngành Công nghệ dịch vụ tài chính439/10/24”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 3 - Một số nền tảng công nghệ thúc đẩy đối mới trong ngành Công nghệ dịch vụ tài chính (Buổi 4).pdf#p8): Blockchain -Công nghệ chuỗi khối và ứng dụng trong thực tiễn Chương 3: Một số nền tảng công nghệ thúc đẩy đối mới trong ngành Công nghệ dịch vụ tài chính439/10/24"
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Blockchain -Công nghệ chuỗi khối và ứng dụng trong thực tiễn Chương 3: Một số nền tảng công nghệ thúc đẩy đối mới trong ngành Công nghệ dịch vụ tài chính449/10/24”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 3 - Một số nền tảng công nghệ thúc đẩy đối mới trong ngành Công nghệ dịch vụ tài chính (Buổi 4).pdf#p9): Blockchain -Công nghệ chuỗi khối và ứng dụng trong thực tiễn Chương 3: Một số nền tảng công nghệ thúc đẩy đối mới trong ngành Công nghệ dịch vụ tài chính449/10/24"
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Big Data - Dữ liệu lớn cho hoạt động quản trị quan hệ khách hàngvỨng dụng các thành tựu CNTT: Trí tuệ nhân tạo, sổ cái phân tán, thanh toán không tiếp xúc: QR Code, Samsung pay, Apple pay, NFC, ví điện tử, tiền mã hóa, Robotics, Internet vạn vật 5110/9/24 Chương 3: Một số nền tảng công nghệ thúc đẩy đối mới trong ngành Công nghệ dịch vụ tài chính”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 3 - Một số nền tảng công nghệ thúc đẩy đối mới trong ngành Công nghệ dịch vụ tài chính (Buổi 4).pdf#p16): Big Data - Dữ liệu lớn cho hoạt động quản trị quan hệ khách hàngvỨng dụng các thành tựu CNTT: Trí tuệ nhân tạo, sổ cái phân tán, thanh toán không tiếp xúc: QR Code, Samsung pay, Apple pay, NFC, ví điện tử, tiền mã hóa, Robotics, Internet vạn vật 5110/9/24 Chương 3: Một số nền tảng công nghệ thúc đẩy đối mới trong ngành Công nghệ dịch vụ tài chính"
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Big Data - Dữ liệu lớn cho hoạt động quản trị quan hệ khách hàng 529/10/24Chương 3: Một số nền tảng công nghệ thúc đẩy đối mới trong ngành Công nghệ dịch vụ tài chính”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 3 - Một số nền tảng công nghệ thúc đẩy đối mới trong ngành Công nghệ dịch vụ tài chính (Buổi 4).pdf#p17): Big Data - Dữ liệu lớn cho hoạt động quản trị quan hệ khách hàng 529/10/24Chương 3: Một số nền tảng công nghệ thúc đẩy đối mới trong ngành Công nghệ dịch vụ tài chính"
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Big Data - Dữ liệu lớn cho hoạt động quản trị quan hệ khách hàng 539/10/24Chương 3: Một số nền tảng công nghệ thúc đẩy đối mới trong ngành Công nghệ dịch vụ tài chính”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 3 - Một số nền tảng công nghệ thúc đẩy đối mới trong ngành Công nghệ dịch vụ tài chính (Buổi 4).pdf#p18): Big Data - Dữ liệu lớn cho hoạt động quản trị quan hệ khách hàng 539/10/24Chương 3: Một số nền tảng công nghệ thúc đẩy đối mới trong ngành Công nghệ dịch vụ tài chính"
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Big Data - Dữ liệu lớn cho hoạt động quản trị quan hệ khách hàng 549/10/24Chương 3: Một số nền tảng công nghệ thúc đẩy đối mới trong ngành Công nghệ dịch vụ tài chính”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 3 - Một số nền tảng công nghệ thúc đẩy đối mới trong ngành Công nghệ dịch vụ tài chính (Buổi 4).pdf#p19): Big Data - Dữ liệu lớn cho hoạt động quản trị quan hệ khách hàng 549/10/24Chương 3: Một số nền tảng công nghệ thúc đẩy đối mới trong ngành Công nghệ dịch vụ tài chính"
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Ví dụ: hành trình khách hàng của Ngân hàng số 559/10/24vXemxéttoàndiệnquátrìnhkháchhàngquanhệvớingânhàngtừnhậnbiết–tìmhiểu–xáclậpquanhệ-lắngnghetưvấn–thựchiệngiaodịch–phảnhồithôngtin(đánhgiá,nêuvướngmắc,…) Chương 3: Một số nền tảng công nghệ thúc đẩy đối mới trong ngành Công nghệ dịch vụ tài chính”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 3 - Một số nền tảng công nghệ thúc đẩy đối mới trong ngành Công nghệ dịch vụ tài chính (Buổi 4).pdf#p20): Ví dụ: hành trình khách hàng của Ngân hàng số 559/10/24vXemxéttoàndiệnquátrìnhkháchhàngquanhệvớingânhàngtừnhậnbiết–tìmhiểu–xáclậpquanhệ-lắngnghetưvấn–thựchiệngiaodịch–phảnhồithôngtin(đánhgiá,nêuvướngmắc,…) Chương 3: Một số nền tảng công nghệ thúc đẩy đối mới trong ngành Công nghệ dịch vụ tài chính"
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Ví dụ: hành trình khách hàng vay mua nhà 569/10/24 Chương 3: Một số nền tảng công nghệ thúc đẩy đối mới trong ngành Công nghệ dịch vụ tài chính”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 3 - Một số nền tảng công nghệ thúc đẩy đối mới trong ngành Công nghệ dịch vụ tài chính (Buổi 4).pdf#p21): Ví dụ: hành trình khách hàng vay mua nhà 569/10/24 Chương 3: Một số nền tảng công nghệ thúc đẩy đối mới trong ngành Công nghệ dịch vụ tài chính"
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“AI -Trí tuệ nhân tạo trong hoạt động tài chính -ngân hàng Chương 3: Một số nền tảng công nghệ thúc đẩy đối mới trong ngành Công nghệ dịch vụ tài chính579/10/24”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 3 - Một số nền tảng công nghệ thúc đẩy đối mới trong ngành Công nghệ dịch vụ tài chính (Buổi 4).pdf#p22): AI -Trí tuệ nhân tạo trong hoạt động tài chính -ngân hàng Chương 3: Một số nền tảng công nghệ thúc đẩy đối mới trong ngành Công nghệ dịch vụ tài chính579/10/24"
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“AI -Trí tuệ nhân tạo trong hoạt động tài chính -ngân hàng Chương 3: Một số nền tảng công nghệ thúc đẩy đối mới trong ngành Công nghệ dịch vụ tài chính589/10/24”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 3 - Một số nền tảng công nghệ thúc đẩy đối mới trong ngành Công nghệ dịch vụ tài chính (Buổi 4).pdf#p23): AI -Trí tuệ nhân tạo trong hoạt động tài chính -ngân hàng Chương 3: Một số nền tảng công nghệ thúc đẩy đối mới trong ngành Công nghệ dịch vụ tài chính589/10/24"
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“HỎI/ĐÁP Chương 3: Một số nền tảng công nghệ thúc đẩy đối mới trong ngành Công nghệ dịch vụ tài chính60”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 3 - Một số nền tảng công nghệ thúc đẩy đối mới trong ngành Công nghệ dịch vụ tài chính (Buổi 4).pdf#p25): HỎI/ĐÁP Chương 3: Một số nền tảng công nghệ thúc đẩy đối mới trong ngành Công nghệ dịch vụ tài chính60"
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Công nghệ tài chính trong cho vayvCôngnghệtàichính(Fintech)đangthayđổiđángkểlĩnhvựcchovay,manglạisựtiệnlợivàtiếpcậntàichínhchonhiềungườitốthơn.vNhữngcảitiếnnàykhôngchỉmanglạilợiíchchongườivaymàcòntạoracơhộiđầutưmớichocácnhàđầutưcánhânvàtổchức.Fintechđanggópphầnlàmchothịtrườngtàichínhtrởnêncôngbằng,minhbạchvàdễtiếpcậnhơn.”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 2 - Một số lĩnh vực chính trong ngành Công nghệ dịch vụ tài chính (Buổi 2).pdf#p3): Công nghệ tài chính trong cho vayvCôngnghệtàichính(Fintech)đangthayđổiđángkểlĩnhvựcchovay,manglạisựtiệnlợivàtiếpcậntàichínhchonhiềungườitốthơn.vNhữngcảitiếnnàykhôngchỉmanglạilợiíchchongườivaymàcòntạoracơhộiđầutưmớichocácnhàđầutưcánhânvàtổchức.Fintechđanggópphầnlàmchothịtrườngtàichínhtrởnêncôngbằng,minhbạchvàdễtiếpcậnhơn."
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Chương 2: Một số lĩnh vực chính trong ngành Công nghệ dịch vụ tài chính1211/9/24”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 2 - Một số lĩnh vực chính trong ngành Công nghệ dịch vụ tài chính (Buổi 2).pdf#p3): Chương 2: Một số lĩnh vực chính trong ngành Công nghệ dịch vụ tài chính1211/9/24"
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Công nghệ tài chính trong cho vayv1.Chovaytrựctuyến(OnlineLending)§CácnềntảngchovaytrựctuyếnnhưTima,VayMuon,Tomo,…đãđơngiảnhóaquátrìnhvayvốn,chophépngườidùngđăngkývayngaytrênnềntảngmàkhôngcầnđếnngânhàng.§Quytrìnhduyệthồsơđượctựđộnghóanhờsửdụngtrítuệnhântạo(AI)vàdữliệulớn(BigData).”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 2 - Một số lĩnh vực chính trong ngành Công nghệ dịch vụ tài chính (Buổi 2).pdf#p4): Công nghệ tài chính trong cho vayv1.Chovaytrựctuyến(OnlineLending)§CácnềntảngchovaytrựctuyếnnhưTima,VayMuon,Tomo,…đãđơngiảnhóaquátrìnhvayvốn,chophépngườidùngđăngkývayngaytrênnềntảngmàkhôngcầnđếnngânhàng.§Quytrìnhduyệthồsơđượctựđộnghóanhờsửdụngtrítuệnhântạo(AI)vàdữliệulớn(BigData)."
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Chương 2: Một số lĩnh vực chính trong ngành Công nghệ dịch vụ tài chính1311/9/24”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 2 - Một số lĩnh vực chính trong ngành Công nghệ dịch vụ tài chính (Buổi 2).pdf#p4): Chương 2: Một số lĩnh vực chính trong ngành Công nghệ dịch vụ tài chính1311/9/24"
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Công nghệ tài chính trong cho vayv2.Chovaynganghàng(Peer-to-PeerLending-P2P)§CácnềntảngP2PnhưFundingSocieties,Lendbiz,…kếtnốingườivayvàngườichovaymàkhôngcầnthôngquatrunggiantàichínhtruyềnthống.§Điềunàygiúpgiảmchiphívayvàtăngcườngkhảnăngtiếpcậnnguồnvốnchonhữngngườikhôngcólịchsửtíndụngmạnh.”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 2 - Một số lĩnh vực chính trong ngành Công nghệ dịch vụ tài chính (Buổi 2).pdf#p5): Công nghệ tài chính trong cho vayv2.Chovaynganghàng(Peer-to-PeerLending-P2P)§CácnềntảngP2PnhưFundingSocieties,Lendbiz,…kếtnốingườivayvàngườichovaymàkhôngcầnthôngquatrunggiantàichínhtruyềnthống.§Điềunàygiúpgiảmchiphívayvàtăngcườngkhảnăngtiếpcậnnguồnvốnchonhữngngườikhôngcólịchsửtíndụngmạnh."
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Chương 2: Một số lĩnh vực chính trong ngành Công nghệ dịch vụ tài chính1411/9/24”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 2 - Một số lĩnh vực chính trong ngành Công nghệ dịch vụ tài chính (Buổi 2).pdf#p5): Chương 2: Một số lĩnh vực chính trong ngành Công nghệ dịch vụ tài chính1411/9/24"
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Công nghệ tài chính trong cho vayv3.Phântíchtíndụngthôngminh§SửdụngAIvàMachineLearning,cácnềntảngFintechcóthểphântíchdữliệutừnhiềunguồnkhácnhau,baogồmcảcácthôngtinphitruyềnthốngnhưhoạtđộngmạngxãhội,đểđánhgiákhảnăngtíndụngcủangườivay.§Điềunàymởrộngkhảnăngvayvốnchonhữngngườicóhồsơtíndụnghạnchếhoặckhôngcólịchsửtíndụng.”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 2 - Một số lĩnh vực chính trong ngành Công nghệ dịch vụ tài chính (Buổi 2).pdf#p6): Công nghệ tài chính trong cho vayv3.Phântíchtíndụngthôngminh§SửdụngAIvàMachineLearning,cácnềntảngFintechcóthểphântíchdữliệutừnhiềunguồnkhácnhau,baogồmcảcácthôngtinphitruyềnthốngnhưhoạtđộngmạngxãhội,đểđánhgiákhảnăngtíndụngcủangườivay.§Điềunàymởrộngkhảnăngvayvốnchonhữngngườicóhồsơtíndụnghạnchếhoặckhôngcólịchsửtíndụng."
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Chương 2: Một số lĩnh vực chính trong ngành Công nghệ dịch vụ tài chính1511/9/24”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 2 - Một số lĩnh vực chính trong ngành Công nghệ dịch vụ tài chính (Buổi 2).pdf#p6): Chương 2: Một số lĩnh vực chính trong ngành Công nghệ dịch vụ tài chính1511/9/24"
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Công nghệ tài chính trong cho vayv4.Chovaynhanh(InstantLoans)§Vớisựpháttriểncủacôngnghệ,việcduyệtvàgiảingânkhoảnvaycóthểdiễnragầnnhưngaylậptức.§CácnềntảngFintechcóthểcungcấpkhoảnvaynhỏ(microloans)trongvòngvàiphút,phụcvụnhucầutàichínhcấpbáchcủangườidùng.”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 2 - Một số lĩnh vực chính trong ngành Công nghệ dịch vụ tài chính (Buổi 2).pdf#p7): Công nghệ tài chính trong cho vayv4.Chovaynhanh(InstantLoans)§Vớisựpháttriểncủacôngnghệ,việcduyệtvàgiảingânkhoảnvaycóthểdiễnragầnnhưngaylậptức.§CácnềntảngFintechcóthểcungcấpkhoảnvaynhỏ(microloans)trongvòngvàiphút,phụcvụnhucầutàichínhcấpbáchcủangườidùng."
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Chương 2: Một số lĩnh vực chính trong ngành Công nghệ dịch vụ tài chính1611/9/24”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 2 - Một số lĩnh vực chính trong ngành Công nghệ dịch vụ tài chính (Buổi 2).pdf#p7): Chương 2: Một số lĩnh vực chính trong ngành Công nghệ dịch vụ tài chính1611/9/24"
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Công nghệ tài chính trong cho vayv5.Tíchhợpvớicácdịchvụtàichínhkhác§NhiềunềntảngFintechtíchhợpdịchvụchovayvớicácdịchvụkhácnhưquảnlýtàichínhcánhân,đầutư,vàbảohiểm,giúpngườidùngquảnlýtàichínhmộtcáchtoàndiệnhơn.§Điềunàykhôngchỉcungcấpkhoảnvaymàcònhỗtrợngườidùngtrongviệcquảnlýkhoảnvayvàtàichínhcánhân.”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 2 - Một số lĩnh vực chính trong ngành Công nghệ dịch vụ tài chính (Buổi 2).pdf#p8): Công nghệ tài chính trong cho vayv5.Tíchhợpvớicácdịchvụtàichínhkhác§NhiềunềntảngFintechtíchhợpdịchvụchovayvớicácdịchvụkhácnhưquảnlýtàichínhcánhân,đầutư,vàbảohiểm,giúpngườidùngquảnlýtàichínhmộtcáchtoàndiệnhơn.§Điềunàykhôngchỉcungcấpkhoảnvaymàcònhỗtrợngườidùngtrongviệcquảnlýkhoảnvayvàtàichínhcánhân."
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Chương 2: Một số lĩnh vực chính trong ngành Công nghệ dịch vụ tài chính1711/9/24”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 2 - Một số lĩnh vực chính trong ngành Công nghệ dịch vụ tài chính (Buổi 2).pdf#p8): Chương 2: Một số lĩnh vực chính trong ngành Công nghệ dịch vụ tài chính1711/9/24"
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“v6.Chovaydoanhnghiệpnhỏ(SMELending)§Fintechgiúpcácdoanhnghiệpnhỏvàvừa(SMEs)tiếpcậnnguồnvốndễdànghơnthôngquacácnềntảngnhưKabbage,FundingCircle,...§Nhữngdoanhnghiệpnàythườnggặpkhókhănkhivayvốntừcácngânhàngtruyềnthốngdothiếutàisảnthếchấphoặclịchsửtíndụnghạnchế.”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 2 - Một số lĩnh vực chính trong ngành Công nghệ dịch vụ tài chính (Buổi 2).pdf#p9): v6.Chovaydoanhnghiệpnhỏ(SMELending)§Fintechgiúpcácdoanhnghiệpnhỏvàvừa(SMEs)tiếpcậnnguồnvốndễdànghơnthôngquacácnềntảngnhưKabbage,FundingCircle,...§Nhữngdoanhnghiệpnàythườnggặpkhókhănkhivayvốntừcácngânhàngtruyềnthốngdothiếutàisảnthếchấphoặclịchsửtíndụnghạnchế."
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Chương 2: Một số lĩnh vực chính trong ngành Công nghệ dịch vụ tài chính1811/9/24”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 2 - Một số lĩnh vực chính trong ngành Công nghệ dịch vụ tài chính (Buổi 2).pdf#p9): Chương 2: Một số lĩnh vực chính trong ngành Công nghệ dịch vụ tài chính1811/9/24"
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Công nghệ tài chính trong cho vayv7.Môhìnhchovaydựatrêndữliệu(Data-DrivenLending)§CáccôngtyFintechsửdụngdữliệutừnhiềunguồnkhácnhauđểxácđịnhrủirovàđưaraquyếtđịnhchovay.§Điềunàybaogồmdữliệuvềhànhvitiêudùng,lịchsửgiaodịch,vàthậmchílàdữliệutừcácnềntảngthươngmạiđiệntử.”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 2 - Một số lĩnh vực chính trong ngành Công nghệ dịch vụ tài chính (Buổi 2).pdf#p10): Công nghệ tài chính trong cho vayv7.Môhìnhchovaydựatrêndữliệu(Data-DrivenLending)§CáccôngtyFintechsửdụngdữliệutừnhiềunguồnkhácnhauđểxácđịnhrủirovàđưaraquyếtđịnhchovay.§Điềunàybaogồmdữliệuvềhànhvitiêudùng,lịchsửgiaodịch,vàthậmchílàdữliệutừcácnềntảngthươngmạiđiệntử."
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Chương 2: Một số lĩnh vực chính trong ngành Công nghệ dịch vụ tài chính1911/9/24”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 2 - Một số lĩnh vực chính trong ngành Công nghệ dịch vụ tài chính (Buổi 2).pdf#p10): Chương 2: Một số lĩnh vực chính trong ngành Công nghệ dịch vụ tài chính1911/9/24"
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Công nghệ tài chính trong cho vayv8.ỨngdụngBlockchaintrongchovay§Blockchaingiúptạoracáchợpđồngthôngminh(smartcontracts),tựđộnghóaquytrìnhvayvốnvàthanhtoánlãisuất,giúpcácgiaodịchtrởnênminhbạchvàantoànhơn.§Điềunàycóthểgiảmthiểurủirogianlậnvànângcaođộtincậytrongcácgiaodịchvaymượn.”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 2 - Một số lĩnh vực chính trong ngành Công nghệ dịch vụ tài chính (Buổi 2).pdf#p11): Công nghệ tài chính trong cho vayv8.ỨngdụngBlockchaintrongchovay§Blockchaingiúptạoracáchợpđồngthôngminh(smartcontracts),tựđộnghóaquytrìnhvayvốnvàthanhtoánlãisuất,giúpcácgiaodịchtrởnênminhbạchvàantoànhơn.§Điềunàycóthểgiảmthiểurủirogianlậnvànângcaođộtincậytrongcácgiaodịchvaymượn."
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Chương 2: Một số lĩnh vực chính trong ngành Công nghệ dịch vụ tài chính2011/9/24”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 2 - Một số lĩnh vực chính trong ngành Công nghệ dịch vụ tài chính (Buổi 2).pdf#p11): Chương 2: Một số lĩnh vực chính trong ngành Công nghệ dịch vụ tài chính2011/9/24"
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Công nghệ tài chính trong quản lý tài sảnvCôngnghệtàichính(Fintech)đãvàđangtạoranhữngthayđổilớntronglĩnhvựcquảnlýtàisản,manglạinhiềutiệníchvàcơhộimớichocảnhàđầutưcánhânvàcáctổchức.vNhữngtiếnbộnàyđãlàmchoquảnlýtàisảntrởnêndễtiếpcận,minhbạchvàhiệuquảhơn,giúpnhàđầutưvàquảnlýtàisảntốiưuhóalợinhuậnvàquảnlýrủirotốthơntrongmộtmôitrườngtàichínhngàycàngphứctạp.”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 2 - Một số lĩnh vực chính trong ngành Công nghệ dịch vụ tài chính (Buổi 2).pdf#p12): Công nghệ tài chính trong quản lý tài sảnvCôngnghệtàichính(Fintech)đãvàđangtạoranhữngthayđổilớntronglĩnhvựcquảnlýtàisản,manglạinhiềutiệníchvàcơhộimớichocảnhàđầutưcánhânvàcáctổchức.vNhữngtiếnbộnàyđãlàmchoquảnlýtàisảntrởnêndễtiếpcận,minhbạchvàhiệuquảhơn,giúpnhàđầutưvàquảnlýtàisảntốiưuhóalợinhuậnvàquảnlýrủirotốthơntrongmộtmôitrườngtàichínhngàycàngphứctạp."
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Chương 2: Một số lĩnh vực chính trong ngành Công nghệ dịch vụ tài chính2111/9/24”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 2 - Một số lĩnh vực chính trong ngành Công nghệ dịch vụ tài chính (Buổi 2).pdf#p12): Chương 2: Một số lĩnh vực chính trong ngành Công nghệ dịch vụ tài chính2111/9/24"
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Công nghệ tài chính trong quản lý tài sảnv1.Cốvấntàichínhtựđộng(Robo-Advisors)§CácnềntảngnhưBetterment,Wealthfront,Stash,…cungcấpdịchvụquảnlýtàisảntựđộngdựatrênthuậttoán.§Ngườidùngchỉcầnnhậpthôngtinvềmụctiêutàichính,khẩuvịrủirovàthờigianđầutư,hệthốngsẽtựđộngxâydựngvàquảnlýdanhmụcđầutưphùhợp.§Điềunàygiúpgiảmchiphíquảnlývàmanglạidịchvụđầutưchuyênnghiệpchocảnhữngnhàđầutưnhỏlẻ.”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 2 - Một số lĩnh vực chính trong ngành Công nghệ dịch vụ tài chính (Buổi 2).pdf#p13): Công nghệ tài chính trong quản lý tài sảnv1.Cốvấntàichínhtựđộng(Robo-Advisors)§CácnềntảngnhưBetterment,Wealthfront,Stash,…cungcấpdịchvụquảnlýtàisảntựđộngdựatrênthuậttoán.§Ngườidùngchỉcầnnhậpthôngtinvềmụctiêutàichính,khẩuvịrủirovàthờigianđầutư,hệthốngsẽtựđộngxâydựngvàquảnlýdanhmụcđầutưphùhợp.§Điềunàygiúpgiảmchiphíquảnlývàmanglạidịchvụđầutưchuyênnghiệpchocảnhữngnhàđầutưnhỏlẻ."
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Chương 2: Một số lĩnh vực chính trong ngành Công nghệ dịch vụ tài chính2211/9/24”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 2 - Một số lĩnh vực chính trong ngành Công nghệ dịch vụ tài chính (Buổi 2).pdf#p13): Chương 2: Một số lĩnh vực chính trong ngành Công nghệ dịch vụ tài chính2211/9/24"
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Ứng dụng quản lý tài chính cá nhân§CácứngdụngnhưMint,YNAB(YouNeedABudget),PocketGuard,…giúpngườidùngtheodõichitiêu,quảnlýngânsáchvàlậpkếhoạchtàichínhcánhân.§Nhữngứngdụngnàycóthểkếtnốivớitàikhoảnngânhàng,thẻtíndụngvàcáckhoảnđầutưđểcungcấpcáinhìntổngthểvềtìnhhìnhtàichínhcủangườidùng.”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 2 - Một số lĩnh vực chính trong ngành Công nghệ dịch vụ tài chính (Buổi 2).pdf#p14): Ứng dụng quản lý tài chính cá nhân§CácứngdụngnhưMint,YNAB(YouNeedABudget),PocketGuard,…giúpngườidùngtheodõichitiêu,quảnlýngânsáchvàlậpkếhoạchtàichínhcánhân.§Nhữngứngdụngnàycóthểkếtnốivớitàikhoảnngânhàng,thẻtíndụngvàcáckhoảnđầutưđểcungcấpcáinhìntổngthểvềtìnhhìnhtàichínhcủangườidùng."
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Chương 2: Một số lĩnh vực chính trong ngành Công nghệ dịch vụ tài chính2311/9/24”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 2 - Một số lĩnh vực chính trong ngành Công nghệ dịch vụ tài chính (Buổi 2).pdf#p14): Chương 2: Một số lĩnh vực chính trong ngành Công nghệ dịch vụ tài chính2311/9/24"
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Nềntảngđầutưtrựctuyến§FintechcungcấpcácnềntảngđầutưtrựctuyếnnhưRobinhood,e*TRADE,TDAmeritrade,…chophépngườidùngthựchiệngiaodịchchứngkhoán,quỹETF,vàcáctàisảnkhácmộtcáchdễdàngvàchiphíthấp.§Nhiềunềntảngcòncungcấpcáccôngcụphântíchvànghiêncứuđểhỗtrợngườidùngđưaraquyếtđịnhđầutư.”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 2 - Một số lĩnh vực chính trong ngành Công nghệ dịch vụ tài chính (Buổi 2).pdf#p15): Nềntảngđầutưtrựctuyến§FintechcungcấpcácnềntảngđầutưtrựctuyếnnhưRobinhood,e*TRADE,TDAmeritrade,…chophépngườidùngthựchiệngiaodịchchứngkhoán,quỹETF,vàcáctàisảnkhácmộtcáchdễdàngvàchiphíthấp.§Nhiềunềntảngcòncungcấpcáccôngcụphântíchvànghiêncứuđểhỗtrợngườidùngđưaraquyếtđịnhđầutư."
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Chương 2: Một số lĩnh vực chính trong ngành Công nghệ dịch vụ tài chính2411/9/24”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 2 - Một số lĩnh vực chính trong ngành Công nghệ dịch vụ tài chính (Buổi 2).pdf#p15): Chương 2: Một số lĩnh vực chính trong ngành Công nghệ dịch vụ tài chính2411/9/24"
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Quảnlýdanhmụcđầutưtựđộng(PortfolioManagement)§Cáccôngcụquảnlýdanhmụcđầutưtựđộnggiúpngườidùngtheodõihiệusuấtcủacáckhoảnđầutưvàđiềuchỉnhdanhmụctheothờigianthựcdựatrêncácbiếnđộngcủathịtrường.Nhữngcôngcụnàycóthểtíchhợpvớicácnềntảnggiaodịchvàcungcấpcáckhuyếnnghịđầutưdựatrênphântíchdữliệulớn(BigData).”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 2 - Một số lĩnh vực chính trong ngành Công nghệ dịch vụ tài chính (Buổi 2).pdf#p16): Quảnlýdanhmụcđầutưtựđộng(PortfolioManagement)§Cáccôngcụquảnlýdanhmụcđầutưtựđộnggiúpngườidùngtheodõihiệusuấtcủacáckhoảnđầutưvàđiềuchỉnhdanhmụctheothờigianthựcdựatrêncácbiếnđộngcủathịtrường.Nhữngcôngcụnàycóthểtíchhợpvớicácnềntảnggiaodịchvàcungcấpcáckhuyếnnghịđầutưdựatrênphântíchdữliệulớn(BigData)."
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Chương 2: Một số lĩnh vực chính trong ngành Công nghệ dịch vụ tài chính2511/9/24”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 2 - Một số lĩnh vực chính trong ngành Công nghệ dịch vụ tài chính (Buổi 2).pdf#p16): Chương 2: Một số lĩnh vực chính trong ngành Công nghệ dịch vụ tài chính2511/9/24"
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Công nghệ tài chính trong quản lý tài sảnv5.Đầutưcộngđồng(Crowdfunding)§CácnềntảngnhưKickstarter,Indiegogo,Fundrise,…chophépnhàđầutưcánhânthamgiađầutưvàocácdựánkhởinghiệp,bấtđộngsản,vàcáckhoảnđầutưthaythếkhác.”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 2 - Một số lĩnh vực chính trong ngành Công nghệ dịch vụ tài chính (Buổi 2).pdf#p17): Công nghệ tài chính trong quản lý tài sảnv5.Đầutưcộngđồng(Crowdfunding)§CácnềntảngnhưKickstarter,Indiegogo,Fundrise,…chophépnhàđầutưcánhânthamgiađầutưvàocácdựánkhởinghiệp,bấtđộngsản,vàcáckhoảnđầutưthaythếkhác."
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Chương 2: Một số lĩnh vực chính trong ngành Công nghệ dịch vụ tài chính2611/9/24 §Crowdfundingmanglạicơhộiđầutưvàocácdựántiềmnăngmàtrướcđâychỉcócácnhàđầutưtổchứcmớitiếpcậnđược.”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 2 - Một số lĩnh vực chính trong ngành Công nghệ dịch vụ tài chính (Buổi 2).pdf#p17): Chương 2: Một số lĩnh vực chính trong ngành Công nghệ dịch vụ tài chính2611/9/24 §Crowdfundingmanglạicơhộiđầutưvàocácdựántiềmnăngmàtrướcđâychỉcócácnhàđầutưtổchứcmớitiếpcậnđược."
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Công nghệ tài chính trong quản lý tài sảnv6.Phân tích và báo cáo tài chính dựa trên AI§Fintechsửdụngtrítuệnhântạo(AI)đểphântíchcácdữliệutàichínhphứctạpvàđưaranhữngbáocáochitiếtvềhiệusuấtđầutư,phânbổtàisảnvàquảnlýrủiro.§CáccôngcụnhưBlackRock’sAladdinhayBloomberg’sTerminalcungcấpchocácnhàquảnlýtàisảncáccôngcụphântíchmạnhmẽđểtốiưuhóadanhmụcđầutư.”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 2 - Một số lĩnh vực chính trong ngành Công nghệ dịch vụ tài chính (Buổi 2).pdf#p18): Công nghệ tài chính trong quản lý tài sảnv6.Phân tích và báo cáo tài chính dựa trên AI§Fintechsửdụngtrítuệnhântạo(AI)đểphântíchcácdữliệutàichínhphứctạpvàđưaranhữngbáocáochitiếtvềhiệusuấtđầutư,phânbổtàisảnvàquảnlýrủiro.§CáccôngcụnhưBlackRock’sAladdinhayBloomberg’sTerminalcungcấpchocácnhàquảnlýtàisảncáccôngcụphântíchmạnhmẽđểtốiưuhóadanhmụcđầutư."
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Chương 2: Một số lĩnh vực chính trong ngành Công nghệ dịch vụ tài chính2711/9/24”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 2 - Một số lĩnh vực chính trong ngành Công nghệ dịch vụ tài chính (Buổi 2).pdf#p18): Chương 2: Một số lĩnh vực chính trong ngành Công nghệ dịch vụ tài chính2711/9/24"
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Giao dịch tần suất cao (High-Frequency Trading - HFT)§HFTsửdụngcácthuậttoánphứctạpđểthựchiệncácgiaodịchtàichínhvớitốcđộrấtcao,tậndụngsựchênhlệchgiánhỏgiữacácthịtrường.§Côngnghệnàyđãthayđổicáchmàcáctổchứctàichínhvàquỹđầutưthựchiệngiaodịch,manglạilợinhuậntừcáccơhộingắnhạntrênthịtrường.”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 2 - Một số lĩnh vực chính trong ngành Công nghệ dịch vụ tài chính (Buổi 2).pdf#p19): Giao dịch tần suất cao (High-Frequency Trading - HFT)§HFTsửdụngcácthuậttoánphứctạpđểthựchiệncácgiaodịchtàichínhvớitốcđộrấtcao,tậndụngsựchênhlệchgiánhỏgiữacácthịtrường.§Côngnghệnàyđãthayđổicáchmàcáctổchứctàichínhvàquỹđầutưthựchiệngiaodịch,manglạilợinhuậntừcáccơhộingắnhạntrênthịtrường."
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Chương 2: Một số lĩnh vực chính trong ngành Công nghệ dịch vụ tài chính2811/9/24”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 2 - Một số lĩnh vực chính trong ngành Công nghệ dịch vụ tài chính (Buổi 2).pdf#p19): Chương 2: Một số lĩnh vực chính trong ngành Công nghệ dịch vụ tài chính2811/9/24"
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Công nghệ tài chính trong quản lý tài sảnv8.Blockchainvàtàisảnsốhóa§Blockchainkhôngchỉcungcấpnềntảngchotiềnđiệntửmàcònhỗtrợviệcsốhóacáctàisảntruyềnthốngnhưbấtđộngsản,nghệthuật,vàthậmchílàcổphiếu.§CácnềntảngnhưTokeny,Securitize,…chophépchianhỏtàisảnthànhcácđơnvịnhỏhơn(tokenization),tạođiềukiệnchoviệcđầutưvàocácloạitàisảntrướcđâykhôngdễtiếpcận.”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 2 - Một số lĩnh vực chính trong ngành Công nghệ dịch vụ tài chính (Buổi 2).pdf#p20): Công nghệ tài chính trong quản lý tài sảnv8.Blockchainvàtàisảnsốhóa§Blockchainkhôngchỉcungcấpnềntảngchotiềnđiệntửmàcònhỗtrợviệcsốhóacáctàisảntruyềnthốngnhưbấtđộngsản,nghệthuật,vàthậmchílàcổphiếu.§CácnềntảngnhưTokeny,Securitize,…chophépchianhỏtàisảnthànhcácđơnvịnhỏhơn(tokenization),tạođiềukiệnchoviệcđầutưvàocácloạitàisảntrướcđâykhôngdễtiếpcận."
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Chương 2: Một số lĩnh vực chính trong ngành Công nghệ dịch vụ tài chính2911/9/24”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 2 - Một số lĩnh vực chính trong ngành Công nghệ dịch vụ tài chính (Buổi 2).pdf#p20): Chương 2: Một số lĩnh vực chính trong ngành Công nghệ dịch vụ tài chính2911/9/24"
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Công nghệ tài chính trong quản lý tài sảnv9.Dịchvụđầutưcánhânhóa§SửdụngdữliệucánhânvàAI,Fintechcóthểtạoracácgiảiphápđầutưđượctùychỉnhtheonhucầuvàmụctiêucụthểcủatừngcánhân.§Cácdịchvụnàygiúptốiưuhóachiếnlượcđầutưdựatrênhồsơrủiro,thờigianđầutư,vàmụctiêutàichínhcủangườidùng Chương 2: Một số lĩnh vực chính trong ngành Công nghệ dịch vụ tài chính3011/9/24”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 2 - Một số lĩnh vực chính trong ngành Công nghệ dịch vụ tài chính (Buổi 2).pdf#p21): Công nghệ tài chính trong quản lý tài sảnv9.Dịchvụđầutưcánhânhóa§SửdụngdữliệucánhânvàAI,Fintechcóthểtạoracácgiảiphápđầutưđượctùychỉnhtheonhucầuvàmụctiêucụthểcủatừngcánhân.§Cácdịchvụnàygiúptốiưuhóachiếnlượcđầutưdựatrênhồsơrủiro,thờigianđầutư,vàmụctiêutàichínhcủangườidùng Chương 2: Một số lĩnh vực chính trong ngành Công nghệ dịch vụ tài chính3011/9/24"
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Digital Business Models –Các mô hình kinh doanh số Chương 3: Một số nền tảng công nghệ thúc đẩy đối mới trong ngành Công nghệ dịch vụ tài chính229/10/24”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 3 - Một số nền tảng công nghệ thúc đẩy đối mới trong ngành Công nghệ dịch vụ tài chính (Buổi 3).pdf#p5): Digital Business Models –Các mô hình kinh doanh số Chương 3: Một số nền tảng công nghệ thúc đẩy đối mới trong ngành Công nghệ dịch vụ tài chính229/10/24"
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Digital Business Models –Các mô hình kinh doanh số Chương 3: Một số nền tảng công nghệ thúc đẩy đối mới trong ngành Công nghệ dịch vụ tài chính239/10/24”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 3 - Một số nền tảng công nghệ thúc đẩy đối mới trong ngành Công nghệ dịch vụ tài chính (Buổi 3).pdf#p6): Digital Business Models –Các mô hình kinh doanh số Chương 3: Một số nền tảng công nghệ thúc đẩy đối mới trong ngành Công nghệ dịch vụ tài chính239/10/24"
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Các chức năng, quy trình của Data Management Chương 3: Một số nền tảng công nghệ thúc đẩy đối mới trong ngành Công nghệ dịch vụ tài chính269/10/24vData governance§Data governance là lập kế hoạch, triển khai, giám sát toàn bộ hoạt động, các quy trình, chức năng có trong quản lý tài sản dữ liệu, kiểm soát hệ thống Data management.”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 3 - Một số nền tảng công nghệ thúc đẩy đối mới trong ngành Công nghệ dịch vụ tài chính (Buổi 3).pdf#p9): Các chức năng, quy trình của Data Management Chương 3: Một số nền tảng công nghệ thúc đẩy đối mới trong ngành Công nghệ dịch vụ tài chính269/10/24vData governance§Data governance là lập kế hoạch, triển khai, giám sát toàn bộ hoạt động, các quy trình, chức năng có trong quản lý tài sản dữ liệu, kiểm soát hệ thống Data management."
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Với ứng dụng nào?vRobot có thể chạy ẩn hoặc hỗ trợ trựctiếpnếucầnthiếtRobot có thể chạy Robot có thể đượcdùngđểRobot có thể sử dụng Thựchiệncáccôngviệcchưa đượchoànthành Thay thế công việc hiện tại Dịch vụ hoặc khả năng mới MS OfficeWWWEmailCác hệ thống nội bộ hoặc hệ thống bên ngoàiDịch vụ Cloud Hàng năm hoặc hàng thángMỗi ngày 1 lần hoặc vào ban đêmTheo nhu cầuLiên tục”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 3 - Một số nền tảng công nghệ thúc đẩy đối mới trong ngành Công nghệ dịch vụ tài chính (Buổi 3).pdf#p18): Với ứng dụng nào?vRobot có thể chạy ẩn hoặc hỗ trợ trựctiếpnếucầnthiếtRobot có thể chạy Robot có thể đượcdùngđểRobot có thể sử dụng Thựchiệncáccôngviệcchưa đượchoànthành Thay thế công việc hiện tại Dịch vụ hoặc khả năng mới MS OfficeWWWEmailCác hệ thống nội bộ hoặc hệ thống bên ngoàiDịch vụ Cloud Hàng năm hoặc hàng thángMỗi ngày 1 lần hoặc vào ban đêmTheo nhu cầuLiên tục"
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Ví dụ: Hành trình xác định/cập nhật “giá bán sản phẩm” bất kỳ 36Gửi EmailTổng hợp Cán bộ/Nhân viênphụ tráchTìm kiếm Lãnh đạo doanh nghiệp xem xét & phê duyệt”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 3 - Một số nền tảng công nghệ thúc đẩy đối mới trong ngành Công nghệ dịch vụ tài chính (Buổi 3).pdf#p19): Ví dụ: Hành trình xác định/cập nhật “giá bán sản phẩm” bất kỳ 36Gửi EmailTổng hợp Cán bộ/Nhân viênphụ tráchTìm kiếm Lãnh đạo doanh nghiệp xem xét & phê duyệt"
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Ví dụ: Hành trình xác định/cập nhật “giá bán sản phẩm” bất kỳ 37Gửi EmailTổng hợpCán bộ/Nhân viênphụ tráchTìm kiếm Lãnh đạo doanh nghiệp xem xét & phê duyệt RPARPA”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 3 - Một số nền tảng công nghệ thúc đẩy đối mới trong ngành Công nghệ dịch vụ tài chính (Buổi 3).pdf#p20): Ví dụ: Hành trình xác định/cập nhật “giá bán sản phẩm” bất kỳ 37Gửi EmailTổng hợpCán bộ/Nhân viênphụ tráchTìm kiếm Lãnh đạo doanh nghiệp xem xét & phê duyệt RPARPA"
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Ví dụ: Hành trình xác định/cập nhật “giá bán sản phẩm” bất kỳvVí dụ: Thu thập dữ liệu liên quan đến giá bán của các loại điện thoại iPhone 13 Pro Max trên trang websosanh.com.”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 3 - Một số nền tảng công nghệ thúc đẩy đối mới trong ngành Công nghệ dịch vụ tài chính (Buổi 3).pdf#p21): Ví dụ: Hành trình xác định/cập nhật “giá bán sản phẩm” bất kỳvVí dụ: Thu thập dữ liệu liên quan đến giá bán của các loại điện thoại iPhone 13 Pro Max trên trang websosanh.com."
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Dữ liệu thu thập được được lưu thành file Excel à gửi đến Email của người quản lý à hỗ trợ quyết định điều chỉnh giá bán sản phẩm phù hợp xu thế thị trường 38”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 3 - Một số nền tảng công nghệ thúc đẩy đối mới trong ngành Công nghệ dịch vụ tài chính (Buổi 3).pdf#p21): Dữ liệu thu thập được được lưu thành file Excel à gửi đến Email của người quản lý à hỗ trợ quyết định điều chỉnh giá bán sản phẩm phù hợp xu thế thị trường 38"
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Ứng dụng công nghệ đột phá trong công nghệ dịch vụ tài chính Chương 3: Một số nền tảng công nghệ thúc đẩy đối mới trong ngành Công nghệ dịch vụ tài chính22/10/24”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 3 - Một số nền tảng công nghệ thúc đẩy đối mới trong ngành Công nghệ dịch vụ tài chính (Buổi 1 & Buổi 2).pdf#p2): Ứng dụng công nghệ đột phá trong công nghệ dịch vụ tài chính Chương 3: Một số nền tảng công nghệ thúc đẩy đối mới trong ngành Công nghệ dịch vụ tài chính22/10/24"
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Bối cảnh thị trườngv5côngtycôngnghệtàichínhcủaViệtNamtrongdanhsáchgồmPayoo,Moca,Momo,TimavàZaloPay.4trongsố5côngtysởhữuvíđiệntử.vTrongsốhọ,Moca,MomovàZaloPaychiếmtớihơn90%thịphầnvíđiệntửtạithịtrườngViệtNam32/10/24”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 3 - Một số nền tảng công nghệ thúc đẩy đối mới trong ngành Công nghệ dịch vụ tài chính (Buổi 1 & Buổi 2).pdf#p3): Bối cảnh thị trườngv5côngtycôngnghệtàichínhcủaViệtNamtrongdanhsáchgồmPayoo,Moca,Momo,TimavàZaloPay.4trongsố5côngtysởhữuvíđiệntử.vTrongsốhọ,Moca,MomovàZaloPaychiếmtớihơn90%thịphầnvíđiệntửtạithịtrườngViệtNam32/10/24"
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Các xu hướng công nghệ trong Fintech trên thế giới Chương 3: Một số nền tảng công nghệ thúc đẩy đối mới trong ngành Công nghệ dịch vụ tài chính52/10/24”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 3 - Một số nền tảng công nghệ thúc đẩy đối mới trong ngành Công nghệ dịch vụ tài chính (Buổi 1 & Buổi 2).pdf#p5): Các xu hướng công nghệ trong Fintech trên thế giới Chương 3: Một số nền tảng công nghệ thúc đẩy đối mới trong ngành Công nghệ dịch vụ tài chính52/10/24"
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Các nền tảng công nghệ trong thời đại số Chương 3: Một số nền tảng công nghệ thúc đẩy đối mới trong ngành Công nghệ dịch vụ tài chính62/10/24”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 3 - Một số nền tảng công nghệ thúc đẩy đối mới trong ngành Công nghệ dịch vụ tài chính (Buổi 1 & Buổi 2).pdf#p6): Các nền tảng công nghệ trong thời đại số Chương 3: Một số nền tảng công nghệ thúc đẩy đối mới trong ngành Công nghệ dịch vụ tài chính62/10/24"
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Nền tảng công nghệ và mô hình kinh doanh nền tảng Chương 3: Một số nền tảng công nghệ thúc đẩy đối mới trong ngành Công nghệ dịch vụ tài chính72/10/24”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 3 - Một số nền tảng công nghệ thúc đẩy đối mới trong ngành Công nghệ dịch vụ tài chính (Buổi 1 & Buổi 2).pdf#p7): Nền tảng công nghệ và mô hình kinh doanh nền tảng Chương 3: Một số nền tảng công nghệ thúc đẩy đối mới trong ngành Công nghệ dịch vụ tài chính72/10/24"
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Nền tảng công nghệ và mô hình kinh doanh nền tảng Chương 3: Một số nền tảng công nghệ thúc đẩy đối mới trong ngành Công nghệ dịch vụ tài chính82/10/24”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 3 - Một số nền tảng công nghệ thúc đẩy đối mới trong ngành Công nghệ dịch vụ tài chính (Buổi 1 & Buổi 2).pdf#p8): Nền tảng công nghệ và mô hình kinh doanh nền tảng Chương 3: Một số nền tảng công nghệ thúc đẩy đối mới trong ngành Công nghệ dịch vụ tài chính82/10/24"
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Nền tảng công nghệ và mô hình kinh doanh nền tảng Chương 3: Một số nền tảng công nghệ thúc đẩy đối mới trong ngành Công nghệ dịch vụ tài chính92/10/24”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 3 - Một số nền tảng công nghệ thúc đẩy đối mới trong ngành Công nghệ dịch vụ tài chính (Buổi 1 & Buổi 2).pdf#p9): Nền tảng công nghệ và mô hình kinh doanh nền tảng Chương 3: Một số nền tảng công nghệ thúc đẩy đối mới trong ngành Công nghệ dịch vụ tài chính92/10/24"
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Nền tảng công nghệ và mô hình kinh doanh nền tảng Chương 3: Một số nền tảng công nghệ thúc đẩy đối mới trong ngành Công nghệ dịch vụ tài chính102/10/24”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 3 - Một số nền tảng công nghệ thúc đẩy đối mới trong ngành Công nghệ dịch vụ tài chính (Buổi 1 & Buổi 2).pdf#p10): Nền tảng công nghệ và mô hình kinh doanh nền tảng Chương 3: Một số nền tảng công nghệ thúc đẩy đối mới trong ngành Công nghệ dịch vụ tài chính102/10/24"
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Nền tảng công nghệ và mô hình kinh doanh nền tảng Chương 3: Một số nền tảng công nghệ thúc đẩy đối mới trong ngành Công nghệ dịch vụ tài chính112/10/24”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 3 - Một số nền tảng công nghệ thúc đẩy đối mới trong ngành Công nghệ dịch vụ tài chính (Buổi 1 & Buổi 2).pdf#p11): Nền tảng công nghệ và mô hình kinh doanh nền tảng Chương 3: Một số nền tảng công nghệ thúc đẩy đối mới trong ngành Công nghệ dịch vụ tài chính112/10/24"
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Nền tảng công nghệ và mô hình kinh doanh nền tảng Chương 3: Một số nền tảng công nghệ thúc đẩy đối mới trong ngành Công nghệ dịch vụ tài chính122/10/24”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 3 - Một số nền tảng công nghệ thúc đẩy đối mới trong ngành Công nghệ dịch vụ tài chính (Buổi 1 & Buổi 2).pdf#p12): Nền tảng công nghệ và mô hình kinh doanh nền tảng Chương 3: Một số nền tảng công nghệ thúc đẩy đối mới trong ngành Công nghệ dịch vụ tài chính122/10/24"
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Chuyển đổi số để kích hoạt mô hình kinh doanh nền tảng Chương 3: Một số nền tảng công nghệ thúc đẩy đối mới trong ngành Công nghệ dịch vụ tài chính132/10/24”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 3 - Một số nền tảng công nghệ thúc đẩy đối mới trong ngành Công nghệ dịch vụ tài chính (Buổi 1 & Buổi 2).pdf#p13): Chuyển đổi số để kích hoạt mô hình kinh doanh nền tảng Chương 3: Một số nền tảng công nghệ thúc đẩy đối mới trong ngành Công nghệ dịch vụ tài chính132/10/24"
+  },
+  {
+    "q": "Theo slide, phát biểu sau ĐÚNG hay SAI?\n“Lợi thế của các mô hình kinh doanh nền tảng Chương 3: Một số nền tảng công nghệ thúc đẩy đối mới trong ngành Công nghệ dịch vụ tài chính142/10/24”",
+    "o": [
+      "Đúng",
+      "Sai"
+    ],
+    "a": 0,
+    "exp": "Trích nguyên văn từ slide (Chương 3 - Một số nền tảng công nghệ thúc đẩy đối mới trong ngành Công nghệ dịch vụ tài chính (Buổi 1 & Buổi 2).pdf#p14): Lợi thế của các mô hình kinh doanh nền tảng Chương 3: Một số nền tảng công nghệ thúc đẩy đối mới trong ngành Công nghệ dịch vụ tài chính142/10/24"
+  }
 ];
 
-function loadQuiz() {
-  const container = document.getElementById("quiz");
-  questions.forEach((q, index) => {
-    const div = document.createElement("div");
-    div.classList.add("question");
-    div.innerHTML = `<h3>${index + 1}. ${q.q}</h3>` + 
-      q.o.map((opt, i) => `
-        <label>
-          <input type="radio" name="q${index}" value="${i}">
-          ${opt}
-        </label>`).join('') +
-      `<div class="answer">✅ Đáp án đúng: ${q.o[q.a]}</div>`;
-    container.appendChild(div);
-  });
+// Fisher–Yates shuffle
+function shuffle(arr) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
 
-  // tự động chấm khi chọn
-  document.querySelectorAll("input[type=radio]").forEach(input => {
-    input.addEventListener("change", e => {
-      const name = e.target.name;
-      const idx = parseInt(name.substring(1));
-      const question = questions[idx];
-      const selected = parseInt(e.target.value);
-      const labels = e.target.closest(".question").querySelectorAll("label");
-      const ansDiv = e.target.closest(".question").querySelector(".answer");
-      labels.forEach((label, i) => {
-        label.classList.remove("correct", "incorrect");
-        const inp = label.querySelector("input");
-        if (inp.checked) {
-          if (i === question.a) label.classList.add("correct");
-          else label.classList.add("incorrect");
-        }
-        if (i === question.a) label.classList.add("correct");
-      });
-      ansDiv.style.display = "block";
-    });
+// Tạo bản render đã xáo trộn: cả thứ tự câu lẫn thứ tự đáp án
+function buildRendered() {
+  const base = SOURCE.map(q => ({...q})); // shallow copy
+  shuffle(base); // xáo thứ tự câu
+  // xáo thứ tự đáp án từng câu và cập nhật chỉ số đúng
+  return base.map(q => {
+    const idxs = q.o.map((_,i)=>i);
+    shuffle(idxs);
+    const options = idxs.map(i => q.o[i]);
+    const newCorrect = idxs.indexOf(q.a);
+    return { q: q.q, o: options, a: newCorrect, exp: q.exp };
   });
 }
 
-loadQuiz();
+let questions = buildRendered();
+let score = 0;
+let answered = new Array(questions.length).fill(false);
+
+function render() {
+  const qz = document.getElementById('quiz');
+  qz.innerHTML = "";
+  questions.forEach((q, idx) => {
+    const d = document.createElement('div');
+    d.className = 'question';
+    d.innerHTML = `
+      <h3>${idx+1}. ${q.q}</h3>
+      ${q.o.map((opt,i)=>`
+        <label>
+          <input type="radio" name="q${idx}" value="${i}">
+          ${opt}
+        </label>`).join("")}
+      <div class="answer">
+        <div class="title">✅ Đáp án đúng: ${q.o[q.a]}</div>
+        <div class="muted">Giải thích / Trích dẫn: ${q.exp}</div>
+      </div>`;
+    qz.appendChild(d);
+  });
+  document.getElementById('total').textContent = questions.length;
+  attach();
+}
+
+function attach() {
+  document.querySelectorAll('input[type=radio]').forEach(inp => {
+    inp.addEventListener('change', e => {
+      const name = e.target.name; // qN
+      const idx = parseInt(name.slice(1),10);
+      const chosen = parseInt(e.target.value,10);
+      const q = questions[idx];
+      const box = e.target.closest('.question');
+      const labels = box.querySelectorAll('label');
+      const ans = box.querySelector('.answer');
+      labels.forEach((lb,i)=>{
+        lb.classList.remove('correct','incorrect');
+        const rd = lb.querySelector('input');
+        if (rd.checked) {
+          if (i === q.a) lb.classList.add('correct'); else lb.classList.add('incorrect');
+        }
+        if (i === q.a) lb.classList.add('correct');
+      });
+      ans.style.display = 'block';
+      if (!answered[idx]) {
+        if (chosen === q.a) score++;
+        answered[idx] = true;
+        document.getElementById('score').textContent = score;
+      }
+    });
+  });
+  document.getElementById('reset').addEventListener('click', () => {
+    score = 0;
+    questions = buildRendered();   // tạo bộ mới đã xáo trộn
+    answered = new Array(questions.length).fill(false);
+    render();
+    document.getElementById('score').textContent = 0;
+  });
+}
+
+render();
 </script>
 </body>
 </html>
