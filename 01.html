@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kỷ niệm của chúng mình</title>
+
+  <!-- Fira Sans -->
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { width: 100%; height: 100%; overflow: hidden; background: #f3f3f3; font-family: "Fira Sans", system-ui, -apple-system, Segoe UI, Roboto, sans-serif; }
+
+    /* Scene chứa 2 panel để kéo qua lại */
+    .scene {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+      isolation: isolate;
+      background: #000; /* tránh lộ nền trắng khi chuyển cảnh */
+    }
+
+    /* PANEL HIỆN TẠI */
+    .panel-current, .panel-next {
+      position: absolute;
+      inset: 0;
+      will-change: transform, opacity;
+    }
+
+    .panel-current {
+      background: url('01.png') no-repeat center center / cover;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    /* Nút overlay */
+    .overlay-button {
+      position: absolute;
+      bottom: 30px; right: 40px;
+      background: rgba(255,255,255,0.2);
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.4);
+      backdrop-filter: blur(6px);
+      padding: 12px 28px;
+      border-radius: 30px;
+      font-size: 16px; letter-spacing: .4px;
+      transition: transform .25s ease, background .25s ease, color .25s ease, box-shadow .25s ease;
+      text-decoration: none;
+      cursor: pointer;
+      animation: fadeIn 1.2s ease both, blink 1.2s ease-in-out infinite alternate;
+      user-select: none;
+    }
+    .overlay-button:hover {
+      background: rgba(255,255,255,0.4);
+      color: #2e3b2f;
+      transform: scale(1.05);
+      box-shadow: 0 4px 12px rgba(0,0,0,.2);
+    }
+
+    /* Nhấp nháy nhẹ */
+    @keyframes blink {
+      from { opacity: 0.65; transform: scale(1); }
+      to   { opacity: 1;    transform: scale(1.03); }
+    }
+
+    /* Fade-in ban đầu cho nút */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* PANEL KẾ TIẾP (chứa iframe của 02.html) */
+    .panel-next {
+      background: #000;
+      transform: translateX(100%); /* ở ngoài khung, bên phải */
+      display: block;
+      pointer-events: none; /* tránh click vào iframe trước khi chuyển cảnh */
+    }
+    .panel-next iframe {
+      width: 100%; height: 100%;
+      border: none; display: block;
+    }
+
+    /* Trạng thái đang chuyển cảnh: kéo cửa */
+    .scene.is-transitioning .panel-current {
+      transform: translateX(-100%); /* trượt hẳn sang trái */
+      transition: transform 700ms cubic-bezier(.22,.61,.36,1);
+    }
+    .scene.is-transitioning .panel-next {
+      transform: translateX(0);     /* trượt vào từ phải */
+      transition: transform 700ms cubic-bezier(.22,.61,.36,1);
+      pointer-events: auto;
+    }
+
+    /* Giảm chuyển động nếu người dùng chọn reduce-motion */
+    @media (prefers-reduced-motion: reduce) {
+      .overlay-button { animation: none; }
+      .scene.is-transitioning .panel-current,
+      .scene.is-transitioning .panel-next {
+        transition: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="scene" id="scene">
+    <!-- Panel hiện tại -->
+    <div class="panel-current" id="panelCurrent">
+      <a href="02.html" class="overlay-button" id="continueBtn">Tiếp tục ✨</a>
+    </div>
+
+    <!-- Panel kế tiếp: load sẵn 02.html để "xuất hiện đồng thời
