@@ -1,0 +1,4 @@
+# Cho phép tất cả truy cập
+Require all granted
+   php_flag display_errors on
+   php_value error_reporting 32767

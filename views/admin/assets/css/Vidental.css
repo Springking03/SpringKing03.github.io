@@ -1,0 +1,174 @@
+﻿/* ================================================= */
+/* VIDENTAL ADMIN – FINAL VERSION (2025)             */
+/* Header + Sidebar: tối mạnh mẽ                     */
+/* Table + Content: xanh-trắng nhẹ, cực rõ chữ       */
+/* ================================================= */
+
+html, body {
+    background: #0F172A !important;
+    color: #E2E8F0 !important;
+}
+
+/* =================== HEADER & SIDEBAR – GIỮ NGUYÊN TỐI MẠNH MẼ =================== */
+.be-top-header,
+.be-top-header * {
+    background: #0F172A !important;
+    color: #E2E8F0 !important;
+    border-color: #334155 !important;
+}
+
+    .be-top-header .page-title {
+        color: #FFFFFF !important;
+        font-weight: 700 !important;
+    }
+
+    .be-top-header .navbar-nav > li > a.nav-link {
+        color: #94A3B8 !important;
+    }
+
+        .be-top-header .navbar-nav > li > a.nav-link:hover,
+        .be-top-header .navbar-nav > li.show > a {
+            color: #FFFFFF !important;
+        }
+
+    .be-top-header .user-name {
+        color: #FFFFFF !important;
+        font-weight: 600 !important;
+    }
+
+.be-left-sidebar,
+.be-left-sidebar:before,
+.be-left-sidebar .sidebar-elements > li > ul {
+    background: #1E293B !important;
+    border-color: #334155 !important;
+}
+
+    .be-left-sidebar .sidebar-elements > li > a {
+        color: #CBD5E1 !important;
+    }
+
+        .be-left-sidebar .sidebar-elements > li > a:hover {
+            background: rgba(0,119,204,0.35) !important;
+            color: #FFFFFF !important;
+        }
+
+    .be-left-sidebar .sidebar-elements > li.active > a,
+    .be-left-sidebar .sidebar-elements > li.active > a > span {
+        background: #0077CC !important;
+        color: #FFFFFF !important;
+        border-left: 5px solid #00E5FF !important;
+        font-weight: 700 !important;
+    }
+
+    .be-left-sidebar .sidebar-elements i {
+        color: #94A3B8 !important;
+    }
+
+    .be-left-sidebar .sidebar-elements li.active i,
+    .be-left-sidebar .sidebar-elements li:hover i {
+        color: #FFFFFF !important;
+    }
+
+/* =================== TABLE + CONTENT – XANH-TRẮNG NHẸ, RÕ CHỮ TUYỆT ĐỐI =================== */
+.be-content {
+    background: #F8FAFC !important;
+}
+/* Nền nội dung trắng xanh nhạt */
+
+.card,
+.card .card-header,
+.be-datatable-header,
+.be-datatable-footer {
+    background: #FFFFFF !important;
+    border: 1px solid #DBEAFE !important;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04) !important;
+    color: #1E293B !important;
+}
+
+/* TABLE – ĐẸP NHẤT CÓ THỂ */
+.table,
+.table tbody,
+.table td,
+.table th,
+.table tr {
+    background: #FFFFFF !important;
+    color: #1E293B !important;
+    border-color: #DBEAFE !important;
+}
+
+    .table thead th {
+        background: #EBF5FF !important; /* Xanh nhạt cực đẹp */
+        color: #1E40AF !important;
+        border-bottom: 2px solid #0066CC !important;
+        font-weight: 600 !important;
+        text-transform: uppercase;
+        font-size: 0.84rem !important;
+        letter-spacing: 0.6px;
+    }
+
+    /* Zebra nhẹ nhàng – dễ nhìn */
+    .table tbody tr:nth-child(even) {
+        background: #F8FAFF !important;
+    }
+
+/* Hover dòng – xanh nhạt trong suốt */
+.table-hover tbody tr:hover {
+    background: rgba(0, 102, 204, 0.09) !important;
+    transition: background 0.22s ease;
+}
+
+/* Input & Form */
+.form-control {
+    background: #FFFFFF !important;
+    border-color: #DBEAFE !important;
+    color: #1E293B !important;
+}
+
+    .form-control:focus {
+        border-color: #0066CC !important;
+        box-shadow: 0 0 0 3.5px rgba(0, 102, 204, 0.16) !important;
+        color: #1E293B !important;
+    }
+
+/* Button primary – giữ xanh đậm cho đồng bộ */
+.btn-primary {
+    background: #0066CC !important;
+    border-color: #0066CC !important;
+    font-weight: 600 !important;
+}
+
+    .btn-primary:hover {
+        background: #0052A3 !important;
+        border-color: #0052A3 !important;
+    }
+
+/* DataTable header/footer – trắng sạch */
+.be-datatable-header,
+.be-datatable-footer,
+.be-datatable-header *,
+.be-datatable-footer * {
+    background: #FFFFFF !important;
+    color: #1E293B !important;
+    border-color: #DBEAFE !important;
+}
+
+
+/* =================== TABLE ROW HOVER – PHIÊN BẢN ĐẸP NHẤT =================== */
+.table-hover tbody tr:hover,
+.table-hover tbody tr:hover td,
+.table-hover tbody tr:hover th {
+    background: #E0F2FE !important; /* Xanh trắng rất nhạt, cực sang */
+    color: #1E40AF !important; /* Chữ xanh đậm nổi bật */
+    transition: all 0.22s ease !important;
+    box-shadow: inset 0 0 0 1px #99E6FF !important; /* Viền trong nhẹ */
+    font-weight: 500 !important;
+}
+
+    /* Nếu muốn thêm hiệu ứng icon hoặc nút trong dòng khi hover (tùy chọn đẹp hơn nữa) */
+    .table-hover tbody tr:hover .btn,
+    .table-hover tbody tr:hover .badge,
+    .table-hover tbody tr:hover i {
+        opacity: 1 !important;
+        transform: translateY(0) !important;
+    }
+
