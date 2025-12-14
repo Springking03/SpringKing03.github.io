@@ -8,6 +8,10 @@ class Database {
      *  - DB_HOST, DB_PORT, DB_NAME, DB_USER, DB_PASS
      * (fallback)
      *  - MYSQL_HOST, MYSQL_PORT, MYSQL_DATABASE, MYSQL_USER, MYSQL_PASSWORD
+     *
+     * SSL (Aiven thường REQUIRE SSL):
+     *  - Nếu có file CA tại configs/aiven-ca.pem thì tự bật SSL
+     *  - Hoặc set đường dẫn CA bằng ENV: DB_SSL_CA
      */
     private function env(string $key, ?string $fallback = null): ?string {
         $v = getenv($key);
@@ -21,16 +25,20 @@ class Database {
     {
         $host = $this->env('DB_HOST', $this->env('MYSQL_HOST', 'localhost'));
         $port = (int)($this->env('DB_PORT', $this->env('MYSQL_PORT', '3306')) ?? '3306');
-        $db   = $this->env('DB_NAME', $this->env('MYSQL_DATABASE', 'nha_khoa_vidental'));
+
+        // ✅ Aiven thường dùng "defaultdb" (hoặc DB bạn tự tạo). Fallback về defaultdb để tránh connect nhầm.
+        $db   = $this->env('DB_NAME', $this->env('MYSQL_DATABASE', 'defaultdb'));
+
         $user = $this->env('DB_USER', $this->env('MYSQL_USER', 'root'));
         $pass = $this->env('DB_PASS', $this->env('MYSQL_PASSWORD', ''));
 
-        // Nếu có CA cert thì bật SSL (Aiven thường REQUIRE SSL)
+        // ✅ Nếu có CA cert thì bật SSL (Aiven SSL REQUIRED)
         $defaultCa = __DIR__ . '/../configs/aiven-ca.pem';
         $sslCa = $this->env('DB_SSL_CA', $defaultCa);
         $useSsl = is_string($sslCa) && $sslCa !== '' && file_exists($sslCa);
 
         $mysqli = mysqli_init();
+
         if ($useSsl) {
             // client key/cert không cần, chỉ cần CA
             $mysqli->ssl_set(null, null, $sslCa, null, null);
