@@ -3,268 +3,157 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
 require_once __DIR__ . '/../vendor/autoload.php';
-error_log("PHPMailer loaded? " . (class_exists(\PHPMailer\PHPMailer\PHPMailer::class) ? 'YES' : 'NO'));
-
 require_once __DIR__ . '/../utils/convertDate.php';
 
+function __mail_env(string $key, ?string $fallback = null): ?string {
+    $v = getenv($key);
+    if ($v === false || $v === '') return $fallback;
+    return $v;
+}
 
-function send_mail($specialtyName, $doctorName, $dateSlot, $timeSlot, $patientName, $patientPhone, $patientEmail, $patientDescription) {
+function __build_mailer(): PHPMailer {
     $mail = new PHPMailer(true);
 
-    // Format ngày trước khi dùng
+    $host = __mail_env('SMTP_HOST', 'smtp.gmail.com');
+    $port = (int)(__mail_env('SMTP_PORT', '587') ?? '587');
+    $user = __mail_env('SMTP_USER', '');
+    $passRaw = __mail_env('SMTP_PASS', '');
+
+    // Gmail app password sometimes includes spaces; remove whitespace safely
+    $pass = preg_replace('/\s+/', '', (string)$passRaw);
+
+    if ($user === '' || $pass === '') {
+        throw new Exception('Missing SMTP_USER/SMTP_PASS env vars');
+    }
+
+    $secure = __mail_env('SMTP_SECURE', 'tls'); // tls|ssl|none
+
+    $fromEmail = __mail_env('SMTP_FROM_EMAIL', $user);
+    $fromName  = __mail_env('SMTP_FROM_NAME', 'Nha khoa Vidental');
+
+    $mail->isSMTP();
+    $mail->Host = $host;
+    $mail->SMTPAuth = true;
+    $mail->Username = $user;
+    $mail->Password = $pass;
+    $mail->CharSet = 'UTF-8';
+
+    if ($secure === 'ssl') {
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
+    } elseif ($secure === 'tls') {
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+    } else {
+        $mail->SMTPSecure = false;
+        $mail->SMTPAutoTLS = false;
+    }
+    $mail->Port = $port;
+
+    $mail->setFrom($fromEmail ?: $user, $fromName ?: 'Nha khoa Vidental');
+    $mail->isHTML(true);
+
+    return $mail;
+}
+
+function send_mail($specialtyName, $doctorName, $dateSlot, $timeSlot, $patientName, $patientPhone, $patientEmail, $patientDescription) {
     $dateFormatted = convertDate::convertDayTimestampToDate($dateSlot);
 
     try {
-        // Cấu hình Server
-        $mail->isSMTP();
-        $mail->Host       = getenv('SMTP_HOST') ?: 'smtp.gmail.com';
-        $mail->SMTPAuth   = true;
-        $mail->Username   = getenv('SMTP_USER') ?: '';
-        $mail->Password   = getenv('SMTP_PASS') ?: '';
-        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-        $mail->Port       = (int)(getenv('SMTP_PORT') ?: 587);
-        $mail->CharSet    = 'UTF-8';
-
-        // Người gửi
-        $fromEmail = getenv('SMTP_FROM') ?: (getenv('SMTP_USER') ?: 'no-reply@example.com');
-        $fromName  = getenv('SMTP_FROM_NAME') ?: 'Nha khoa Vidental';
-        $mail->setFrom($fromEmail, $fromName);
-
-        // Người nhận
+        $mail = __build_mailer();
         $mail->addAddress($patientEmail, $patientName);
-
-        // Nội dung Email
-        $mail->isHTML(true);
         $mail->Subject = 'Xác nhận lịch khám – Nha khoa Vidental';
 
         $mail->Body = <<<HTML
-<!DOCTYPE html>
-<html lang="vi">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Xác nhận lịch khám</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-        }
-        .email-container {
-            background-color: #ffffff;
-            max-width: 600px;
-            margin: 30px auto;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        }
-        .email-header {
-            background-color: #0d6efd;
-            color: white;
-            padding: 20px;
-            text-align: center;
-        }
-        .email-body {
-            padding: 20px;
-            color: #333;
-        }
-        .info-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 10px;
-        }
-        .info-table th, .info-table td {
-            padding: 8px;
-            border: 1px solid #ddd;
-        }
-        .info-table th {
-            background-color: #f2f2f2;
-        }
-    </style>
-</head>
-<body>
-    <div class="email-container">
-        <div class="email-header">
-            <h2>Nha khoa Vidental</h2>
-        </div>
-        <div class="email-body">
-            <p>Xin chào <strong>{$patientName}</strong>,</p>
-            <p>Bạn đã đặt lịch khám thành công. Dưới đây là thông tin lịch khám:</p>
-
-            <table class="info-table">
-                <tr>
-                    <th>Chuyên khoa</th>
-                    <td>{$specialtyName}</td>
-                </tr>
-                <tr>
-                    <th>Bác sĩ</th>
-                    <td>{$doctorName}</td>
-                </tr>
-                <tr>
-                    <th>Ngày hẹn</th>
-                    <td>{$dateFormatted}</td>
-                </tr>
-                <tr>
-                    <th>Giờ hẹn</th>
-                    <td>{$timeSlot}</td>
-                </tr>
-                <tr>
-                    <th>Số điện thoại</th>
-                    <td>{$patientPhone}</td>
-                </tr>
-                <tr>
-                    <th>Mô tả</th>
-                    <td>{$patientDescription}</td>
-                </tr>
-            </table>
-
-            <p>Vui lòng đến đúng giờ và mang theo các giấy tờ cần thiết.</p>
-            <p>Trân trọng,<br><strong>Nha khoa Vidental</strong></p>
-        </div>
-    </div>
-</body>
-</html>
-HTML;
-
-        $mail->send();
-        return json_encode(['status' => 'success', 'message' => 'Message has been sent']);
-    } catch (Exception $e) {
-        return json_encode(['status' => 'error', 'message' => "Message could not be sent. Mailer Error: {$mail->ErrorInfo}"]);
-    }
-}
-
-function confirm_mail($patientEmail, $patientName, $doctorName, $dateSlot, $timeSlot) {
-    $mail = new PHPMailer(true);
-
-    $dateFormatted = convertDate::convertDayTimestampToDate($dateSlot);
-
-    try {
-        $mail->isSMTP();
-        $mail->Host       = getenv('SMTP_HOST') ?: 'smtp.gmail.com';
-        $mail->SMTPAuth   = true;
-        $mail->Username   = getenv('SMTP_USER') ?: '';
-        $mail->Password   = getenv('SMTP_PASS') ?: '';
-        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-        $mail->Port       = (int)(getenv('SMTP_PORT') ?: 587);
-        $mail->CharSet    = 'UTF-8';
-
-        $fromEmail = getenv('SMTP_FROM') ?: (getenv('SMTP_USER') ?: 'no-reply@example.com');
-        $fromName  = getenv('SMTP_FROM_NAME') ?: 'Nha khoa Vidental';
-        $mail->setFrom($fromEmail, $fromName);
-
-        $mail->addAddress($patientEmail, $patientName);
-
-        $mail->isHTML(true);
-        $mail->Subject = 'Lịch hẹn đã được xác nhận – Nha khoa Vidental';
-
-        $mail->Body = <<<HTML
-<!DOCTYPE html>
-<html lang="vi">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Xác nhận lịch hẹn</title>
-    <style>
-        body { font-family: Arial, sans-serif; background-color:#f4f4f4; margin:0; padding:0; }
-        .email-container { background:#fff; max-width:600px; margin:30px auto; border-radius:8px; overflow:hidden; box-shadow:0 0 10px rgba(0,0,0,0.1); }
-        .email-header { background:#198754; color:#fff; padding:20px; text-align:center; }
-        .email-body { padding:20px; color:#333; }
-        .info-table { width:100%; border-collapse:collapse; margin-top:10px; }
-        .info-table th, .info-table td { padding:8px; border:1px solid #ddd; }
-        .info-table th { background:#f2f2f2; }
-    </style>
+<style>
+.email-container{font-family:Arial,sans-serif;line-height:1.6;color:#333}
+.email-header{background:#f7f7f7;padding:10px;border-bottom:1px solid #ddd}
+.email-body{padding:20px}
+.email-footer{background:#f7f7f7;padding:10px;border-top:1px solid #ddd;text-align:center;font-size:12px;color:#777}
+.info-table{width:100%;border-collapse:collapse}
+.info-table th,.info-table td{padding:8px;border:1px solid #ddd}
+.info-table th{background:#f2f2f2}
+</style>
 </head>
 <body>
 <div class="email-container">
-    <div class="email-header">
-        <h2>Nha khoa Vidental</h2>
-        <p>Lịch hẹn của bạn đã được xác nhận</p>
-    </div>
-    <div class="email-body">
-        <p>Xin chào <strong>{$patientName}</strong>,</p>
-        <p>Lịch hẹn của bạn với bác sĩ <strong>{$doctorName}</strong> đã được xác nhận.</p>
-
-        <table class="info-table">
-            <tr><th>Bác sĩ</th><td>{$doctorName}</td></tr>
-            <tr><th>Ngày hẹn</th><td>{$dateFormatted}</td></tr>
-            <tr><th>Giờ hẹn</th><td>{$timeSlot}</td></tr>
-        </table>
-
-        <p>Vui lòng đến đúng giờ để được phục vụ tốt nhất.</p>
-        <p>Trân trọng,<br><strong>Nha khoa Vidental</strong></p>
-    </div>
+  <div class="email-header"><h2>Nha khoa Vidental</h2></div>
+  <div class="email-body">
+    <p>Xin chào <strong>{$patientName}</strong>,</p>
+    <p>Lịch hẹn của bạn đã được tiếp nhận. Bộ phận CSKH sẽ gọi điện xác minh. Dưới đây là thông tin chi tiết:</p>
+    <table class="info-table">
+      <tr><th>Dịch vụ</th><td>{$specialtyName}</td></tr>
+      <tr><th>Bác sĩ</th><td>{$doctorName}</td></tr>
+      <tr><th>Ngày hẹn</th><td>{$dateFormatted}</td></tr>
+      <tr><th>Giờ hẹn</th><td>{$timeSlot}</td></tr>
+      <tr><th>Số điện thoại</th><td>{$patientPhone}</td></tr>
+      <tr><th>Mô tả</th><td>{$patientDescription}</td></tr>
+    </table>
+    <p>Vui lòng đến đúng giờ. Cảm ơn Quý khách đã tin tưởng!</p>
+  </div>
+  <div class="email-footer"><p>&copy; 2025 Nha khoa Vidental.</p></div>
 </div>
 </body>
 </html>
 HTML;
 
         $mail->send();
-        return json_encode(['status' => 'success', 'message' => 'Message has been sent']);
+        return json_encode(['success' => true, 'message' => 'Message has been sent']);
     } catch (Exception $e) {
-        return json_encode(['status' => 'error', 'message' => "Message could not be sent. Mailer Error: {$mail->ErrorInfo}"]);
+        return json_encode(['success' => false, 'message' => "Message could not be sent. Error: {$e->getMessage()}"]);
     }
 }
 
-function result_mail($patientEmail, $patientName, $resultTitle, $resultContent) {
-    $mail = new PHPMailer(true);
+function confirm_mail($specialtyName, $doctorName, $dateSlot, $timeSlot, $patientName, $patientPhone, $patientEmail, $patientDescription) {
+    $dateFormatted = convertDate::convertDayTimestampToDate($dateSlot);
 
     try {
-        $mail->isSMTP();
-        $mail->Host       = getenv('SMTP_HOST') ?: 'smtp.gmail.com';
-        $mail->SMTPAuth   = true;
-        $mail->Username   = getenv('SMTP_USER') ?: '';
-        $mail->Password   = getenv('SMTP_PASS') ?: '';
-        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-        $mail->Port       = (int)(getenv('SMTP_PORT') ?: 587);
-        $mail->CharSet    = 'UTF-8';
-
-        $fromEmail = getenv('SMTP_FROM') ?: (getenv('SMTP_USER') ?: 'no-reply@example.com');
-        $fromName  = getenv('SMTP_FROM_NAME') ?: 'Nha khoa Vidental';
-        $mail->setFrom($fromEmail, $fromName);
-
+        $mail = __build_mailer();
         $mail->addAddress($patientEmail, $patientName);
-
-        $mail->isHTML(true);
-        $mail->Subject = $resultTitle;
-
-        $safeContent = nl2br(htmlspecialchars($resultContent, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8'));
+        $mail->Subject = 'Xác nhận lịch hẹn – Nha khoa Vidental';
 
         $mail->Body = <<<HTML
-<!DOCTYPE html>
-<html lang="vi">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Kết quả</title>
-  <style>
-    body { font-family: Arial, sans-serif; background:#f4f4f4; margin:0; padding:0; }
-    .wrap { background:#fff; max-width:600px; margin:30px auto; border-radius:8px; overflow:hidden; box-shadow:0 0 10px rgba(0,0,0,0.1); }
-    .head { background:#0d6efd; color:#fff; padding:20px; text-align:center; }
-    .body { padding:20px; color:#333; }
-    .box { background:#f8f9fa; border:1px solid #e9ecef; padding:15px; border-radius:6px; }
-  </style>
-</head>
-<body>
-  <div class="wrap">
-    <div class="head">
-      <h2>Nha khoa Vidental</h2>
-    </div>
-    <div class="body">
-      <p>Xin chào <strong>{$patientName}</strong>,</p>
-      <p>Dưới đây là nội dung kết quả:</p>
-      <div class="box">{$safeContent}</div>
-      <p>Trân trọng,<br><strong>Nha khoa Vidental</strong></p>
-    </div>
-  </div>
-</body>
-</html>
+<html><body>
+<p>Xin chào <strong>{$patientName}</strong>,</p>
+<p>Lịch hẹn của bạn đã được xác nhận:</p>
+<ul>
+  <li><strong>Dịch vụ:</strong> {$specialtyName}</li>
+  <li><strong>Bác sĩ:</strong> {$doctorName}</li>
+  <li><strong>Ngày:</strong> {$dateFormatted}</li>
+  <li><strong>Giờ:</strong> {$timeSlot}</li>
+  <li><strong>SĐT:</strong> {$patientPhone}</li>
+  <li><strong>Mô tả:</strong> {$patientDescription}</li>
+</ul>
+<p>Vui lòng đến đúng giờ. Cảm ơn bạn!</p>
+</body></html>
 HTML;
 
         $mail->send();
-        return json_encode(['status' => 'success', 'message' => 'Message has been sent']);
+        return json_encode(['success' => true, 'message' => 'Message has been sent']);
     } catch (Exception $e) {
-        return json_encode(['status' => 'error', 'message' => "Message could not be sent. Mailer Error: {$mail->ErrorInfo}"]);
+        return json_encode(['success' => false, 'message' => "Message could not be sent. Error: {$e->getMessage()}"]);
     }
 }
-?>
+
+function result_mail($patientName, $patientEmail, $link) {
+    try {
+        $mail = __build_mailer();
+        $mail->addAddress($patientEmail, $patientName);
+        $mail->Subject = 'Thông báo kết quả – Nha khoa Vidental';
+
+        $safeLink = htmlspecialchars($link, ENT_QUOTES, 'UTF-8');
+
+        $mail->Body = <<<HTML
+<html><body>
+<p>Xin chào <strong>{$patientName}</strong>,</p>
+<p>Cảm ơn bạn đã sử dụng dịch vụ của Nha khoa Vidental. Vui lòng truy cập link sau để xem kết quả:</p>
+<p><a href="{$safeLink}">Xem kết quả</a></p>
+</body></html>
+HTML;
+
+        $mail->send();
+        return json_encode(['success' => true, 'message' => 'Message has been sent']);
+    } catch (Exception $e) {
+        return json_encode(['success' => false, 'message' => "Message could not be sent. Error: {$e->getMessage()}"]);
+    }
+}

@@ -8,7 +8,7 @@ if (!isset($_SESSION['admin_name'])) {
 <html lang="en">
 <head>
     <title>Danh sách lịch hẹn</title>
-    <link href="http://localhost/Vidental/assetsv2/img/Favicon.png" rel="icon">
+    <link href="<?php echo BASE_URL; ?>/assetsv2/img/Favicon.png" rel="icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <?php include 'import_head.php' ?>
     <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">

@@ -16,7 +16,7 @@ if (!isset($_SESSION['admin_name'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link href="http://localhost/Vidental/assetsv2/img/logo.svg" rel="icon">
+    <link href="<?php echo BASE_URL; ?>/assetsv2/img/logo.svg" rel="icon">
     <title>Lịch hẹn quá hạn</title>
     <?php include 'import-link-tag.php' ?>
     <?php include 'import_head.php' ?>

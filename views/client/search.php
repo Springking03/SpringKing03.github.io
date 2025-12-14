@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Nha khoa Vidental</title>
-    <link href="http://localhost/Vidental/assetsv2/img/logo.svg" rel="icon">
+    <link href="<?php echo BASE_URL; ?>/assetsv2/img/logo.svg" rel="icon">
 
     <!-- Google Font -->
     <!--        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"-->

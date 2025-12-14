@@ -26,8 +26,8 @@ class Database {
         $host = $this->env('DB_HOST', $this->env('MYSQL_HOST', 'localhost'));
         $port = (int)($this->env('DB_PORT', $this->env('MYSQL_PORT', '3306')) ?? '3306');
 
-        // ✅ Aiven thường dùng "defaultdb" (hoặc DB bạn tự tạo). Fallback về defaultdb để tránh connect nhầm.
-        $db   = $this->env('DB_NAME', $this->env('MYSQL_DATABASE', 'defaultdb'));
+        // ✅ DB của bạn trên Aiven là "vidental"
+        $db   = $this->env('DB_NAME', $this->env('MYSQL_DATABASE', 'vidental'));
 
         $user = $this->env('DB_USER', $this->env('MYSQL_USER', 'root'));
         $pass = $this->env('DB_PASS', $this->env('MYSQL_PASSWORD', ''));

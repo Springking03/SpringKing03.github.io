@@ -2,7 +2,7 @@
     <div class="container-fluid">
         <div class="be-navbar-header">
             <a href="<?php echo BASE_URL ?>/index.php?controller=home&action=home_admin" class="ml-5">
-                <img src="http://localhost/Vidental/assetsv2/img/logo.svg" alt="logo" width="100">
+                <img src="<?php echo BASE_URL; ?>/assetsv2/img/logo.svg" alt="logo" width="100">
             </a>
         </div>
         <div class="page-title"><span>Bảng điều khiển</span></div>

@@ -11,7 +11,7 @@ if (isset($_SESSION['user_phone'])) {
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>Đăng nhập | Vidental</title>
 
-    <link href="http://localhost/Vidental/assetsv2/img/logo.jpg" rel="icon">
+    <link href="<?php echo BASE_URL; ?>/assetsv2/img/logo.jpg" rel="icon">
     <link href="assetsv2/img/logo.svg" rel="apple-touch-icon">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -50,7 +50,7 @@ if (isset($_SESSION['user_phone'])) {
             <div class="col-12 col-lg-6">
                 <div class="vd-auth__panel">
                     <div class="vd-auth__brand">
-                        <img src="http://localhost/Vidental/assetsv2/img/logo.svg" alt="Vidental">
+                        <img src="<?php echo BASE_URL; ?>/assetsv2/img/logo.svg" alt="Vidental">
                         <div>
                             <h2>Vidental Dental Clinic</h2>
                             <div class="vd-auth__tagline">Nơi nụ cười Việt được chăm sóc chuẩn quốc tế</div>
