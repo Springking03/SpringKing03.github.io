@@ -1,33 +1,34 @@
 FROM php:8.2-apache
 
-# Cài công cụ cần cho composer + unzip
+# Tools cho composer + unzip
 RUN apt-get update && apt-get install -y --no-install-recommends \
     git unzip libzip-dev \
   && rm -rf /var/lib/apt/lists/*
 
-# PHP extensions cần cho dự án
-RUN docker-php-ext-install mysqli pdo pdo_mysql zip pcntl
+# PHP extensions
+RUN docker-php-ext-install mysqli pdo pdo_mysql zip
 
-# Bật rewrite + cho phép .htaccess
+# Bật rewrite + cho phép .htaccess (KHÔNG dùng sed)
 RUN a2enmod rewrite \
-  && sed -i '/<Directory \\/var\\/www\\/>/,/<\\/Directory>/ s/AllowOverride None/AllowOverride All/' /etc/apache2/apache2.conf
+  && printf '%s\n' \
+     '<Directory /var/www/html>' \
+     '    AllowOverride All' \
+     '</Directory>' \
+     > /etc/apache2/conf-available/allowoverride.conf \
+  && a2enconf allowoverride
 
-# Cài Composer
+# Composer
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
 WORKDIR /var/www/html
 
-# Copy composer trước để tận dụng cache
+# Cài vendor
 COPY composer.json composer.lock ./
-
-# Cài vendor (QUAN TRỌNG: tạo vendor/autoload.php)
 RUN composer install --no-dev --prefer-dist --no-interaction --no-progress --optimize-autoloader
 
-# Copy toàn bộ source
+# Copy source
 COPY . .
 
-# Quyền thư mục
 RUN chown -R www-data:www-data /var/www/html
 
-# Apache chạy mặc định
 CMD ["apache2-foreground"]
