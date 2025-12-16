@@ -358,7 +358,10 @@ if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQ
     public function uploadToCloudinary($filePath): string
     {
         try {
-            $cloudinary = $GLOBALS['cloudinary'];
+            $cloudinary = $GLOBALS['cloudinary'] ?? null;
+            if (!$cloudinary) {
+                throw new Exception('Cloudinary chưa được cấu hình. Hãy set CLOUDINARY_CLOUD_NAME / CLOUDINARY_API_KEY / CLOUDINARY_API_SECRET trên server.');
+            }
 
             $options = [
                 'resource_type' => 'auto',

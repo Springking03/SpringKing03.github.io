@@ -13,7 +13,7 @@ if (!isset($_SESSION['admin_name'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link href="<?php echo BASE_URL; ?>/assetsv2/img/logo.svg" rel="icon">
+    <link href="<?php echo BASE_URL ?>/assetsv2/img/logo.svg" rel="icon">
     <title>Chi tiết lịch hẹn</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -341,7 +341,7 @@ if (!isset($_SESSION['admin_name'])) {
                 document.getElementById('loading-spinner').style.display = 'block';
                 expiredModal.hide()
                 $.ajax({
-                    url: 'http://localhost/Medicare/index.php?controller=appointment&action=update_status',
+                    url: '<?php echo BASE_URL ?>/index.php?controller=appointment&action=update_status',
                     type: 'POST',
                     data: formData,
                     contentType: false,

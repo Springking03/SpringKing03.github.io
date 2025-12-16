@@ -144,7 +144,11 @@ class EmployeeController extends BaseController {
     {
         try {
             // Truy cập đối tượng Cloudinary từ biến toàn cục
-            $cloudinary = $GLOBALS['cloudinary'];
+            $cloudinary = $GLOBALS['cloudinary'] ?? null;
+
+            if (!$cloudinary) {
+                throw new Exception('Cloudinary chưa được cấu hình. Hãy set CLOUDINARY_CLOUD_NAME / CLOUDINARY_API_KEY / CLOUDINARY_API_SECRET trên server.');
+            }
 
             // Upload ảnh lên Cloudinary sử dụng đối tượng Cloudinary
             $result = $cloudinary->uploadApi()->upload($imagePath);

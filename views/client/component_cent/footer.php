@@ -4,7 +4,7 @@
             <div class="row">
                 <div class="col-lg-4 col-md-4">
                     <div class="footer__logo">
-                        <a href="#"><img width="200" src="<?php echo BASE_URL; ?>/assetsv2/img/logo.svg" alt=""></a>
+                        <a href="#"><img width="200" src="<?php echo BASE_URL ?>/assetsv2/img/logo.svg" alt=""></a>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-8">

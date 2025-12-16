@@ -16,7 +16,7 @@ if (!isset($_SESSION['admin_name'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link href="<?php echo BASE_URL; ?>/assetsv2/img/logo.svg" rel="icon">
+    <link href="<?php echo BASE_URL ?>/assetsv2/img/logo.svg" rel="icon">
     <title>Lịch hẹn quá hạn</title>
     <?php include 'import-link-tag.php' ?>
     <?php include 'import_head.php' ?>
@@ -227,9 +227,9 @@ if (!isset($_SESSION['admin_name'])) {
                                                         </svg>
                                                     </button>
                                                     <div class='dropdown-menu dropdown-menu-right' role='menu'>
-                                                        <a href="http://localhost/CentBeauty/index.php?controller=appointment&action=update_show&appointmentId=<?php echo $appointment['id'] ?>"
+                                                        <a href="<?php echo BASE_URL ?>/index.php?controller=appointment&action=update_show&appointmentId=<?php echo $appointment['id'] ?>"
                                                            type='button' class='dropdown-item'>Cập nhật</a>
-<!--                                                        <a href="http://localhost/Medicare/index.php?controller=appointment&action=detail&id=--><?php //echo $appointment['id'] ?><!--"-->
+<!--                                                        <a href="<?php echo BASE_URL ?>/index.php?controller=appointment&action=detail&id=--><?php //echo $appointment['id'] ?><!--"-->
 <!--                                                           type='button' class='dropdown-item'>Chi tiết</a>-->
                                                     </div>
                                                 </div>
@@ -332,7 +332,7 @@ if (!isset($_SESSION['admin_name'])) {
     });
 </script>
 <script>
-    var url_appointment = 'http://localhost/Medicare/index.php?controller=appointment&action=expired&page=1'
+    var url_appointment = '<?php echo BASE_URL ?>/index.php?controller=appointment&action=expired&page=1'
 
     document.getElementById('button').addEventListener('click', function () {
         var specialty = document.querySelector('.select2[name="specialty"]').value === 'All'

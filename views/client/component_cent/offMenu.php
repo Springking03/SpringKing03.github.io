@@ -1,7 +1,7 @@
 <div class="offcanvas-menu-overlay"></div>
 <div class="offcanvas-menu-wrapper">
     <div class="offcanvas__logo">
-        <a href="./index.php"><img src="<?php echo BASE_URL; ?>/assetsv2/img/logo.svg" alt=""></a>
+        <a href="./index.php"><img src="<?php echo BASE_URL ?>/assetsv2/img/logo.svg" alt=""></a>
     </div>
     <div id="mobile-menu-wrap"></div>
     <div class="offcanvas__btn">

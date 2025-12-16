@@ -2,7 +2,7 @@
     <div class="container-fluid">
         <div class="be-navbar-header">
             <a href="<?php echo BASE_URL ?>/index.php?controller=home&action=home_admin" class="ml-5">
-                <img src="<?php echo BASE_URL; ?>/assetsv2/img/logo.svg" alt="logo" width="100">
+                <img src="<?php echo BASE_URL ?>/assetsv2/img/logo.svg" alt="logo" width="100">
             </a>
         </div>
         <div class="page-title"><span>Bảng điều khiển</span></div>
@@ -12,7 +12,7 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"
                                                  role="button" aria-expanded="false">
-                        <img src="<?php echo $_SESSION['admin_avt'] ?? '<?php echo BASE_URL ?>/assets/img/doctors/doctor_default.png' ?>" alt="Avatar" width="190">
+                        <img src=\"<?php echo $_SESSION['admin_avt'] ?? (BASE_URL . '/assets/img/doctors/doctor_default.png'); ?>\" alt="Avatar" width="190">
                         <span class="user-name"><?php echo $_SESSION['admin_name'] ?></span>
                     </a>
                     <div class="dropdown-menu" role="menu">
@@ -53,6 +53,6 @@
 </div>
 <script>
     function logout() {
-        window.location.href = "<?php echo BASE_URL ?>/index.php?controller=home&action=logout";
+        window.location.href = "<?php echo BASE_URL ?>/index.php?controller=auth&action=logout";
     }
 </script>

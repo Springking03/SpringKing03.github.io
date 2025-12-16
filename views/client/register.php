@@ -5,7 +5,7 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>Đăng ký | Vidental</title>
 
-    <link href="<?php echo BASE_URL; ?>/assetsv2/img/logo.svg" rel="icon">
+    <link href="<?php echo BASE_URL ?>/assetsv2/img/logo.svg" rel="icon">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
@@ -31,7 +31,7 @@
             <div class="col-12 col-lg-6">
                 <div class="vd-auth__panel">
                     <div class="vd-auth__brand">
-                        <img src="<?php echo BASE_URL; ?>/assetsv2/img/logo.svg" alt="Vidental">
+                        <img src="<?php echo BASE_URL ?>/assetsv2/img/logo.svg" alt="Vidental">
                         <div>
                             <h2>Tạo tài khoản Vidental</h2>
                             <div class="vd-auth__tagline">Đặt lịch dễ dàng – theo dõi lịch hẹn – nhận nhắc hẹn</div>

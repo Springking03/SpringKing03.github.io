@@ -12,7 +12,7 @@ if (isset($_SESSION['admin_name'])) {
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>Đăng nhập quản trị | Vidental</title>
 
-    <link href="<?php echo BASE_URL; ?>/assetsv2/img/logo.svg" rel="icon">
+    <link href="<?php echo BASE_URL ?>/assetsv2/img/logo.svg" rel="icon">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
           rel="stylesheet"
