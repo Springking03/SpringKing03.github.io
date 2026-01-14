@@ -1,0 +1,345 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Mẫu 18.QLT - Đăng ký kiểm tra chất lượng thuốc thú y nhập khẩu</title>
+  <style>
+    :root{
+      --page-w: 210mm;
+      --page-h: 297mm;
+      --pad-x: 18mm;
+      --pad-y: 16mm;
+      --ink: #111;
+      --ui: #0b5ed7;
+      --font: "Times New Roman", Times, serif;
+      --fs: 15px;
+    }
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      background:#e9ecef;
+      color:var(--ink);
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    }
+    .topbar{
+      position: sticky; top: 0; z-index: 10;
+      background: var(--ui); color:#fff;
+      padding: 10px 14px;
+      display:flex; align-items:center; gap:10px;
+    }
+    .topbar .title{
+      font-size:14px; font-weight:600; flex:1;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .btn{
+      border:0; padding: 8px 12px; border-radius: 10px;
+      font-weight:700; font-size:12px; cursor:pointer;
+    }
+    .btn.primary{ background:#fff; color: var(--ui); }
+    .btn.secondary{
+      background: rgba(255,255,255,.18);
+      color:#fff;
+      border: 1px solid rgba(255,255,255,.25);
+    }
+
+    .wrap{ display:flex; justify-content:center; padding:14px; }
+    .stack{ display:flex; flex-direction:column; gap:14px; align-items:center; }
+
+    .page{
+      width: var(--page-w);
+      min-height: var(--page-h);
+      background:#fff;
+      box-shadow: 0 10px 28px rgba(0,0,0,.12);
+      border-radius: 14px;
+      padding: var(--pad-y) var(--pad-x);
+    }
+    .paper{
+      font-family: var(--font);
+      font-size: var(--fs);
+      line-height: 1.25;
+      color: var(--ink);
+    }
+    .center{ text-align:center; }
+    .right{ text-align:right; }
+    .bold{ font-weight:700; }
+    .italic{ font-style: italic; }
+
+    input.line, textarea.line{
+      border:none;
+      border-bottom: 1px dotted #000;
+      outline:none;
+      background:transparent;
+      font-family: var(--font);
+      font-size: var(--fs);
+      padding: 0 2px 1px 2px;
+      height: 20px;
+      width:100%;
+    }
+    textarea.line{ height: 46px; resize: vertical; padding-top:2px; }
+
+    .row{
+      display:flex; gap:10px; align-items:flex-end;
+      margin: 4px 0;
+    }
+    .row .label{ white-space:nowrap; }
+    .row .field{ flex:1; }
+
+    .lineblock{ margin: 6px 0; }
+    .bullet{
+      margin: 6px 0 0 0;
+      padding-left: 18px;
+    }
+    .bullet li{ margin: 4px 0; }
+    .inline{
+      display:inline-block;
+      vertical-align:baseline;
+      min-width: 180px;
+    }
+
+    .two-col{
+      display:flex; gap: 16px; margin-top: 12px;
+    }
+    .two-col .col{ flex:1; }
+    .sig-right{ display:flex; justify-content:flex-end; margin-top: 10px; }
+    .sig-right .box{ width: 280px; text-align:center; }
+
+    table.form{
+      width:100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+      font-size: 14px;
+    }
+    table.form th, table.form td{
+      border: 1px solid #000;
+      padding: 6px 6px;
+      vertical-align: top;
+    }
+    table.form th{ text-align:center; font-weight:700; }
+    table.form td input{
+      width:100%;
+      border:none;
+      border-bottom: 1px dotted #000;
+      background:transparent;
+      outline:none;
+      font-family: var(--font);
+      font-size: 14px;
+      height: 18px;
+    }
+
+    .page-break{ page-break-after: always; break-after: page; }
+
+    @media print{
+      body{ background:#fff; }
+      .topbar{ display:none !important; }
+      .wrap{ padding:0; }
+      .page{ box-shadow:none; border-radius:0; }
+      @page{ size: A4; margin: 0; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="topbar">
+    <div class="title">Mẫu 18.QLT – Đăng ký kiểm tra nhà nước về chất lượng thuốc thú y nhập khẩu</div>
+    <button class="btn secondary" type="button" id="btnReset">Làm lại</button>
+    <button class="btn primary" type="button" onclick="window.print()">Lưu PDF</button>
+  </div>
+
+  <div class="wrap">
+    <div class="stack paper">
+
+      <!-- TRANG 1 -->
+      <section class="page page-break">
+        <div class="center bold">Mẫu số 18.QLT</div>
+
+        <div class="center bold" style="margin-top:10px; font-size:18px;">CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM</div>
+        <div class="center bold" style="font-size:18px;">Độc lập - Tự do - Hạnh phúc</div>
+        <div class="center" style="margin-top:6px;">---------------</div>
+
+        <div class="center bold" style="margin-top:12px; font-size:18px;">
+          ĐĂNG KÝ KIỂM TRA NHÀ NƯỚC VỀ CHẤT LƯỢNG<br/>
+          THUỐC THÚ Y NHẬP KHẨU
+        </div>
+
+        <div class="row" style="margin-top:14px;">
+          <div class="label">Kính gửi:</div>
+          <div class="field">
+            <input class="line" type="text" placeholder="Cơ quan được Chủ tịch UBND cấp tỉnh giao giải quyết thủ tục hành chính" />
+          </div>
+        </div>
+
+        <div class="row" style="margin-top:12px;">
+          <div class="label">Người nhập khẩu:</div>
+          <div class="field"><input class="line" type="text" /></div>
+        </div>
+
+        <div class="row">
+          <div class="label">Địa chỉ:</div>
+          <div class="field"><input class="line" type="text" /></div>
+        </div>
+
+        <div class="row">
+          <div class="label">Điện thoại:</div>
+          <div class="field"><input class="line" type="text" /></div>
+          <div class="label">Fax:</div>
+          <div class="field"><input class="line" type="text" /></div>
+          <div class="label">Email:</div>
+          <div class="field"><input class="line" type="text" /></div>
+        </div>
+
+        <div class="lineblock" style="margin-top:10px;">
+          Đăng ký kiểm tra chất lượng thuốc thú y kèm theo
+          <span class="inline"><input class="line" type="text" /></span>
+        </div>
+
+        <div class="row">
+          <div class="label">Địa chỉ tập kết thuốc thú y:</div>
+          <div class="field"><input class="line" type="text" /></div>
+        </div>
+
+        <div class="row">
+          <div class="label">Hồ sơ nhập khẩu gồm:</div>
+          <div class="field"><input class="line" type="text" /></div>
+        </div>
+
+        <div class="row">
+          <div class="label">Hợp đồng (Contract) số:</div>
+          <div class="field"><input class="line" type="text" /></div>
+        </div>
+
+        <ul class="bullet">
+          <li>Danh mục thuốc thú y (Packing list): <span class="inline" style="min-width:240px;"><input class="line" type="text" /></span></li>
+
+          <li>Giấy chứng nhận hợp quy hoặc Giấy chứng nhận chất lượng lô hàng thuốc thú y nhập khẩu hoặc Chứng thư giám định chất lượng lô hàng thuốc thú y nhập khẩu:
+            <span class="inline" style="min-width:220px;"><input class="line" type="text" /></span>
+            do <span class="inline" style="min-width:180px;"><input class="line" type="text" /></span>
+            Tổ chức cấp ngày <span class="inline" style="min-width:120px;"><input class="line" type="text" placeholder="..../..../...." /></span>
+            tại <span class="inline" style="min-width:160px;"><input class="line" type="text" /></span>
+          </li>
+
+          <li>Giấy chứng nhận Hệ thống quản lý (nếu có) số:
+            <span class="inline" style="min-width:220px;"><input class="line" type="text" /></span>
+            do Tổ chức chứng nhận:
+            <span class="inline" style="min-width:220px;"><input class="line" type="text" /></span>
+            cấp ngày <span class="inline" style="min-width:120px;"><input class="line" type="text" placeholder="..../..../...." /></span>
+            tại <span class="inline" style="min-width:160px;"><input class="line" type="text" /></span>
+          </li>
+
+          <li>Hóa đơn (Invoice) số: <span class="inline" style="min-width:260px;"><input class="line" type="text" /></span></li>
+          <li>Vận đơn (Bill of Lading) số: <span class="inline" style="min-width:260px;"><input class="line" type="text" /></span></li>
+          <li>Tờ khai hàng hóa nhập khẩu số: <span class="inline" style="min-width:260px;"><input class="line" type="text" /></span></li>
+          <li>Giấy chứng nhận xuất xứ C/O (nếu có) số: <span class="inline" style="min-width:260px;"><input class="line" type="text" /></span></li>
+          <li>Giấy Chứng nhận lưu hành tự do CFS (nếu có): <span class="inline" style="min-width:260px;"><input class="line" type="text" /></span></li>
+
+          <li>Ảnh hoặc bản mô tả hàng hóa, mẫu nhãn thuốc thú y nhập khẩu, nhãn phụ (nếu nhãn chính chưa đủ nội dung theo quy định).</li>
+        </ul>
+
+        <div class="lineblock" style="margin-top:10px;">
+          Chúng tôi xin cam đoan và chịu trách nhiệm về tính hợp lệ, hợp pháp của các nội dung đã khai báo nêu trên về hồ sơ của lô thuốc thú y nhập khẩu,
+          đồng thời cam kết chất lượng lô thuốc thú y nhập khẩu phù hợp với quy chuẩn kỹ thuật và tiêu chuẩn công bố áp dụng
+          <span class="inline" style="min-width:220px;"><input class="line" type="text" /></span>
+        </div>
+
+        <div class="two-col" style="margin-top:14px;">
+          <div class="col">
+            <div class="bold">CƠ QUAN CẤP</div>
+            <div style="margin-top:6px;">
+              Vào sổ đăng ký: Số <span class="inline" style="min-width:180px;"><input class="line" type="text" placeholder=".../xxx-xxx" /></span>
+            </div>
+            <div style="margin-top:6px;">
+              Ngày <span class="inline" style="min-width:70px;"><input class="line" type="text" /></span>
+              tháng <span class="inline" style="min-width:70px;"><input class="line" type="text" /></span>
+              năm <span class="inline" style="min-width:90px;"><input class="line" type="text" /></span>
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="right">
+              <span class="inline" style="min-width:280px;">
+                <input class="line" type="text" placeholder="......ngày......tháng......năm 20....." />
+              </span>
+              <div class="bold" style="margin-top:8px;">(NGƯỜI NHẬP KHẨU)</div>
+              <div class="italic">(Ký tên, đóng dấu)</div>
+              <div style="height:70px;"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TRANG 2 -->
+      <section class="page">
+        <div class="center bold" style="font-size:18px; margin-top:10px;">
+          DANH MỤC THUỐC THÚ Y ĐĂNG KÝ KIỂM TRA CHẤT LƯỢNG
+        </div>
+        <div class="center italic" style="margin-top:6px;">
+          (Kèm theo đơn đăng ký ngày <span class="inline" style="min-width:60px;"><input class="line" type="text" /></span>
+          tháng <span class="inline" style="min-width:60px;"><input class="line" type="text" /></span>
+          năm <span class="inline" style="min-width:90px;"><input class="line" type="text" /></span> )
+        </div>
+
+        <table class="form" style="margin-top:14px;">
+          <thead>
+            <tr>
+              <th style="width:34px;">TT</th>
+              <th style="width:170px;">Tên thuốc thú y</th>
+              <th style="width:90px;">Số ĐKLH</th>
+              <th style="width:150px;">Số hiệu văn bản đồng ý nhập khẩu</th>
+              <th style="width:90px;">Số lô sản xuất</th>
+              <th style="width:110px;">Quy cách đóng gói</th>
+              <th style="width:120px;">Khối lượng/Số lượng</th>
+              <th style="width:160px;">Xuất xứ, Nhà sản xuất</th>
+              <th style="width:110px;">Cửa khẩu nhập</th>
+              <th style="width:110px;">Thời gian nhập khẩu</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- 6 dòng mẫu (bạn tăng/giảm tùy) -->
+            <tr>
+              <td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td>
+              <td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td>
+              <td><input type="text"></td><td><input type="text"></td>
+            </tr>
+            <tr>
+              <td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td>
+              <td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td>
+              <td><input type="text"></td><td><input type="text"></td>
+            </tr>
+            <tr>
+              <td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td>
+              <td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td>
+              <td><input type="text"></td><td><input type="text"></td>
+            </tr>
+            <tr>
+              <td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td>
+              <td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td>
+              <td><input type="text"></td><td><input type="text"></td>
+            </tr>
+            <tr>
+              <td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td>
+              <td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td>
+              <td><input type="text"></td><td><input type="text"></td>
+            </tr>
+            <tr>
+              <td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td>
+              <td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td>
+              <td><input type="text"></td><td><input type="text"></td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+    </div>
+  </div>
+
+  <script>
+    function resetForm(){
+      document.querySelectorAll("input, textarea").forEach(el => {
+        if (el.id === "btnReset") return;
+        el.value = "";
+      });
+    }
+    document.getElementById("btnReset").addEventListener("click", resetForm);
+  </script>
+</body>
+</html>
