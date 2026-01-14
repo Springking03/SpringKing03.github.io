@@ -1,0 +1,563 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Phụ lục I - Mẫu giấy đăng ký kiểm dịch thực vật</title>
+  <style>
+    :root{
+      --page-w: 210mm;
+      --page-h: 297mm;
+      --pad-x: 18mm;   /* gần giống mẫu */
+      --pad-y: 16mm;
+      --ink: #111;
+      --ui: #0b5ed7;
+      --font: "Times New Roman", Times, serif;
+      --fs: 15px;
+    }
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      background:#e9ecef;
+      color:var(--ink);
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    }
+
+    /* Top bar: chỉ 2 nút */
+    .topbar{
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: var(--ui);
+      color: #fff;
+      padding: 10px 14px;
+      display:flex;
+      align-items:center;
+      gap: 10px;
+    }
+    .topbar .title{
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 1.2;
+      flex:1;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .btn{
+      border:0;
+      padding: 8px 12px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 12px;
+      cursor: pointer;
+    }
+    .btn.primary{ background:#fff; color: var(--ui); }
+    .btn.secondary{
+      background: rgba(255,255,255,.18);
+      color:#fff;
+      border: 1px solid rgba(255,255,255,.25);
+    }
+
+    .wrap{
+      display:flex;
+      justify-content:center;
+      padding: 14px;
+    }
+
+    /* Page */
+    .page{
+      width: var(--page-w);
+      min-height: var(--page-h);
+      background:#fff;
+      box-shadow: 0 10px 28px rgba(0,0,0,.12);
+      border-radius: 14px;
+      padding: var(--pad-y) var(--pad-x);
+      margin-bottom: 14px;
+    }
+    .paper{
+      font-family: var(--font);
+      font-size: var(--fs);
+      line-height: 1.25;
+      color: var(--ink);
+    }
+
+    /* Typography helpers */
+    .center{ text-align:center; }
+    .right{ text-align:right; }
+    .bold{ font-weight:700; }
+    .italic{ font-style: italic; }
+    .muted{ color:#333; }
+
+    /* Dotted line inputs (giống mẫu) */
+    input.line, textarea.line{
+      border: none;
+      border-bottom: 1px dotted #000;
+      outline:none;
+      background: transparent;
+      font-family: var(--font);
+      font-size: var(--fs);
+      padding: 0 2px 1px 2px;
+      height: 20px;
+      vertical-align: baseline;
+      width: 100%;
+    }
+    textarea.line{
+      height: 48px;
+      resize: vertical;
+      padding-top: 2px;
+    }
+
+    /* Small segmented inputs (ngày/tháng/năm) */
+    .seg{
+      display:inline-flex;
+      align-items:flex-end;
+      gap: 6px;
+    }
+    .seg input{
+      width: 44px;
+      text-align:center;
+      border:none;
+      border-bottom: 1px dotted #000;
+      outline:none;
+      background: transparent;
+      font-family: var(--font);
+      font-size: var(--fs);
+      height: 20px;
+    }
+    .seg .w60{ width:60px; }
+    .seg .w70{ width:70px; }
+
+    /* Row layout like the form */
+    .row{
+      display:flex;
+      gap: 10px;
+      align-items:flex-end;
+      margin: 4px 0;
+    }
+    .row .label{ white-space:nowrap; }
+    .row .field{ flex:1; }
+    .row .field2{ flex:1; }
+    .row .label2{ white-space:nowrap; }
+
+    /* Numbered list layout (1..16) */
+    .nrow{
+      display:flex;
+      gap: 8px;
+      align-items:flex-end;
+      margin: 3px 0;
+    }
+    .nrow .no{
+      width: 22px;
+      text-align:right;
+      padding-right: 2px;
+      white-space:nowrap;
+    }
+    .nrow .content{
+      flex:1;
+      display:flex;
+      gap: 10px;
+      align-items:flex-end;
+    }
+    .nrow .content .label{ white-space:nowrap; }
+    .nrow .content .field{ flex:1; }
+
+    /* Special multi-line blocks under item 1 */
+    .indent{
+      padding-left: 30px;
+      margin: 2px 0;
+    }
+
+    /* Signature block */
+    .sign{
+      margin-top: 18px;
+      display:flex;
+      justify-content:flex-end;
+    }
+    .sign .box{
+      width: 280px;
+      text-align:center;
+    }
+
+    /* Page break for print */
+    .page-break{
+      page-break-after: always;
+      break-after: page;
+    }
+
+    /* Print */
+    @media print{
+      body{ background:#fff; }
+      .topbar{ display:none !important; }
+      .wrap{ padding:0; }
+      .page{
+        box-shadow:none;
+        border-radius:0;
+        margin:0;
+        width: var(--page-w);
+        min-height: var(--page-h);
+      }
+      @page{ size: A4; margin: 0; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="topbar">
+    <div class="title">Phụ lục I – Mẫu giấy đăng ký kiểm dịch thực vật</div>
+    <button class="btn secondary" type="button" id="btnReset">Làm lại</button>
+    <button class="btn primary" type="button" onclick="window.print()">Lưu PDF</button>
+  </div>
+
+  <div class="wrap paper" style="flex-direction:column; align-items:center;">
+    <!-- PAGE 1 -->
+    <section class="page page-break">
+      <div class="center bold" style="font-size:18px; margin-top:6px;">Phụ lục I</div>
+      <div class="center bold" style="font-size:18px;">MẪU GIẤY ĐĂNG KÝ KIỂM DỊCH THỰC VẬT</div>
+      <div class="center italic muted" style="margin-top:2px;">
+        (Ban hành kèm theo Thông tư số 33/2014/TT-BNNPTNT ngày 30 tháng 10 năm 2014<br/>
+        của Bộ trưởng Bộ Nông nghiệp và phát triển nông thôn)
+      </div>
+
+      <div class="center bold" style="font-size:18px; margin-top:18px;">CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM</div>
+      <div class="center bold" style="font-size:18px;">Độc lập – Tự do – Hạnh phúc</div>
+
+      <div class="right" style="margin-top:18px;">
+        <span class="seg">
+          <input aria-label="Ngày" type="text" inputmode="numeric" maxlength="2" placeholder=".." id="p1_day" />
+          <span>ngày</span>
+          <input aria-label="Tháng" type="text" inputmode="numeric" maxlength="2" placeholder=".." id="p1_month" />
+          <span>tháng</span>
+          <input aria-label="Năm" class="w70" type="text" inputmode="numeric" maxlength="4" placeholder="...." id="p1_year" />
+          <span>năm</span>
+          <input aria-label="Năm (lặp)" class="w70" type="text" style="display:none" />
+        </span>
+      </div>
+
+      <div class="center bold" style="font-size:20px; margin-top:18px;">GIẤY ĐĂNG KÝ KIỂM DỊCH THỰC VẬT (*)</div>
+
+      <div class="row" style="margin-top:14px;">
+        <div class="label">Kính gửi:</div>
+        <div class="field"><input class="line" type="text" id="p1_to" /></div>
+        <div class="label2">(**)</div>
+      </div>
+
+      <div class="row">
+        <div class="label">Tên tổ chức, cá nhân đăng ký:</div>
+        <div class="field"><input class="line" type="text" id="p1_reg_name" /></div>
+      </div>
+
+      <div class="row">
+        <div class="label">Địa chỉ:</div>
+        <div class="field"><input class="line" type="text" id="p1_reg_addr" /></div>
+      </div>
+
+      <div class="row">
+        <div class="label">Điện thoại:</div>
+        <div class="field"><input class="line" type="text" id="p1_phone" /></div>
+        <div class="label2">Fax/E-mail:</div>
+        <div class="field2"><input class="line" type="text" id="p1_fax_email" /></div>
+      </div>
+
+      <div class="row">
+        <div class="label">Số Giấy CMND:</div>
+        <div class="field"><input class="line" type="text" id="p1_id" /></div>
+        <div class="label2">Ngày cấp:</div>
+        <div class="field2"><input class="line" type="text" id="p1_id_date" placeholder="..../..../...." /></div>
+        <div class="label2">Nơi cấp:</div>
+        <div class="field2"><input class="line" type="text" id="p1_id_place" /></div>
+      </div>
+
+      <div class="row" style="margin-top:10px;">
+        <div class="label">Đề nghị quý cơ quan kiểm dịch lô hàng nhập khẩu khẩu sau (***) :</div>
+      </div>
+
+      <!-- Items 1..16 -->
+      <div style="margin-top:6px;">
+        <!-- 1: two fields same line -->
+        <div class="nrow">
+          <div class="no">1.</div>
+          <div class="content">
+            <div class="label">Tên hàng:</div>
+            <div class="field"><input class="line" type="text" id="p1_item1_goods" /></div>
+            <div class="label">Tên khoa học:</div>
+            <div class="field"><input class="line" type="text" id="p1_item1_science" /></div>
+          </div>
+        </div>
+
+        <div class="indent">
+          <span class="label">Cơ sở sản xuất:</span>
+          <input class="line" type="text" id="p1_item1_manu" />
+        </div>
+        <div class="indent">
+          <span class="label">Mã số <span class="italic">(nếu có)</span>:</span>
+          <input class="line" type="text" id="p1_item1_code" />
+        </div>
+        <div class="indent">
+          <span class="label">Địa chỉ:</span>
+          <input class="line" type="text" id="p1_item1_manu_addr" />
+        </div>
+
+        <div class="nrow">
+          <div class="no">2.</div>
+          <div class="content">
+            <div class="label">Số lượng và loại bao bì:</div>
+            <div class="field"><input class="line" type="text" id="p1_item2_pack" /></div>
+          </div>
+        </div>
+
+        <div class="nrow">
+          <div class="no">3.</div>
+          <div class="content">
+            <div class="label">Khối lượng tịnh:</div>
+            <div class="field"><input class="line" type="text" id="p1_item3_net" /></div>
+            <div class="label">Khối lượng cả bì:</div>
+            <div class="field"><input class="line" type="text" id="p1_item3_gross" /></div>
+          </div>
+        </div>
+
+        <div class="nrow">
+          <div class="no">4.</div>
+          <div class="content">
+            <div class="label">Số hợp đồng hoặc số chứng từ thanh toán (L/C, TTr…):</div>
+            <div class="field"><input class="line" type="text" id="p1_item4_contract" /></div>
+          </div>
+        </div>
+
+        <div class="nrow">
+          <div class="no">5.</div>
+          <div class="content">
+            <div class="label">Tổ chức, cá nhân xuất khẩu:</div>
+            <div class="field"><input class="line" type="text" id="p1_item5_exporter" /></div>
+          </div>
+        </div>
+
+        <div class="indent">
+          <span class="label">Địa chỉ:</span>
+          <input class="line" type="text" id="p1_item5_exporter_addr" />
+        </div>
+
+        <div class="nrow">
+          <div class="no">6.</div>
+          <div class="content">
+            <div class="label">Nước xuất khẩu:</div>
+            <div class="field">
+              <input class="line" type="text" id="p1_item6_country" list="dl_country" />
+              <datalist id="dl_country">
+                <option value="Trung Quốc"></option>
+                <option value="Thái Lan"></option>
+                <option value="Hoa Kỳ"></option>
+                <option value="Nhật Bản"></option>
+                <option value="Hàn Quốc"></option>
+                <option value="Úc"></option>
+              </datalist>
+            </div>
+          </div>
+        </div>
+
+        <div class="nrow">
+          <div class="no">7.</div>
+          <div class="content">
+            <div class="label">Cửa khẩu xuất:</div>
+            <div class="field"><input class="line" type="text" id="p1_item7_port_out" /></div>
+          </div>
+        </div>
+
+        <div class="nrow">
+          <div class="no">8.</div>
+          <div class="content">
+            <div class="label">Tổ chức, cá nhân nhập khẩu:</div>
+            <div class="field"><input class="line" type="text" id="p1_item8_importer" /></div>
+          </div>
+        </div>
+
+        <div class="indent">
+          <span class="label">Địa chỉ:</span>
+          <input class="line" type="text" id="p1_item8_importer_addr" />
+        </div>
+
+        <div class="nrow">
+          <div class="no">9.</div>
+          <div class="content">
+            <div class="label">Cửa khẩu nhập:</div>
+            <div class="field"><input class="line" type="text" id="p1_item9_port_in" /></div>
+          </div>
+        </div>
+
+        <div class="nrow">
+          <div class="no">10.</div>
+          <div class="content">
+            <div class="label">Phương tiện vận chuyển:</div>
+            <div class="field">
+              <input class="line" type="text" id="p1_item10_transport" list="dl_transport" />
+              <datalist id="dl_transport">
+                <option value="Đường bộ"></option>
+                <option value="Đường biển"></option>
+                <option value="Đường hàng không"></option>
+                <option value="Đường sắt"></option>
+              </datalist>
+            </div>
+          </div>
+        </div>
+
+        <div class="nrow">
+          <div class="no">11.</div>
+          <div class="content">
+            <div class="label">Mục đích sử dụng:</div>
+            <div class="field">
+              <input class="line" type="text" id="p1_item11_purpose" list="dl_purpose" />
+              <datalist id="dl_purpose">
+                <option value="Làm thực phẩm"></option>
+                <option value="Làm giống"></option>
+                <option value="Làm nguyên liệu sản xuất"></option>
+                <option value="Làm thức ăn chăn nuôi"></option>
+              </datalist>
+            </div>
+          </div>
+        </div>
+
+        <div class="nrow">
+          <div class="no">12.</div>
+          <div class="content">
+            <div class="label">Giấy phép kiểm dịch thực vật nhập khẩu <span class="italic">(nếu có)</span>:</div>
+            <div class="field"><input class="line" type="text" id="p1_item12_license" /></div>
+          </div>
+        </div>
+
+        <div class="nrow">
+          <div class="no">13.</div>
+          <div class="content">
+            <div class="label">Địa điểm kiểm dịch:</div>
+            <div class="field"><input class="line" type="text" id="p1_item13_qc_place" /></div>
+          </div>
+        </div>
+
+        <div class="nrow">
+          <div class="no">14.</div>
+          <div class="content">
+            <div class="label">Thời gian kiểm dịch:</div>
+            <div class="field"><input class="line" type="text" id="p1_item14_qc_time" /></div>
+          </div>
+        </div>
+
+        <div class="nrow">
+          <div class="no">15.</div>
+          <div class="content">
+            <div class="label">Số bản Giấy chứng nhận kiểm dịch thực vật cần cấp:</div>
+            <div class="field"><input class="line" type="text" id="p1_item15_cert_count" /></div>
+          </div>
+        </div>
+
+        <div class="nrow">
+          <div class="no">16.</div>
+          <div class="content">
+            <div class="label">Nơi hàng đến:</div>
+            <div class="field"><input class="line" type="text" id="p1_item16_arrive" /></div>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:8px;">
+        <span class="bold">Chúng tôi xin cam kết:</span>
+        Bảo quản nguyên trạng hàng hóa nhập khẩu, đưa về đúng địa điểm, đúng thời gian được đăng ký
+        và chỉ đưa hàng hóa ra lưu thông sau khi được quý Cơ quan cấp Giấy chứng nhận kiểm dịch (****).
+      </div>
+
+      <div class="sign">
+        <div class="box">
+          <div class="bold" style="font-size:18px;">Tổ chức, cá nhân đăng ký</div>
+          <div class="italic">(Ký, đóng dấu, ghi rõ họ tên)</div>
+          <div style="height:70px;"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PAGE 2 -->
+    <section class="page">
+      <div class="center bold" style="font-size:20px; margin-top:10px;">Xác nhận của cơ quan Kiểm dịch</div>
+
+      <div style="margin-top:22px;">
+        Đồng ý đưa hàng hóa về địa điểm:
+        <span style="display:inline-block; width: 70%; vertical-align:baseline;">
+          <input class="line" type="text" id="p2_kd_place" />
+        </span>
+      </div>
+
+      <div style="margin-top:8px;">
+        để làm thủ tục kiểm dịch vào hồi
+        <span style="display:inline-block; width: 70%; vertical-align:baseline;">
+          <input class="line" type="text" id="p2_kd_time" placeholder="......giờ ngày ...... tháng ...... năm ............" />
+        </span>
+      </div>
+
+      <div style="margin-top:10px;">
+        Lô hàng chỉ được thông quan sau khi có Giấy chứng nhận kiểm dịch
+      </div>
+
+      <div class="center" style="margin-top:18px;">
+        Vào sổ số <span style="display:inline-block; width: 120px;"><input class="line" type="text" id="p2_kd_logno" /></span>,
+        ngày <span style="display:inline-block; width: 60px;"><input class="line" type="text" id="p2_kd_day" /></span>
+        tháng <span style="display:inline-block; width: 60px;"><input class="line" type="text" id="p2_kd_month" /></span>
+        năm <span style="display:inline-block; width: 90px;"><input class="line" type="text" id="p2_kd_year" /></span>
+      </div>
+
+      <div class="center" style="margin-top:10px;">
+        <span style="display:inline-block; width: 55%;">
+          <input class="line" type="text" id="p2_kd_sig" />
+        </span>
+      </div>
+      <div class="center italic" style="margin-top:6px;">(Ký, đóng dấu, ghi rõ họ tên)</div>
+
+      <div class="center bold" style="font-size:20px; margin-top:110px;">Xác nhận của cơ quan Hải quan</div>
+      <div class="center italic" style="margin-top:4px;">(trong trường hợp lô hàng không được phép nhập khẩu)</div>
+
+      <div style="margin-top:18px;">
+        Lô hàng không được nhập khẩu vào Việt Nam vì lý do:
+        <span style="display:inline-block; width: 62%; vertical-align:baseline;">
+          <input class="line" type="text" id="p2_hq_reason1" />
+        </span>
+      </div>
+      <div style="margin-top:8px;">
+        <span style="display:inline-block; width: 100%;">
+          <input class="line" type="text" id="p2_hq_reason2" />
+        </span>
+      </div>
+
+      <div class="right" style="margin-top:10px;">
+        <span style="display:inline-block; width: 260px;">
+          <input class="line" type="text" id="p2_hq_date" placeholder="........., ngày ....tháng ... năm ...." />
+        </span>
+      </div>
+
+      <div class="right" style="margin-top:6px;">
+        Chi cục Hải quan cửa khẩu
+        <span style="display:inline-block; width: 260px; margin-left:8px;">
+          <input class="line" type="text" id="p2_hq_office" />
+        </span>
+      </div>
+      <div class="right italic" style="margin-top:6px;">(Ký, đóng dấu, ghi rõ họ tên)</div>
+
+      <div style="margin-top:50px; font-size:14px;">
+        <div>(*)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Đăng ký theo mẫu này được thể hiện trên 2 mặt của tờ giấy khổ A4;</div>
+        <div>(**)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Tên cơ quan Kiểm dịch;</div>
+        <div>(***)&nbsp;&nbsp;&nbsp;&nbsp;Phải có đầy đủ các tiêu chí theo đúng thứ tự và khai các tiêu chí thích hợp với lô hàng;</div>
+        <div>(****)&nbsp;Cam kết này chỉ ghi khi đăng ký kiểm dịch đối với hàng hóa nhập khẩu;</div>
+        <div style="margin-top:6px;">
+          Lưu ý: Cá nhân đăng ký không có con dấu phải ghi rõ số Giấy chứng minh nhân dân, ngày tháng và nơi cấp.
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    function resetForm(){
+      document.querySelectorAll("input, textarea, select").forEach(el => {
+        if (el.id === "btnReset") return;
+        if (el.tagName === "BUTTON") return;
+        el.value = "";
+      });
+    }
+    document.getElementById("btnReset").addEventListener("click", resetForm);
+  </script>
+</body>
+</html>
