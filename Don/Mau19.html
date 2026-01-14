@@ -1,0 +1,504 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Mẫu 19 - Đơn đăng ký kiểm dịch động vật, sản phẩm động vật nhập khẩu</title>
+  <style>
+    :root{
+      --page-w: 210mm;
+      --page-h: 297mm;
+      --pad-x: 18mm;
+      --pad-y: 16mm;
+      --ink: #111;
+      --ui: #0b5ed7;
+      --font: "Times New Roman", Times, serif;
+      --fs: 15px;
+    }
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      background:#e9ecef;
+      color:var(--ink);
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    }
+
+    /* Top bar */
+    .topbar{
+      position: sticky; top: 0; z-index: 10;
+      background: var(--ui); color:#fff;
+      padding: 10px 14px;
+      display:flex; align-items:center; gap:10px;
+    }
+    .topbar .title{
+      font-size:14px; font-weight:600; flex:1;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .btn{
+      border:0; padding: 8px 12px; border-radius: 10px;
+      font-weight:700; font-size:12px; cursor:pointer;
+    }
+    .btn.primary{ background:#fff; color: var(--ui); }
+    .btn.secondary{
+      background: rgba(255,255,255,.18);
+      color:#fff;
+      border: 1px solid rgba(255,255,255,.25);
+    }
+
+    /* Page */
+    .wrap{ display:flex; justify-content:center; padding:14px; }
+    .stack{ display:flex; flex-direction:column; gap:14px; align-items:center; }
+
+    .page{
+      width: var(--page-w);
+      min-height: var(--page-h);
+      background:#fff;
+      box-shadow: 0 10px 28px rgba(0,0,0,.12);
+      border-radius: 14px;
+      padding: var(--pad-y) var(--pad-x);
+    }
+    .paper{
+      font-family: var(--font);
+      font-size: var(--fs);
+      line-height: 1.25;
+      color: var(--ink);
+    }
+
+    .center{ text-align:center; }
+    .right{ text-align:right; }
+    .bold{ font-weight:700; }
+    .italic{ font-style: italic; }
+    .underline{
+      display:inline-block;
+      border-bottom: 2px solid #000;
+      width: 220px;
+      transform: translateY(-2px);
+    }
+
+    /* Inputs styled as dotted lines */
+    input.line, textarea.line, select.line{
+      border:none;
+      border-bottom: 1px dotted #000;
+      outline:none;
+      background:transparent;
+      font-family: var(--font);
+      font-size: var(--fs);
+      padding: 0 2px 1px 2px;
+      height: 20px;
+      width:100%;
+    }
+    textarea.line{ height: 44px; resize: vertical; padding-top:2px; }
+    select.line{ appearance:none; }
+
+    .head{
+      display:flex;
+      align-items:flex-start;
+      gap: 12px;
+      margin-top: 6px;
+    }
+    .head .left{ flex:1; }
+    .head .right{ flex:1; text-align:center; }
+    .mau{
+      text-align:right;
+      font-weight:700;
+      font-size: 18px;
+      margin-top: 2px;
+    }
+
+    .line-row{
+      display:flex;
+      gap: 10px;
+      align-items:baseline;
+      margin: 6px 0;
+    }
+    .line-row .label{ white-space:nowrap; }
+    .line-row .field{ flex:1; }
+
+    .para{
+      margin-top: 8px;
+    }
+
+    h1{
+      font-size: 18px;
+      margin: 14px 0 6px;
+      text-align:center;
+      font-weight:700;
+      text-transform: uppercase;
+    }
+    .kg{ text-align:center; font-weight:700; margin-top: 6px; }
+    .sec-title{
+      font-weight:700;
+      font-size: 18px;
+      margin: 10px 0 6px;
+      text-transform: uppercase;
+    }
+
+    /* Tables */
+    table.form{
+      width:100%;
+      border-collapse: collapse;
+      margin-top: 6px;
+      font-size: 14px;
+    }
+    table.form th, table.form td{
+      border: 1px solid #000;
+      padding: 6px 6px;
+      vertical-align: top;
+    }
+    table.form th{
+      text-align:center;
+      font-weight:700;
+    }
+    table.form td input{
+      width:100%;
+      border:none;
+      outline:none;
+      background:transparent;
+      font-family: var(--font);
+      font-size: 14px;
+      height: 18px;
+    }
+
+    .bullets{
+      margin-top: 8px;
+    }
+    .bullet{
+      display:flex;
+      gap: 8px;
+      margin: 8px 0;
+      align-items: baseline;
+    }
+    .bullet .dash{ width: 16px; }
+    .bullet .content{ flex:1; }
+    .dotline{
+      display:inline-block;
+      width: 100%;
+      border-bottom: 1px dotted #000;
+      transform: translateY(-2px);
+    }
+
+    .sig{
+      margin-top: 18px;
+      display:flex;
+      justify-content:flex-end;
+    }
+    .sig .box{
+      width: 260px;
+      text-align:center;
+    }
+    .footnote{
+      margin-top: 30px;
+      font-size: 16px;
+      font-style: italic;
+    }
+
+    .page-break{ page-break-after: always; break-after: page; }
+
+    @media print{
+      body{ background:#fff; }
+      .topbar{ display:none !important; }
+      .wrap{ padding:0; }
+      .page{ box-shadow:none; border-radius:0; }
+      @page{ size: A4; margin: 0; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="topbar">
+    <div class="title">Mẫu 19 – Đơn đăng ký kiểm dịch động vật, sản phẩm động vật nhập khẩu</div>
+    <button class="btn secondary" type="button" id="btnReset">Làm lại</button>
+    <button class="btn primary" type="button" onclick="window.print()">Lưu PDF</button>
+  </div>
+
+  <div class="wrap">
+    <div class="stack paper">
+
+      <!-- TRANG 1 -->
+      <section class="page page-break">
+        <div class="mau">Mẫu 19</div>
+
+        <div class="head">
+          <div class="left">
+            <div class="bold">CÔNG TY <span style="display:inline-block; width: 220px;"><input class="line" type="text"></span></div>
+            <div>Địa chỉ: <span style="display:inline-block; width: 320px;"><input class="line" type="text"></span></div>
+            <div>Tel: <span style="display:inline-block; width: 320px;"><input class="line" type="text"></span></div>
+            <div>Fax: <span style="display:inline-block; width: 320px;"><input class="line" type="text"></span></div>
+            <div>Email: <span style="display:inline-block; width: 320px;"><input class="line" type="text"></span></div>
+            <div style="margin-top:10px;">Số: <span style="display:inline-block; width: 220px;"><input class="line" type="text" placeholder="......../........."></span></div>
+          </div>
+
+          <div class="right">
+            <div class="bold" style="font-size:18px;">CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM</div>
+            <div class="bold" style="font-size:18px;">Độc lập - Tự do - Hạnh phúc</div>
+            <div class="underline"></div>
+
+            <div style="margin-top:22px; text-align:right;">
+              <span style="display:inline-block; width: 310px;">
+                <input class="line" type="text" placeholder="............., ngày     tháng     năm 20.....">
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <h1>ĐƠN ĐĂNG KÝ KIỂM DỊCH ĐỘNG VẬT, SẢN PHẨM ĐỘNG VẬT NHẬP KHẨU</h1>
+        <div class="kg">Kính gửi: Cục Thú y</div>
+
+        <div class="para">
+          Căn cứ nhu cầu sản xuất, kinh doanh của Công ty, Giám đốc Công ty
+          <span style="display:inline-block; width: 220px; vertical-align:baseline;"><input class="line" type="text"></span>
+          đề nghị Cục Thú y hướng dẫn Công ty được kiểm dịch nhập khẩu lô hàng:
+        </div>
+
+        <div class="sec-title">I. ĐỘNG VẬT</div>
+
+        <table class="form">
+          <thead>
+            <tr>
+              <th rowspan="2" style="width:50px;">STT</th>
+              <th rowspan="2" style="width:140px;">Loại động vật</th>
+              <th rowspan="2">Mã số HS (mã HS theo quy định hiện hành là mã HS 8 số)</th>
+              <th colspan="2" style="width:140px;">Số lượng (con) <span style="font-weight:400;">(1)</span></th>
+              <th rowspan="2" style="width:120px;">Nước xuất xứ</th>
+              <th rowspan="2" style="width:120px;">Cửa khẩu nhập</th>
+            </tr>
+            <tr>
+              <th style="width:70px; font-weight:400;">Đực</th>
+              <th style="width:70px; font-weight:400;">Cái</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- 4 dòng trống như mẫu -->
+            <tr>
+              <td><input type="text"></td>
+              <td><input type="text"></td>
+              <td><input type="text"></td>
+              <td><input type="text"></td>
+              <td><input type="text"></td>
+              <td><input type="text"></td>
+              <td><input type="text"></td>
+            </tr>
+            <tr>
+              <td><input type="text"></td>
+              <td><input type="text"></td>
+              <td><input type="text"></td>
+              <td><input type="text"></td>
+              <td><input type="text"></td>
+              <td><input type="text"></td>
+              <td><input type="text"></td>
+            </tr>
+            <tr>
+              <td><input type="text"></td>
+              <td><input type="text"></td>
+              <td><input type="text"></td>
+              <td><input type="text"></td>
+              <td><input type="text"></td>
+              <td><input type="text"></td>
+              <td><input type="text"></td>
+            </tr>
+            <tr>
+              <td><input type="text"></td>
+              <td><input type="text"></td>
+              <td><input type="text"></td>
+              <td><input type="text"></td>
+              <td><input type="text"></td>
+              <td><input type="text"></td>
+              <td><input type="text"></td>
+            </tr>
+
+            <!-- Tổng số -->
+            <tr>
+              <td></td>
+              <td class="bold">Tổng số</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="bullets">
+          <div class="bullet">
+            <div class="dash">-</div>
+            <div class="content">Từ Công ty: <span class="dotline"></span></div>
+          </div>
+          <div class="bullet">
+            <div class="dash"></div>
+            <div class="content"><span class="dotline"></span></div>
+          </div>
+
+          <div class="bullet">
+            <div class="dash"></div>
+            <div class="content">Địa chỉ: <span class="dotline"></span></div>
+          </div>
+          <div class="bullet">
+            <div class="dash"></div>
+            <div class="content"><span class="dotline"></span></div>
+          </div>
+
+          <div class="bullet">
+            <div class="dash">-</div>
+            <div class="content">Tên trang trại <span class="dotline"></span></div>
+          </div>
+
+          <div class="bullet">
+            <div class="dash"></div>
+            <div class="content">Địa chỉ <span class="dotline"></span></div>
+          </div>
+
+          <div class="bullet">
+            <div class="dash">-</div>
+            <div class="content">Thời gian thực hiện: <span class="dotline"></span></div>
+          </div>
+
+          <div class="bullet">
+            <div class="dash">-</div>
+            <div class="content">Mục đích sử dụng: <span class="dotline"></span></div>
+          </div>
+
+          <div class="bullet">
+            <div class="dash">-</div>
+            <div class="content">Địa điểm nuôi cách ly kiểm dịch: <span class="dotline"></span></div>
+          </div>
+          <div class="bullet">
+            <div class="dash"></div>
+            <div class="content"><span class="dotline"></span></div>
+          </div>
+
+          <div class="bullet">
+            <div class="dash">-</div>
+            <div class="content">Các giấy tờ có liên quan kèm theo: <span class="dotline"></span></div>
+          </div>
+          <div class="bullet">
+            <div class="dash"></div>
+            <div class="content"><span class="dotline"></span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TRANG 2 -->
+      <section class="page">
+        <div class="sec-title">II. SẢN PHẨM ĐỘNG VẬT</div>
+
+        <table class="form">
+          <thead>
+            <tr>
+              <th style="width:50px;">STT</th>
+              <th style="width:160px;">Tên hàng</th>
+              <th>Mã số HS (mã HS theo quy định hiện hành là mã HS 8 số)</th>
+              <th style="width:120px;">Số lượng <span style="font-weight:400;">(1)</span><br/>(tấn)</th>
+              <th style="width:120px;">Nước xuất xứ</th>
+              <th style="width:120px;">Cửa khẩu nhập</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- 1 dòng trống như mẫu -->
+            <tr>
+              <td><input type="text"></td>
+              <td><input type="text"></td>
+              <td><input type="text"></td>
+              <td><input type="text"></td>
+              <td><input type="text"></td>
+              <td><input type="text"></td>
+            </tr>
+            <!-- Tổng số -->
+            <tr>
+              <td></td>
+              <td class="bold">Tổng số</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="bullets">
+          <div class="bullet">
+            <div class="dash">-</div>
+            <div class="content">Từ Công ty: <span class="dotline"></span></div>
+          </div>
+          <div class="bullet">
+            <div class="dash"></div>
+            <div class="content"><span class="dotline"></span></div>
+          </div>
+
+          <div class="bullet">
+            <div class="dash"></div>
+            <div class="content">Địa chỉ: <span class="dotline"></span></div>
+          </div>
+          <div class="bullet">
+            <div class="dash"></div>
+            <div class="content"><span class="dotline"></span></div>
+          </div>
+          <div class="bullet">
+            <div class="dash"></div>
+            <div class="content"><span class="dotline"></span></div>
+          </div>
+
+          <div class="bullet">
+            <div class="dash">-</div>
+            <div class="content">Từ Nhà máy sản xuất, chế biến: <span class="dotline"></span></div>
+          </div>
+
+          <div class="bullet">
+            <div class="dash"></div>
+            <div class="content">Địa chỉ: <span class="dotline"></span></div>
+          </div>
+          <div class="bullet">
+            <div class="dash"></div>
+            <div class="content"><span class="dotline"></span></div>
+          </div>
+
+          <div class="bullet">
+            <div class="dash">-</div>
+            <div class="content">Thời gian thực hiện: <span class="dotline"></span></div>
+          </div>
+
+          <div class="bullet">
+            <div class="dash">-</div>
+            <div class="content">Mục đích sử dụng: <span class="dotline"></span></div>
+          </div>
+
+          <div class="bullet">
+            <div class="dash">-</div>
+            <div class="content">Các giấy tờ có liên quan kèm theo: <span class="dotline"></span></div>
+          </div>
+          <div class="bullet">
+            <div class="dash"></div>
+            <div class="content"><span class="dotline"></span></div>
+          </div>
+        </div>
+
+        <div style="margin-top: 14px;">Chúng tôi cam kết chấp hành nghiêm Pháp luật về Thú y.</div>
+
+        <div class="sig">
+          <div class="box">
+            <div class="bold" style="font-size:18px;">CÔNG TY <span style="display:inline-block; width:120px;"><input class="line" type="text"></span></div>
+            <div class="bold" style="font-size:18px;">Giám đốc</div>
+            <div class="italic" style="font-size:18px;">(Ký tên, đóng dấu)</div>
+            <div style="height:60px;"></div>
+          </div>
+        </div>
+
+        <div class="footnote">
+          (1): Số lượng động vật, sản phẩm động vật có thể dự trù nhập khẩu trong 03 tháng
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+  <script>
+    function resetForm(){
+      document.querySelectorAll("input, textarea, select").forEach(el => {
+        if (el.tagName === "SELECT") el.selectedIndex = 0;
+        else el.value = "";
+      });
+    }
+    document.getElementById("btnReset").addEventListener("click", resetForm);
+  </script>
+</body>
+</html>

@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Mẫu 20 - Đơn đăng ký kiểm dịch nhập khẩu bột thịt xương</title>
+  <style>
+    :root{
+      --page-w: 210mm; --page-h: 297mm;
+      --pad-x: 18mm; --pad-y: 16mm;
+      --ink:#111; --ui:#0b5ed7;
+      --font:"Times New Roman", Times, serif;
+      --fs:15px;
+    }
+    *{ box-sizing:border-box; }
+    body{
+      margin:0; background:#e9ecef; color:var(--ink);
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    }
+    .topbar{
+      position: sticky; top:0; z-index:10;
+      background:var(--ui); color:#fff;
+      padding:10px 14px; display:flex; gap:10px; align-items:center;
+    }
+    .topbar .title{
+      flex:1; font-weight:600; font-size:14px;
+      white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+    }
+    .btn{
+      border:0; padding:8px 12px; border-radius:10px;
+      font-weight:700; font-size:12px; cursor:pointer;
+    }
+    .btn.primary{ background:#fff; color:var(--ui); }
+    .btn.secondary{
+      background: rgba(255,255,255,.18);
+      color:#fff;
+      border:1px solid rgba(255,255,255,.25);
+    }
+
+    .wrap{ display:flex; justify-content:center; padding:14px; }
+    .page{
+      width:var(--page-w); min-height:var(--page-h);
+      background:#fff; border-radius:14px;
+      box-shadow: 0 10px 28px rgba(0,0,0,.12);
+      padding:var(--pad-y) var(--pad-x);
+      font-family:var(--font); font-size:var(--fs); line-height:1.25;
+    }
+
+    .center{ text-align:center; }
+    .right{ text-align:right; }
+    .bold{ font-weight:700; }
+
+    input.line, textarea.line{
+      border:none; border-bottom:1px dotted #000;
+      outline:none; background:transparent;
+      font-family:var(--font); font-size:var(--fs);
+      padding:0 2px 1px 2px; height:20px; width:100%;
+    }
+    textarea.line{ height:44px; resize:vertical; padding-top:2px; }
+
+    .head{ display:flex; gap:12px; align-items:flex-start; margin-top:6px; }
+    .head .left{ flex:1; }
+    .head .right{ flex:1; text-align:center; }
+    .mau{ text-align:right; font-weight:700; font-size:18px; margin-top:2px; }
+
+    .underline{
+      display:inline-block; border-bottom:2px solid #000; width:220px;
+      transform: translateY(-2px);
+    }
+
+    h1{
+      margin:14px 0 6px; text-align:center;
+      font-size:18px; font-weight:700; text-transform:uppercase;
+    }
+    .kg{ text-align:center; font-weight:700; margin-top:6px; }
+
+    table.form{
+      width:100%; border-collapse:collapse; margin-top:10px; font-size:14px;
+    }
+    table.form th, table.form td{
+      border:1px solid #000; padding:6px; vertical-align:top;
+    }
+    table.form th{ text-align:center; font-weight:700; }
+    table.form td input{
+      width:100%; border:none; outline:none; background:transparent;
+      font-family:var(--font); font-size:14px; height:18px;
+    }
+
+    .bullet{ margin:8px 0; display:flex; gap:8px; align-items:baseline; }
+    .bullet .dash{ width:16px; }
+    .dotline{
+      display:inline-block; width:100%;
+      border-bottom:1px dotted #000;
+      transform: translateY(-2px);
+    }
+
+    .sig{ margin-top:16px; display:flex; justify-content:flex-end; }
+    .sig .box{ width:260px; text-align:center; }
+
+    @media print{
+      body{ background:#fff; }
+      .topbar{ display:none !important; }
+      .wrap{ padding:0; }
+      .page{ box-shadow:none; border-radius:0; }
+      @page{ size:A4; margin:0; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="topbar">
+    <div class="title">Mẫu 20 – Đơn đăng ký kiểm dịch nhập khẩu bột thịt xương</div>
+    <button class="btn secondary" type="button" id="btnReset">Làm lại</button>
+    <button class="btn primary" type="button" onclick="window.print()">Lưu PDF</button>
+  </div>
+
+  <div class="wrap">
+    <section class="page">
+      <div class="mau">Mẫu 20</div>
+
+      <div class="head">
+        <div class="left">
+          <div class="bold">CÔNG TY <span style="display:inline-block; width:220px;"><input class="line" type="text"></span></div>
+          <div>Địa chỉ: <span style="display:inline-block; width:320px;"><input class="line" type="text"></span></div>
+          <div>Tel: <span style="display:inline-block; width:320px;"><input class="line" type="text"></span></div>
+          <div>Fax: <span style="display:inline-block; width:320px;"><input class="line" type="text"></span></div>
+          <div>Email: <span style="display:inline-block; width:320px;"><input class="line" type="text"></span></div>
+          <div style="margin-top:10px;">Số: <span style="display:inline-block; width:220px;"><input class="line" type="text" placeholder="......../........."></span></div>
+        </div>
+
+        <div class="right">
+          <div class="bold" style="font-size:18px;">CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM</div>
+          <div class="bold" style="font-size:18px;">Độc lập - Tự do - Hạnh phúc</div>
+          <div class="underline"></div>
+          <div class="right" style="margin-top:22px;">
+            <span style="display:inline-block; width:310px;">
+              <input class="line" type="text" placeholder="............., ngày     tháng     năm 20.....">
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <h1>ĐƠN ĐĂNG KÝ KIỂM DỊCH NHẬP KHẨU BỘT THỊT XƯƠNG</h1>
+      <div class="kg">Kính gửi: Cục Chăn nuôi và Thú y</div>
+
+      <div style="margin-top:10px;">
+        Căn cứ nhu cầu sản xuất, kinh doanh của Công ty, Giám đốc Công ty
+        <span style="display:inline-block; width:240px; vertical-align:baseline;"><input class="line" type="text"></span>
+        <br/>
+        <span style="display:inline-block; width:100%;"><input class="line" type="text" placeholder=""></span>
+        đề nghị Cục Chăn nuôi và Thú y hướng dẫn Công ty được kiểm dịch nhập khẩu lô hàng bột thịt xương:
+      </div>
+
+      <table class="form">
+        <thead>
+          <tr>
+            <th style="width:50px;">STT</th>
+            <th style="width:170px;">Tên hàng</th>
+            <th style="width:110px;">Số lượng (1)<br/>(tấn)</th>
+            <th>Tên, địa chỉ cơ sở sản xuất; mã số cơ sở (nếu có)</th>
+            <th style="width:120px;">Nước xuất khẩu</th>
+            <th style="width:120px;">Cửa khẩu nhập</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- 6 dòng trống (tăng/giảm tùy bạn) -->
+          <tr><td><input></td><td><input></td><td><input></td><td><input></td><td><input></td><td><input></td></tr>
+          <tr><td><input></td><td><input></td><td><input></td><td><input></td><td><input></td><td><input></td></tr>
+          <tr><td><input></td><td><input></td><td><input></td><td><input></td><td><input></td><td><input></td></tr>
+          <tr><td><input></td><td><input></td><td><input></td><td><input></td><td><input></td><td><input></td></tr>
+          <tr><td><input></td><td><input></td><td><input></td><td><input></td><td><input></td><td><input></td></tr>
+          <tr><td><input></td><td><input></td><td><input></td><td><input></td><td><input></td><td><input></td></tr>
+
+          <tr>
+            <td></td>
+            <td class="bold">Tổng số</td>
+            <td><input></td>
+            <td></td><td></td><td></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div style="margin-top:10px;">
+        <div class="bullet"><div class="dash">-</div><div style="flex:1;">Từ Công ty: <span class="dotline"></span></div></div>
+        <div class="bullet"><div class="dash"></div><div style="flex:1;"><span class="dotline"></span></div></div>
+
+        <div class="bullet"><div class="dash"></div><div style="flex:1;">Địa chỉ: <span class="dotline"></span></div></div>
+        <div class="bullet"><div class="dash"></div><div style="flex:1;"><span class="dotline"></span></div></div>
+
+        <div class="bullet"><div class="dash">-</div><div style="flex:1;">Thời gian thực hiện: <span class="dotline"></span></div></div>
+
+        <div class="bullet">
+          <div class="dash">-</div>
+          <div style="flex:1;">
+            Mục đích sử dụng: chế biến thức ăn chăn nuôi cho lợn, gia cầm và thủy sản.
+          </div>
+        </div>
+
+        <div class="bullet"><div class="dash">-</div><div style="flex:1;">Các giấy tờ có liên quan kèm theo: <span class="dotline"></span></div></div>
+        <div class="bullet"><div class="dash"></div><div style="flex:1;"><span class="dotline"></span></div></div>
+      </div>
+
+      <div style="margin-top:10px;">
+        Chúng tôi cam kết không sử dụng bột thịt xương của loài nhai lại để sản xuất thức ăn cho loài nhai lại và cam kết chấp hành nghiêm Pháp luật về Thú y
+      </div>
+
+      <div class="sig">
+        <div class="box">
+          <div class="bold" style="font-size:18px;">CÔNG TY <span style="display:inline-block; width:120px;"><input class="line" type="text"></span></div>
+          <div class="bold" style="font-size:18px;">Giám đốc</div>
+          <div style="font-size:18px; font-style:italic;">(Ký tên, đóng dấu)</div>
+          <div style="height:60px;"></div>
+        </div>
+      </div>
+
+      <div style="margin-top:18px; font-style:italic; font-size:16px;">
+        (1): Số lượng có thể dự trù nhập khẩu trong 03 tháng
+      </div>
+
+    </section>
+  </div>
+
+  <script>
+    function resetForm(){
+      document.querySelectorAll("input, textarea").forEach(el => el.value = "");
+    }
+    document.getElementById("btnReset").addEventListener("click", resetForm);
+  </script>
+</body>
+</html>
